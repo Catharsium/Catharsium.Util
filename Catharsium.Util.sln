@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util", "Catharsium.Util\Catharsium.Util.csproj", "{30C2E073-3525-4F9C-855D-16BE8316C50E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30C2E073-3525-4F9C-855D-16BE8316C50E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C2E073-3525-4F9C-855D-16BE8316C50E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C2E073-3525-4F9C-855D-16BE8316C50E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C2E073-3525-4F9C-855D-16BE8316C50E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA4F4724-273A-46CC-B2F7-57AAD86EEF25}
+	EndGlobalSection
+EndGlobal
