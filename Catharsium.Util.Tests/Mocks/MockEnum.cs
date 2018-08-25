@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Catharsium.Util.Tests.Mocks
+﻿namespace Catharsium.Util.Tests.Mocks
 {
     public enum MockEnum
     {
