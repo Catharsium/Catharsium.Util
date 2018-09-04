@@ -1,0 +1,36 @@
+﻿using System;
+using System.Globalization;
+
+namespace Catharsium.Util.Enums
+{
+    public static class EnumHelper
+    {
+        public static T? ParseNullableEnum<T>(this string value, bool isRequired) where T : struct, IConvertible
+        {
+            if (!typeof(T).IsEnum) {
+                throw new ArgumentException("T must be an enumerated type");
+            }
+            if (string.IsNullOrEmpty(value)) {
+                if (isRequired) {
+                    throw new ArgumentNullException(typeof(T).Name);
+                }
+                return null;
+            }
+
+            foreach (T item in Enum.GetValues(typeof(T))) {
+                if (item.ToString(CultureInfo.InvariantCulture).ToLower().Equals(value.Trim().ToLower())) {
+                    return item;
+                }
+
+            }
+            throw new ArgumentException($"Invalid {typeof(T).Name} {value}");
+        }
+
+
+        public static T ParseEnum<T>(this string value) where T : struct, IConvertible
+        {
+            var result = ParseNullableEnum<T>(value, true);
+            return result.Value;
+        }
+    }
+}
