@@ -6,7 +6,7 @@ using System;
 namespace Catharsium.Util.Tests.Enums
 {
     [TestClass]
-    public class CodeHelperTests
+    public class EnumCodeHelperTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]

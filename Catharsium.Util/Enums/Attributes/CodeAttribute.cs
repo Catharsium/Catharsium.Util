@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Catharsium.Util.Enums
+namespace Catharsium.Util.Enums.Attributes
 {
     public class CodeAttribute : Attribute
     {
@@ -9,7 +9,7 @@ namespace Catharsium.Util.Enums
 
         public CodeAttribute(params string[] codes)
         {
-            Codes = codes;
+            this.Codes = codes;
         }
     }
 }

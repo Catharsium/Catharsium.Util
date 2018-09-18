@@ -1,4 +1,5 @@
 ﻿using Catharsium.Util.Enums;
+using Catharsium.Util.Enums.Attributes;
 
 namespace Catharsium.Util.Tests.Mocks
 {

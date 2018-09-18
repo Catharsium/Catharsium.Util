@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
+using Catharsium.Util.Enums.Attributes;
 
 namespace Catharsium.Util.Enums
 {
-    public static class CodeHelper
+    public static class EnumCodeHelper
     {
         public static T? ParseTo<T>(this string code, string fallback = null) where T : struct, IConvertible
         {
