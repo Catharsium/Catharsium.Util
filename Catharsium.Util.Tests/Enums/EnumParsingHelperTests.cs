@@ -6,8 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Catharsium.Util.Tests.Enums
 {
     [TestClass]
-    public class EnumHelperTests
+    public class EnumParsingHelperTests
     {
+        #region ParseNullableEnum
+
         [TestMethod]
         public void ParseNullableEnum_ValidValue_ReturnsEnumValue()
         {
@@ -52,6 +54,9 @@ namespace Catharsium.Util.Tests.Enums
             expected.ToString().ParseNullableEnum<int>(false);
         }
 
+        #endregion
+
+        #region ParseEnum
 
         [TestMethod]
         public void ParseEnum_ValidValue_ReturnsEnumValue()
@@ -70,8 +75,7 @@ namespace Catharsium.Util.Tests.Enums
             expected.ParseEnum<MockEnum>();
         }
 
-
-
+        
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ParseEnum_InvalidValue_ThrowsException()
@@ -79,5 +83,7 @@ namespace Catharsium.Util.Tests.Enums
             var expected = "Other value";
             expected.ParseEnum<MockEnum>();
         }
+
+        #endregion
     }
 }

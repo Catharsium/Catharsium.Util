@@ -3,13 +3,14 @@ using System.Globalization;
 
 namespace Catharsium.Util.Enums
 {
-    public static class EnumHelper
+    public static class EnumParsingHelper
     {
         public static T? ParseNullableEnum<T>(this string value, bool isRequired) where T : struct, IConvertible
         {
             if (!typeof(T).IsEnum) {
                 throw new ArgumentException("T must be an enumerated type");
             }
+
             if (string.IsNullOrEmpty(value)) {
                 if (isRequired) {
                     throw new ArgumentNullException(typeof(T).Name);
@@ -21,8 +22,8 @@ namespace Catharsium.Util.Enums
                 if (item.ToString(CultureInfo.InvariantCulture).ToLower().Equals(value.Trim().ToLower())) {
                     return item;
                 }
-
             }
+
             throw new ArgumentException($"Invalid {typeof(T).Name} {value}");
         }
 
@@ -30,7 +31,7 @@ namespace Catharsium.Util.Enums
         public static T ParseEnum<T>(this string value) where T : struct, IConvertible
         {
             var result = ParseNullableEnum<T>(value, true);
-            return result.Value;
+            return result ?? throw new ArgumentException($"{typeof(T)} does not contain the value '{nameof(value)}'");
         }
     }
 }
