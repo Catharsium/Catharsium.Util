@@ -11,4 +11,4 @@ namespace Catharsium.Util.Enums
             return Enum.GetValues(typeof(T)).Cast<T>();
         }
     }
-}
+} 
