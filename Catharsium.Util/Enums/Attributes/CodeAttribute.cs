@@ -9,7 +9,7 @@ namespace Catharsium.Util.Enums.Attributes
 
         public CodeAttribute(params string[] codes)
         {
-            this.Codes = codes;
+            Codes = codes;
         }
     }
 }
