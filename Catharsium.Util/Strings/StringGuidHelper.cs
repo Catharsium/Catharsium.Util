@@ -12,4 +12,4 @@ namespace Catharsium.Util.Strings
             return default(Guid);
         }
     }
-}
+} 
