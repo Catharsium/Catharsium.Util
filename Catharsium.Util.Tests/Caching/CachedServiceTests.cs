@@ -55,7 +55,10 @@ namespace Catharsium.Util.Tests.Caching
         {
             var input = "My input string";
             var expected = "My expected string";
-            this.Cache.Get<string>(Arg.Any<string>()).Returns(expected);
+            this.Cache.TryGetValue(Arg.Any<string>(), out string _).Returns(x => {
+                x[1] = expected;
+                return true;
+            });
 
             var actual = this.Target.GetData<string>(nameof(this.Instance.ReadData), input);
             Assert.AreEqual(expected, actual);
