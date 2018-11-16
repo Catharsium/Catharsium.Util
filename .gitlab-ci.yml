@@ -4,11 +4,7 @@ stages:
     - build
     - test
 
-variables:
-    test: "Example.Test"
-
 before_script:
-    - "cd src"
     - "dotnet restore"
 
 build:
@@ -19,5 +15,4 @@ build:
 test:
     stage: test
     script: 
-        - "cd $test"
         - "dotnet test"
