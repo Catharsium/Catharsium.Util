@@ -5,9 +5,9 @@ namespace Catharsium.Util.Tests.Mocks
 {
     public enum MockEnum
     {
-        [Code("1")]
+        [Alias("1")]
         First,
-        [Code("2")]
+        [Alias("2")]
         Second
     }
 }

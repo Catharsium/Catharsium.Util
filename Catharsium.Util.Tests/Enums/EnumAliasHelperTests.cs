@@ -6,7 +6,7 @@ using System;
 namespace Catharsium.Util.Tests.Enums
 {
     [TestClass]
-    public class EnumCodeHelperTests
+    public class EnumAliasHelperTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -18,14 +18,14 @@ namespace Catharsium.Util.Tests.Enums
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ParseTo_NullCode_ThrowsException()
+        public void ParseTo_NullAlias_ThrowsException()
         {
             (null as string).ParseTo<MockEnum>();
         }
 
 
         [TestMethod]
-        public void ParseTo_ValidCode_ReturnsEnumValue()
+        public void ParseTo_ValidAlias_ReturnsEnumValue()
         {
             var actual = "1".ParseTo<MockEnum>();
             Assert.AreEqual(MockEnum.First, actual);
@@ -33,7 +33,7 @@ namespace Catharsium.Util.Tests.Enums
 
 
         [TestMethod]
-        public void ParseTo_ValidCode_ReturnsCorrectValue()
+        public void ParseTo_ValidAlias_ReturnsCorrectValue()
         {
             var actual = "2".ParseTo<MockEnum>();
             Assert.AreEqual(MockEnum.Second, actual);
@@ -41,15 +41,15 @@ namespace Catharsium.Util.Tests.Enums
 
 
         [TestMethod]
-        public void ParseTo_InvalidCode_ThrowsException()
+        public void ParseTo_InvalidAlias_ThrowsException()
         {
-            var actual = "Other code".ParseTo<MockEnum>();
+            var actual = "Other alias".ParseTo<MockEnum>();
             Assert.IsNull(actual);
         }
 
 
         [TestMethod]
-        public void ParseTo_Fallback_DoesNotOverruleCode()
+        public void ParseTo_Fallback_DoesNotOverruleAlias()
         {
             var actual = "2".ParseTo<MockEnum>("1");
             Assert.AreEqual(MockEnum.Second, actual);
@@ -57,9 +57,9 @@ namespace Catharsium.Util.Tests.Enums
 
 
         [TestMethod]
-        public void ParseTo_InvalidCode_UsesFallback()
+        public void ParseTo_InvalidAlias_UsesFallback()
         {
-            var actual = "Other code".ParseTo<MockEnum>("2");
+            var actual = "Other alias".ParseTo<MockEnum>("2");
             Assert.AreEqual(MockEnum.Second, actual);
         }
     }
