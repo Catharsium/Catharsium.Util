@@ -1,6 +1,6 @@
-﻿using Catharsium.Util.Strings;
+﻿using System;
+using Catharsium.Util.Strings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Catharsium.Util.Tests.Strings
 {

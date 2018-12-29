@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util", "Catharsium.Util\Catharsium.Util.csproj", "{30C2E073-3525-4F9C-855D-16BE8316C50E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util", "Catharsium.Util\Catharsium.Util.csproj", "{30C2E073-3525-4F9C-855D-16BE8316C50E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Tests", "Catharsium.Util.Tests\Catharsium.Util.Tests.csproj", "{3138B2FF-9CB4-4348-8F0D-6CEF4EEA0DCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Tests", "Catharsium.Util.Tests\Catharsium.Util.Tests.csproj", "{3138B2FF-9CB4-4348-8F0D-6CEF4EEA0DCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing", "Catharsium.Util.Testing\Catharsium.Util.Testing.csproj", "{88E00C5D-E7B9-449F-BA19-15A827E74EB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing.Tests", "Catharsium.Util.Testing.Tests\Catharsium.Util.Testing.Tests.csproj", "{83991B83-16D2-4D8B-9BA8-2F13514EA286}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{3138B2FF-9CB4-4348-8F0D-6CEF4EEA0DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3138B2FF-9CB4-4348-8F0D-6CEF4EEA0DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3138B2FF-9CB4-4348-8F0D-6CEF4EEA0DCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E00C5D-E7B9-449F-BA19-15A827E74EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E00C5D-E7B9-449F-BA19-15A827E74EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E00C5D-E7B9-449F-BA19-15A827E74EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E00C5D-E7B9-449F-BA19-15A827E74EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83991B83-16D2-4D8B-9BA8-2F13514EA286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83991B83-16D2-4D8B-9BA8-2F13514EA286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83991B83-16D2-4D8B-9BA8-2F13514EA286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83991B83-16D2-4D8B-9BA8-2F13514EA286}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
