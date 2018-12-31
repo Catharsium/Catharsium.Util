@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Catharsium.Util.Enums;
-using Catharsium.Util.Tests.Mocks;
+using Catharsium.Util.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Catharsium.Util.Tests.Enums

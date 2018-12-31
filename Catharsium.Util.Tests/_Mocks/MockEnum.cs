@@ -1,7 +1,6 @@
-﻿using Catharsium.Util.Enums;
-using Catharsium.Util.Enums.Attributes;
+﻿using Catharsium.Util.Enums.Attributes;
 
-namespace Catharsium.Util.Tests.Mocks
+namespace Catharsium.Util.Tests._Mocks
 {
     public enum MockEnum
     {
