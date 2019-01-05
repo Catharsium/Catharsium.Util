@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util", "Catharsi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Tests", "Catharsium.Util.Tests\Catharsium.Util.Tests.csproj", "{3138B2FF-9CB4-4348-8F0D-6CEF4EEA0DCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing", "Catharsium.Util.Testing\Catharsium.Util.Testing.csproj", "{88E00C5D-E7B9-449F-BA19-15A827E74EB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing", "Catharsium.Util.Testing\Catharsium.Util.Testing.csproj", "{88E00C5D-E7B9-449F-BA19-15A827E74EB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing.Tests", "Catharsium.Util.Testing.Tests\Catharsium.Util.Testing.Tests.csproj", "{83991B83-16D2-4D8B-9BA8-2F13514EA286}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.Tests", "Catharsium.Util.Testing.Tests\Catharsium.Util.Testing.Tests.csproj", "{83991B83-16D2-4D8B-9BA8-2F13514EA286}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing Utilities", "Testing Utilities", "{20CBADD9-B097-4896-BE19-ABF52F44F3BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88E00C5D-E7B9-449F-BA19-15A827E74EB3} = {20CBADD9-B097-4896-BE19-ABF52F44F3BA}
+		{83991B83-16D2-4D8B-9BA8-2F13514EA286} = {20CBADD9-B097-4896-BE19-ABF52F44F3BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA4F4724-273A-46CC-B2F7-57AAD86EEF25}

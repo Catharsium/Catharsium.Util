@@ -1,4 +1,4 @@
-using Catharsium.Util.Testing.Tests.Mocks;
+using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Catharsium.Util.Testing.Tests
