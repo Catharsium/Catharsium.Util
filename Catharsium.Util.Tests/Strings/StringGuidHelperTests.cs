@@ -7,7 +7,6 @@ namespace Catharsium.Util.Tests.Strings
     [TestClass]
     public class StringGuidHelperTests
     {
-
         [TestMethod]
         public void ToGuid_NullInput_ReturnsDefault()
         {
@@ -15,11 +14,12 @@ namespace Catharsium.Util.Tests.Strings
             Assert.AreEqual(default(Guid), actual);
         }
 
+
         [TestMethod]
         public void ToGuid_InvalidGuid_ReturnsDefault()
         {
             var expected = new Guid();
-            var actual = (expected.ToString() + "1").ToGuid();
+            var actual = (expected + "1").ToGuid();
             Assert.AreEqual(default(Guid), actual);
         }
 

@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using Catharsium.Util.Services;
-using Catharsium.Util.Tests.Testing;
+using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using RestSharp;
@@ -10,13 +10,14 @@ using RestSharp;
 namespace Catharsium.Util.Tests.Services
 {
     [TestClass]
-    public class RestServiceTests : TestClass<RestService>
+    public class RestServiceTests : TestFixture<RestService>
     {
         #region PostToJsonService
 
         [TestMethod]
         public void PostToJsonService_ValidData_CallsServiceWith()
         {
+            //TODO
             var response = new RestResponse {
                 StatusCode = HttpStatusCode.OK,
                 ResponseStatus = ResponseStatus.Completed,

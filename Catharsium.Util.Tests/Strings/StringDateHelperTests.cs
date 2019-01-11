@@ -10,7 +10,7 @@ namespace Catharsium.Util.Tests.Strings
         [TestMethod]
         public void ToDate_NullInput_ReturnsDefault()
         {
-            var actual = StringDateHelper.ToDate(null as string);
+            var actual = (null as string).ToDate();
             Assert.AreEqual(default(DateTime), actual);
         }
 
@@ -28,7 +28,7 @@ namespace Catharsium.Util.Tests.Strings
         public void ToDate_yyyyMMddHHmmssInput_ReturnsExpected()
         {
             var expected = DateTime.Now.Date;
-            var actual = StringDateHelper.ToDate(expected.ToString("yyyyMMddHHmmss"));
+            var actual = expected.ToString("yyyyMMddHHmmss").ToDate();
             Assert.AreEqual(expected, actual);
         }
 
@@ -37,7 +37,7 @@ namespace Catharsium.Util.Tests.Strings
         public void ToDate_yyyy_MM_ddInput_ReturnsExpected()
         {
             var expected = DateTime.Now.Date;
-            var actual = StringDateHelper.ToDate(expected.ToString("yyyy-MM-dd"));
+            var actual = expected.ToString("yyyy-MM-dd").ToDate();
             Assert.AreEqual(expected, actual);
         }
 
@@ -46,7 +46,7 @@ namespace Catharsium.Util.Tests.Strings
         public void ToDate_yyyy_MM_dd_HH_mm_ssInput_ReturnsExpected()
         {
             var expected = DateTime.Now.Date;
-            var actual = StringDateHelper.ToDate(expected.ToString("yyyy-MM-dd HH:mm:ss"));
+            var actual = expected.ToString("yyyy-MM-dd HH:mm:ss").ToDate();
             Assert.AreEqual(expected, actual);
         }
     }
