@@ -17,18 +17,17 @@ namespace Catharsium.Util.Tests.Services
         [TestMethod]
         public void PostToJsonService_ValidData_CallsServiceWith()
         {
-            //TODO
             var response = new RestResponse {
                 StatusCode = HttpStatusCode.OK,
                 ResponseStatus = ResponseStatus.Completed,
-                Content = "1"
+                Content = "My content"
             };
             this.GetDependency<IRestClient>().Execute(Arg.Any<RestRequest>()).Returns(response);
             var resource = "My resource";
             var data = "My data";
 
-            this.Target.PostToJsonService(resource, data);
-            this.GetDependency<IRestClient>().Received().Execute(Arg.Is<RestRequest>(r => IsExpectedRequest(r, resource, "application/json", data)));
+            var actual = this.Target.PostToJsonService(resource, data);
+            Assert.AreEqual(response.Content, actual);
         }
 
 
