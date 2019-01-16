@@ -19,9 +19,16 @@ namespace Catharsium.Util.Testing
 
         public TDependency GetDependency<TDependency>() where TDependency : class
         {
-            if (!this.Dependencies.ContainsKey(typeof(TDependency))) { return null; }
+            return this.Dependencies.ContainsKey(typeof(TDependency)) ?
+                this.Dependencies[typeof(TDependency)] as TDependency :
+                null;
+        }
 
-            return this.Dependencies[typeof(TDependency)] as TDependency;
+
+        public void SetDependency<TDependency>(TDependency dependency)
+        {
+            this.Dependencies[typeof(TDependency)] = dependency;
+            this.InitializeTarget();
         }
 
         #endregion
@@ -40,26 +47,45 @@ namespace Catharsium.Util.Testing
         [TestInitialize]
         public void Setup()
         {
-            var constructor = this.GetConstructor();
-            var parameters = constructor.GetParameters();
             this.Dependencies = new Dictionary<Type, object>();
-            var arguments = new List<object>();
-            foreach (var parameter in parameters) {
-                var dependency = Substitute.For(new[] {parameter.ParameterType}, Array.Empty<object>());
+
+            var constructor = this.GetLargestEligibleConstructor();
+            var parameters = constructor.GetParameters();
+            foreach (var parameter in parameters)
+            {
+                var dependency = Substitute.For(new[] { parameter.ParameterType }, Array.Empty<object>());
                 this.Dependencies.Add(parameter.ParameterType, dependency);
-                arguments.Add(dependency);
+            }
+
+            this.InitializeTarget();
+        }
+
+
+        public void InitializeTarget()
+        {
+            var constructor = this.GetLargestEligibleConstructor();
+            var parameters = constructor.GetParameters();
+            var arguments = new List<object>();
+            foreach (var parameter in parameters)
+            {
+                arguments.Add(this.Dependencies[parameter.ParameterType]);
             }
 
             this.Target = constructor.Invoke(arguments.ToArray()) as T;
         }
 
 
-        public ConstructorInfo GetConstructor()
+        public ConstructorInfo GetLargestEligibleConstructor()
+        {
+            return this.GetEligibleConstructors().OrderBy(c => c.GetParameters().Length)
+                                                 .LastOrDefault();
+        }
+
+
+        public IEnumerable<ConstructorInfo> GetEligibleConstructors()
         {
             var constructors = typeof(T).GetConstructors();
-            return constructors.Where(c => c.GetParameters().All(p => p.ParameterType.IsInterface))
-                .OrderBy(c => c.GetParameters().Length)
-                .LastOrDefault();
+            return constructors.Where(c => c.GetParameters().All(p => p.ParameterType.IsInterface || this.Dependencies.ContainsKey(p.ParameterType)));
         }
 
         #endregion
