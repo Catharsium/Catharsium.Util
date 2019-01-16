@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
@@ -11,6 +9,8 @@ namespace Catharsium.Util.Testing
     public class TestFixture<T> where T : class
     {
         #region Properties
+
+        private readonly TargetFactory<T> TargetFactory;
 
         public T Target { get; set; }
 
@@ -28,7 +28,7 @@ namespace Catharsium.Util.Testing
         public void SetDependency<TDependency>(TDependency dependency)
         {
             this.Dependencies[typeof(TDependency)] = dependency;
-            this.InitializeTarget();
+            this.Target = this.TargetFactory.CreateTarget(this.Dependencies);
         }
 
         #endregion
@@ -37,6 +37,7 @@ namespace Catharsium.Util.Testing
 
         public TestFixture()
         {
+            this.TargetFactory = new TargetFactory<T>();
             this.Setup();
         }
 
@@ -49,7 +50,7 @@ namespace Catharsium.Util.Testing
         {
             this.Dependencies = new Dictionary<Type, object>();
 
-            var constructor = this.GetLargestEligibleConstructor();
+            var constructor = this.TargetFactory.GetLargestEligibleConstructor(this.Dependencies);
             var parameters = constructor.GetParameters();
             foreach (var parameter in parameters)
             {
@@ -57,35 +58,7 @@ namespace Catharsium.Util.Testing
                 this.Dependencies.Add(parameter.ParameterType, dependency);
             }
 
-            this.InitializeTarget();
-        }
-
-
-        public void InitializeTarget()
-        {
-            var constructor = this.GetLargestEligibleConstructor();
-            var parameters = constructor.GetParameters();
-            var arguments = new List<object>();
-            foreach (var parameter in parameters)
-            {
-                arguments.Add(this.Dependencies[parameter.ParameterType]);
-            }
-
-            this.Target = constructor.Invoke(arguments.ToArray()) as T;
-        }
-
-
-        public ConstructorInfo GetLargestEligibleConstructor()
-        {
-            return this.GetEligibleConstructors().OrderBy(c => c.GetParameters().Length)
-                                                 .LastOrDefault();
-        }
-
-
-        public IEnumerable<ConstructorInfo> GetEligibleConstructors()
-        {
-            var constructors = typeof(T).GetConstructors();
-            return constructors.Where(c => c.GetParameters().All(p => p.ParameterType.IsInterface || this.Dependencies.ContainsKey(p.ParameterType)));
+            this.Target = this.TargetFactory.CreateTarget(this.Dependencies);
         }
 
         #endregion
