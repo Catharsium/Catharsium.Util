@@ -10,13 +10,12 @@ namespace Catharsium.Util.Testing
     {
         #region Properties
 
-        private readonly TargetFactory<T> TargetFactory;
-
+        private readonly ITargetFactory<T> TargetFactory;
+        
         public T Target { get; set; }
-
-
+        
         public Dictionary<Type, object> Dependencies { get; set; }
-
+        
         public TDependency GetDependency<TDependency>() where TDependency : class
         {
             return this.Dependencies.ContainsKey(typeof(TDependency)) ?
@@ -35,9 +34,13 @@ namespace Catharsium.Util.Testing
 
         #region Construction
 
-        public TestFixture()
+        public TestFixture(ITargetFactory<T> targetFactory = null)
         {
-            this.TargetFactory = new TargetFactory<T>();
+            this.TargetFactory = targetFactory;
+            if (this.TargetFactory == null)
+            {
+                this.TargetFactory = new TargetFactory<T>();
+            }
             this.Setup();
         }
 
@@ -45,19 +48,10 @@ namespace Catharsium.Util.Testing
 
         #region Methods
 
-        [TestInitialize]
         public void Setup()
         {
-            this.Dependencies = new Dictionary<Type, object>();
-
-            var constructor = this.TargetFactory.GetLargestEligibleConstructor(this.Dependencies);
-            var parameters = constructor.GetParameters();
-            foreach (var parameter in parameters)
-            {
-                var dependency = Substitute.For(new[] { parameter.ParameterType }, Array.Empty<object>());
-                this.Dependencies.Add(parameter.ParameterType, dependency);
-            }
-
+            var constructor = this.TargetFactory.GetLargestEligibleConstructor();
+            this.Dependencies = this.TargetFactory.GetDependencySubstitutes(constructor);
             this.Target = this.TargetFactory.CreateTarget(this.Dependencies);
         }
 

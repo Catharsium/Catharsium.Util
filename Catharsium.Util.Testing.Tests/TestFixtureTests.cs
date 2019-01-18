@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -9,33 +13,39 @@ namespace Catharsium.Util.Testing.Tests
     {
         #region Fixture
 
-        private TestFixture<MockObject> Target { get; set; }
+        public Dictionary<Type, object> ExpectedDependencies { get; private set; }
 
+        public MockObject ExpectedTarget { get; private set; }
+
+        private ITargetFactory<MockObject> TargetFactory { get; set; }
+
+        private TestFixture<MockObject> Target { get; set; }
 
         [TestInitialize]
         public void Setup()
         {
-            this.Target = new TestFixture<MockObject>();
+            this.TargetFactory = Substitute.For<ITargetFactory<MockObject>>();
+            var constructorInfo = Substitute.For<ConstructorInfo>();
+            this.TargetFactory.GetLargestEligibleConstructor().Returns(constructorInfo);
+            this.ExpectedDependencies = new Dictionary<Type, object>();
+            this.TargetFactory.GetDependencySubstitutes(constructorInfo).Returns(this.ExpectedDependencies);
+            this.ExpectedTarget = new MockObject(null);
+            this.TargetFactory.CreateTarget(this.ExpectedDependencies).Returns(this.ExpectedTarget);
+            this.Target = new TestFixture<MockObject>(this.TargetFactory);
         }
 
         #endregion
 
         #region Constructor
-
-        [TestMethod]
-        public void Constructor_InitializesTarget()
-        {
-            Assert.IsNotNull(this.Target.Target);
-        }
-
         
         [TestMethod]
-        public void Constructor_CreatesSubstitutesForDependencies_IgnoresClassParameters()
+        public void Constructor_ObtainsInitialConstruct_StoresDependenciesAndTarget()
         {
-            Assert.IsNotNull(this.Target.Dependencies);
-            Assert.AreEqual(2, this.Target.Dependencies.Count);
-            Assert.IsTrue(this.Target.Dependencies.ContainsKey(typeof(IMockInterface1)));
-            Assert.IsTrue(this.Target.Dependencies.ContainsKey(typeof(IMockInterface2)));
+            var actual = new TestFixture<MockObject>(this.TargetFactory);
+            Assert.IsNotNull(actual.Target);
+            Assert.AreEqual(this.ExpectedTarget, actual.Target);
+            Assert.IsNotNull(actual.Dependencies);
+            Assert.AreEqual(this.ExpectedDependencies, actual.Dependencies);
         }
 
         #endregion
@@ -67,9 +77,13 @@ namespace Catharsium.Util.Testing.Tests
         public void SetDependency_NewDependency_IsAddedToDependenciesList()
         {
             var expected = "My string";
+            this.ExpectedDependencies[typeof(string)] = expected;
+            this.TargetFactory.CreateTarget(this.ExpectedDependencies).Returns(this.ExpectedTarget);
+            this.Target = new TestFixture<MockObject>(this.TargetFactory);
+
             this.Target.SetDependency(expected);
             Assert.IsTrue(this.Target.Dependencies.ContainsKey(expected.GetType()));
-            Assert.AreEqual(expected, this.Target.Dependencies[expected.GetType()]);
+            Assert.AreEqual(this.ExpectedTarget, this.Target.Target);
         }
         
         
@@ -80,19 +94,7 @@ namespace Catharsium.Util.Testing.Tests
             var type = typeof(IMockInterface1);
             this.Target.SetDependency(expected);
             Assert.IsTrue(this.Target.Dependencies.ContainsKey(type));
-            Assert.AreEqual(expected, this.Target.Dependencies[type]);
-        }
-
-
-
-        [TestMethod]
-        public void SetDependency_InterfaceDependency_NewTargetWithDependencyAndAllInterfacesSatisfied()
-        {
-            var expected = Substitute.For<IMockInterface1>();
-            this.Target.SetDependency(expected);
-            Assert.AreEqual(expected, this.Target.Target.interfaceDependency1);
-            Assert.IsNotNull(this.Target.Target.interfaceDependency2);
-            Assert.IsNull(this.Target.Target.stringDependency);
+            Assert.AreEqual(this.ExpectedTarget, this.Target.Target);
         }
 
 
@@ -101,9 +103,16 @@ namespace Catharsium.Util.Testing.Tests
         {
             var expected = "My string";
             this.Target.SetDependency(expected);
-            Assert.IsNotNull(this.Target.Target.interfaceDependency1);
-            Assert.IsNotNull(this.Target.Target.interfaceDependency2);
-            Assert.AreEqual(expected, this.Target.Target.stringDependency);
+            Assert.AreEqual(this.ExpectedTarget, this.Target.Target);
+        }
+
+        #endregion
+
+        #region Support Methods
+
+        private static List<ConstructorInfo> GetConstructors<T>()
+        {
+            return typeof(T).GetConstructors().OrderBy(c => c.GetParameters().Length).ToList();
         }
 
         #endregion

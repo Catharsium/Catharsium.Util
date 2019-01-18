@@ -8,7 +8,9 @@ namespace Catharsium.Util.Testing
     {
         T CreateTarget(Dictionary<Type, object> dependencies);
 
-        ConstructorInfo GetLargestEligibleConstructor(Dictionary<Type, object> dependencies);
+        Dictionary<Type, object> GetDependencySubstitutes(ConstructorInfo constructor);
+
+        ConstructorInfo GetLargestEligibleConstructor(Dictionary<Type, object> dependencies = null);
 
         IEnumerable<ConstructorInfo> GetEligibleConstructors(Dictionary<Type, object> dependencies);
     }

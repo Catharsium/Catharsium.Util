@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using NSubstitute;
 
 namespace Catharsium.Util.Testing
 {
@@ -30,7 +31,21 @@ namespace Catharsium.Util.Testing
         }
 
 
-        public ConstructorInfo GetLargestEligibleConstructor(Dictionary<Type, object> dependencies)
+        public Dictionary<Type, object> GetDependencySubstitutes(ConstructorInfo constructor)
+        {
+            var result = new Dictionary<Type, object>();
+            var parameters = constructor.GetParameters();
+            foreach (var parameter in parameters)
+            {
+                var dependency = Substitute.For(new[] { parameter.ParameterType }, Array.Empty<object>());
+                result.Add(parameter.ParameterType, dependency);
+            }
+
+            return result;
+        }
+
+
+        public ConstructorInfo GetLargestEligibleConstructor(Dictionary<Type, object> dependencies = null)
         {
             return this.GetEligibleConstructors(dependencies).OrderBy(c => c.GetParameters().Length)
                                                              .LastOrDefault();
