@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
 
 namespace Catharsium.Util.Testing
 {
@@ -10,7 +9,7 @@ namespace Catharsium.Util.Testing
     {
         #region Properties
 
-        private readonly ITargetFactory<T> TargetFactory;
+        private readonly ITargetFactory<T> targetFactory;
         
         public T Target { get; set; }
         
@@ -27,7 +26,7 @@ namespace Catharsium.Util.Testing
         public void SetDependency<TDependency>(TDependency dependency)
         {
             this.Dependencies[typeof(TDependency)] = dependency;
-            this.Target = this.TargetFactory.CreateTarget(this.Dependencies);
+            this.Target = this.targetFactory.CreateTarget(this.Dependencies);
         }
 
         #endregion
@@ -36,11 +35,7 @@ namespace Catharsium.Util.Testing
 
         public TestFixture(ITargetFactory<T> targetFactory = null)
         {
-            this.TargetFactory = targetFactory;
-            if (this.TargetFactory == null)
-            {
-                this.TargetFactory = new TargetFactory<T>();
-            }
+            this.targetFactory = targetFactory ?? new TargetFactory<T>();
             this.Setup();
         }
 
@@ -50,9 +45,9 @@ namespace Catharsium.Util.Testing
 
         public void Setup()
         {
-            var constructor = this.TargetFactory.GetLargestEligibleConstructor();
-            this.Dependencies = this.TargetFactory.GetDependencySubstitutes(constructor);
-            this.Target = this.TargetFactory.CreateTarget(this.Dependencies);
+            var constructor = this.targetFactory.GetLargestEligibleConstructor();
+            this.Dependencies = this.targetFactory.GetDependencySubstitutes(constructor);
+            this.Target = this.targetFactory.CreateTarget(this.Dependencies);
         }
 
         #endregion

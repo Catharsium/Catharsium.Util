@@ -48,6 +48,22 @@ namespace Catharsium.Util.Testing.Tests
             Assert.AreEqual(this.ExpectedDependencies, actual.Dependencies);
         }
 
+
+        [TestMethod]
+        public void Constructor_NoSuitableConstructor_StoresNoDependenciesNorTarget()
+        {
+            var targetFactory = Substitute.For<ITargetFactory<MockObjectWithoutInterfaces>>();
+            targetFactory.GetLargestEligibleConstructor().Returns(null as ConstructorInfo);
+            var expectedDependencies = new Dictionary<Type, object>();
+            targetFactory.GetDependencySubstitutes(null).Returns(expectedDependencies);
+            targetFactory.CreateTarget(this.ExpectedDependencies).Returns(null as MockObjectWithoutInterfaces);
+
+            var actual = new TestFixture<MockObjectWithoutInterfaces>(targetFactory);
+            Assert.IsNull(actual.Target);
+            Assert.IsNotNull(actual.Dependencies);
+            Assert.AreEqual(expectedDependencies, actual.Dependencies);
+        }
+
         #endregion
 
         #region GetDependency
