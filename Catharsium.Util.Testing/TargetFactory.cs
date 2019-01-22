@@ -34,11 +34,13 @@ namespace Catharsium.Util.Testing
         public Dictionary<Type, object> GetDependencySubstitutes(ConstructorInfo constructor)
         {
             var result = new Dictionary<Type, object>();
-            var parameters = constructor.GetParameters();
-            foreach (var parameter in parameters)
-            {
-                var dependency = Substitute.For(new[] { parameter.ParameterType }, Array.Empty<object>());
-                result.Add(parameter.ParameterType, dependency);
+
+            if (constructor != null) {
+                var parameters = constructor.GetParameters();
+                foreach (var parameter in parameters) {
+                    var dependency = Substitute.For(new[] {parameter.ParameterType}, Array.Empty<object>());
+                    result.Add(parameter.ParameterType, dependency);
+                }
             }
 
             return result;

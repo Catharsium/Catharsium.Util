@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,16 +8,13 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
     public class GetDependencySubstitutesTests
     {
         #region Fixture
-
-        private Dictionary<Type, object> Dependencies { get; set; }
-
+        
         private TargetFactory<MockObject> Target { get; set; }
 
 
         [TestInitialize]
         public void Setup()
         {
-            this.Dependencies = new Dictionary<Type, object>();
             this.Target = new TargetFactory<MockObject>();
         }
 
@@ -34,6 +29,15 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
             Assert.AreEqual(2, actual.Count);
             Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface1)));
             Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface2)));
+        }
+
+
+        [TestMethod]
+        public void GetDependencySubstitutes_NullConstructor_ReturnsEmptySubstitutes()
+        {
+            var actual = this.Target.GetDependencySubstitutes(null);
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(0, actual.Count);
         }
     }
 }
