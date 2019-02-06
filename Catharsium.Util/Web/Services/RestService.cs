@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using RestSharp;
 
-namespace Catharsium.Util.Services
+namespace Catharsium.Util.Web.Services
 {
     public class RestService
     {

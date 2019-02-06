@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing Utilities", "Testing Utilities", "{20CBADD9-B097-4896-BE19-ABF52F44F3BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO", "Catharsium.Util.IO\Catharsium.Util.IO.csproj", "{FB3618C1-B7AD-4D6F-B101-4A6948970F5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO.Tests", "Catharsium.Util.IO.Tests\Catharsium.Util.IO.Tests.csproj", "{974BC643-3715-4F58-BA63-CB0967BE5139}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{83991B83-16D2-4D8B-9BA8-2F13514EA286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83991B83-16D2-4D8B-9BA8-2F13514EA286}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83991B83-16D2-4D8B-9BA8-2F13514EA286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB3618C1-B7AD-4D6F-B101-4A6948970F5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3618C1-B7AD-4D6F-B101-4A6948970F5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3618C1-B7AD-4D6F-B101-4A6948970F5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3618C1-B7AD-4D6F-B101-4A6948970F5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{974BC643-3715-4F58-BA63-CB0967BE5139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{974BC643-3715-4F58-BA63-CB0967BE5139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{974BC643-3715-4F58-BA63-CB0967BE5139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{974BC643-3715-4F58-BA63-CB0967BE5139}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

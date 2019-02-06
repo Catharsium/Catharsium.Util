@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
-using Catharsium.Util.Services;
 using Catharsium.Util.Testing;
+using Catharsium.Util.Web.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using RestSharp;
 
-namespace Catharsium.Util.Tests.Services
+namespace Catharsium.Util.Tests.Web.Services
 {
     [TestClass]
     public class RestServiceTests : TestFixture<RestService>
