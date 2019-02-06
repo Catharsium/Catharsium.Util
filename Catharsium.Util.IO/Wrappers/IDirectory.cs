@@ -5,6 +5,8 @@ namespace Catharsium.Util.IO.Wrappers
 {
     public interface IDirectory
     {
+        #region DirectoryInfo Properties
+
         FileAttributes Attributes { get; set; }
 
         DateTime CreationTime { get; }
@@ -30,5 +32,13 @@ namespace Catharsium.Util.IO.Wrappers
         IDirectory Parent { get; }
 
         IDirectory Root { get; }
+
+        #endregion
+
+        #region DirectoryInfo Methods
+
+
+
+        #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace Catharsium.Util.IO.Wrappers
 {
@@ -24,7 +25,8 @@ namespace Catharsium.Util.IO.Wrappers
 
         #region DirectoryInfo Properties
 
-        public FileAttributes Attributes {
+        public FileAttributes Attributes
+        {
             get => this.directory.Attributes;
             set => this.directory.Attributes = value;
         }
@@ -52,6 +54,33 @@ namespace Catharsium.Util.IO.Wrappers
         public IDirectory Parent => this.fileFactory.CreateDirectory(this.directory.Parent.FullName);
 
         public IDirectory Root => this.fileFactory.CreateDirectory(this.directory.Root.FullName);
+
+        #endregion
+
+        #region DirectoryInfo Methods
+
+        public IFile[] GetFiles()
+        {
+            return this.directory.GetFiles()
+                                 .Select(f => this.fileFactory.CreateFile(f.FullName))
+                                 .ToArray();
+        }
+
+
+        public IFile[] GetFiles(string searchPattern)
+        {
+            return this.directory.GetFiles(searchPattern)
+                                 .Select(f => this.fileFactory.CreateFile(f.FullName))
+                                 .ToArray();
+        }
+
+
+        public IFile[] GetFiles(string searchPattern, SearchOption searchOption)
+        {
+            return this.directory.GetFiles(searchPattern, searchOption)
+                                 .Select(f => this.fileFactory.CreateFile(f.FullName))
+                                 .ToArray();
+        }
 
         #endregion
     }
