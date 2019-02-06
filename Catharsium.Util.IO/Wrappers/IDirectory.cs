@@ -37,7 +37,11 @@ namespace Catharsium.Util.IO.Wrappers
 
         #region DirectoryInfo Methods
 
-
+        IFile[] GetFiles();
+        
+        IFile[] GetFiles(string searchPattern);
+        
+        IFile[] GetFiles(string searchPattern, SearchOption searchOption);
 
         #endregion
     }
