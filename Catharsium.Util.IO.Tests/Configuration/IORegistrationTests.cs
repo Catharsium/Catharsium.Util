@@ -1,4 +1,5 @@
 ﻿using Catharsium.Util.IO.Configuration;
+using Catharsium.Util.IO.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;

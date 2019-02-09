@@ -1,25 +1,27 @@
 ﻿using System;
 using System.IO;
+using Catharsium.Util.IO.Interfaces;
 
 namespace Catharsium.Util.IO.Wrappers
 {
     public class FileInfoWrapper : IFile
     {
-        private readonly IFileFactory fileFactory;
         private readonly FileInfo file;
 
+        #region Construction
 
-        public FileInfoWrapper(IFileFactory fileFactory, string path)
-        : this(fileFactory, new FileInfo(path))
+        public FileInfoWrapper(string path)
+        : this(new FileInfo(path))
         {
         }
 
-        public FileInfoWrapper(IFileFactory fileFactory, FileInfo fileInfo)
+
+        public FileInfoWrapper(FileInfo fileInfo)
         {
-            this.fileFactory = fileFactory;
             this.file = fileInfo;
         }
 
+        #endregion
 
         #region FileInfo Properties
 
@@ -32,7 +34,7 @@ namespace Catharsium.Util.IO.Wrappers
 
         public DateTime CreationTimeUtc => this.file.CreationTimeUtc;
 
-        public IDirectory Directory => this.fileFactory.CreateDirectory(this.file.DirectoryName);
+        public IDirectory Directory => new DirectoryInfoWrapper(this.file.Directory);
 
         public string DirectoryName => this.file.DirectoryName;
 
@@ -59,6 +61,111 @@ namespace Catharsium.Util.IO.Wrappers
         public string Name => this.file.Name;
 
         public long Length => this.file.Length;
+
+        #endregion
+
+        #region FileInfo Methods
+
+        public StreamWriter AppendText()
+        {
+            return this.file.AppendText();
+        }
+
+
+        public IFile CopyTo(string destFileName)
+        {
+            return new FileInfoWrapper(this.file.CopyTo(destFileName));
+        }
+
+
+        public FileStream Create()
+        {
+            return this.file.Create();
+        }
+
+
+        public StreamWriter CreateText()
+        {
+            return this.file.CreateText();
+        }
+
+
+        public void Decrypt()
+        {
+            this.file.Decrypt();
+        }
+
+
+        public void Delete()
+        {
+            this.file.Delete();
+        }
+
+
+        public void Encrypt()
+        {
+            this.file.Encrypt();
+        }
+
+
+        public void MoveTo(string destFileName)
+        {
+            this.file.MoveTo(destFileName);
+        }
+
+
+        public FileStream Open(FileMode mode)
+        {
+            return this.file.Open(mode);
+        }
+
+
+        public FileStream Open(FileMode mode, FileAccess access)
+        {
+            return this.file.Open(mode, access);
+        }
+
+
+        public FileStream Open(FileMode mode, FileAccess access, FileShare share)
+        {
+            return this.file.Open(mode, access, share);
+        }
+
+
+        public FileStream OpenRead()
+        {
+            return this.file.OpenRead();
+        }
+
+
+        public StreamReader OpenText()
+        {
+            return this.file.OpenText();
+        }
+
+
+        public FileStream OpenWrite()
+        {
+            return this.file.OpenWrite();
+        }
+
+
+        public void Refresh()
+        {
+            this.file.Refresh();
+        }
+
+
+        public void Replace(string destinationFileName, string destinationBackupFileName)
+        {
+            this.file.Replace(destinationFileName, destinationBackupFileName);
+        }
+
+
+        public void Replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors)
+        {
+            this.file.Replace(destinationFileName, destinationBackupFileName, ignoreMetadataErrors);
+        }
 
         #endregion
     }
