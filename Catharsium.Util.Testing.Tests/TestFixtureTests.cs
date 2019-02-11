@@ -28,14 +28,16 @@ namespace Catharsium.Util.Testing.Tests
         [TestInitialize]
         public void Setup()
         {
-            this.DependencyRetriever = Substitute.For<IDependencyRetriever>();
             this.ExpectedDependencies = new Dictionary<Type, object>();
+            this.ExpectedTarget = new MockObject(null);
+
+            this.DependencyRetriever = Substitute.For<IDependencyRetriever>();
             var constructorInfo = Substitute.For<ConstructorInfo>();
-            this.DependencyRetriever.GetDependencySubstitutes(constructorInfo).Returns(this.ExpectedDependencies);
+            this.DependencyRetriever.GetDependencySubstitutes<MockObject>().Returns(this.ExpectedDependencies);
+            this.DependencyRetriever.GetDependencySubstitutes(constructorInfo, this.ExpectedDependencies).Returns(this.ExpectedDependencies);
 
             this.TargetFactory = Substitute.For<ITargetFactory<MockObject>>();
             this.TargetFactory.GetLargestEligibleConstructor().Returns(constructorInfo);
-            this.ExpectedTarget = new MockObject(null);
             this.TargetFactory.CreateTarget(this.ExpectedDependencies).Returns(this.ExpectedTarget);
             this.Target = new TestFixture<MockObject>(this.DependencyRetriever, this.TargetFactory);
         }
@@ -45,34 +47,22 @@ namespace Catharsium.Util.Testing.Tests
         #region Constructor
         
         [TestMethod]
-        public void Constructor_ObtainsInitialConstruct_StoresDependenciesAndTarget()
+        public void Constructor_StoresDependencies()
         {
             var actual = new TestFixture<MockObject>(this.DependencyRetriever, this.TargetFactory);
-            Assert.IsNotNull(actual.Target);
-            Assert.AreEqual(this.ExpectedTarget, actual.Target);
             Assert.IsNotNull(actual.Dependencies);
             Assert.AreEqual(this.ExpectedDependencies, actual.Dependencies);
         }
 
 
         [TestMethod]
-        public void Constructor_NoSuitableConstructor_StoresNoDependenciesNorTarget()
+        public void Constructor_ObtainsInitialConstructor_CreatesTarget()
         {
-            var constructor = Substitute.For<ConstructorInfo>();
-            var dependencyRetriever = Substitute.For<IDependencyRetriever>();
-            var expectedDependencies = new Dictionary<Type, object>();
-            dependencyRetriever.GetDependencySubstitutes<MockObject>().Returns(expectedDependencies);
-            dependencyRetriever.GetDependencySubstitutes(constructor);
-
-            var targetFactory = Substitute.For<ITargetFactory<MockObjectWithoutInterfaces>>();
-            targetFactory.GetLargestEligibleConstructor().Returns(constructor);
-            targetFactory.CreateTarget(this.ExpectedDependencies).Returns(null as MockObjectWithoutInterfaces);
-
-            var actual = new TestFixture<MockObjectWithoutInterfaces>(dependencyRetriever, targetFactory);
-            Assert.IsNull(actual.Target);
-            Assert.IsNotNull(actual.Dependencies);
-            Assert.AreEqual(expectedDependencies, actual.Dependencies);
+            var actual = new TestFixture<MockObject>(this.DependencyRetriever, this.TargetFactory);
+            Assert.IsNotNull(actual.Target);
+            Assert.AreEqual(this.ExpectedTarget, actual.Target);
         }
+
         #endregion
 
         #region GetDependency

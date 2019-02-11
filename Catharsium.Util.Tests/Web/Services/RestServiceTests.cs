@@ -58,7 +58,7 @@ namespace Catharsium.Util.Tests.Web.Services
             var response = new RestResponse {
                 StatusCode = HttpStatusCode.OK,
                 ResponseStatus = ResponseStatus.Completed,
-                Content = responseContent.ToString()
+                Content = responseContent.ToString(),
             };
             this.GetDependency<IRestClient>().Execute(Arg.Any<RestRequest>()).Returns(response);
             var resource = "My resource";

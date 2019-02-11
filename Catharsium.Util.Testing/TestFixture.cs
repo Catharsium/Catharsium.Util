@@ -8,7 +8,6 @@ namespace Catharsium.Util.Testing
     [TestClass]
     public class TestFixture<T> where T : class
     {
-
         #region Properties
 
         private readonly IDependencyRetriever dependencyRetriever;
@@ -16,6 +15,7 @@ namespace Catharsium.Util.Testing
         
         public T Target { get; set; }
         
+
         public Dictionary<Type, object> Dependencies { get; set; }
         
         public TDependency GetDependency<TDependency>() where TDependency : class
@@ -51,7 +51,7 @@ namespace Catharsium.Util.Testing
         {
             this.Dependencies = this.dependencyRetriever.GetDependencySubstitutes<T>();
             var constructor = this.targetFactory.GetLargestEligibleConstructor();
-            var substitutes = this.dependencyRetriever.GetDependencySubstitutes(constructor);
+            var substitutes = this.dependencyRetriever.GetDependencySubstitutes(constructor, this.Dependencies);
             this.Target = this.targetFactory.CreateTarget(substitutes);
         }
 

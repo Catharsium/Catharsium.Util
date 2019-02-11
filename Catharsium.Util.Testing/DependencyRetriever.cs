@@ -16,18 +16,24 @@ namespace Catharsium.Util.Testing
         }
 
 
-
-        public Dictionary<Type, object> GetDependencySubstitutes(ConstructorInfo constructor)
+        public Dictionary<Type, object> GetDependencySubstitutes(ConstructorInfo constructor, Dictionary<Type, object> substitutes)
         {
             var dependencies = new List<Type>();
 
-            if (constructor != null) {
+            if (constructor != null)
+            {
                 var parameters = constructor.GetParameters().Where(p => p.ParameterType.IsInterface);
                 dependencies.AddRange(parameters.Select(p => p.ParameterType));
             }
 
-            return this.GetSubstitutes(dependencies);
+            var result = new Dictionary<Type, object>();
+            foreach (var dependency in dependencies)
+            {
+                result[dependency] = substitutes[dependency];
+            }
+            return result;
         }
+
 
         public IEnumerable<Type> GetDependencies<T>()
         {
