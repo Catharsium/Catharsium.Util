@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Catharsium.Util.Testing.Interfaces;
 using NSubstitute;
 
 namespace Catharsium.Util.Testing
@@ -28,22 +29,6 @@ namespace Catharsium.Util.Testing
             }
 
             return constructor.Invoke(arguments.ToArray()) as T;
-        }
-
-
-        public Dictionary<Type, object> GetDependencySubstitutes(ConstructorInfo constructor)
-        {
-            var result = new Dictionary<Type, object>();
-
-            if (constructor != null) {
-                var parameters = constructor.GetParameters();
-                foreach (var parameter in parameters) {
-                    var dependency = Substitute.For(new[] {parameter.ParameterType}, Array.Empty<object>());
-                    result.Add(parameter.ParameterType, dependency);
-                }
-            }
-
-            return result;
         }
 
 

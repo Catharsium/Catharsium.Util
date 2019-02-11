@@ -37,9 +37,9 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
 
             var actual = this.Target.CreateTarget(this.Dependencies);
             Assert.IsNotNull(actual);
-            Assert.IsNotNull(actual.interfaceDependency1);
-            Assert.IsNotNull(actual.interfaceDependency2);
-            Assert.IsNull(actual.stringDependency);
+            Assert.IsNotNull(actual.InterfaceDependency1);
+            Assert.IsNotNull(actual.InterfaceDependency2);
+            Assert.IsNull(actual.StringDependency);
         }
 
 
@@ -51,9 +51,9 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
 
             var actual = this.Target.CreateTarget(this.Dependencies);
             Assert.IsNotNull(actual);
-            Assert.IsNotNull(actual.interfaceDependency1);
-            Assert.IsNull(actual.interfaceDependency2);
-            Assert.IsNull(actual.stringDependency);
+            Assert.IsNotNull(actual.InterfaceDependency1);
+            Assert.IsNull(actual.InterfaceDependency2);
+            Assert.IsNull(actual.StringDependency);
         }
 
 

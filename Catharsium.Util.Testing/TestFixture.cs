@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Catharsium.Util.Testing.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Catharsium.Util.Testing
@@ -7,8 +8,10 @@ namespace Catharsium.Util.Testing
     [TestClass]
     public class TestFixture<T> where T : class
     {
+
         #region Properties
 
+        private readonly IDependencyRetriever dependencyRetriever;
         private readonly ITargetFactory<T> targetFactory;
         
         public T Target { get; set; }
@@ -33,8 +36,9 @@ namespace Catharsium.Util.Testing
 
         #region Construction
 
-        public TestFixture(ITargetFactory<T> targetFactory = null)
+        public TestFixture(IDependencyRetriever dependencyRetriever = null, ITargetFactory<T> targetFactory = null)
         {
+            this.dependencyRetriever = dependencyRetriever ?? new DependencyRetriever();
             this.targetFactory = targetFactory ?? new TargetFactory<T>();
             this.Setup();
         }
@@ -45,9 +49,10 @@ namespace Catharsium.Util.Testing
 
         public void Setup()
         {
+            this.Dependencies = this.dependencyRetriever.GetDependencySubstitutes<T>();
             var constructor = this.targetFactory.GetLargestEligibleConstructor();
-            this.Dependencies = this.targetFactory.GetDependencySubstitutes(constructor);
-            this.Target = this.targetFactory.CreateTarget(this.Dependencies);
+            var substitutes = this.dependencyRetriever.GetDependencySubstitutes(constructor);
+            this.Target = this.targetFactory.CreateTarget(substitutes);
         }
 
         #endregion

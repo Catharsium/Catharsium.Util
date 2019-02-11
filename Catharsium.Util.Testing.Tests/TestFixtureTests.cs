@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -17,21 +18,26 @@ namespace Catharsium.Util.Testing.Tests
 
         public MockObject ExpectedTarget { get; private set; }
 
+        private IDependencyRetriever DependencyRetriever { get; set; }
+
         private ITargetFactory<MockObject> TargetFactory { get; set; }
 
         private TestFixture<MockObject> Target { get; set; }
 
+
         [TestInitialize]
         public void Setup()
         {
-            this.TargetFactory = Substitute.For<ITargetFactory<MockObject>>();
-            var constructorInfo = Substitute.For<ConstructorInfo>();
-            this.TargetFactory.GetLargestEligibleConstructor().Returns(constructorInfo);
+            this.DependencyRetriever = Substitute.For<IDependencyRetriever>();
             this.ExpectedDependencies = new Dictionary<Type, object>();
-            this.TargetFactory.GetDependencySubstitutes(constructorInfo).Returns(this.ExpectedDependencies);
+            var constructorInfo = Substitute.For<ConstructorInfo>();
+            this.DependencyRetriever.GetDependencySubstitutes(constructorInfo).Returns(this.ExpectedDependencies);
+
+            this.TargetFactory = Substitute.For<ITargetFactory<MockObject>>();
+            this.TargetFactory.GetLargestEligibleConstructor().Returns(constructorInfo);
             this.ExpectedTarget = new MockObject(null);
             this.TargetFactory.CreateTarget(this.ExpectedDependencies).Returns(this.ExpectedTarget);
-            this.Target = new TestFixture<MockObject>(this.TargetFactory);
+            this.Target = new TestFixture<MockObject>(this.DependencyRetriever, this.TargetFactory);
         }
 
         #endregion
@@ -41,7 +47,7 @@ namespace Catharsium.Util.Testing.Tests
         [TestMethod]
         public void Constructor_ObtainsInitialConstruct_StoresDependenciesAndTarget()
         {
-            var actual = new TestFixture<MockObject>(this.TargetFactory);
+            var actual = new TestFixture<MockObject>(this.DependencyRetriever, this.TargetFactory);
             Assert.IsNotNull(actual.Target);
             Assert.AreEqual(this.ExpectedTarget, actual.Target);
             Assert.IsNotNull(actual.Dependencies);
@@ -52,18 +58,21 @@ namespace Catharsium.Util.Testing.Tests
         [TestMethod]
         public void Constructor_NoSuitableConstructor_StoresNoDependenciesNorTarget()
         {
-            var targetFactory = Substitute.For<ITargetFactory<MockObjectWithoutInterfaces>>();
-            targetFactory.GetLargestEligibleConstructor().Returns(null as ConstructorInfo);
+            var constructor = Substitute.For<ConstructorInfo>();
+            var dependencyRetriever = Substitute.For<IDependencyRetriever>();
             var expectedDependencies = new Dictionary<Type, object>();
-            targetFactory.GetDependencySubstitutes(null).Returns(expectedDependencies);
+            dependencyRetriever.GetDependencySubstitutes<MockObject>().Returns(expectedDependencies);
+            dependencyRetriever.GetDependencySubstitutes(constructor);
+
+            var targetFactory = Substitute.For<ITargetFactory<MockObjectWithoutInterfaces>>();
+            targetFactory.GetLargestEligibleConstructor().Returns(constructor);
             targetFactory.CreateTarget(this.ExpectedDependencies).Returns(null as MockObjectWithoutInterfaces);
 
-            var actual = new TestFixture<MockObjectWithoutInterfaces>(targetFactory);
+            var actual = new TestFixture<MockObjectWithoutInterfaces>(dependencyRetriever, targetFactory);
             Assert.IsNull(actual.Target);
             Assert.IsNotNull(actual.Dependencies);
             Assert.AreEqual(expectedDependencies, actual.Dependencies);
         }
-
         #endregion
 
         #region GetDependency
@@ -95,7 +104,7 @@ namespace Catharsium.Util.Testing.Tests
             var expected = "My string";
             this.ExpectedDependencies[typeof(string)] = expected;
             this.TargetFactory.CreateTarget(this.ExpectedDependencies).Returns(this.ExpectedTarget);
-            this.Target = new TestFixture<MockObject>(this.TargetFactory);
+            this.Target = new TestFixture<MockObject>(this.DependencyRetriever, this.TargetFactory);
 
             this.Target.SetDependency(expected);
             Assert.IsTrue(this.Target.Dependencies.ContainsKey(expected.GetType()));
