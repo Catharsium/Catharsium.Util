@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Catharsium.Util.Testing.Interfaces;
-using NSubstitute;
 
 namespace Catharsium.Util.Testing
 {

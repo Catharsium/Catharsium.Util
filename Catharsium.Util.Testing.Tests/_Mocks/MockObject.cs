@@ -7,23 +7,23 @@
         public readonly string StringDependency;
 
 
-        public MockObject(IMockInterface1 mockInterface1)
+        public MockObject(IMockInterface1 interface1)
         {
-            this.InterfaceDependency1 = mockInterface1;
+            this.InterfaceDependency1 = interface1;
         }
 
 
-        public MockObject(IMockInterface1 mockInterface1, IMockInterface2 mockInterface2)
-            : this(mockInterface1)
+        public MockObject(IMockInterface1 interface1, IMockInterface2 interface2)
+            : this(interface1)
         {
-            this.InterfaceDependency2 = mockInterface2;
+            this.InterfaceDependency2 = interface2;
         }
 
 
-        public MockObject(IMockInterface1 mockInterface1, IMockInterface2 mockInterface2, string mockString)
-           : this(mockInterface1, mockInterface2)
+        public MockObject(IMockInterface1 interface1, IMockInterface2 interface2, string stringDependency)
+           : this(interface1, interface2)
         {
-            this.StringDependency = mockString;
+            this.StringDependency = stringDependency;
         }
     }
 }

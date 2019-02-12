@@ -7,10 +7,10 @@ using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Testing.Tests
+namespace Catharsium.Util.Testing.Tests.TestFixtureTests
 {
     [TestClass]
-    public class TestFixtureTests
+    public class TestFixtureUnitTests
     {
         #region Fixture
 
@@ -119,15 +119,6 @@ namespace Catharsium.Util.Testing.Tests
             var expected = "My string";
             this.Target.SetDependency(expected);
             Assert.AreEqual(this.ExpectedTarget, this.Target.Target);
-        }
-
-        #endregion
-
-        #region Support Methods
-
-        private static List<ConstructorInfo> GetConstructors<T>()
-        {
-            return typeof(T).GetConstructors().OrderBy(c => c.GetParameters().Length).ToList();
         }
 
         #endregion
