@@ -39,9 +39,12 @@ namespace Catharsium.Util.Testing
         {
             var constructors = typeof(T).GetConstructors();
             var result = new List<Type>();
-            foreach (var constructor in constructors) {
-                foreach (var dependency in constructor.GetParameters().Where(p => p.ParameterType.IsInterface)) {
-                    if (!result.Contains(dependency.ParameterType)) {
+            foreach (var constructor in constructors)
+            {
+                foreach (var dependency in constructor.GetParameters().Where(p => p.ParameterType.IsInterface))
+                {
+                    if (!result.Contains(dependency.ParameterType))
+                    {
                         result.Add(dependency.ParameterType);
                     }
                 }
@@ -55,8 +58,9 @@ namespace Catharsium.Util.Testing
         {
             var result = new Dictionary<Type, object>();
 
-            foreach (var dependency in dependencies) {
-                var substitute = Substitute.For(new[] {dependency}, Array.Empty<object>());
+            foreach (var dependency in dependencies)
+            {
+                var substitute = Substitute.For(new[] { dependency }, Array.Empty<object>());
                 result.Add(dependency, substitute);
             }
 
