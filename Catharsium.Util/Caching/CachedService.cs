@@ -20,16 +20,20 @@ namespace Catharsium.Util.Caching
 
         public virtual TResult GetData<TResult>(string method, params object[] parameters) where TResult : class
         {
-            var type = instance.GetType();
+            var type = this.instance.GetType();
             var parameterTypes = parameters != null ? parameters.Select(x => x.GetType()).ToArray() : new Type[0];
             var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
             var methodInfo = type.GetMethod(method, bindingFlags, null, CallingConventions.Any, parameterTypes, null);
-
-            if (methodInfo.ReturnType != typeof(TResult)) return default(TResult);
+            
+            if (methodInfo.ReturnType != typeof(TResult)) {
+                return default(TResult);
+            }
 
             var cacheKey = $"{type.Name}.{method}({string.Join(",", parameters)})";
             var result = this.cache.Get<TResult>(cacheKey);
-            if (result != null) return result;
+            if (result != null) {
+                return result;
+            }
 
             result = methodInfo.Invoke(instance, parameters) as TResult;
             this.cache.Set(cacheKey, result);
