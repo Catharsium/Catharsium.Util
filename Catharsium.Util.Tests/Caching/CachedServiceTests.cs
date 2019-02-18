@@ -12,7 +12,7 @@ namespace Catharsium.Util.Tests.Caching
     {
         #region Fixture
 
-        public MockService Instance { get; set; }
+        protected MockService Instance { get; set; }
 
 
         [TestInitialize]
