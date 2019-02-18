@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 
 namespace Catharsium.Util.Validation
 {
@@ -16,8 +17,17 @@ namespace Catharsium.Util.Validation
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var isValid = this.IsValid(value.ToString(), validationContext.ObjectInstance);
-            return isValid ? ValidationResult.Success : new ValidationResult("nope");
+            var isValid = this.IsValid(value?.ToString(), validationContext.ObjectInstance);
+            if (isValid) {
+                return ValidationResult.Success;
+            }
+
+            var message = new StringBuilder();
+            message.Append(validationContext.MemberName);
+            foreach (var property in this.Properties) {
+                message.Append($", {property}");
+            }
+            return new ValidationResult($"{message} are required together");
         }
 
 
