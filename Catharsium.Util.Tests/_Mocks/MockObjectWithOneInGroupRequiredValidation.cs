@@ -2,7 +2,7 @@
 
 namespace Catharsium.Util.Tests._Mocks
 {
-    internal class MockObject
+    internal class MockObjectWithOneInGroupRequiredValidation
     {
         [OneInGroupRequired("Group 1")]
         public string Property1 { get; set; }

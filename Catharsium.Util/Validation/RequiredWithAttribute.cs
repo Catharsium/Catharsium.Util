@@ -27,15 +27,15 @@ namespace Catharsium.Util.Validation
             foreach (var property in this.Properties) {
                 message.Append($", {property}");
             }
-            return new ValidationResult($"{message} are required together");
+
+            return new ValidationResult($"{message} zijn samen verplicht");
         }
 
 
         public bool IsValid(string value, object model)
         {
             var type = model.GetType();
-            var propertyIsFilled = this.Properties.Select(p => type.GetProperty(p).GetValue(model, null))
-                .Select(v => !string.IsNullOrWhiteSpace(v?.ToString())).ToList();
+            var propertyIsFilled = this.Properties.Select(p => type.GetProperty(p).GetValue(model, null)).Select(v => !string.IsNullOrWhiteSpace(v?.ToString())).ToList();
             return string.IsNullOrWhiteSpace(value) || propertyIsFilled.All(p => p);
         }
     }
