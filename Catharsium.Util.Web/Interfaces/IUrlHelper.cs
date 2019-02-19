@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Catharsium.Util.Web
+namespace Catharsium.Util.Web.Services
 {
     public interface IUrlHelper
     {

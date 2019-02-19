@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Catharsium.Util.Testing;
-using Catharsium.Util.Tests._Mocks;
-using Catharsium.Util.Validation;
+using Catharsium.Util.Web.Tests._Mocks;
+using Catharsium.Util.Web.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Catharsium.Util.Tests.Validation
+namespace Catharsium.Util.Web.Tests.Validation
 {
     [TestClass]
     public class BsnAttributeTests : TestFixture<BsnAttribute>

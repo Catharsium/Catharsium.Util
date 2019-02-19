@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace Catharsium.Util.Validation
+namespace Catharsium.Util.Web.Validation
 {
     public class RequiredWithAttribute : ValidationAttribute
     {

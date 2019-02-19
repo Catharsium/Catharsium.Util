@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Catharsium.Util.Validation
+namespace Catharsium.Util.Web.Validation
 {
     public class BsnAttribute : ValidationAttribute
     {

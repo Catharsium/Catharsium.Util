@@ -5,15 +5,15 @@ namespace Catharsium.Util.Testing.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void ReceivedRegistration<I>(this IServiceCollection serviceCollection)
+        public static void ReceivedRegistration<TInterface>(this IServiceCollection serviceCollection)
         {
-            serviceCollection.Received().Add(Arg.Is<ServiceDescriptor>(d => d.ServiceType == typeof(I)));
+            serviceCollection.Received().Add(Arg.Is<ServiceDescriptor>(d => d.ServiceType == typeof(TInterface)));
         }
 
 
-        public static void ReceivedRegistration<I, T>(this IServiceCollection serviceCollection)
+        public static void ReceivedRegistration<TInterface, TImplementation>(this IServiceCollection serviceCollection)
         {
-            serviceCollection.Received().Add(Arg.Is<ServiceDescriptor>(d => d.ServiceType == typeof(I) && d.ImplementationType == typeof(T)));
+            serviceCollection.Received().Add(Arg.Is<ServiceDescriptor>(d => d.ServiceType == typeof(TInterface) && d.ImplementationType == typeof(TImplementation)));
         }
     }
 }

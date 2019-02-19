@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Catharsium.Util.IO.Configuration
 {
-    public static class IORegistration
+    public static class UtilIoRegistration
     {
-        public static IServiceCollection AddUtilIO(this IServiceCollection services)
+        public static IServiceCollection AddIoUtilities(this IServiceCollection services)
         {
             services.AddTransient<IFileFactory, FileFactory>();
             return services;

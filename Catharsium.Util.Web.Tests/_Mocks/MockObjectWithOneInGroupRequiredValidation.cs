@@ -1,8 +1,8 @@
-﻿using Catharsium.Util.Validation;
+﻿using Catharsium.Util.Web.Validation;
 
-namespace Catharsium.Util.Tests._Mocks
+namespace Catharsium.Util.Web.Tests._Mocks
 {
-    internal class MockObject
+    internal class MockObjectWithOneInGroupRequiredValidation
     {
         [OneInGroupRequired("Group 1")]
         public string Property1 { get; set; }

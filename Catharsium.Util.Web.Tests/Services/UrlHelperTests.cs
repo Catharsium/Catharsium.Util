@@ -1,10 +1,10 @@
 ﻿using Catharsium.Util.Testing;
-using Catharsium.Util.Web;
+using Catharsium.Util.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Tests.Web
+namespace Catharsium.Util.Web.Tests.Services
 {
     [TestClass]
     public class UrlHelperTests : TestFixture<UrlHelper>

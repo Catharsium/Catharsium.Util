@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using RestSharp;
 
-namespace Catharsium.Util.Tests.Web.Services
+namespace Catharsium.Util.Web.Tests.Services
 {
     [TestClass]
     public class RestServiceTests : TestFixture<RestService>

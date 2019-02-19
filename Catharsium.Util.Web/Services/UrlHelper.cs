@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 
-namespace Catharsium.Util.Web
+namespace Catharsium.Util.Web.Services
 {
     public class UrlHelper : IUrlHelper
     {

@@ -6,7 +6,7 @@
     <PackageProjectUrl>https://gitlab.com/Catharsium/Catharsium.Util</PackageProjectUrl>
     <Copyright>Catharsium</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageTags>Util, Utilities</PackageTags>
+    <PackageTags>Util, Utilities, Web, Validation, Rest service</PackageTags>
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
   </PropertyGroup>
 

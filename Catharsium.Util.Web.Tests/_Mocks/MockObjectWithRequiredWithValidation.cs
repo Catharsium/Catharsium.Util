@@ -1,6 +1,6 @@
-﻿using Catharsium.Util.Validation;
+﻿using Catharsium.Util.Web.Validation;
 
-namespace Catharsium.Util.Tests._Mocks
+namespace Catharsium.Util.Web.Tests._Mocks
 {
     internal class MockObjectWithRequiredWithValidation
     {

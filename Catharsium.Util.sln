@@ -11,16 +11,26 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.Tests", "Catharsium.Util.Testing.Tests\Catharsium.Util.Testing.Tests.csproj", "{83991B83-16D2-4D8B-9BA8-2F13514EA286}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing Utilities", "Testing Utilities", "{20CBADD9-B097-4896-BE19-ABF52F44F3BA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util.Testing", "Util.Testing", "{20CBADD9-B097-4896-BE19-ABF52F44F3BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO", "Catharsium.Util.IO\Catharsium.Util.IO.csproj", "{FB3618C1-B7AD-4D6F-B101-4A6948970F5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.IO", "Catharsium.Util.IO\Catharsium.Util.IO.csproj", "{FB3618C1-B7AD-4D6F-B101-4A6948970F5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO.Tests", "Catharsium.Util.IO.Tests\Catharsium.Util.IO.Tests.csproj", "{974BC643-3715-4F58-BA63-CB0967BE5139}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.IO.Tests", "Catharsium.Util.IO.Tests\Catharsium.Util.IO.Tests.csproj", "{974BC643-3715-4F58-BA63-CB0967BE5139}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0892CBF9-D628-4615-AF78-3D6A73E81A18}"
 	ProjectSection(SolutionItems) = preProject
 		.gitlab-ci.yml = .gitlab-ci.yml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util.IO", "Util.IO", "{6B49ADC4-2B03-4193-98B0-89172C16BB7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util.Web", "Util.Web", "{25F256F3-02C8-4970-904C-0EBCB9A1E40D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Web", "Catharsium.Util.Web\Catharsium.Util.Web.csproj", "{41BA4B0B-546F-49B8-BBE6-76831D55B29E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Web.Tests", "Catharsium.Util.Web.Tests\Catharsium.Util.Web.Tests.csproj", "{EC754517-6A3D-4E52-838E-149461648B3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{CB4F670B-0A44-4F27-B273-10423EBEEEAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,13 +62,27 @@ Global
 		{974BC643-3715-4F58-BA63-CB0967BE5139}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{974BC643-3715-4F58-BA63-CB0967BE5139}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{974BC643-3715-4F58-BA63-CB0967BE5139}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41BA4B0B-546F-49B8-BBE6-76831D55B29E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41BA4B0B-546F-49B8-BBE6-76831D55B29E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41BA4B0B-546F-49B8-BBE6-76831D55B29E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41BA4B0B-546F-49B8-BBE6-76831D55B29E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC754517-6A3D-4E52-838E-149461648B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC754517-6A3D-4E52-838E-149461648B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC754517-6A3D-4E52-838E-149461648B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC754517-6A3D-4E52-838E-149461648B3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{30C2E073-3525-4F9C-855D-16BE8316C50E} = {CB4F670B-0A44-4F27-B273-10423EBEEEAF}
+		{3138B2FF-9CB4-4348-8F0D-6CEF4EEA0DCF} = {CB4F670B-0A44-4F27-B273-10423EBEEEAF}
 		{88E00C5D-E7B9-449F-BA19-15A827E74EB3} = {20CBADD9-B097-4896-BE19-ABF52F44F3BA}
 		{83991B83-16D2-4D8B-9BA8-2F13514EA286} = {20CBADD9-B097-4896-BE19-ABF52F44F3BA}
+		{FB3618C1-B7AD-4D6F-B101-4A6948970F5B} = {6B49ADC4-2B03-4193-98B0-89172C16BB7A}
+		{974BC643-3715-4F58-BA63-CB0967BE5139} = {6B49ADC4-2B03-4193-98B0-89172C16BB7A}
+		{41BA4B0B-546F-49B8-BBE6-76831D55B29E} = {25F256F3-02C8-4970-904C-0EBCB9A1E40D}
+		{EC754517-6A3D-4E52-838E-149461648B3F} = {25F256F3-02C8-4970-904C-0EBCB9A1E40D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA4F4724-273A-46CC-B2F7-57AAD86EEF25}

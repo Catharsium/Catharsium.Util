@@ -1,9 +1,10 @@
 ﻿using System.Net.Http;
+using Catharsium.Util.Web.Interfaces;
 using RestSharp;
 
 namespace Catharsium.Util.Web.Services
 {
-    public class RestService
+    public class RestService : IRestService
     {
         private readonly IRestClient client;
 
