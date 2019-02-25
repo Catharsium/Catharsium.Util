@@ -15,8 +15,9 @@ namespace Catharsium.Util.Web.Tests.Configuration
         public void AddFileSync_RegistersDependencies()
         {
             var serviceCollection = Substitute.For<IServiceCollection>();
+            var config = new WebUtilConfiguration();
 
-            serviceCollection.AddWebUtilities();
+            serviceCollection.AddWebUtilities(config);
             serviceCollection.ReceivedRegistration<IRestService>();
             serviceCollection.ReceivedRegistration<IUrlHelper>();
         }

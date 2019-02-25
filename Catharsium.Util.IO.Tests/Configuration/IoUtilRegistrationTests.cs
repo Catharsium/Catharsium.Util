@@ -7,14 +7,15 @@ using NSubstitute;
 namespace Catharsium.Util.IO.Tests.Configuration
 {
     [TestClass]
-    public class UtilIoRegistrationTests
+    public class IoUtilRegistrationTests
     {
         [TestMethod]
         public void AddFileSync_RegistersDependencies()
         {
             var serviceCollection = Substitute.For<IServiceCollection>();
+            var config = new IoUtilConfiguration();
 
-            serviceCollection.AddIoUtilities();
+            serviceCollection.AddIoUtilities(config);
             serviceCollection.Received().Add(Arg.Is<ServiceDescriptor>(d => d.ServiceType == typeof(IFileFactory)));
         }
     }

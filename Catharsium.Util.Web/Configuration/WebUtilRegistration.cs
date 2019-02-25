@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Catharsium.Util.Web.Configuration
 {
-    public static class UtilWebRegistration
+    public static class WebUtilRegistration
     {
-        public static IServiceCollection AddWebUtilities(this IServiceCollection services)
+        public static IServiceCollection AddWebUtilities(this IServiceCollection services, WebUtilConfiguration config)
         {
             services.AddTransient<IRestService, RestService>();
             services.AddTransient<IUrlHelper, UrlHelper>();
