@@ -2,6 +2,7 @@
 using Catharsium.Util.Web.Configuration;
 using Catharsium.Util.Web.Interfaces;
 using Catharsium.Util.Web.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -15,7 +16,7 @@ namespace Catharsium.Util.Web.Tests.Configuration
         public void AddFileSync_RegistersDependencies()
         {
             var serviceCollection = Substitute.For<IServiceCollection>();
-            var config = new WebUtilConfiguration();
+            var config = Substitute.For<IConfiguration>();
 
             serviceCollection.AddWebUtilities(config);
             serviceCollection.ReceivedRegistration<IRestService>();
