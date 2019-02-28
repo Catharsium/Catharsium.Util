@@ -13,7 +13,7 @@ namespace Catharsium.Util.Web.Tests.Configuration
     public class UtilWebRegistrationTests
     {
         [TestMethod]
-        public void AddFileSync_RegistersDependencies()
+        public void AddWebUtilities_RegistersDependencies()
         {
             var serviceCollection = Substitute.For<IServiceCollection>();
             var config = Substitute.For<IConfiguration>();
