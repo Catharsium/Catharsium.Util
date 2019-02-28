@@ -11,7 +11,7 @@ namespace Catharsium.Util.IO.Tests.Configuration
     public class IoUtilRegistrationTests
     {
         [TestMethod]
-        public void AddFileSync_RegistersDependencies()
+        public void AddIoUtilities_RegistersDependencies()
         {
             var serviceCollection = Substitute.For<IServiceCollection>();
             var config = Substitute.For<IConfiguration>();
