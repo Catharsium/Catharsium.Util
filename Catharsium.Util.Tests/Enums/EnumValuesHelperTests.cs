@@ -13,9 +13,11 @@ namespace Catharsium.Util.Tests.Enums
         public void GetValues_ReturnsEnumValues()
         {
             var actual = EnumValuesHelper.GetValues<MockEnum>().ToArray();
-            Assert.AreEqual(2, actual.Length);
+            Assert.AreEqual(4, actual.Length);
             Assert.AreEqual(MockEnum.First, actual[0]);
             Assert.AreEqual(MockEnum.Second, actual[1]);
+            Assert.AreEqual(MockEnum.WithAlias, actual[2]);
+            Assert.AreEqual(MockEnum.WithoutAlias, actual[3]);
         }
 
 

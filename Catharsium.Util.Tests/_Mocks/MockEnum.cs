@@ -7,6 +7,9 @@ namespace Catharsium.Util.Tests._Mocks
         [Alias("1")]
         First,
         [Alias("2")]
-        Second
+        Second,
+        [Alias("My alias")]
+        WithAlias,
+        WithoutAlias
     }
 }

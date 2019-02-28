@@ -5,21 +5,19 @@ namespace Catharsium.Util.Attributes.Extensions
 {
     public static class AttributeHelper
     {
-        public static T GetAttribute<T>(this object value) where T : Attribute
+        public static T GetAttribute<T>(this object subject) where T : Attribute
         {
-            var type = value.GetType();
+            var type = subject.GetType();
             var attributes = type.GetCustomAttributes(typeof(T), false);
-            if (attributes.Any()) {
-                return (T)attributes.FirstOrDefault();
-            }
-
-            return default(T);
+            return attributes.Any()
+                ? (T)attributes.FirstOrDefault()
+                : default(T);
         }
 
 
-        public static T GetAttribute<T>(this object value, string propertyName) where T : Attribute
+        public static T GetAttribute<T>(this object subject, string propertyName) where T : Attribute
         {
-            var type = value.GetType();
+            var type = subject.GetType();
             var memberInfo = type.GetMember(propertyName);
             if (memberInfo.Length > 0) {
                 var attributes = memberInfo[0].GetCustomAttributes(typeof(T), false);
@@ -29,6 +27,12 @@ namespace Catharsium.Util.Attributes.Extensions
             }
 
             return default(T);
+        }
+
+        
+        public static T GetMemberAttribute<T>(this object subject) where T : Attribute
+        {
+            return subject.GetAttribute<T>(subject.ToString());
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Catharsium.Util.Attributes;
 using Catharsium.Util.Attributes.Extensions;
 using Catharsium.Util.Tests._Mocks;
 using Catharsium.Util.Web.Validation;
@@ -9,7 +11,7 @@ namespace Catharsium.Util.Tests.Attributes
     [TestClass]
     public class AttributeHelperTests
     {
-        #region GetAttribute<T>(instance)
+        #region GetAttribute<T>(subject)
 
         [TestMethod]
         public void GetAttribute_InstanceWithRequestedAttribute_ReturnsAttribute()
@@ -31,7 +33,7 @@ namespace Catharsium.Util.Tests.Attributes
 
         #endregion
 
-        #region GetAttribute<T>(instance, propertyName)
+        #region GetAttribute<T>(subject, propertyName)
 
         [TestMethod]
         public void GetAttribute_PropertyWithRequestedAttribute_ReturnsAttribute()
@@ -57,6 +59,26 @@ namespace Catharsium.Util.Tests.Attributes
         {
             var subject = new MockObjectWithDisplayAttribute();
             var actual = subject.GetAttribute<DisplayAttribute>(nameof(subject.PropertyWithoutAttributes));
+            Assert.IsNull(actual);
+        }
+
+        #endregion
+
+        #region GetMemberAttribute<T>(subject)
+
+        [TestMethod]
+        public void GetAttributeValue_WithAttribute_ReturnsAttribute()
+        {
+            var actual = MockEnum.WithAlias.GetMemberAttribute<AliasAttribute>();
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.Aliases.Any(a => a == "My alias"));
+        }
+
+
+        [TestMethod]
+        public void GetAttributeValue_WithoutAttribute_ReturnsNull()
+        {
+            var actual = MockEnum.WithoutAlias.GetMemberAttribute<AliasAttribute>();
             Assert.IsNull(actual);
         }
 
