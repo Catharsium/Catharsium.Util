@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Catharsium.Util.Enums.Attributes
+namespace Catharsium.Util.Attributes
 {
     public class AliasAttribute : Attribute
     {
