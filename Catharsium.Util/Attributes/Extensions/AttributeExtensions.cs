@@ -15,10 +15,10 @@ namespace Catharsium.Util.Attributes.Extensions
         }
 
 
-        public static T GetAttribute<T>(this object subject, string propertyName) where T : Attribute
+        public static T GetAttribute<T>(this object subject, string memberName) where T : Attribute
         {
             var type = subject.GetType();
-            var memberInfo = type.GetMember(propertyName);
+            var memberInfo = type.GetMember(memberName);
             if (memberInfo.Length > 0) {
                 var attributes = memberInfo[0].GetCustomAttributes(typeof(T), false);
                 if (attributes.Any()) {

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using Catharsium.Util.Attributes;
 using Catharsium.Util.Attributes.Extensions;
 using Catharsium.Util.Tests._Mocks;
@@ -60,6 +61,33 @@ namespace Catharsium.Util.Tests.Attributes
             var subject = new MockObjectWithDisplayAttribute();
             var actual = subject.GetAttribute<DisplayAttribute>(nameof(subject.PropertyWithoutAttributes));
             Assert.IsNull(actual);
+        }
+
+        
+        [TestMethod]
+        public void GetAttribute_MethodWithAttribute_ReturnsAttribute()
+        {
+            var subject = new MockMethod();
+            var method = subject.GetAttribute<AliasAttribute>("MethodWithAlias");
+            Assert.IsNotNull(method);
+        }
+
+
+        [TestMethod]
+        public void GetAttribute_MethodWithDifferentAttribute_ReturnsNull()
+        {
+            var subject = new MockMethod();
+            var method = subject.GetAttribute<DisplayAttribute>("MethodWithAlias");
+            Assert.IsNull(method);
+        }
+
+
+        [TestMethod]
+        public void GetATtribute_MethodWithoutRequestedAttribute_ReturnsNull()
+        {
+            var subject = new MockMethod();
+            var method = subject.GetAttribute<AliasAttribute>("MethodWithoutAlias");
+            Assert.IsNull(method);
         }
 
         #endregion
