@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Catharsium.Util.Attributes.Extensions
 {
-    public static class AttributeHelper
+    public static class AttributeExtensions
     {
         public static T GetAttribute<T>(this object subject) where T : Attribute
         {
