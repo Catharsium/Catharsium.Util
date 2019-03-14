@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Catharsium.Util.Tests.Attributes
 {
     [TestClass]
-    public class AttributeHelperTests
+    public class AttributeExtensionsTests
     {
         #region GetAttribute<T>(subject)
 
@@ -26,7 +26,7 @@ namespace Catharsium.Util.Tests.Attributes
         [TestMethod]
         public void GetAttribute_InstanceWithoutRequestedAttribute_ReturnsNull()
         {
-            var subject = new AttributeHelperTests();
+            var subject = new AttributeExtensionsTests();
             var actual = subject.GetAttribute<DisplayAttribute>();
             Assert.IsNull(actual);
         }
