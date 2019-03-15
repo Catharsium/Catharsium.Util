@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 using Catharsium.Util.Attributes;
 using Catharsium.Util.Attributes.Extensions;
 using Catharsium.Util.Tests._Mocks;
@@ -34,7 +33,7 @@ namespace Catharsium.Util.Tests.Attributes
 
         #endregion
 
-        #region GetAttribute<T>(subject, propertyName)
+        #region GetAttribute<T>(subject, memberName)
 
         [TestMethod]
         public void GetAttribute_PropertyWithRequestedAttribute_ReturnsAttribute()
@@ -68,8 +67,8 @@ namespace Catharsium.Util.Tests.Attributes
         public void GetAttribute_MethodWithAttribute_ReturnsAttribute()
         {
             var subject = new MockMethod();
-            var method = subject.GetAttribute<AliasAttribute>("MethodWithAlias");
-            Assert.IsNotNull(method);
+            var actual = subject.GetAttribute<AliasAttribute>("MethodWithAlias");
+            Assert.IsNotNull(actual);
         }
 
 
@@ -77,17 +76,17 @@ namespace Catharsium.Util.Tests.Attributes
         public void GetAttribute_MethodWithDifferentAttribute_ReturnsNull()
         {
             var subject = new MockMethod();
-            var method = subject.GetAttribute<DisplayAttribute>("MethodWithAlias");
-            Assert.IsNull(method);
+            var actual = subject.GetAttribute<DisplayAttribute>("MethodWithAlias");
+            Assert.IsNull(actual);
         }
 
 
         [TestMethod]
-        public void GetATtribute_MethodWithoutRequestedAttribute_ReturnsNull()
+        public void GetAttribute_MethodWithoutRequestedAttribute_ReturnsNull()
         {
             var subject = new MockMethod();
-            var method = subject.GetAttribute<AliasAttribute>("MethodWithoutAlias");
-            Assert.IsNull(method);
+            var actual = subject.GetAttribute<AliasAttribute>("MethodWithoutAlias");
+            Assert.IsNull(actual);
         }
 
         #endregion
@@ -108,6 +107,66 @@ namespace Catharsium.Util.Tests.Attributes
         {
             var actual = MockEnum.WithoutAlias.GetMemberAttribute<AliasAttribute>();
             Assert.IsNull(actual);
+        }
+
+        #endregion
+
+        #region HasAttribute<T>(subject)
+
+        [TestMethod]
+        public void HasAttribute_ObjectWithAttribute_ReturnsTrue()
+        {
+            var subject = new MockObjectWithDisplayAttribute();
+            var actual = subject.HasAttribute<DisplayAttribute>();
+            Assert.IsTrue(actual);
+        }
+
+
+        [TestMethod]
+        public void HasAttribute_ObjectWithDifferentAttribute_ReturnsTrue()
+        {
+            var subject = new MockObjectWithDisplayAttribute();
+            var actual = subject.HasAttribute<AliasAttribute>();
+            Assert.IsFalse(actual);
+        }
+
+
+        [TestMethod]
+        public void HasAttribute_ObjectWithoutAttribute_ReturnsFalse()
+        {
+            var subject = new MockObjectWithDisplayAttribute();
+            var actual = subject.HasAttribute<AliasAttribute>();
+            Assert.IsFalse(actual);
+        }
+
+        #endregion
+
+        #region HasAttribute<T>(subject, memberName)
+
+        [TestMethod]
+        public void HasAttribute_MethodWithAttribute_ReturnsTrue()
+        {
+            var subject = new MockMethod();
+            var actual = subject.HasAttribute<AliasAttribute>("MethodWithAlias");
+            Assert.IsTrue(actual);
+        }
+
+
+        [TestMethod]
+        public void HasAttribute_MethodWithDifferentAttribute_ReturnsTrue()
+        {
+            var subject = new MockMethod();
+            var actual = subject.HasAttribute<DisplayAttribute>("MethodWithAlias");
+            Assert.IsFalse(actual);
+        }
+
+
+        [TestMethod]
+        public void HasAttribute_MethodWithoutAttribute_ReturnsFalse()
+        {
+            var subject = new MockMethod();
+            var actual = subject.HasAttribute<AliasAttribute>("MethodWithoutAlias");
+            Assert.IsFalse(actual);
         }
 
         #endregion
