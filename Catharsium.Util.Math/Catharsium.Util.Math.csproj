@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Version>1.1.2</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Catharsium.Util\Catharsium.Util.csproj" />
+  </ItemGroup>
 
 </Project>
