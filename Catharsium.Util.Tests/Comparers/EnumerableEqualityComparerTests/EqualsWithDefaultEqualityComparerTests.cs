@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Catharsium.Util.Comparers;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Catharsium.Util.Tests.Comparers
+namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
 {
     [TestClass]
     public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqualityComparer<int>>
@@ -24,7 +23,7 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_IsReflexive()
         {
-            var input = new List<int>() { 1, 2, 3 };
+            var input = new List<int> { 1, 2, 3 };
             var actual = this.Target.Equals(input, input);
             Assert.IsTrue(actual);
         }
@@ -45,10 +44,8 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_EmptyListAndEmptyList_ReturnsTrue()
         {
-            var input1 = new List<int>();
-            var input2 = new List<int>();
 
-            var actual = this.Target.Equals(input1, input2);
+            var actual = this.Target.Equals(new List<int>(), new List<int>());
             Assert.IsTrue(actual);
         }
 
@@ -56,7 +53,7 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_ListsWithSameContents_ReturnsTrue()
         {
-            var input1 = new List<int>() { 1, 2, 3 };
+            var input1 = new List<int> { 1, 2, 3 };
             var input2 = new List<int>();
             input2.AddRange(input1);
 
@@ -68,8 +65,8 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_ListWithDifferentContents_ReturnsFalse()
         {
-            var input1 = new List<int>() { 1 };
-            var input2 = new List<int>() { 2 };
+            var input1 = new List<int> { 1 };
+            var input2 = new List<int> { 2 };
 
             var actual = this.Target.Equals(input1, input2);
             Assert.IsFalse(actual);
@@ -79,8 +76,8 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_DifferentLengthLists_ReturnsFalse()
         {
-            var input1 = new List<int>() { 1, 2, 3 };
-            var input2 = new List<int>() { 0 };
+            var input1 = new List<int> { 1, 2, 3 };
+            var input2 = new List<int> { 0 };
             input2.AddRange(input1);
 
             var actual = this.Target.Equals(input1, input2);
@@ -91,10 +88,7 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_NullListAndList_ReturnsFalse()
         {
-            List<int> input1 = null;
-            var input2 = new List<int>();
-
-            var actual = this.Target.Equals(input1, input2);
+            var actual = this.Target.Equals(null, new List<int>());
             Assert.IsFalse(actual);
         }
 
@@ -102,23 +96,8 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_ListAndNullList_ReturnsFalse()
         {
-            var input1 = new List<int>();
-            List<int> input2 = null;
-
-            var actual = this.Target.Equals(input1, input2);
+            var actual = this.Target.Equals(new List<int>(), null);
             Assert.IsFalse(actual);
-        }
-
-        #endregion
-
-        #region GetHashCode
-
-        [TestMethod]
-        public void GetHashCode_ReturnsObjectHashcode()
-        {
-            var input = Array.Empty<int>();
-            var actual = this.Target.GetHashCode(input);
-            Assert.AreEqual(input.GetHashCode(), actual);
         }
 
         #endregion

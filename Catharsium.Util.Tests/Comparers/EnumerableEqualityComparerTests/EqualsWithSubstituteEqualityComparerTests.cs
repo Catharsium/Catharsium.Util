@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Catharsium.Util.Comparers;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Tests.Comparers
+namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
 {
     [TestClass]
     public class EqualsWithSubstituteEqualityComparerTests : TestFixture<EnumerableEqualityComparer<string>>
@@ -17,7 +16,7 @@ namespace Catharsium.Util.Tests.Comparers
         {
             this.GetDependency<IEqualityComparer<string>>()
                 .Equals(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(x => { return x[0] == x[1]; });
+                .Returns(x => x[0] == x[1]);
         }
 
         #endregion
@@ -27,7 +26,7 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_IsReflexive()
         {
-            var input = new List<string>() { "a" };
+            var input = new List<string> { "a" };
             var actual = this.Target.Equals(input, input);
             Assert.IsTrue(actual);
         }
@@ -48,10 +47,7 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_EmptyListAndEmptyList_ReturnsTrue()
         {
-            var input1 = new List<string>();
-            var input2 = new List<string>();
-
-            var actual = this.Target.Equals(input1, input2);
+            var actual = this.Target.Equals(new List<string>(), new List<string>());
             Assert.IsTrue(actual);
         }
 
@@ -59,7 +55,7 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_ListsWithSameContents_ReturnsTrue()
         {
-            var input1 = new List<string>() { "a", "b", "c" };
+            var input1 = new List<string> { "a", "b", "c" };
             var input2 = new List<string>();
             input2.AddRange(input1);
 
@@ -71,8 +67,8 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_ListWithDifferentContents_ReturnsFalse()
         {
-            var input1 = new List<string>() { "a" };
-            var input2 = new List<string>() { "b" };
+            var input1 = new List<string> { "a" };
+            var input2 = new List<string> { "b" };
 
             var actual = this.Target.Equals(input1, input2);
             Assert.IsFalse(actual);
@@ -82,8 +78,8 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_DifferentLengthLists_ReturnsFalse()
         {
-            var input1 = new List<string>() { "a", "b", "c" };
-            var input2 = new List<string>() { "" };
+            var input1 = new List<string> { "a", "b", "c" };
+            var input2 = new List<string> { "" };
             input2.AddRange(input1);
 
             var actual = this.Target.Equals(input1, input2);
@@ -94,10 +90,7 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_NullListAndList_ReturnsFalse()
         {
-            List<string> input1 = null;
-            var input2 = new List<string>();
-
-            var actual = this.Target.Equals(input1, input2);
+            var actual = this.Target.Equals(null, new List<string>());
             Assert.IsFalse(actual);
         }
 
@@ -105,23 +98,8 @@ namespace Catharsium.Util.Tests.Comparers
         [TestMethod]
         public void Equals_ListAndNullList_ReturnsFalse()
         {
-            var input1 = new List<string>();
-            List<string> input2 = null;
-
-            var actual = this.Target.Equals(input1, input2);
+            var actual = this.Target.Equals(new List<string>(), null);
             Assert.IsFalse(actual);
-        }
-
-        #endregion
-
-        #region GetHashCode
-
-        [TestMethod]
-        public void GetHashCode_ReturnsObjectHashcode()
-        {
-            var input = Array.Empty<string>();
-            var actual = this.Target.GetHashCode(input);
-            Assert.AreEqual(input.GetHashCode(), actual);
         }
 
         #endregion

@@ -3,7 +3,7 @@ using Catharsium.Util.Comparers;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Catharsium.Util.Tests.Comparers
+namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
 {
     [TestClass]
     public class GetHashCodeTests : TestFixture<EnumerableEqualityComparer<int>>
