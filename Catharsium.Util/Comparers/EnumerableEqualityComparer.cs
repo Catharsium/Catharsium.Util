@@ -25,20 +25,15 @@ namespace Catharsium.Util.Comparers
                 return false;
             }
 
-            if (x.Count() != y.Count())
+            var arrayX = x.ToArray();
+            var arrayY = y.ToArray();
+            if (arrayX.Length != arrayY.Length)
             {
                 return false;
             }
 
-            if (this.comparer != null)
-            {
-                for (var i = 0; i < x.Count(); i++)
-                {
-                    if (!this.comparer.Equals(x.ElementAt(i), y.ElementAt(i)))
-                    {
-                        return false;
-                    }
-                }
+            if (this.comparer != null) {
+                return !arrayX.Where((t, i) => !this.comparer.Equals(arrayX.ElementAt(i), arrayY.ElementAt(i))).Any();
             }
 
             return true;
