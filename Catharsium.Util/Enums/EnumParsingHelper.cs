@@ -33,5 +33,15 @@ namespace Catharsium.Util.Enums
             var result = ParseNullableEnum<T>(value, true);
             return result ?? throw new ArgumentException($"{typeof(T)} does not contain the value '{nameof(value)}'");
         }
+
+
+        public static T ParseEnum<T>(this string value, T defaultValue) where T : struct
+        {
+            if (!Enum.TryParse(value, out T result)) {
+                result = defaultValue;
+            }
+
+            return result;
+        }
     }
 }

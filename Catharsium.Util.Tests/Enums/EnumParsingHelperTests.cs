@@ -56,7 +56,7 @@ namespace Catharsium.Util.Tests.Enums
 
         #endregion
 
-        #region ParseEnum
+        #region ParseEnum(value)
 
         [TestMethod]
         public void ParseEnum_ValidValue_ReturnsEnumValue()
@@ -82,6 +82,27 @@ namespace Catharsium.Util.Tests.Enums
         {
             var expected = "Other value";
             expected.ParseEnum<MockEnum>();
+        }
+
+        #endregion
+
+        #region ParseEnum(value, defaultValue)
+
+        [TestMethod]
+        public void ToEnum_ValidInput_ReturnsInputAsEnum()
+        {
+            var input = MockEnum.First;
+            var actual = input.ToString().ParseEnum(MockEnum.First);
+            Assert.AreEqual(MockEnum.First, actual);
+        }
+
+
+        [TestMethod]
+        public void ToEnum_InvalidInput_ReturnsFallback()
+        {
+            var defaultValue = MockEnum.Second;
+            var actual = "Not a value".ParseEnum(defaultValue);
+            Assert.AreEqual(defaultValue, actual);
         }
 
         #endregion
