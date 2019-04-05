@@ -8,6 +8,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>Util, Utilities</PackageTags>
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
