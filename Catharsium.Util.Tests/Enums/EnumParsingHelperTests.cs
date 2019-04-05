@@ -75,7 +75,7 @@ namespace Catharsium.Util.Tests.Enums
             expected.ParseEnum<MockEnum>();
         }
 
-        
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ParseEnum_InvalidValue_ThrowsException()

@@ -11,7 +11,7 @@ namespace Catharsium.Util.Attributes.Extensions
             var attributes = type.GetCustomAttributes(typeof(T), false);
             return attributes.Any()
                 ? (T)attributes.FirstOrDefault()
-                : default(T);
+                : default;
         }
 
 
@@ -26,7 +26,7 @@ namespace Catharsium.Util.Attributes.Extensions
                 }
             }
 
-            return default(T);
+            return default;
         }
 
         

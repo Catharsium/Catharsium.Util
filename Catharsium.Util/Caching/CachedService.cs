@@ -25,17 +25,20 @@ namespace Catharsium.Util.Caching
             var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
             var methodInfo = type.GetMethod(method, bindingFlags, null, CallingConventions.Any, parameterTypes, null);
             
-            if (methodInfo.ReturnType != typeof(TResult)) {
-                return default(TResult);
+            if (methodInfo == null || methodInfo.ReturnType != typeof(TResult)) {
+                return default;
             }
 
-            var cacheKey = $"{type.Name}.{method}({string.Join(",", parameters)})";
+            var cacheKey = parameters != null
+                    ? $"{type.Name}.{method}({string.Join(",", parameters)})"
+                    : $"{type.Name}.{method}()";
+
             var result = this.cache.Get<TResult>(cacheKey);
             if (result != null) {
                 return result;
             }
 
-            result = methodInfo.Invoke(instance, parameters) as TResult;
+            result = methodInfo.Invoke(this.instance, parameters) as TResult;
             this.cache.Set(cacheKey, result);
 
             return result;

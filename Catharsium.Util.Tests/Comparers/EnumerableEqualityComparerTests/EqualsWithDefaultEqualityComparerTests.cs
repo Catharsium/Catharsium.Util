@@ -23,7 +23,7 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_IsReflexive()
         {
-            var input = new List<int> { 1, 2, 3 };
+            var input = new List<int> {1, 2, 3};
             var actual = this.Target.Equals(input, input);
             Assert.IsTrue(actual);
         }
@@ -32,8 +32,8 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_IsSymmetric()
         {
-            var input1 = new List<int> { 1, 2, 3 };
-            var input2 = new List<int> { 1, 2, 3 };
+            var input1 = new List<int> {1, 2, 3};
+            var input2 = new List<int> {1, 2, 3};
 
             var actual = this.Target.Equals(input1, input2);
             var actualReverse = this.Target.Equals(input2, input1);
@@ -53,7 +53,7 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_ListsWithSameContents_ReturnsTrue()
         {
-            var input1 = new List<int> { 1, 2, 3 };
+            var input1 = new List<int> {1, 2, 3};
             var input2 = new List<int>();
             input2.AddRange(input1);
 
@@ -65,8 +65,8 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_ListWithDifferentContents_ReturnsFalse()
         {
-            var input1 = new List<int> { 1 };
-            var input2 = new List<int> { 2 };
+            var input1 = new List<int> {1};
+            var input2 = new List<int> {2};
 
             var actual = this.Target.Equals(input1, input2);
             Assert.IsFalse(actual);
@@ -76,8 +76,8 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_DifferentLengthLists_ReturnsFalse()
         {
-            var input1 = new List<int> { 1, 2, 3 };
-            var input2 = new List<int> { 0 };
+            var input1 = new List<int> {1, 2, 3};
+            var input2 = new List<int> {0};
             input2.AddRange(input1);
 
             var actual = this.Target.Equals(input1, input2);

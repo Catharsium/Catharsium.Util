@@ -89,7 +89,8 @@ namespace Catharsium.Util.Web.Tests.Validation
                 Property2 = "My property 2",
                 Property3 = "My property 3"
             };
-            this.Target = new RequiredWithAttribute(nameof(MockObjectWithOneInGroupRequiredValidation.Property2), nameof(MockObjectWithOneInGroupRequiredValidation.Property3));
+            this.Target = new RequiredWithAttribute(nameof(MockObjectWithOneInGroupRequiredValidation.Property2),
+                nameof(MockObjectWithOneInGroupRequiredValidation.Property3));
 
             var actual = this.Target.IsValid("My value", mockObject);
             Assert.IsTrue(actual);
@@ -102,7 +103,8 @@ namespace Catharsium.Util.Web.Tests.Validation
             var mockObject = new MockObjectWithOneInGroupRequiredValidation {
                 Property3 = "My property 3"
             };
-            this.Target = new RequiredWithAttribute(nameof(MockObjectWithOneInGroupRequiredValidation.Property2), nameof(MockObjectWithOneInGroupRequiredValidation.Property3));
+            this.Target = new RequiredWithAttribute(nameof(MockObjectWithOneInGroupRequiredValidation.Property2), 
+                nameof(MockObjectWithOneInGroupRequiredValidation.Property3));
 
             var actual = this.Target.IsValid("My value", mockObject);
             Assert.IsFalse(actual);

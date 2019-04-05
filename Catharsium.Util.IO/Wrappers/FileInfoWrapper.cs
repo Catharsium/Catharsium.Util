@@ -11,9 +11,7 @@ namespace Catharsium.Util.IO.Wrappers
         #region Construction
 
         public FileInfoWrapper(string path)
-        : this(new FileInfo(path))
-        {
-        }
+            : this(new FileInfo(path)) { }
 
 
         public FileInfoWrapper(FileInfo fileInfo)
@@ -44,8 +42,7 @@ namespace Catharsium.Util.IO.Wrappers
 
         public string FullName => this.file.FullName;
 
-        public bool IsReadOnly
-        {
+        public bool IsReadOnly {
             get => this.file.IsReadOnly;
             set => this.file.IsReadOnly = value;
         }

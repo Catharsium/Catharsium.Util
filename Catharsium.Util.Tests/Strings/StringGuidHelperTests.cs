@@ -11,7 +11,7 @@ namespace Catharsium.Util.Tests.Strings
         public void ToGuid_NullInput_ReturnsDefault()
         {
             var actual = ((string)null).ToGuid();
-            Assert.AreEqual(default(Guid), actual);
+            Assert.AreEqual(default, actual);
         }
 
 
@@ -20,7 +20,7 @@ namespace Catharsium.Util.Tests.Strings
         {
             var expected = new Guid();
             var actual = (expected + "1").ToGuid();
-            Assert.AreEqual(default(Guid), actual);
+            Assert.AreEqual(default, actual);
         }
 
 

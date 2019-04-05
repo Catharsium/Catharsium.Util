@@ -20,7 +20,7 @@ namespace Catharsium.Util.Tests.Caching
         {
             this.SetDependency(new MockService());
         }
-        
+
         #endregion
 
         #region GetData<TResult>
