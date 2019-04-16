@@ -34,9 +34,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{CB4F670B-0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util.Math", "Util.Math", "{151A24B8-A55D-47CE-8525-4AF3AE7BD6E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Math", "Catharsium.Util.Math\Catharsium.Util.Math.csproj", "{6EFCF606-F29C-4BB5-8FA7-F5075A14C893}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Math", "Catharsium.Util.Math\Catharsium.Util.Math.csproj", "{6EFCF606-F29C-4BB5-8FA7-F5075A14C893}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Math.Tests", "Catharsium.Util.Math.Tests\Catharsium.Util.Math.Tests.csproj", "{E4AB618A-B9E2-41F0-BABC-C086611D4B41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Math.Tests", "Catharsium.Util.Math.Tests\Catharsium.Util.Math.Tests.csproj", "{E4AB618A-B9E2-41F0-BABC-C086611D4B41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
