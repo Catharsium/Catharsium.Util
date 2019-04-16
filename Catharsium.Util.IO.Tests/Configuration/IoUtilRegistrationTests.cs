@@ -1,5 +1,8 @@
 ﻿using Catharsium.Util.IO.Configuration;
 using Catharsium.Util.IO.Interfaces;
+using Catharsium.Util.IO.Json;
+using Catharsium.Util.IO.Wrappers;
+using Catharsium.Util.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,7 +20,8 @@ namespace Catharsium.Util.IO.Tests.Configuration
             var config = Substitute.For<IConfiguration>();
 
             serviceCollection.AddIoUtilities(config);
-            serviceCollection.Received().Add(Arg.Is<ServiceDescriptor>(d => d.ServiceType == typeof(IFileFactory)));
+            serviceCollection.ReceivedRegistration<IFileFactory, FileFactory>();
+            serviceCollection.ReceivedRegistration<IJsonTextWriter, JsonTextWriterAdapter>();
         }
     }
 }
