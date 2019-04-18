@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Catharsium.Util.Configuration\Catharsium.Util.Configuration.csproj" />
     <ProjectReference Include="..\Catharsium.Util\Catharsium.Util.csproj" />
   </ItemGroup>
 
