@@ -26,7 +26,7 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_IsReflexive()
         {
-            var input = new List<string> { "a" };
+            var input = new List<string> {"a"};
             var actual = this.Target.Equals(input, input);
             Assert.IsTrue(actual);
         }
@@ -35,8 +35,8 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_IsSymmetric()
         {
-            var input1 = new List<string> { "a", "b", "c" };
-            var input2 = new List<string> { "a", "b", "c" };
+            var input1 = new List<string> {"a", "b", "c"};
+            var input2 = new List<string> {"a", "b", "c"};
 
             var actual = this.Target.Equals(input1, input2);
             var actualReverse = this.Target.Equals(input2, input1);
@@ -55,7 +55,7 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_ListsWithSameContents_ReturnsTrue()
         {
-            var input1 = new List<string> { "a", "b", "c" };
+            var input1 = new List<string> {"a", "b", "c"};
             var input2 = new List<string>();
             input2.AddRange(input1);
 
@@ -67,8 +67,8 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_ListWithDifferentContents_ReturnsFalse()
         {
-            var input1 = new List<string> { "a" };
-            var input2 = new List<string> { "b" };
+            var input1 = new List<string> {"a"};
+            var input2 = new List<string> {"b"};
 
             var actual = this.Target.Equals(input1, input2);
             Assert.IsFalse(actual);
@@ -78,8 +78,8 @@ namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
         [TestMethod]
         public void Equals_DifferentLengthLists_ReturnsFalse()
         {
-            var input1 = new List<string> { "a", "b", "c" };
-            var input2 = new List<string> { "" };
+            var input1 = new List<string> {"a", "b", "c"};
+            var input2 = new List<string> {""};
             input2.AddRange(input1);
 
             var actual = this.Target.Equals(input1, input2);

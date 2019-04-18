@@ -6,10 +6,9 @@ namespace Catharsium.Util.Strings
     {
         public static Guid ToGuid(this string input)
         {
-            if (Guid.TryParse(input, out var result))
-            { return result; }
-
-            return default(Guid);
+            return Guid.TryParse(input, out var result)
+                ? result
+                : default;
         }
     }
-} 
+}

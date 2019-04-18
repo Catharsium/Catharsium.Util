@@ -63,7 +63,7 @@ namespace Catharsium.Util.Web.Tests.Validation
         [TestMethod]
         public void IsValid_ValueHasAValue_ReturnsTrue()
         {
-            var model = new MockObjectWithOneInGroupRequiredValidation { Property1 = "1" };
+            var model = new MockObjectWithOneInGroupRequiredValidation {Property1 = "1"};
             this.Target = new OneInGroupRequiredAttribute("Group 1");
             var actual = this.Target.IsValid(model, model.Property1);
             Assert.IsTrue(actual);
@@ -73,7 +73,7 @@ namespace Catharsium.Util.Web.Tests.Validation
         [TestMethod]
         public void IsValid_OtherGroupMemberHasValue_ReturnsTrue()
         {
-            var model = new MockObjectWithOneInGroupRequiredValidation { Property2 = "2" };
+            var model = new MockObjectWithOneInGroupRequiredValidation {Property2 = "2"};
             this.Target = new OneInGroupRequiredAttribute("Group 1");
             var actual = this.Target.IsValid(model, model.Property1);
             Assert.IsTrue(actual);
@@ -83,7 +83,7 @@ namespace Catharsium.Util.Web.Tests.Validation
         [TestMethod]
         public void IsValid_EmptyStringValues_ReturnsFalse()
         {
-            var model = new MockObjectWithOneInGroupRequiredValidation { Property1 = "", Property2 = "", Property3 = "", Property4 = "" };
+            var model = new MockObjectWithOneInGroupRequiredValidation {Property1 = "", Property2 = "", Property3 = "", Property4 = ""};
             this.Target = new OneInGroupRequiredAttribute("Group 1");
             var actual = this.Target.IsValid(model, model.Property1);
             Assert.IsFalse(actual);
@@ -93,7 +93,7 @@ namespace Catharsium.Util.Web.Tests.Validation
         [TestMethod]
         public void IsValid_OnlyOtherGroupHasValues_ReturnsFalse()
         {
-            var model = new MockObjectWithOneInGroupRequiredValidation { Property3 = "3", Property4 = "4" };
+            var model = new MockObjectWithOneInGroupRequiredValidation {Property3 = "3", Property4 = "4"};
             this.Target = new OneInGroupRequiredAttribute("Group 1");
             var actual = this.Target.IsValid(model, model.Property1);
             Assert.IsFalse(actual);

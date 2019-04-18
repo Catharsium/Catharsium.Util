@@ -1,11 +1,10 @@
 ﻿using Catharsium.Util.Configuration.Extensions;
-using Catharsium.Util.Math.Configuration;
 using Catharsium.Util.Math.Interfaces;
 using Catharsium.Util.Math.Lists;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Catharsium.Util.Configuration
+namespace Catharsium.Util.Math.Configuration
 {
     public static class MathUtilRegistration
     {

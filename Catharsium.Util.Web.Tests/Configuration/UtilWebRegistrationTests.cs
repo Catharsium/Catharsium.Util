@@ -1,7 +1,6 @@
 ﻿using Catharsium.Util.Testing.Extensions;
 using Catharsium.Util.Web.Configuration;
 using Catharsium.Util.Web.Interfaces;
-using Catharsium.Util.Web.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

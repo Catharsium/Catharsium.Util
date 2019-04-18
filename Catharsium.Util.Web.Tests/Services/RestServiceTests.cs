@@ -78,9 +78,9 @@ namespace Catharsium.Util.Web.Tests.Services
             return body == null
                 ? bodyContents == null
                 : request.Resource == resource &&
-                   request.Method == Method.POST &&
-                   body.Name == bodyName &&
-                   body.Value.ToString().Contains(bodyContents);
+                  request.Method == Method.POST &&
+                  body.Name == bodyName &&
+                  body.Value.ToString().Contains(bodyContents);
         }
 
         #endregion

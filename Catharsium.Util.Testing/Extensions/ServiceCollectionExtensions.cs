@@ -13,7 +13,10 @@ namespace Catharsium.Util.Testing.Extensions
 
         public static void ReceivedRegistration<TInterface, TImplementation>(this IServiceCollection serviceCollection)
         {
-            serviceCollection.Received().Add(Arg.Is<ServiceDescriptor>(d => d.ServiceType == typeof(TInterface) && d.ImplementationType == typeof(TImplementation)));
+            serviceCollection.Received().Add(Arg.Is<ServiceDescriptor>(d =>
+                d.ServiceType == typeof(TInterface) &&
+                d.ImplementationType == typeof(TImplementation)
+            ));
         }
     }
 }

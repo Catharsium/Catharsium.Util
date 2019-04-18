@@ -10,25 +10,23 @@ namespace Catharsium.Util.Comparers
 
         public EnumerableEqualityComparer(IEqualityComparer<T> comparer = null)
         {
-            if (comparer == null)
-            {
+            if (comparer == null) {
                 comparer = EqualityComparer<T>.Default;
             }
+
             this.comparer = comparer;
         }
 
 
         public bool Equals(IEnumerable<T> x, IEnumerable<T> y)
         {
-            if (x == null || y == null)
-            {
+            if (x == null || y == null) {
                 return false;
             }
 
             var arrayX = x.ToArray();
             var arrayY = y.ToArray();
-            if (arrayX.Length != arrayY.Length)
-            {
+            if (arrayX.Length != arrayY.Length) {
                 return false;
             }
 

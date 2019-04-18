@@ -12,9 +12,7 @@ namespace Catharsium.Util.IO.Wrappers
 
 
         public DirectoryInfoWrapper(string path)
-        : this(new DirectoryInfo(path))
-        {
-        }
+            : this(new DirectoryInfo(path)) { }
 
 
         public DirectoryInfoWrapper(DirectoryInfo directoryInfo)
@@ -25,8 +23,7 @@ namespace Catharsium.Util.IO.Wrappers
 
         #region DirectoryInfo Properties
 
-        public FileAttributes Attributes
-        {
+        public FileAttributes Attributes {
             get => this.directory.Attributes;
             set => this.directory.Attributes = value;
         }
@@ -64,7 +61,7 @@ namespace Catharsium.Util.IO.Wrappers
             this.directory.Create();
         }
 
-               
+
         public void CreateSubDirectory(string path)
         {
             this.directory.CreateSubdirectory(path);
@@ -122,48 +119,48 @@ namespace Catharsium.Util.IO.Wrappers
         public IDirectory[] GetDirectories()
         {
             return this.directory.GetDirectories()
-                                 .Select(d => new DirectoryInfoWrapper(d))
-                                 .ToArray();
+                .Select(d => new DirectoryInfoWrapper(d))
+                .ToArray();
         }
 
 
         public IDirectory[] GetDirectories(string searchPattern)
         {
             return this.directory.GetDirectories(searchPattern)
-                                 .Select(d => new DirectoryInfoWrapper(d))
-                                 .ToArray();
+                .Select(d => new DirectoryInfoWrapper(d))
+                .ToArray();
         }
 
 
         public IDirectory[] GetDirectories(string searchPattern, SearchOption searchOption)
         {
             return this.directory.GetDirectories(searchPattern, searchOption)
-                                 .Select(d => new DirectoryInfoWrapper(d))
-                                 .ToArray();
+                .Select(d => new DirectoryInfoWrapper(d))
+                .ToArray();
         }
 
 
         public IFile[] GetFiles()
         {
             return this.directory.GetFiles()
-                                 .Select(f => new FileInfoWrapper(f.FullName))
-                                 .ToArray();
+                .Select(f => new FileInfoWrapper(f.FullName))
+                .ToArray();
         }
 
 
         public IFile[] GetFiles(string searchPattern)
         {
             return this.directory.GetFiles(searchPattern)
-                                 .Select(f => new FileInfoWrapper(f.FullName))
-                                 .ToArray();
+                .Select(f => new FileInfoWrapper(f.FullName))
+                .ToArray();
         }
 
 
         public IFile[] GetFiles(string searchPattern, SearchOption searchOption)
         {
             return this.directory.GetFiles(searchPattern, searchOption)
-                                 .Select(f => new FileInfoWrapper(f.FullName))
-                                 .ToArray();
+                .Select(f => new FileInfoWrapper(f.FullName))
+                .ToArray();
         }
 
 

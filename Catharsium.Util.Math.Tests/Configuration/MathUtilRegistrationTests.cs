@@ -1,4 +1,4 @@
-﻿using Catharsium.Util.Configuration;
+﻿using Catharsium.Util.Math.Configuration;
 using Catharsium.Util.Math.Interfaces;
 using Catharsium.Util.Math.Lists;
 using Catharsium.Util.Testing.Extensions;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Tests.Configuration
+namespace Catharsium.Util.Math.Tests.Configuration
 {
     [TestClass]
     public class MathUtilRegistrationTests

@@ -11,7 +11,7 @@ namespace Catharsium.Util.Tests.Strings
         public void ToDate_NullInput_ReturnsDefault()
         {
             var actual = (null as string).ToDate();
-            Assert.AreEqual(default(DateTime), actual);
+            Assert.AreEqual(default, actual);
         }
 
 
@@ -19,7 +19,7 @@ namespace Catharsium.Util.Tests.Strings
         public void ToDate_yyyyMMddInput_ReturnsExpected()
         {
             var expected = DateTime.Now.Date;
-            var actual = StringDateHelper.ToDate(expected.ToString("yyyyMMdd"));
+            var actual = expected.ToString("yyyyMMdd").ToDate();
             Assert.AreEqual(expected, actual);
         }
 

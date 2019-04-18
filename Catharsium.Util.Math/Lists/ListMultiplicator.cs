@@ -6,13 +6,12 @@ namespace Catharsium.Util.Math.Lists
     {
         public long Multiply(int[] input)
         {
-            if( input.Length == 0) {
+            if (input.Length == 0) {
                 return 0;
             }
 
             long result = 1;
-            foreach(var number in input)
-            {
+            foreach (var number in input) {
                 result *= number;
             }
 
