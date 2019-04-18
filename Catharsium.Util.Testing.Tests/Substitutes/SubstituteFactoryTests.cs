@@ -1,7 +1,9 @@
 ﻿using Catharsium.Util.Testing.Substitutes;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Catharsium.Util.Testing.Tests._Mocks.DbContextMocks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 
 namespace Catharsium.Util.Testing.Tests.Substitutes
 {
@@ -10,13 +12,15 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
     {
         #region Fixture
 
+        protected IDbContextSubstituteFactory DbContextSubstituteFactory;
         protected SubstituteFactory Target { get; set; }
 
 
         [TestInitialize]
         public void Setup()
         {
-            this.Target = new SubstituteFactory();
+            this.DbContextSubstituteFactory = Substitute.For<IDbContextSubstituteFactory>();
+            this.Target = new SubstituteFactory(this.DbContextSubstituteFactory);
         }
 
         #endregion
@@ -32,14 +36,20 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         [TestMethod]
         public void GetSubstitute_DbContextNoOptions_ReturnsSubstitute()
         {
+            var expected = new MockDbContextNoOptions();
+            this.DbContextSubstituteFactory.CreateDbContextSubstitute<MockDbContextNoOptions>().Returns(expected);
+
             var actual = this.Target.GetSubstitute<MockDbContextNoOptions>();
-            Assert.IsNotNull(actual);
+            Assert.AreEqual(expected, actual);
         }
 
 
         [TestMethod]
         public void GetSubstitute_DbContextWithOptions_ReturnsSubstitute()
         {
+            var expected = new MockDbContextWithOptions(new DbContextOptionsBuilder().Options);
+            this.DbContextSubstituteFactory.CreateDbContextSubstitute<MockDbContextWithOptions>().Returns(expected);
+
             var actual = this.Target.GetSubstitute<MockDbContextWithOptions>();
             Assert.IsNotNull(actual);
         }

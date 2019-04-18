@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Catharsium.Util.Testing.Reflection;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -13,14 +14,14 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
 
         private Dictionary<Type, object> Dependencies { get; set; }
 
-        private TargetFactory<MockObject> Target { get; set; }
+        private ConstructorFilter<MockObject> Target { get; set; }
 
 
         [TestInitialize]
         public void Setup()
         {
             this.Dependencies = new Dictionary<Type, object>();
-            this.Target = new TargetFactory<MockObject>();
+            this.Target = new ConstructorFilter<MockObject>();
         }
 
         #endregion

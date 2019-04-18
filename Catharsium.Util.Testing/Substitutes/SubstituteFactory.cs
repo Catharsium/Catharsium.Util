@@ -8,6 +8,15 @@ namespace Catharsium.Util.Testing.Substitutes
 {
     public class SubstituteFactory : ISubstituteFactory
     {
+        private readonly IDbContextSubstituteFactory dbContextSubstituteFactory;
+
+
+        public SubstituteFactory(IDbContextSubstituteFactory dbContextSubstituteFactory)
+        {
+            this.dbContextSubstituteFactory = dbContextSubstituteFactory;
+        }
+
+
         public object GetSubstitute<T>() where T : class
         {
             if (typeof(T).GetTypeInfo().IsInterface) {
@@ -18,10 +27,11 @@ namespace Catharsium.Util.Testing.Substitutes
                 return Guid.NewGuid();
             }
 
-            if (typeof(DbContext).GetTypeInfo().IsAssignableFrom(typeof(T))) { return new DbContextSubstituteFactory().CreateDbContextSubstitute(typeof(T)); }
+            if (typeof(DbContext).GetTypeInfo().IsAssignableFrom(typeof(T))) {
+                return this.dbContextSubstituteFactory.CreateDbContextSubstitute<T>();
+            }
 
             return default(T);
         }
-
     }
 }
