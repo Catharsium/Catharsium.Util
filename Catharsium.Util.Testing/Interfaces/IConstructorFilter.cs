@@ -9,5 +9,7 @@ namespace Catharsium.Util.Testing.Interfaces
         ConstructorInfo GetLargestEligibleConstructor(Dictionary<Type, object> dependencies = null);
 
         IEnumerable<ConstructorInfo> GetEligibleConstructors(Dictionary<Type, object> dependencies);
+
+        IEnumerable<ConstructorInfo> GetEligibleConstructors(IEnumerable<Type> dependencies);
     }
 }

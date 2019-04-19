@@ -19,16 +19,22 @@ namespace Catharsium.Util.Testing.Substitutes
 
         public object GetSubstitute<T>() where T : class
         {
-            if (typeof(T).GetTypeInfo().IsInterface) {
-                return Substitute.For<T>();
+
+        }
+
+
+        public object GetSubstitute(Type type)
+        {
+            if (type.GetTypeInfo().IsInterface) {
+                return Substitute.For(new[] { type }, new object[0]);
             }
 
-            if (typeof(T) == typeof(Guid)) {
+            if (type == typeof(Guid)) {
                 return Guid.NewGuid();
             }
 
-            if (typeof(DbContext).GetTypeInfo().IsAssignableFrom(typeof(T))) {
-                return this.dbContextSubstituteFactory.CreateDbContextSubstitute<T>();
+            if (typeof(DbContext).GetTypeInfo().IsAssignableFrom(type)) {
+                return this.dbContextSubstituteFactory.CreateDbContextSubstitute(type);
             }
 
             return default(T);

@@ -14,12 +14,20 @@ namespace Catharsium.Util.Testing.Reflection
                                                              .LastOrDefault();
         }
 
-
+        
         public IEnumerable<ConstructorInfo> GetEligibleConstructors(Dictionary<Type, object> dependencies)
         {
+            return dependencies != null && dependencies.Any()
+                ? this.GetEligibleConstructors(dependencies.Keys)
+                : this.GetEligibleConstructors(null as List<Type>);
+        }
+
+
+        public IEnumerable<ConstructorInfo> GetEligibleConstructors(IEnumerable<Type> dependencies)
+        {
             var constructors = typeof(T).GetConstructors();
-            return dependencies != null && dependencies.Keys.Any()
-                ? constructors.Where(c => c.GetParameters().All(p => dependencies.ContainsKey(p.ParameterType)))
+            return dependencies != null && dependencies.Any()
+                ? constructors.Where(c => c.GetParameters().All(p => dependencies.Contains(p.ParameterType)))
                 : constructors.Where(c => c.GetParameters().All(p => p.ParameterType.IsInterface));
         }
     }
