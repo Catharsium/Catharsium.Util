@@ -5,7 +5,7 @@ using System;
 namespace Catharsium.Util.Tests.Strings
 {
     [TestClass]
-    public class StringDateHelperTests
+    public class StringDateExtensionsTests
     {
         [TestMethod]
         public void ToDate_NullInput_ReturnsDefault()

@@ -2,7 +2,7 @@
 
 namespace Catharsium.Util.Strings
 {
-    public static class StringGuidHelper
+    public static class StringGuidExtensions
     {
         public static Guid ToGuid(this string input)
         {

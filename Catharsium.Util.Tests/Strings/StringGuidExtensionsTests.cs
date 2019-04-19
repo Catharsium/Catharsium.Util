@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Catharsium.Util.Tests.Strings
 {
     [TestClass]
-    public class StringGuidHelperTests
+    public class StringGuidExtensionsTests
     {
         [TestMethod]
         public void ToGuid_NullInput_ReturnsDefault()
