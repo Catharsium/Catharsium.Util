@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Catharsium.Util.Strings
 {
-    public static class StringDateHelper
+    public static class StringDateExtensions
     {
         private static readonly string[] SupportedFormats = { "yyyyMMdd", "yyyyMMddHHmmss" };
 
