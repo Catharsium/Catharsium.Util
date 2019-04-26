@@ -14,13 +14,15 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
     {
         #region Fixture
 
-        public Dictionary<Type, object> ExpectedDependencies { get; private set; }
+        private Type Type { get; set; }
 
-        public MockObject ExpectedTarget { get; private set; }
+        private Dictionary<Type, object> ExpectedDependencies { get; set; }
+
+        private MockObject ExpectedTarget { get; set; }
 
         private IDependencyRetriever DependencyRetriever { get; set; }
 
-        private IConstructorFilter<MockObject> ConstructorFilter { get; set; }
+        private IConstructorFilter ConstructorFilter { get; set; }
 
         private ITargetFactory<MockObject> TargetFactory { get; set; }
 
@@ -30,6 +32,8 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
         [TestInitialize]
         public void Setup()
         {
+            this.Type = typeof(MockObject);
+
             this.ExpectedDependencies = new Dictionary<Type, object>();
             this.ExpectedTarget = new MockObject(null);
 
@@ -39,8 +43,8 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
             this.DependencyRetriever.GetDependencySubstitutes(constructorInfo, this.ExpectedDependencies).Returns(this.ExpectedDependencies);
 
             this.TargetFactory = Substitute.For<ITargetFactory<MockObject>>();
-            this.ConstructorFilter = Substitute.For<IConstructorFilter<MockObject>>();
-            this.ConstructorFilter.GetLargestEligibleConstructor().Returns(constructorInfo);
+            this.ConstructorFilter = Substitute.For<IConstructorFilter>();
+            this.ConstructorFilter.GetLargestEligibleConstructor(this.Type).Returns(constructorInfo);
             this.TargetFactory.CreateTarget(this.ExpectedDependencies).Returns(this.ExpectedTarget);
             this.Target = new TestFixture<MockObject>(this.DependencyRetriever, this.ConstructorFilter, this.TargetFactory);
         }

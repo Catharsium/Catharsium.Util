@@ -1,4 +1,5 @@
-﻿using Catharsium.Util.Testing.Reflection;
+﻿using Catharsium.Util.Testing.Configuration;
+using Catharsium.Util.Testing.Reflection;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -13,27 +14,30 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
     {
         #region Fixture
 
+        private Type Type { get; set; }
+
         private List<Type> Dependencies { get; set; }
 
-        private ConstructorFilter<MockObject> Target { get; set; }
+        private ConstructorFilter Target { get; set; }
 
 
         [TestInitialize]
         public void Setup()
         {
+            this.Type = typeof(MockObject);
             this.Dependencies = new List<Type>();
-            this.Target = new ConstructorFilter<MockObject>();
+            this.Target = new ConstructorFilter(new[] { typeof(int) });
         }
 
         #endregion
 
-        #region GetEligibleConstructors
+        #region GetEligibleConstructors(Dependencies)
 
         [TestMethod]
         public void GetEligibleConstructors_WithSingleConstructorSatisfied_ReturnsSingleConstructor()
         {
             this.Dependencies.Add(typeof(IMockInterface1));
-            var actual = this.Target.GetEligibleConstructors(this.Dependencies);
+            var actual = this.Target.GetEligibleConstructors(this.Type, this.Dependencies);
             var actualList = actual.ToList();
             Assert.AreEqual(1, actualList.Count);
             Assert.AreEqual(1, actualList[0].GetParameters().Length);
@@ -47,7 +51,7 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
             this.Dependencies.Add(typeof(IMockInterface1));
             this.Dependencies.Add(typeof(IMockInterface2));
 
-            var actual = this.Target.GetEligibleConstructors(this.Dependencies);
+            var actual = this.Target.GetEligibleConstructors(this.Type, this.Dependencies);
             var actualList = actual.ToList();
             Assert.AreEqual(2, actualList.Count);
             AssertOnlyConstructurWithOnlyInterfaces(actualList);
@@ -61,18 +65,31 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
             this.Dependencies.Add(typeof(IMockInterface2));
             this.Dependencies.Add(typeof(string));
 
-            var actual = this.Target.GetEligibleConstructors(this.Dependencies);
+            var actual = this.Target.GetEligibleConstructors(this.Type, this.Dependencies);
             var actualList = actual.ToList();
             Assert.AreEqual(3, actualList.Count);
         }
 
+        #endregion
+
+        #region GetEligibleConstructors
 
         [TestMethod]
-        public void GetEligibleConstructors_NoDependencies_ReturnsConstructorsThatOnlyRequireInterfaces()
+        public void GetEligibleConstructors_NoDependencies_ReturnsConstructorThatRequiresInterfaces()
         {
-            var actual = this.Target.GetEligibleConstructors(this.Dependencies);
+            var actual = this.Target.GetEligibleConstructors(this.Type);
             var actualList = actual.ToList();
             Assert.AreEqual(2, actualList.Count);
+        }
+
+
+        [TestMethod]
+        public void GetEligibleConstructors_NoDependencies_ReturnsConstructorWithSupportedDependencies()
+        {
+            var actual = this.Target.GetEligibleConstructors(typeof(MockObjectWithSeveralDependencies));
+            var actualList = actual.ToList();
+            Assert.AreEqual(1, actualList.Count);
+            Assert.AreEqual(1, actualList[0].GetParameters().Count());
         }
 
         #endregion

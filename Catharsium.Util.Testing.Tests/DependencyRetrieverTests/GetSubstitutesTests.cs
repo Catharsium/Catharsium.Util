@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 
 namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
 {
@@ -10,13 +12,16 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
     {
         #region Fixture
 
+        private ISubstituteFactory SubstituteFactory { get; set; }
+
         public DependencyRetriever Target { get; set; }
 
 
         [TestInitialize]
         public void Setup()
         {
-            this.Target = new DependencyRetriever();
+            this.SubstituteFactory = Substitute.For<ISubstituteFactory>();
+            this.Target = new DependencyRetriever(this.SubstituteFactory);
         }
 
         #endregion

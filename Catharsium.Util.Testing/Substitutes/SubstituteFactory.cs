@@ -17,12 +17,6 @@ namespace Catharsium.Util.Testing.Substitutes
         }
 
 
-        public object GetSubstitute<T>() where T : class
-        {
-
-        }
-
-
         public object GetSubstitute(Type type)
         {
             if (type.GetTypeInfo().IsInterface) {
@@ -37,7 +31,7 @@ namespace Catharsium.Util.Testing.Substitutes
                 return this.dbContextSubstituteFactory.CreateDbContextSubstitute(type);
             }
 
-            return default(T);
+            return null;
         }
     }
 }

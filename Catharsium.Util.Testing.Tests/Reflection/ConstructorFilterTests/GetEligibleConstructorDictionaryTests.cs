@@ -13,16 +13,19 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
     {
         #region Fixture
 
+        private Type Type { get; set; }
+
         private Dictionary<Type, object> Dependencies { get; set; }
 
-        private ConstructorFilter<MockObject> Target { get; set; }
+        private ConstructorFilter Target { get; set; }
 
 
         [TestInitialize]
         public void Setup()
         {
+            this.Type = typeof(MockObject);
             this.Dependencies = new Dictionary<Type, object>();
-            this.Target = new ConstructorFilter<MockObject>();
+            this.Target = new ConstructorFilter(new Type[0]);
         }
 
         #endregion
@@ -33,9 +36,9 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
         public void GetEligibleConstructors_ReturnsGetEligibleConstructorsIEnumerable()
         {
             this.Dependencies[typeof(IMockInterface1)] = Substitute.For<IMockInterface1>();
-            var expected = this.Target.GetEligibleConstructors(this.Dependencies.Keys);
+            var expected = this.Target.GetEligibleConstructors(this.Type, this.Dependencies.Keys);
 
-            var actual = this.Target.GetEligibleConstructors(this.Dependencies);
+            var actual = this.Target.GetEligibleConstructors(this.Type, this.Dependencies);
             Assert.IsNotNull(expected);
             Assert.IsNotNull(actual);
             Assert.AreEqual(expected.Count(), actual.Count());
@@ -49,8 +52,8 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
         [TestMethod]
         public void GetEligibleConstructors_EmptyDictionary_ReturnsGetEligibleConstructorsIEnumerable()
         {
-            var expected = this.Target.GetEligibleConstructors(this.Dependencies.Keys);
-            var actual = this.Target.GetEligibleConstructors(null as Dictionary<Type, object>);
+            var expected = this.Target.GetEligibleConstructors(this.Type, this.Dependencies.Keys);
+            var actual = this.Target.GetEligibleConstructors(this.Type, null as Dictionary<Type, object>);
             Assert.IsNotNull(expected);
             Assert.IsNotNull(actual);
             Assert.AreEqual(expected.Count(), actual.Count());

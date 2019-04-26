@@ -12,16 +12,19 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
     {
         #region Fixture
 
+        private Type Type { get; set; }
+
         private Dictionary<Type, object> Dependencies { get; set; }
 
-        private ConstructorFilter<MockObject> Target { get; set; }
+        private ConstructorFilter Target { get; set; }
 
 
         [TestInitialize]
         public void Setup()
         {
+            this.Type = typeof(MockObject);
             this.Dependencies = new Dictionary<Type, object>();
-            this.Target = new ConstructorFilter<MockObject>();
+            this.Target = new ConstructorFilter(new Type[0]);
         }
 
         #endregion
@@ -31,7 +34,7 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
         [TestMethod]
         public void GetLargestEligibleConstructor_NoDependencies_ReturnsLargestConstructorWithOnlyInterfaces()
         {
-            var actual = this.Target.GetLargestEligibleConstructor(this.Dependencies);
+            var actual = this.Target.GetLargestEligibleConstructor(this.Type, this.Dependencies);
             Assert.AreEqual(2, actual.GetParameters().Length);
         }
 
@@ -43,7 +46,7 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
             this.Dependencies[typeof(IMockInterface2)] = Substitute.For<IMockInterface2>();
             this.Dependencies[typeof(string)] = "My string";
 
-            var actual = this.Target.GetLargestEligibleConstructor(this.Dependencies);
+            var actual = this.Target.GetLargestEligibleConstructor(this.Type, this.Dependencies);
             Assert.AreEqual(3, actual.GetParameters().Length);
         }
 

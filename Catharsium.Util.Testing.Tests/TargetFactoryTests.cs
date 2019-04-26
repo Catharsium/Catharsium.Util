@@ -12,16 +12,18 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
     {
         #region Fixture
 
+        private Type Type { get; set; }
         private Dictionary<Type, object> Dependencies { get; set; }
-        protected IConstructorFilter<MockObject> ConstructorFilter { get; set; }
+        protected IConstructorFilter ConstructorFilter { get; set; }
         protected TargetFactory<MockObject> Target { get; set; }
 
 
         [TestInitialize]
         public void Setup()
         {
+            this.Type = typeof(MockObject);
             this.Dependencies = new Dictionary<Type, object>();
-            this.ConstructorFilter = Substitute.For<IConstructorFilter<MockObject>>();
+            this.ConstructorFilter = Substitute.For<IConstructorFilter>();
             this.Target = new TargetFactory<MockObject>(this.ConstructorFilter);
         }
 
@@ -36,8 +38,8 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
             var dependency2Type = typeof(IMockInterface2);
             this.Dependencies[dependency1Type] = Substitute.For<IMockInterface1>();
             this.Dependencies[dependency2Type] = Substitute.For<IMockInterface2>();
-            var constructor = typeof(MockObject).GetConstructor(new[] { dependency1Type, dependency2Type });
-            this.ConstructorFilter.GetLargestEligibleConstructor(this.Dependencies).Returns(constructor);
+            var constructor = this.Type.GetConstructor(new[] { dependency1Type, dependency2Type });
+            this.ConstructorFilter.GetLargestEligibleConstructor(this.Type, this.Dependencies).Returns(constructor);
 
             var actual = this.Target.CreateTarget(this.Dependencies);
             Assert.IsNotNull(actual);
@@ -51,8 +53,8 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
         public void CreateTarget_WithTooFewDependencies_ReturnsNull()
         {
             this.Dependencies[typeof(IMockInterface2)] = Substitute.For<IMockInterface2>();
-            var constructor = typeof(MockObject).GetConstructor(new[] { typeof(IMockInterface1), typeof(IMockInterface2) });
-            this.ConstructorFilter.GetLargestEligibleConstructor().Returns(constructor);
+            var constructor = this.Type.GetConstructor(new[] { typeof(IMockInterface1), typeof(IMockInterface2) });
+            this.ConstructorFilter.GetLargestEligibleConstructor(this.Type).Returns(constructor);
 
             var actual = this.Target.CreateTarget(this.Dependencies);
             Assert.IsNull(actual);
@@ -66,8 +68,8 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
             var dependency2Type = typeof(IMockInterface2);
             this.Dependencies[dependency1Type] = Substitute.For<IMockInterface1>();
             this.Dependencies[dependency2Type] = Substitute.For<IMockInterface2>();
-            var constructor = typeof(MockObject).GetConstructor(new[] { dependency1Type });
-            this.ConstructorFilter.GetLargestEligibleConstructor(this.Dependencies).Returns(constructor);
+            var constructor = this.Type.GetConstructor(new[] { dependency1Type });
+            this.ConstructorFilter.GetLargestEligibleConstructor(this.Type, this.Dependencies).Returns(constructor);
 
             var actual = this.Target.CreateTarget(this.Dependencies);
             Assert.IsNotNull(actual);

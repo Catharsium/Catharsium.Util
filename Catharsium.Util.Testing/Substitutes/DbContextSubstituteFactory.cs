@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Catharsium.Util.Testing.Reflection;
+using Catharsium.Util.Testing.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catharsium.Util.Testing.Substitutes
 {
     public class DbContextSubstituteFactory : IDbContextSubstituteFactory
     {
+        private readonly IConstructorFilter constructorFilter;
+
+
+        public DbContextSubstituteFactory(IConstructorFilter constructorFilter)
+        {
+            this.constructorFilter = constructorFilter;
+        }
+
+
         public object CreateDbContextSubstitute(Type type)
         {
             var dependencies = new List<Type> { typeof(DbContextOptions) };
-            var constructors = new ConstructorFilter<T>().GetEligibleConstructors(dependencies).OrderByDescending(c => c.GetParameters().Length);
+            var constructors = this.constructorFilter.GetEligibleConstructors(type, dependencies).OrderByDescending(c => c.GetParameters().Length);
             if (constructors.Any())
             {
                 var constructor = constructors.FirstOrDefault();

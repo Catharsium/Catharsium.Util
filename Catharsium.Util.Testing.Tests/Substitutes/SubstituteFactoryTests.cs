@@ -1,4 +1,5 @@
-﻿using Catharsium.Util.Testing.Substitutes;
+﻿using System;
+using Catharsium.Util.Testing.Substitutes;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Catharsium.Util.Testing.Tests._Mocks.DbContextMocks;
 using Microsoft.EntityFrameworkCore;
@@ -28,8 +29,19 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         [TestMethod]
         public void GetSubstitute_Interface_ReturnsSubstitute()
         {
-            var actual = this.Target.GetSubstitute<IMockInterface1>();
+            var type = typeof(IMockInterface1);
+            var actual = this.Target.GetSubstitute(type);
             Assert.IsNotNull(actual);
+        }
+
+        
+        [TestMethod]
+        public void GetSubstitute_Guid_ReturnsSubstitute()
+        {
+            var type = typeof(Guid);
+            var actual = this.Target.GetSubstitute(typeof(Guid));
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(type, actual.GetType());
         }
 
 
@@ -37,9 +49,10 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         public void GetSubstitute_DbContextNoOptions_ReturnsSubstitute()
         {
             var expected = new MockDbContextNoOptions();
-            this.DbContextSubstituteFactory.CreateDbContextSubstitute<MockDbContextNoOptions>().Returns(expected);
+            var type = expected.GetType();
+            this.DbContextSubstituteFactory.CreateDbContextSubstitute(type).Returns(expected);
 
-            var actual = this.Target.GetSubstitute<MockDbContextNoOptions>();
+            var actual = this.Target.GetSubstitute(type);
             Assert.AreEqual(expected, actual);
         }
 
@@ -48,9 +61,10 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         public void GetSubstitute_DbContextWithOptions_ReturnsSubstitute()
         {
             var expected = new MockDbContextWithOptions(new DbContextOptionsBuilder().Options);
-            this.DbContextSubstituteFactory.CreateDbContextSubstitute<MockDbContextWithOptions>().Returns(expected);
+            var type = expected.GetType();
+            this.DbContextSubstituteFactory.CreateDbContextSubstitute(type).Returns(expected);
 
-            var actual = this.Target.GetSubstitute<MockDbContextWithOptions>();
+            var actual = this.Target.GetSubstitute(type);
             Assert.IsNotNull(actual);
         }
     }

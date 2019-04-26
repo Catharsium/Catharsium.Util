@@ -69,17 +69,17 @@ namespace Catharsium.Util.Testing
         }
 
 
-        //public Dictionary<Type, object> GetSubstitutes(IEnumerable<Type> dependencies)
-        //{
-        //    var result = new Dictionary<Type, object>();
+        public Dictionary<Type, object> GetSubstitutes(IEnumerable<Type> dependencies)
+        {
+            var result = new Dictionary<Type, object>();
 
-        //    foreach (var dependency in dependencies)
-        //    {
-        //        var substitute = Substitute.For(new[] { dependency }, Array.Empty<object>());
-        //        result.Add(dependency, substitute);
-        //    }
+            foreach (var dependency in dependencies)
+            {
+                var substitute = Substitute.For(new[] { dependency }, Array.Empty<object>());
+                result.Add(dependency, substitute);
+            }
 
-        //    return result;
-        //}
+            return result;
+        }
     }
 }

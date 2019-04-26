@@ -4,12 +4,12 @@ using System.Reflection;
 
 namespace Catharsium.Util.Testing.Interfaces
 {
-    public interface IConstructorFilter<T>
+    public interface IConstructorFilter
     {
-        ConstructorInfo GetLargestEligibleConstructor(Dictionary<Type, object> dependencies = null);
+        ConstructorInfo GetLargestEligibleConstructor(Type type, Dictionary<Type, object> dependencies = null);
 
-        IEnumerable<ConstructorInfo> GetEligibleConstructors(Dictionary<Type, object> dependencies);
+        IEnumerable<ConstructorInfo> GetEligibleConstructors(Type type, Dictionary<Type, object> dependencies);
 
-        IEnumerable<ConstructorInfo> GetEligibleConstructors(IEnumerable<Type> dependencies);
+        IEnumerable<ConstructorInfo> GetEligibleConstructors(Type type, IEnumerable<Type> dependencies);
     }
 }

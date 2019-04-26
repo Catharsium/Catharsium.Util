@@ -6,17 +6,17 @@ namespace Catharsium.Util.Testing
 {
     public class TargetFactory<T> : ITargetFactory<T> where T : class
     {
-        private readonly IConstructorFilter<T> constructorFilter;
+        private readonly IConstructorFilter constructorFilter;
 
 
-        public TargetFactory(IConstructorFilter<T> constructorFilter) {
+        public TargetFactory(IConstructorFilter constructorFilter) {
             this.constructorFilter = constructorFilter;
         }
 
 
         public T CreateTarget(Dictionary<Type, object> dependencies)
         {
-            var constructor = this.constructorFilter.GetLargestEligibleConstructor(dependencies);
+            var constructor = this.constructorFilter.GetLargestEligibleConstructor(typeof(T), dependencies);
             if (constructor == null)
             {
                 return null;
