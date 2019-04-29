@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.2.0</Version>
+    <Version>1.2.0.1</Version>
     <Copyright>Catharsium</Copyright>
     <PackageProjectUrl>https://gitlab.com/Catharsium/Catharsium.Util</PackageProjectUrl>
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
@@ -12,14 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.json" />
     <None Remove="TargetFactory.cs~RF21c0b405.TMP" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>

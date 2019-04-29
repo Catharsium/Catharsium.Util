@@ -9,9 +9,7 @@ namespace Catharsium.Util.Testing.Configuration
     {
         public static IServiceProvider Create()
         {
-            var builder = new ConfigurationBuilder()
-           .SetBasePath(Directory.GetCurrentDirectory())
-           .AddJsonFile("appsettings.json", false, false);
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
             var configuration = builder.Build();
 
             return new ServiceCollection()
