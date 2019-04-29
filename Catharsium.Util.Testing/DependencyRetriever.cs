@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Catharsium.Util.Testing.Configuration;
 using Catharsium.Util.Testing.Interfaces;
 using NSubstitute;
 
@@ -9,10 +10,24 @@ namespace Catharsium.Util.Testing
 {
     public class DependencyRetriever : IDependencyRetriever
     {
+        private readonly ISubstituteFactory substituteFactory;
+
+
+        public DependencyRetriever(ISubstituteFactory substituteFactory)
+        {
+            this.substituteFactory = substituteFactory;
+        }
+
+
         public Dictionary<Type, object> GetDependencySubstitutes<T>()
         {
             var dependencies = this.GetDependencies<T>();
-            return this.GetSubstitutes(dependencies);
+            var result = new Dictionary<Type, object>();
+            foreach(var dependency in dependencies)
+            {
+                result[dependency] = this.substituteFactory.GetSubstitute(dependency);
+            }
+            return result;
         }
 
 
@@ -22,7 +37,7 @@ namespace Catharsium.Util.Testing
 
             if (constructor != null)
             {
-                var parameters = constructor.GetParameters().Where(p => p.ParameterType.IsInterface);
+                var parameters = constructor.GetParameters().Where(p => p.ParameterType.IsInterface || SupportedDependencies.Types.Any(d => d.IsAssignableFrom(p.ParameterType)));
                 dependencies.AddRange(parameters.Select(p => p.ParameterType));
             }
 
@@ -41,7 +56,7 @@ namespace Catharsium.Util.Testing
             var result = new List<Type>();
             foreach (var constructor in constructors)
             {
-                foreach (var dependency in constructor.GetParameters().Where(p => p.ParameterType.IsInterface))
+                foreach (var dependency in constructor.GetParameters().Where(p => p.ParameterType.IsInterface || SupportedDependencies.Types.Any(d => d.IsAssignableFrom(p.ParameterType))))
                 {
                     if (!result.Contains(dependency.ParameterType))
                     {
