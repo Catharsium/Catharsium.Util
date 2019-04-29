@@ -1,8 +1,8 @@
-﻿using Catharsium.Util.Testing.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Catharsium.Util.Testing.Interfaces;
 
 namespace Catharsium.Util.Testing.Reflection
 {
@@ -24,7 +24,7 @@ namespace Catharsium.Util.Testing.Reflection
                 .LastOrDefault();
         }
 
-        
+
         public IEnumerable<ConstructorInfo> GetEligibleConstructors(Type type, Dictionary<Type, object> dependencies)
         {
             return dependencies != null && dependencies.Any()
@@ -38,7 +38,8 @@ namespace Catharsium.Util.Testing.Reflection
             var constructors = type.GetConstructors();
             return dependencies != null && dependencies.Any()
                 ? constructors.Where(c => c.GetParameters().All(p => dependencies.Contains(p.ParameterType)))
-                : constructors.Where(c => c.GetParameters().All(p => p.ParameterType.IsInterface || this.AllowedDependencies.Contains(p.ParameterType)));
+                : constructors.Where(c => c.GetParameters().All(p => p.ParameterType.IsInterface ||
+                                                                     this.AllowedDependencies.Any(d => d.IsAssignableFrom(p.ParameterType))));
         }
     }
 }

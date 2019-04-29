@@ -37,7 +37,7 @@ namespace Catharsium.Util.Testing
 
             if (constructor != null)
             {
-                var parameters = constructor.GetParameters().Where(p => p.ParameterType.IsInterface || SupportedDependencies.Types.Contains(p.ParameterType));
+                var parameters = constructor.GetParameters().Where(p => p.ParameterType.IsInterface || SupportedDependencies.Types.Any(d => d.IsAssignableFrom(p.ParameterType)));
                 dependencies.AddRange(parameters.Select(p => p.ParameterType));
             }
 
@@ -56,7 +56,7 @@ namespace Catharsium.Util.Testing
             var result = new List<Type>();
             foreach (var constructor in constructors)
             {
-                foreach (var dependency in constructor.GetParameters().Where(p => p.ParameterType.IsInterface || SupportedDependencies.Types.Contains(p.ParameterType)))
+                foreach (var dependency in constructor.GetParameters().Where(p => p.ParameterType.IsInterface || SupportedDependencies.Types.Any(d => d.IsAssignableFrom(p.ParameterType))))
                 {
                     if (!result.Contains(dependency.ParameterType))
                     {
