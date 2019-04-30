@@ -6,10 +6,10 @@ namespace Catharsium.Util.Sorting
 {
     public static class QuickSortExtensions
     {
-        public static IEnumerable<decimal> QuickSort(this IEnumerable<decimal> items) //where T : IComparable<T>
+        public static IEnumerable<T> QuickSort<T>(this IEnumerable<T> items, IComparer<T> comparer) where T : IComparable<T>
         {
             var itemsList = items.ToList();
-            var result = new List<decimal>();
+            var result = new List<T>();
 
             if (!itemsList.Any()) {
                 return result;
@@ -17,13 +17,13 @@ namespace Catharsium.Util.Sorting
 
             var pivot = itemsList.FirstOrDefault();
             itemsList.RemoveAt(0);
-            var smaller = itemsList.Where(i => i < pivot);
-            var equal = itemsList.Where(i => i == pivot);
-            var greater = itemsList.Where(i => i > pivot);
-            result.AddRange(smaller.QuickSort());
+            var smaller = itemsList.Where(i => i.CompareTo(pivot) < 0);
+            var equal = itemsList.Where(i => i.CompareTo(pivot) == 0);
+            var greater = itemsList.Where(i => i.CompareTo(pivot) > 0);
+            result.AddRange(smaller.QuickSort(comparer));
             result.Add(pivot);
             result.AddRange(equal);
-            result.AddRange(greater.QuickSort());
+            result.AddRange(greater.QuickSort(comparer));
 
             return result;
         }
