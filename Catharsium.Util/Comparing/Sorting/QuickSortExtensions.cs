@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Catharsium.Util.Sorting
+namespace Catharsium.Util.Comparing.Sorting
 {
     public static class QuickSortExtensions
     {

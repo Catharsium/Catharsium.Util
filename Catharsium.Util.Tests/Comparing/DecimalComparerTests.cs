@@ -1,8 +1,8 @@
-﻿using Catharsium.Util.Comparers;
+﻿using Catharsium.Util.Comparing;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Catharsium.Util.Tests.Comparers
+namespace Catharsium.Util.Tests.Comparing
 {
     [TestClass]
     public class DecimalComparerTests : TestFixture<DecimalComparer>

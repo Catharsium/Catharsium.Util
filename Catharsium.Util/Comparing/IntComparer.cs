@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Catharsium.Util.Comparers
+namespace Catharsium.Util.Comparing
 {
     public class IntComparer : IComparer<int>
     {

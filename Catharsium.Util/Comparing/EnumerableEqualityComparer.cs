@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Catharsium.Util.Comparers
+namespace Catharsium.Util.Comparing
 {
     public class EnumerableEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
     {

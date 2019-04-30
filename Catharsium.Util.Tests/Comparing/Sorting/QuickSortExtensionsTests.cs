@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Catharsium.Util.Comparers;
-using Catharsium.Util.Sorting;
+using Catharsium.Util.Comparing;
+using Catharsium.Util.Comparing.Sorting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Catharsium.Util.Tests.Sorting
+namespace Catharsium.Util.Tests.Comparing.Sorting
 {
     [TestClass]
     public class QuickSortExtensionsTests

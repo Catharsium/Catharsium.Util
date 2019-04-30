@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Catharsium.Util.Comparers;
+using Catharsium.Util.Comparing;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Tests.Comparers.EnumerableEqualityComparerTests
+namespace Catharsium.Util.Tests.Comparing.EnumerableEqualityComparerTests
 {
     [TestClass]
     public class EqualsWithSubstituteEqualityComparerTests : TestFixture<EnumerableEqualityComparer<string>>
