@@ -1,5 +1,6 @@
 ﻿using Catharsium.Util.Math.Interfaces;
 using Catharsium.Util.Math.Lists;
+using Catharsium.Util.Math.Numbers;
 using Catharsium.Util.Math._Configuration;
 using Catharsium.Util.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace Catharsium.Util.Math.Tests._Configuration
 
             serviceCollection.AddMathUtilities(config);
             serviceCollection.ReceivedRegistration<IListMultiplicator, ListMultiplicator>();
+            serviceCollection.ReceivedRegistration<IRounder, NearestRounder>();
         }
     }
 }
