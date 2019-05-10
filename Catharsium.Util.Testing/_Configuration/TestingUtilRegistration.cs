@@ -1,5 +1,4 @@
 ﻿using Catharsium.Util.Configuration.Extensions;
-using Catharsium.Util.Testing.Configuration;
 using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Reflection;
 using Catharsium.Util.Testing.Substitutes;

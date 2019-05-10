@@ -1,4 +1,5 @@
 ﻿using System;
+using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Substitutes;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Catharsium.Util.Testing.Tests._Mocks.DbContextMocks;

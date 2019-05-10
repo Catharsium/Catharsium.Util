@@ -4,7 +4,7 @@ using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Testing.Tests
+namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
 {
     [TestClass]
     public class GetDependenciesTests

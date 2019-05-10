@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
-namespace Catharsium.Util.Testing.Configuration
+namespace Catharsium.Util.Testing._Configuration
 {
     public class SupportedDependencies
     {

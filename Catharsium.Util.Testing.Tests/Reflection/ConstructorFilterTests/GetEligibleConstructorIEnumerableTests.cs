@@ -1,13 +1,12 @@
-﻿using Catharsium.Util.Testing.Configuration;
-using Catharsium.Util.Testing.Reflection;
-using Catharsium.Util.Testing.Tests._Mocks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Catharsium.Util.Testing.Reflection;
+using Catharsium.Util.Testing.Tests._Mocks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
+namespace Catharsium.Util.Testing.Tests.Reflection.ConstructorFilterTests
 {
     [TestClass]
     public class GetEligibleConstructorIEnumerableTests

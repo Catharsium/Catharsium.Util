@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Catharsium.Util.Testing.Interfaces;
+﻿using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using Catharsium.Util.Testing.Interfaces;
 
 namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
 {

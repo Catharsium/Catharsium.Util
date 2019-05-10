@@ -20,11 +20,11 @@ namespace Catharsium.Util.Testing.Substitutes
         public object CreateDbContextSubstitute(Type type)
         {
             var dependencies = new List<Type> { typeof(DbContextOptions) };
-            var constructors = this.constructorFilter.GetEligibleConstructors(type, dependencies).OrderByDescending(c => c.GetParameters().Length);
+            var constructors = this.constructorFilter.GetEligibleConstructors(type, dependencies).OrderByDescending(c => c.GetParameters().Length).ToList();
             if (constructors.Any())
             {
-                var constructor = constructors.FirstOrDefault();
-                if (constructor.GetParameters().Length > 0)
+                var constructor = constructors.First();
+                if (constructor.GetParameters().Length == 1)
                 {
                     var optionsBuilder = new DbContextOptionsBuilder()
                         .UseInMemoryDatabase(Guid.NewGuid().ToString());

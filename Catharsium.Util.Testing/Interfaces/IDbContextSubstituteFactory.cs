@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Catharsium.Util.Testing.Substitutes
+namespace Catharsium.Util.Testing.Interfaces
 {
     public interface IDbContextSubstituteFactory
     {

@@ -5,7 +5,7 @@ using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
+namespace Catharsium.Util.Testing.Tests.Reflection.ConstructorFilterTests
 {
     [TestClass]
     public class GetLargestEligibleConstructorTests
