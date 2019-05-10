@@ -77,7 +77,7 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
             Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface2)));
             Assert.IsTrue(Contains(actual.Dependencies, typeof(MockDbContextNoOptions)));
             Assert.IsTrue(Contains(actual.Dependencies, typeof(MockDbContextWithOptions)));
-            //Assert.IsTrue(Contains(actual.Dependencies, typeof(MockDbContextWithTypedOptions)));
+            Assert.IsTrue(Contains(actual.Dependencies, typeof(MockDbContextWithTypedOptions)));
             Assert.IsTrue(Contains(actual.Dependencies, typeof(Guid)));
             Assert.IsFalse(Contains(actual.Dependencies, typeof(string)));
         }

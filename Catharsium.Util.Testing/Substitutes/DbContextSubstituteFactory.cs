@@ -17,18 +17,25 @@ namespace Catharsium.Util.Testing.Substitutes
         }
 
 
-        public object CreateDbContextSubstitute(Type type)
+        public object CreateDbContextSubstitute<T>(Type type) where T : DbContext
         {
-            var dependencies = new List<Type> { typeof(DbContextOptions) };
+            var dependencies = new List<Type> { typeof(DbContextOptions), typeof(DbContextOptions<T>) };
             var constructors = this.constructorFilter.GetEligibleConstructors(type, dependencies).OrderByDescending(c => c.GetParameters().Length).ToList();
             if (constructors.Any())
             {
                 var constructor = constructors.First();
                 if (constructor.GetParameters().Length == 1)
                 {
-                    var optionsBuilder = new DbContextOptionsBuilder()
-                        .UseInMemoryDatabase(Guid.NewGuid().ToString());
-                    return constructor.Invoke(new object[] { optionsBuilder.Options });
+                    if (constructor.GetParameters()[0].ParameterType.IsAssignableFrom(typeof(DbContextOptions))) {
+                        var optionsBuilder = new DbContextOptionsBuilder()
+                            .UseInMemoryDatabase(Guid.NewGuid().ToString());
+                        return constructor.Invoke(new object[] {optionsBuilder.Options});
+                    }
+                    if (constructor.GetParameters()[0].ParameterType.IsAssignableFrom(typeof(DbContextOptions<T>))) {
+                        var optionsBuilder = new DbContextOptionsBuilder<T>()
+                            .UseInMemoryDatabase(Guid.NewGuid().ToString());
+                        return constructor.Invoke(new object[] { optionsBuilder.Options });
+                    }
                 }
 
                 var defaultConstructor = constructors.FirstOrDefault(c => c.GetParameters().Length == 0);

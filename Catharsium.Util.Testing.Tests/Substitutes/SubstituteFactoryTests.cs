@@ -35,7 +35,7 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
             Assert.IsNotNull(actual);
         }
 
-        
+
         [TestMethod]
         public void GetSubstitute_Guid_ReturnsSubstitute()
         {
@@ -51,7 +51,7 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         {
             var expected = new MockDbContextNoOptions();
             var type = expected.GetType();
-            this.DbContextSubstituteFactory.CreateDbContextSubstitute(type).Returns(expected);
+            this.DbContextSubstituteFactory.CreateDbContextSubstitute<MockDbContextNoOptions>(type).Returns(expected);
 
             var actual = this.Target.GetSubstitute(type);
             Assert.AreEqual(expected, actual);
@@ -63,7 +63,7 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         {
             var expected = new MockDbContextWithOptions(new DbContextOptionsBuilder().Options);
             var type = expected.GetType();
-            this.DbContextSubstituteFactory.CreateDbContextSubstitute(type).Returns(expected);
+            this.DbContextSubstituteFactory.CreateDbContextSubstitute<MockDbContextWithOptions>(type).Returns(expected);
 
             var actual = this.Target.GetSubstitute(type);
             Assert.IsNotNull(actual);
