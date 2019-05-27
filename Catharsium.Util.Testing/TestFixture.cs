@@ -22,11 +22,12 @@ namespace Catharsium.Util.Testing
 
         public Dictionary<Type, object> Dependencies { get; set; }
 
-        public TDependency GetDependency<TDependency>() where TDependency : class
+
+        public TDependency GetDependency<TDependency>()
         {
             return this.Dependencies.ContainsKey(typeof(TDependency)) ?
-                this.Dependencies[typeof(TDependency)] as TDependency :
-                null;
+                (TDependency)this.Dependencies[typeof(TDependency)] :
+                default;
         }
 
 
