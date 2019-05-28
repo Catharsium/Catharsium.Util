@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Tests._Mocks;
