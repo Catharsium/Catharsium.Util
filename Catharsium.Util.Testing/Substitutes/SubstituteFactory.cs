@@ -30,7 +30,6 @@ namespace Catharsium.Util.Testing.Substitutes
             if (typeof(DbContext).GetTypeInfo().IsAssignableFrom(type)) {
                 var method = this.dbContextSubstituteFactory.GetType().GetMethod("CreateDbContextSubstitute");
                 method = method?.MakeGenericMethod(type);
-                //this.dbContextSubstituteFactory.CreateDbContextSubstitute(type);
                 return method?.Invoke(this.dbContextSubstituteFactory, new object[] {type});
             }
 
