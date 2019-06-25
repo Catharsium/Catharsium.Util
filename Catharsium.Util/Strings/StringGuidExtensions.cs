@@ -8,7 +8,7 @@ namespace Catharsium.Util.Strings
         {
             return Guid.TryParse(input, out var result)
                 ? result
-                : default;
+                : default(Guid);
         }
     }
 }
