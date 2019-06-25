@@ -22,7 +22,7 @@ namespace Catharsium.Util.Web.Services
             request.AddJsonBody(data);
             var response = this.client.Execute(request);
             if (!response.IsSuccessful) {
-                throw new HttpRequestException($"Unsuccessfull call to {resource}");
+                throw new HttpRequestException($"Unsuccessful call to {resource}");
             }
 
             return response.Content;
