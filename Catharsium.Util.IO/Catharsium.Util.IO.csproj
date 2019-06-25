@@ -8,7 +8,6 @@
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
     <PackageTags>FileInfo, DirectoryInfo, IO wrappers</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
