@@ -11,7 +11,7 @@ namespace Catharsium.Util.Tests.Strings
         public void ToDate_NullInput_ReturnsDefault()
         {
             var actual = (null as string).ToDate();
-            Assert.AreEqual(default, actual);
+            Assert.AreEqual(default(DateTime), actual);
         }
 
 
