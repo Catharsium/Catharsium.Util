@@ -26,7 +26,7 @@ namespace Catharsium.Util.Caching
             var methodInfo = type.GetMethod(method, bindingFlags, null, CallingConventions.Any, parameterTypes, null);
             
             if (methodInfo == null || methodInfo.ReturnType != typeof(TResult)) {
-                return default;
+                return default(TResult);
             }
 
             var cacheKey = parameters != null

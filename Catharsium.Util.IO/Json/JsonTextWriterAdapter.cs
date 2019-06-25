@@ -258,7 +258,7 @@ namespace Catharsium.Util.IO.Json
         }
 
 
-        public Task WriteNullAsync(CancellationToken cancellationToken = default)
+        public Task WriteNullAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.jsonTextWriter.WriteNullAsync(cancellationToken);
         }
@@ -273,7 +273,7 @@ namespace Catharsium.Util.IO.Json
         }
 
 
-        public Task WriteCommentAsync(string text, CancellationToken cancellationToken = default)
+        public Task WriteCommentAsync(string text, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.jsonTextWriter.WriteCommentAsync(text, cancellationToken);
         }

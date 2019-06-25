@@ -46,9 +46,9 @@ namespace Catharsium.Util.IO.Interfaces
         void WriteValue(ushort value);
         void WriteValue(ushort? value);
         void WriteNull();
-        Task WriteNullAsync(CancellationToken cancellationToken = default);
+        Task WriteNullAsync(CancellationToken cancellationToken = default(CancellationToken));
         void WriteComment(string text);
-        Task WriteCommentAsync(string text, CancellationToken cancellationToken = default);
+        Task WriteCommentAsync(string text, CancellationToken cancellationToken = default(CancellationToken));
         void WriteArray<T>(IEnumerable<T> values);
     }
 }

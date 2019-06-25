@@ -21,7 +21,7 @@ namespace Catharsium.Util.Strings
 
             return DateTime.TryParse(input, CultureInfo.InvariantCulture, DateTimeStyles.None, out result)
                 ? result
-                : default;
+                : default(DateTime);
         }
     }
 }

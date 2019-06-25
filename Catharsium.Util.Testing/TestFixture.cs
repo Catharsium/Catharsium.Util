@@ -27,7 +27,7 @@ namespace Catharsium.Util.Testing
         {
             return this.Dependencies.ContainsKey(typeof(TDependency)) ?
                 (TDependency)this.Dependencies[typeof(TDependency)] :
-                default;
+                default(TDependency);
         }
 
 
