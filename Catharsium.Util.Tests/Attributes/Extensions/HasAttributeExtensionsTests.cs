@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Catharsium.Util.Attributes;
+﻿using Catharsium.Util.Attributes;
 using Catharsium.Util.Attributes.Extensions;
 using Catharsium.Util.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.ComponentModel.DataAnnotations;
 
-namespace Catharsium.Util.Tests.Attributes
+namespace Catharsium.Util.Tests.Attributes.Extensions
 {
     [TestClass]
     public class HasAttributeExtensionsTests

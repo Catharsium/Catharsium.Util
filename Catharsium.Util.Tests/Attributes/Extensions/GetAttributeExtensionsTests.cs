@@ -6,7 +6,7 @@ using Catharsium.Util.Tests._Mocks;
 using Catharsium.Util.Web.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Catharsium.Util.Tests.Attributes
+namespace Catharsium.Util.Tests.Attributes.Extensions
 {
     [TestClass]
     public class GetAttributeExtensionsTests
@@ -62,7 +62,7 @@ namespace Catharsium.Util.Tests.Attributes
             Assert.IsNull(actual);
         }
 
-        
+
         [TestMethod]
         public void GetAttribute_MethodWithAttribute_ReturnsAttribute()
         {
