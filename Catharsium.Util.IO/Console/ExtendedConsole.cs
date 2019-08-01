@@ -1,7 +1,7 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using Catharsium.Util.IO.Interfaces;
+﻿using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.IO.Wrappers;
+using System;
+using System.Text.RegularExpressions;
 
 namespace Catharsium.Util.IO.Console
 {
