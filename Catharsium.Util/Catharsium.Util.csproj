@@ -8,6 +8,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>Util, Utilities</PackageTags>
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
+    <Authors>Catharsium</Authors>
+    <Company>Catharsium</Company>
+    <Description>General utilities such as convenience methods for basic .NET tools such as Enumerations, Attributes and Strings</Description>
   </PropertyGroup>
 
   <ItemGroup>

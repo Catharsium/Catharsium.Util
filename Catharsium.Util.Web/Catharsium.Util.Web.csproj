@@ -8,6 +8,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>Util, Utilities, Web, Validation, Rest service</PackageTags>
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
+    <Authors>Catharsium</Authors>
+    <Company>Catharsium</Company>
+    <Description>Utilities for Web related tasks</Description>
   </PropertyGroup>
 
   <ItemGroup>

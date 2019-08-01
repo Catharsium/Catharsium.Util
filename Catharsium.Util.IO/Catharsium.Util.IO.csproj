@@ -8,6 +8,9 @@
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
     <PackageTags>FileInfo, DirectoryInfo, IO wrappers</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Utilities and wrappers for basic Input/Output objects such as Files, Directories and System.Console</Description>
+    <Authors>Catharsium</Authors>
+    <Company>Catharsium</Company>
   </PropertyGroup>
 
   <ItemGroup>

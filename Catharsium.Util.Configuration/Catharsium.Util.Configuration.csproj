@@ -8,6 +8,9 @@
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
     <PackageTags>IConfiguration extensions</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Catharsium</Authors>
+    <Company>Catharsium</Company>
+    <Description>Utilities for Microsoft.Extensions.Configuration.IConfiguration</Description>
   </PropertyGroup>
 
   <ItemGroup>

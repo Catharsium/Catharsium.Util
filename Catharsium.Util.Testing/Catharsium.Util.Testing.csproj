@@ -8,6 +8,8 @@
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
     <PackageTags>Testing, Unit Testing, TestFixture, Fixture</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Catharsium</Authors>
+    <Description>Testing utilities, providing an automatic test fixture setup for unit tests by have test classes extend from TestFixture</Description>
   </PropertyGroup>
 
   <ItemGroup>
