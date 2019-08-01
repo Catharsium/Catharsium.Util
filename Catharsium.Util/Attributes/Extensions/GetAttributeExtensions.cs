@@ -11,7 +11,7 @@ namespace Catharsium.Util.Attributes.Extensions
             var attributes = type.GetCustomAttributes(typeof(T), false);
             return attributes.Any()
                 ? (T)attributes.FirstOrDefault()
-                : default(T);
+                : default;
         }
 
 
@@ -19,14 +19,16 @@ namespace Catharsium.Util.Attributes.Extensions
         {
             var type = subject.GetType();
             var memberInfo = type.GetMember(memberName);
-            if (memberInfo.Length > 0) {
-                var attributes = memberInfo[0].GetCustomAttributes(typeof(T), false);
-                if (attributes.Any()) {
-                    return (T)attributes.FirstOrDefault();
-                }
+            if (memberInfo.Length <= 0) {
+                return default;
             }
 
-            return default(T);
+            var attributes = memberInfo[0].GetCustomAttributes(typeof(T), false);
+            if (attributes.Any()) {
+                return (T)attributes.FirstOrDefault();
+            }
+
+            return default;
         }
 
         
