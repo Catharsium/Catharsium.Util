@@ -4,7 +4,8 @@ namespace Catharsium.Util.IO.Interfaces
 {
     public interface IConsole
     {
-        int? ReadInt(string message);
-        DateTime? ReadDate(string message);
+        string AskForText(string message = null);
+        int? AskForInt(string message = null);
+        DateTime? AskForDate(string message = null);
     }
 }

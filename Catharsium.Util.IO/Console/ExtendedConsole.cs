@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Catharsium.Util.IO.Interfaces;
+using Catharsium.Util.IO.Wrappers;
 
 namespace Catharsium.Util.IO.Console
 {
-    public class ExtendedConsole : IConsole
+    public class ExtendedConsole : SystemConsoleWrapper, IConsole
     {
         private readonly IConsoleWrapper console;
 
@@ -15,7 +16,17 @@ namespace Catharsium.Util.IO.Console
         }
 
 
-        public int? ReadInt(string message = null)
+        public string AskForText(string message = null)
+        {
+            if (message != null) {
+                this.console.WriteLine(message);
+            }
+
+            return this.console.ReadLine();
+        }
+
+
+        public int? AskForInt(string message = null)
         {
             if (message != null) {
                 this.console.WriteLine(message);
@@ -27,7 +38,7 @@ namespace Catharsium.Util.IO.Console
         }
 
 
-        public DateTime? ReadDate(string message)
+        public DateTime? AskForDate(string message = null)
         {
             if (message != null) {
                 this.console.WriteLine(message);
