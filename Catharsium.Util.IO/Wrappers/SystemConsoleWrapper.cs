@@ -65,9 +65,14 @@ namespace Catharsium.Util.IO.Wrappers
         }
 
 
-        public void WriteLine(string text)
+        public void WriteLine(string text = null)
         {
-            System.Console.WriteLine(text);
+            if (text == null) {
+                System.Console.WriteLine();
+            }
+            else {
+                System.Console.WriteLine(text);
+            }
         }
 
         #endregion
