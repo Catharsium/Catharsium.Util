@@ -10,5 +10,11 @@ namespace Catharsium.Util.Strings
                 ? result
                 : default(Guid);
         }
+
+
+        public static bool IsGuid(this string text)
+        {
+            return Guid.TryParse(text, out _);
+        }
     }
 }

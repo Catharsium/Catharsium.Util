@@ -7,6 +7,8 @@ namespace Catharsium.Util.Tests.Strings
     [TestClass]
     public class StringGuidExtensionsTests
     {
+        #region ToGuid
+
         [TestMethod]
         public void ToGuid_NullInput_ReturnsDefault()
         {
@@ -31,5 +33,26 @@ namespace Catharsium.Util.Tests.Strings
             var actual = expected.ToString().ToGuid();
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
+
+        #region IsGuid
+
+        [TestMethod]
+        public void IsGuid_ValidGuid_ReturnsTrue()
+        {
+            var actual = Guid.NewGuid().ToString().IsGuid();
+            Assert.IsTrue(actual);
+        }
+
+
+        [TestMethod]
+        public void IsGuid_InvalidGuid_ReturnsFalse()
+        {
+            var actual = "Not a guid".IsGuid();
+            Assert.IsFalse(actual);
+        }
+
+        #endregion
     }
 }
