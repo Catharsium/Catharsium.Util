@@ -21,6 +21,7 @@ namespace Catharsium.Util.Web.Tests.Middleware.Logging
 
             var task = this.Target.Invoke(httpContext, logger);
             Assert.ThrowsException<ApplicationException>(() => task.GetAwaiter().GetResult());
+            logger.ReceivedWithAnyArgs(1).LogError(Arg.Any<ApplicationException>(), null);
         }
 
 
