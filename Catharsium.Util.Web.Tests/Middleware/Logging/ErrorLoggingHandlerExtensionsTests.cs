@@ -9,10 +9,10 @@ namespace Catharsium.Util.Web.Tests.Middleware.Logging
     public class ErrorLoggingHandlerExtensionsTests
     {
         [TestMethod]
-        public void UseBackendApiMiddleware_RegistersDependencies()
+        public void UseErrorLoggingHandler_RegistersDependencies()
         {
             var applicationBuilder = Substitute.For<IApplicationBuilder>();
-            applicationBuilder.UserErrorLoggingHandler();
+            applicationBuilder.UseErrorLoggingHandler();
             applicationBuilder.Received(1).UseMiddleware<ErrorLoggingHandler>();
         }
     }
