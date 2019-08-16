@@ -13,21 +13,41 @@ namespace Catharsium.Util.Web.Tests.Middleware.Logging
     public class ErrorLoggingHandlerTests : TestFixture<ErrorLoggingHandler>
     {
         [TestMethod]
-        public void Invoke_LogsError()
+        public void Invoke_ExceptionInLifecycle_LogsError()
         {
-            var logger = Substitute.For<ILogger<ErrorLoggingHandler>>();
             var httpContext = Substitute.For<HttpContext>();
-            this.SetDependency<RequestDelegate>(this.MyRequestDelegate);
+            var logger = Substitute.For<ILogger<ErrorLoggingHandler>>();
+            this.SetDependency(logger);
+            this.SetDependency<RequestDelegate>(this.MyRequestDelegateWithException);
 
-            var task = this.Target.Invoke(httpContext, logger);
-            Assert.ThrowsException<ApplicationException>(() => task.GetAwaiter().GetResult());
+            var actual = this.Target.Invoke(httpContext);
+            Assert.ThrowsException<ApplicationException>(() => actual.GetAwaiter().GetResult());
             logger.ReceivedWithAnyArgs(1).LogError(Arg.Any<ApplicationException>(), null);
         }
 
 
-        public Task MyRequestDelegate(HttpContext context)
+        [TestMethod]
+        public void Invoke_NoException_DoesNotLog()
+        {
+            var httpContext = Substitute.For<HttpContext>();
+            var logger = Substitute.For<ILogger<ErrorLoggingHandler>>();
+            this.SetDependency(logger);
+            this.SetDependency<RequestDelegate>(this.MyHealthyRequestDelegate);
+
+            var actual = this.Target.Invoke(httpContext);
+            logger.DidNotReceiveWithAnyArgs().Log(Arg.Any<LogLevel>(), Arg.Any<Exception>(), null);
+        }
+
+
+        public Task MyRequestDelegateWithException(HttpContext context)
         {
             throw new ApplicationException();
+        }
+
+
+        public Task MyHealthyRequestDelegate(HttpContext context)
+        {
+            return Task.CompletedTask;
         }
     }
 }
