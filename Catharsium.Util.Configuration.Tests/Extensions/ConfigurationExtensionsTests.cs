@@ -25,14 +25,14 @@ namespace Catharsium.Util.Configuration.Tests.Extensions
         [TestMethod]
         public void Load_WithSectionName_CallsGetSection_ReturnsResult()
         {
-            var sectionName = "My section name";
             var configurationSection = Substitute.For<IConfigurationSection>();
             var expected = "Expected";
             configurationSection.Get<string>().Returns(expected);
             var config = Substitute.For<IConfiguration>();
+            var sectionName = "My section name";
             config.GetSection(sectionName).Returns(configurationSection);
 
-            var actual = config.Load<string>("My section name");
+            var actual = config.Load<string>(sectionName);
             Assert.AreEqual(expected, actual);
         }
     }
