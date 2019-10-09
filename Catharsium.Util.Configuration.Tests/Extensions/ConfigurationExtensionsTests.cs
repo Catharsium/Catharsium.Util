@@ -13,7 +13,7 @@ namespace Catharsium.Util.Configuration.Tests.Extensions
         {
             var configurationSection = Substitute.For<IConfigurationSection>();
             var expected = "Expected";
-            configurationSection.Get<string>().Returns(expected);
+            configurationSection.Value.Returns(expected);
             var config = Substitute.For<IConfiguration>();
             config.GetSection(typeof(string).Assembly.GetName().Name).Returns(configurationSection);
 
@@ -27,7 +27,7 @@ namespace Catharsium.Util.Configuration.Tests.Extensions
         {
             var configurationSection = Substitute.For<IConfigurationSection>();
             var expected = "Expected";
-            configurationSection.Get<string>().Returns(expected);
+            configurationSection.Value.Returns(expected);
             var config = Substitute.For<IConfiguration>();
             var sectionName = "My section name";
             config.GetSection(sectionName).Returns(configurationSection);
