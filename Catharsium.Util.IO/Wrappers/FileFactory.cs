@@ -27,7 +27,7 @@ namespace Catharsium.Util.IO.Wrappers
             return new DirectoryInfoWrapper(path);
         }
 
-        public IDirectory CreateFile(DirectoryInfo directoryInfo)
+        public IDirectory CreateDirectory(DirectoryInfo directoryInfo)
         {
             return new DirectoryInfoWrapper(directoryInfo);
         }
