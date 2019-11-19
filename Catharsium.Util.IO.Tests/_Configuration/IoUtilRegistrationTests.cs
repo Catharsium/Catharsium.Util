@@ -23,6 +23,7 @@ namespace Catharsium.Util.IO.Tests._Configuration
             serviceCollection.AddIoUtilities(config);
             serviceCollection.ReceivedRegistration<IFileFactory, FileFactory>();
             serviceCollection.ReceivedRegistration<IJsonTextWriter, JsonTextWriterAdapter>();
+            serviceCollection.ReceivedRegistration<IJsonFileSerializer, JsonFileSerializer>();
 
             serviceCollection.ReceivedRegistration<IConsoleWrapper, SystemConsoleWrapper>();
             serviceCollection.ReceivedRegistration<IConsole, ExtendedConsole>();

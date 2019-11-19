@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace Catharsium.Util.IO.Json
 {
-    public class JsonFileSerializer
+    public class JsonFileSerializer : IJsonFileSerializer
     {
         public T ReadAs<T>(string file)
         {
