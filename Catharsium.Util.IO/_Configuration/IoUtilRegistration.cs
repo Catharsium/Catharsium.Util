@@ -15,8 +15,8 @@ namespace Catharsium.Util.IO._Configuration
             var configuration = config.Load<IoUtilConfiguration>();
 
             services.AddTransient<IFileFactory, FileFactory>();
-            services.AddTransient<IJsonTextWriter, JsonTextWriterAdapter>();
-            services.AddTransient<IJsonFileSerializer, JsonFileSerializer>();
+            services.AddTransient<IJsonFileWriter, JsonFileWriter>();
+            services.AddTransient<IJsonFileReader, JsonFileReader>();
 
             services.AddTransient<IConsoleWrapper, SystemConsoleWrapper>();
             services.AddTransient<IConsole, ExtendedConsole>();

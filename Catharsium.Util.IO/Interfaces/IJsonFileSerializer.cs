@@ -1,7 +1,7 @@
 ﻿namespace Catharsium.Util.IO.Interfaces
 {
-    public interface IJsonFileSerializer
+    public interface IJsonFileReader
     {
-        T ReadAs<T>(string file);
+        T ReadFrom<T>(string file);
     }
 }

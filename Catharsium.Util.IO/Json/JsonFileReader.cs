@@ -1,12 +1,14 @@
 ﻿using Catharsium.Util.IO.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text.Json;
 
 namespace Catharsium.Util.IO.Json
 {
-    public class JsonFileSerializer : IJsonFileSerializer
+    [ExcludeFromCodeCoverage]
+    public class JsonFileReader : IJsonFileReader
     {
-        public T ReadAs<T>(string file)
+        public T ReadFrom<T>(string file)
         {
             var jsonString = File.ReadAllText(file);
             return JsonSerializer.Deserialize<T>(jsonString);

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Catharsium.Util.IO.Interfaces
 {
-    public interface IJsonTextWriter
+    public interface IJsonFileWriter
     {
         void WriteStartObject();
         void WriteEndObject();

@@ -1,20 +1,20 @@
-﻿using System;
+﻿using Catharsium.Util.IO.Interfaces;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
-using Catharsium.Util.IO.Interfaces;
-using Newtonsoft.Json;
 
 namespace Catharsium.Util.IO.Json
 {
     [ExcludeFromCodeCoverage]
-    public class JsonTextWriterAdapter : IJsonTextWriter
+    public class JsonFileWriter : IJsonFileWriter
     {
         private readonly JsonTextWriter jsonTextWriter;
 
 
-        public JsonTextWriterAdapter(JsonTextWriter jsonTextWriter)
+        public JsonFileWriter(JsonTextWriter jsonTextWriter)
         {
             this.jsonTextWriter = jsonTextWriter;
         }
