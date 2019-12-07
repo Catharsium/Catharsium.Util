@@ -11,7 +11,7 @@ namespace Catharsium.Util.IO.Json
         public void Write(object data, string file)
         {
             var serialized = JsonSerializer.Serialize(data);
-            File.WriteAllText(serialized, file);
+            File.WriteAllText(file, serialized);
         }
     }
 }
