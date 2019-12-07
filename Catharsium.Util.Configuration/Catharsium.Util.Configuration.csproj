@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>2.0.3</Version>
+    <Version>2.0.4</Version>
     <Copyright>Catharsium</Copyright>
     <PackageProjectUrl>https://gitlab.com/Catharsium/Catharsium.Util</PackageProjectUrl>
     <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
