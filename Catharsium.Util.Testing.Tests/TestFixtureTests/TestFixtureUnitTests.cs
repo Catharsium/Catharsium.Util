@@ -1,10 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
 using Catharsium.Util.Testing.Interfaces;
+using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace Catharsium.Util.Testing.Tests.TestFixtureTests
 {
@@ -14,17 +16,12 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
         #region Fixture
 
         private Type Type { get; set; }
-
-        private Dictionary<Type, object> ExpectedDependencies { get; set; }
-
+        private List<Dependency> ExpectedDependencies { get; set; }
         private MockObject ExpectedTarget { get; set; }
 
         private IDependencyRetriever DependencyRetriever { get; set; }
-
         private IConstructorFilter ConstructorFilter { get; set; }
-
         private ITargetFactory<MockObject> TargetFactory { get; set; }
-
         private TestFixture<MockObject> Target { get; set; }
 
 
@@ -33,7 +30,7 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
         {
             this.Type = typeof(MockObject);
 
-            this.ExpectedDependencies = new Dictionary<Type, object>();
+            this.ExpectedDependencies = new List<Dependency>();
             this.ExpectedTarget = new MockObject(null);
 
             this.DependencyRetriever = Substitute.For<IDependencyRetriever>();
@@ -51,7 +48,7 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
         #endregion
 
         #region Constructor
-        
+
         [TestMethod]
         public void Constructor_StoresDependencies()
         {
@@ -77,7 +74,8 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
         public void GetDependency_ValidType_ReturnsDependency()
         {
             var expected = "";
-            this.Target.Dependencies[typeof(string)] = expected;
+            this.Target.Dependencies.Add(new Dependency(typeof(string), "stringDependency", expected));
+
             var actual = this.Target.GetDependency<string>();
             Assert.AreEqual(expected, actual);
         }
@@ -97,24 +95,27 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
         [TestMethod]
         public void SetDependency_NewDependency_IsAddedToDependenciesList()
         {
+            var name = "My name";
             var expected = "My string";
-            this.ExpectedDependencies[typeof(string)] = expected;
+            this.ExpectedDependencies.Add(new Dependency(typeof(string), name, expected));
             this.TargetFactory.CreateTarget(this.ExpectedDependencies).Returns(this.ExpectedTarget);
             this.Target = new TestFixture<MockObject>(this.DependencyRetriever, this.ConstructorFilter, this.TargetFactory);
 
             this.Target.SetDependency(expected);
-            Assert.IsTrue(this.Target.Dependencies.ContainsKey(expected.GetType()));
+            Assert.IsTrue(this.Target.Dependencies.Any(d => d.Type == expected.GetType() && d.Name == name));
             Assert.AreEqual(this.ExpectedTarget, this.Target.Target);
         }
-        
-        
+
+
         [TestMethod]
         public void SetDependency_ExistingDependency_ReplacesCurrentInDependenciesList()
         {
             var expected = Substitute.For<IMockInterface1>();
             var type = typeof(IMockInterface1);
+            this.Target.Dependencies.Add(new Dependency(typeof(IMockInterface1), ""));
+
             this.Target.SetDependency(expected);
-            Assert.IsTrue(this.Target.Dependencies.ContainsKey(type));
+            Assert.IsTrue(this.Target.Dependencies.Any(d => d.Type == type && d.Value == expected));
             Assert.AreEqual(this.ExpectedTarget, this.Target.Target);
         }
 

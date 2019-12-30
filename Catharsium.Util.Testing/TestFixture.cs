@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Catharsium.Util.Testing._Configuration;
+﻿using Catharsium.Util.Testing._Configuration;
 using Catharsium.Util.Testing.Interfaces;
+using Catharsium.Util.Testing.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Catharsium.Util.Testing
 {
@@ -20,20 +21,32 @@ namespace Catharsium.Util.Testing
         public T Target { get; set; }
 
 
-        public Dictionary<Type, object> Dependencies { get; set; }
+        public List<Dependency> Dependencies { get; set; }
 
 
-        public TDependency GetDependency<TDependency>()
+        public TDependency GetDependency<TDependency>(string name = null)
         {
-            return this.Dependencies.ContainsKey(typeof(TDependency)) ?
-                (TDependency)this.Dependencies[typeof(TDependency)] :
-                default(TDependency);
+            var result = this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency) && d.Name == name) ??
+                         this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency));
+            ;
+            if (result != null) {
+                return (TDependency)result.Value;
+            }
+
+            return default(TDependency);
         }
 
 
         public void SetDependency<TDependency>(TDependency dependency)
         {
-            this.Dependencies[typeof(TDependency)] = dependency;
+            var dependencyHolder = this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency));
+            if (dependencyHolder != null) {
+                dependencyHolder.Value = dependency;
+            }
+            else {
+                this.Dependencies.Add(new Dependency(typeof(TDependency), null, dependency));
+            }
+
             this.Target = this.targetFactory.CreateTarget(this.Dependencies);
         }
 
@@ -41,7 +54,8 @@ namespace Catharsium.Util.Testing
 
         #region Construction
 
-        public TestFixture(IDependencyRetriever dependencyRetriever = null, IConstructorFilter constructorFilter = null, ITargetFactory<T> targetFactory = null)
+        public TestFixture(IDependencyRetriever dependencyRetriever = null, IConstructorFilter constructorFilter = null,
+            ITargetFactory<T> targetFactory = null)
         {
             var services = ServiceProviderFactory.Create();
             this.dependencyRetriever = dependencyRetriever ?? services.GetService<IDependencyRetriever>();

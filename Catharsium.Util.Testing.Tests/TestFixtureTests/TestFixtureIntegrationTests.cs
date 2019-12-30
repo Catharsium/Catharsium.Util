@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Catharsium.Util.Testing.Tests._Mocks.DbContextMocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Catharsium.Util.Testing.Tests.TestFixtureTests
 {
@@ -17,7 +19,7 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
             var actual = new TestFixture<MockObject>();
             Assert.IsNotNull(actual.Target);
             Assert.IsNotNull(actual.Dependencies);
-            Assert.AreEqual(2, actual.Dependencies.Keys.Count);
+            Assert.AreEqual(2, actual.Dependencies.Count);
             Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface1)));
             Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface2)));
             Assert.IsFalse(Contains(actual.Dependencies, typeof(string)));
@@ -30,7 +32,7 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
             var actual = new TestFixture<MockObjectWithSingleConstructor>();
             Assert.IsNull(actual.Target);
             Assert.IsNotNull(actual.Dependencies);
-            Assert.AreEqual(2, actual.Dependencies.Keys.Count);
+            Assert.AreEqual(2, actual.Dependencies.Count);
             Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface1)));
             Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface2)));
         }
@@ -42,7 +44,7 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
             var actual = new TestFixture<MockObjectWithoutInterfaces>();
             Assert.IsNull(actual.Target);
             Assert.IsNotNull(actual.Dependencies);
-            Assert.AreEqual(0, actual.Dependencies.Keys.Count);
+            Assert.AreEqual(0, actual.Dependencies.Count);
         }
 
 
@@ -55,7 +57,7 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
             Assert.IsNull(actual.Target.InterfaceDependency2);
             Assert.IsNull(actual.Target.StringDependency);
             Assert.IsNotNull(actual.Dependencies);
-            Assert.AreEqual(2, actual.Dependencies.Keys.Count);
+            Assert.AreEqual(2, actual.Dependencies.Count);
             Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface1)));
             Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface2)));
             Assert.IsFalse(Contains(actual.Dependencies, typeof(string)));
@@ -72,7 +74,6 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
             Assert.IsNotNull(actual.Target.DbContextNoOptionsDependency);
             Assert.IsNotNull(actual.Target.DbContextWithOptionsDependency);
             Assert.IsNotNull(actual.Dependencies);
-            Assert.AreEqual(6, actual.Dependencies.Keys.Count);
             Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface1)));
             Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface2)));
             Assert.IsTrue(Contains(actual.Dependencies, typeof(MockDbContextNoOptions)));
@@ -84,17 +85,18 @@ namespace Catharsium.Util.Testing.Tests.TestFixtureTests
 
         #endregion
 
-        private static bool Contains(IReadOnlyDictionary<Type, object> dependencies, Type type, object value = null)
+        private static bool Contains(List<Dependency> dependencies, Type type, string name = null, object value = null)
         {
-            var containsKey = dependencies.ContainsKey(type);
-            if (!containsKey) {
+            var dependency = dependencies.FirstOrDefault(d => d.Type == type && (name == null || d.Name == name));
+            if (dependency == null) {
                 return false;
             }
+
             if (value != null) {
-                return dependencies[type] != value;
+                return dependency.Value == value;
             }
 
-            return dependencies[type] != null;
+            return dependency.Value != null;
         }
     }
 }

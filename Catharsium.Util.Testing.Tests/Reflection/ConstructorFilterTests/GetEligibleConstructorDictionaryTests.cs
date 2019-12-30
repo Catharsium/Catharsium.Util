@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Reflection;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Catharsium.Util.Testing.Tests.Reflection.ConstructorFilterTests
 {
@@ -15,7 +16,7 @@ namespace Catharsium.Util.Testing.Tests.Reflection.ConstructorFilterTests
 
         private Type Type { get; set; }
 
-        private Dictionary<Type, object> Dependencies { get; set; }
+        private List<Dependency> Dependencies { get; set; }
 
         private ConstructorFilter Target { get; set; }
 
@@ -24,7 +25,7 @@ namespace Catharsium.Util.Testing.Tests.Reflection.ConstructorFilterTests
         public void Setup()
         {
             this.Type = typeof(MockObject);
-            this.Dependencies = new Dictionary<Type, object>();
+            this.Dependencies = new List<Dependency>();
             this.Target = new ConstructorFilter(new Type[0]);
         }
 
@@ -35,30 +36,26 @@ namespace Catharsium.Util.Testing.Tests.Reflection.ConstructorFilterTests
         [TestMethod]
         public void GetEligibleConstructors_ReturnsGetEligibleConstructorsIEnumerable()
         {
-            this.Dependencies[typeof(IMockInterface1)] = Substitute.For<IMockInterface1>();
-            var expected = this.Target.GetEligibleConstructors(this.Type, this.Dependencies.Keys);
+            this.Dependencies.Add(new Dependency(typeof(IMockInterface1), "interface1", Substitute.For<IMockInterface1>()));
+            var expected = this.Target.GetEligibleConstructors(this.Type, this.Dependencies).ToList();
 
-            var actual = this.Target.GetEligibleConstructors(this.Type, this.Dependencies);
-            Assert.IsNotNull(expected);
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(expected.Count(), actual.Count());
-            foreach(var constructor in expected)
-            {
+            var actual = this.Target.GetEligibleConstructors(this.Type, this.Dependencies).ToList();
+            Assert.AreEqual(expected.Count, actual.Count);
+            foreach (var constructor in expected) {
                 Assert.IsTrue(actual.Contains(constructor));
             }
         }
 
-        
+
         [TestMethod]
         public void GetEligibleConstructors_EmptyDictionary_ReturnsGetEligibleConstructorsIEnumerable()
         {
-            var expected = this.Target.GetEligibleConstructors(this.Type, this.Dependencies.Keys);
-            var actual = this.Target.GetEligibleConstructors(this.Type, null as Dictionary<Type, object>);
+            var expected = this.Target.GetEligibleConstructors(this.Type, this.Dependencies).ToList();
+            var actual = this.Target.GetEligibleConstructors(this.Type, null as List<Dependency>).ToList();
             Assert.IsNotNull(expected);
             Assert.IsNotNull(actual);
-            Assert.AreEqual(expected.Count(), actual.Count());
-            foreach (var constructor in expected)
-            {
+            Assert.AreEqual(expected.Count, actual.Count);
+            foreach (var constructor in expected) {
                 Assert.IsTrue(actual.Contains(constructor));
             }
         }

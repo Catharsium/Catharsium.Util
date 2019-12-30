@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Catharsium.Util.Testing.Interfaces;
+﻿using Catharsium.Util.Testing.Interfaces;
+using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System;
+using System.Collections.Generic;
 
-namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
+namespace Catharsium.Util.Testing.Tests
 {
     [TestClass]
     public class TargetFactoryTests
@@ -13,7 +14,7 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
         #region Fixture
 
         private Type Type { get; set; }
-        private Dictionary<Type, object> Dependencies { get; set; }
+        private List<Dependency> Dependencies { get; set; }
         protected IConstructorFilter ConstructorFilter { get; set; }
         protected TargetFactory<MockObject> Target { get; set; }
 
@@ -22,7 +23,7 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
         public void Setup()
         {
             this.Type = typeof(MockObject);
-            this.Dependencies = new Dictionary<Type, object>();
+            this.Dependencies = new List<Dependency>();
             this.ConstructorFilter = Substitute.For<IConstructorFilter>();
             this.Target = new TargetFactory<MockObject>(this.ConstructorFilter);
         }
@@ -36,9 +37,9 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
         {
             var dependency1Type = typeof(IMockInterface1);
             var dependency2Type = typeof(IMockInterface2);
-            this.Dependencies[dependency1Type] = Substitute.For<IMockInterface1>();
-            this.Dependencies[dependency2Type] = Substitute.For<IMockInterface2>();
-            var constructor = this.Type.GetConstructor(new[] { dependency1Type, dependency2Type });
+            this.Dependencies.Add(new Dependency(dependency1Type, "interface1", Substitute.For<IMockInterface1>()));
+            this.Dependencies.Add(new Dependency(dependency2Type, "interface2", Substitute.For<IMockInterface2>()));
+            var constructor = this.Type.GetConstructor(new[] {dependency1Type, dependency2Type});
             this.ConstructorFilter.GetLargestEligibleConstructor(this.Type, this.Dependencies).Returns(constructor);
 
             var actual = this.Target.CreateTarget(this.Dependencies);
@@ -52,8 +53,8 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
         [TestMethod]
         public void CreateTarget_WithTooFewDependencies_ReturnsNull()
         {
-            this.Dependencies[typeof(IMockInterface2)] = Substitute.For<IMockInterface2>();
-            var constructor = this.Type.GetConstructor(new[] { typeof(IMockInterface1), typeof(IMockInterface2) });
+            this.Dependencies.Add(new Dependency(typeof(IMockInterface2), "interface2", Substitute.For<IMockInterface2>()));
+            var constructor = this.Type.GetConstructor(new[] {typeof(IMockInterface1), typeof(IMockInterface2)});
             this.ConstructorFilter.GetLargestEligibleConstructor(this.Type).Returns(constructor);
 
             var actual = this.Target.CreateTarget(this.Dependencies);
@@ -66,9 +67,9 @@ namespace Catharsium.Util.Testing.Tests.TargetFactoryTests
         {
             var dependency1Type = typeof(IMockInterface1);
             var dependency2Type = typeof(IMockInterface2);
-            this.Dependencies[dependency1Type] = Substitute.For<IMockInterface1>();
-            this.Dependencies[dependency2Type] = Substitute.For<IMockInterface2>();
-            var constructor = this.Type.GetConstructor(new[] { dependency1Type });
+            this.Dependencies.Add(new Dependency(dependency1Type, "interface1", Substitute.For<IMockInterface1>()));
+            this.Dependencies.Add(new Dependency(dependency2Type, "interface2", Substitute.For<IMockInterface2>()));
+            var constructor = this.Type.GetConstructor(new[] {dependency1Type});
             this.ConstructorFilter.GetLargestEligibleConstructor(this.Type, this.Dependencies).Returns(constructor);
 
             var actual = this.Target.CreateTarget(this.Dependencies);

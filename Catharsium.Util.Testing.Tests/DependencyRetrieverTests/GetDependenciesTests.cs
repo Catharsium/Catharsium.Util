@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using Catharsium.Util.Testing.Interfaces;
+﻿using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System.Linq;
 
 namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
 {
@@ -42,8 +42,8 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
             var actual = this.Target.GetDependencies<MockObject>().ToList();
             Assert.IsNotNull(actual);
             Assert.AreEqual(2, actual.Count);
-            Assert.IsTrue(actual.Contains(typeof(IMockInterface1)));
-            Assert.IsTrue(actual.Contains(typeof(IMockInterface2)));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface1)));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface2)));
         }
 
 
@@ -53,8 +53,8 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
             var actual = this.Target.GetDependencies<MockObjectWithSingleConstructor>().ToList();
             Assert.IsNotNull(actual);
             Assert.AreEqual(2, actual.Count);
-            Assert.IsTrue(actual.Contains(typeof(IMockInterface1)));
-            Assert.IsTrue(actual.Contains(typeof(IMockInterface2)));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface1)));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface2)));
         }
 
 
@@ -73,8 +73,8 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
             var actual = this.Target.GetDependencies<MockObjectWithDifferentDependencies>().ToList();
             Assert.IsNotNull(actual);
             Assert.AreEqual(2, actual.Count);
-            Assert.IsTrue(actual.Contains(typeof(IMockInterface1)));
-            Assert.IsTrue(actual.Contains(typeof(IMockInterface2)));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface1)));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface2)));
         }
 
         #endregion

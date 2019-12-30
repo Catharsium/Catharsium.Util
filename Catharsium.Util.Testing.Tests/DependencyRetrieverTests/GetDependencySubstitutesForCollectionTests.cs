@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Catharsium.Util.Testing.Interfaces;
+﻿using Catharsium.Util.Testing.Interfaces;
+using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
 {
@@ -33,17 +33,17 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
         public void GetDependencySubstitutes_ConstructorWithInterfaceDependencies_ReturnsSubstitutes()
         {
             var constructor = typeof(MockObject).GetConstructors().OrderBy(c => c.GetParameters().Length).ToList()[1];
-            var dependencies = new Dictionary<Type, object> {
-                [typeof(IMockInterface1)] = Substitute.For<IMockInterface1>(),
-                [typeof(IMockInterface2)] = Substitute.For<IMockInterface2>()
+            var dependencies = new List<Dependency> {
+                new Dependency(typeof(IMockInterface1), "interface1", Substitute.For<IMockInterface1>()),
+                new Dependency(typeof(IMockInterface2), "interface2", Substitute.For<IMockInterface2>())
             };
+
             var actual = this.Target.GetDependencySubstitutes(constructor, dependencies);
             Assert.IsNotNull(actual);
             Assert.AreEqual(2, actual.Count);
-            Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface1)));
-            Assert.AreEqual(dependencies[typeof(IMockInterface1)], actual[typeof(IMockInterface1)]);
-            Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface2)));
-            Assert.AreEqual(dependencies[typeof(IMockInterface2)], actual[typeof(IMockInterface2)]);
+            foreach (var dependency in actual) {
+                Assert.IsTrue(dependencies.Any(d => d.Type == dependency.Type && d.Name == dependency.Name && d.Value == dependency.Value));
+            }
         }
 
 

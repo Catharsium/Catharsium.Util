@@ -21,7 +21,7 @@
 
 
         public MockObject(IMockInterface1 interface1, IMockInterface2 interface2, string stringDependency)
-           : this(interface1, interface2)
+            : this(interface1, interface2)
         {
             this.StringDependency = stringDependency;
         }

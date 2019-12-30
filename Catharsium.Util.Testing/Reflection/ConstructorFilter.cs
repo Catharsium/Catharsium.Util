@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Catharsium.Util.Testing.Interfaces;
+using Catharsium.Util.Testing.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Catharsium.Util.Testing.Interfaces;
 
 namespace Catharsium.Util.Testing.Reflection
 {
@@ -17,7 +18,7 @@ namespace Catharsium.Util.Testing.Reflection
         }
 
 
-        public ConstructorInfo GetLargestEligibleConstructor(Type type, Dictionary<Type, object> dependencies = null)
+        public ConstructorInfo GetLargestEligibleConstructor(Type type, List<Dependency> dependencies = null)
         {
             return this.GetEligibleConstructors(type, dependencies)
                 .OrderBy(c => c.GetParameters().Length)
@@ -25,15 +26,15 @@ namespace Catharsium.Util.Testing.Reflection
         }
 
 
-        public IEnumerable<ConstructorInfo> GetEligibleConstructors(Type type, Dictionary<Type, object> dependencies)
+        public IEnumerable<ConstructorInfo> GetEligibleConstructors(Type type, List<Dependency> dependencies)
         {
             return dependencies != null && dependencies.Any()
-                ? this.GetEligibleConstructors(type, dependencies.Keys)
+                ? this.GetEligibleConstructors(type, dependencies.Select(d => d.Type).ToList())
                 : this.GetEligibleConstructors(type, null as List<Type>);
         }
 
 
-        public IEnumerable<ConstructorInfo> GetEligibleConstructors(Type type, IEnumerable<Type> dependencies = null)
+        public IEnumerable<ConstructorInfo> GetEligibleConstructors(Type type, List<Type> dependencies = null)
         {
             var constructors = type.GetConstructors();
             return dependencies != null && dependencies.Any()

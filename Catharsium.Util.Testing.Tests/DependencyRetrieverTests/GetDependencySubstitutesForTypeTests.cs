@@ -2,6 +2,7 @@
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System.Linq;
 
 namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
 {
@@ -41,8 +42,8 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
             var actual = this.Target.GetDependencySubstitutes<MockObject>();
             Assert.IsNotNull(actual);
             Assert.AreEqual(2, actual.Count);
-            Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface1)));
-            Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface2)));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface1) && d.Name == "interface1"));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface2) && d.Name == "interface2"));
         }
 
 
@@ -52,8 +53,8 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
             var actual = this.Target.GetDependencySubstitutes<MockObjectWithSingleConstructor>();
             Assert.IsNotNull(actual);
             Assert.AreEqual(2, actual.Count);
-            Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface1)));
-            Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface2)));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface1) && d.Name == "interface1"));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface2) && d.Name == "interface2"));
         }
 
 
@@ -72,8 +73,8 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
             var actual = this.Target.GetDependencySubstitutes<MockObjectWithDifferentDependencies>();
             Assert.IsNotNull(actual);
             Assert.AreEqual(2, actual.Count);
-            Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface1)));
-            Assert.IsTrue(actual.ContainsKey(typeof(IMockInterface2)));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface1) && d.Name == "interface1"));
+            Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface2) && d.Name == "interface2"));
         }
 
         #endregion

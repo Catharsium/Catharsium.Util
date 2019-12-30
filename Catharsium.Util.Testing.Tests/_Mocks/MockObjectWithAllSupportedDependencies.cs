@@ -1,5 +1,5 @@
-﻿using System;
-using Catharsium.Util.Testing.Tests._Mocks.DbContextMocks;
+﻿using Catharsium.Util.Testing.Tests._Mocks.DbContextMocks;
+using System;
 
 namespace Catharsium.Util.Testing.Tests._Mocks
 {
@@ -9,7 +9,7 @@ namespace Catharsium.Util.Testing.Tests._Mocks
         public readonly IMockInterface2 InterfaceDependency2;
         public readonly MockDbContextNoOptions DbContextNoOptionsDependency;
         public readonly MockDbContextWithOptions DbContextWithOptionsDependency;
-        public readonly MockDbContextWithTypedOptions dbContextWithTypedOptions;
+        public readonly MockDbContextWithTypedOptions DbContextWithTypedOptions;
         public readonly Guid GuidDependency;
         public readonly string StringDependency;
 
@@ -30,7 +30,7 @@ namespace Catharsium.Util.Testing.Tests._Mocks
             this.InterfaceDependency2 = interface2Dependency;
             this.DbContextNoOptionsDependency = dbContextNoOptionsDependency;
             this.DbContextWithOptionsDependency = dbContextWithOptions;
-            this.dbContextWithTypedOptions = dbContextWithTypedOptions;
+            this.DbContextWithTypedOptions = dbContextWithTypedOptions;
             this.GuidDependency = guidDependency;
         }
 

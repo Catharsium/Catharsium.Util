@@ -1,6 +1,7 @@
 ﻿using Catharsium.Util.Testing.Interfaces;
-using System;
+using Catharsium.Util.Testing.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Catharsium.Util.Testing
 {
@@ -9,28 +10,30 @@ namespace Catharsium.Util.Testing
         private readonly IConstructorFilter constructorFilter;
 
 
-        public TargetFactory(IConstructorFilter constructorFilter) {
+        public TargetFactory(IConstructorFilter constructorFilter)
+        {
             this.constructorFilter = constructorFilter;
         }
 
 
-        public T CreateTarget(Dictionary<Type, object> dependencies)
+        public T CreateTarget(List<Dependency> dependencies)
         {
             var constructor = this.constructorFilter.GetLargestEligibleConstructor(typeof(T), dependencies);
-            if (constructor == null)
-            {
+            if (constructor == null) {
                 return null;
             }
 
             var parameters = constructor.GetParameters();
             var arguments = new List<object>();
-            foreach (var parameter in parameters)
-            {
-                if (!dependencies.ContainsKey(parameter.ParameterType))
-                {
+            foreach (var parameter in parameters) {
+                var dependency = dependencies.FirstOrDefault(d => d.Type == parameter.ParameterType && d.Name == parameter.Name) ??
+                                 dependencies.FirstOrDefault(d => d.Type == parameter.ParameterType);
+
+                if (dependency == null) {
                     return null;
                 }
-                arguments.Add(dependencies[parameter.ParameterType]);
+
+                arguments.Add(dependency.Value);
             }
 
             return constructor.Invoke(arguments.ToArray()) as T;
