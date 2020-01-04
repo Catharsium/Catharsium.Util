@@ -11,9 +11,16 @@ namespace Catharsium.Util.IO.Json
         public T ReadFrom<T>(string file)
         {
             var jsonString = File.ReadAllText(file);
-            return JsonSerializer.Deserialize<T>(jsonString, new JsonSerializerOptions {
+            return JsonSerializer.Deserialize<T>(jsonString, new JsonSerializerOptions
+            {
                 PropertyNameCaseInsensitive = true
             });
+        }
+
+
+        public T ReadFrom<T>(IFile file)
+        {
+            return this.ReadFrom<T>(file.FullName);
         }
     }
 }
