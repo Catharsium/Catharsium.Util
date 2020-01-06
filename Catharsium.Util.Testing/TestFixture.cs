@@ -37,14 +37,14 @@ namespace Catharsium.Util.Testing
         }
 
 
-        public void SetDependency<TDependency>(TDependency dependency)
+        public void SetDependency<TDependency>(TDependency dependency, string name = null)
         {
             var dependencyHolder = this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency));
             if (dependencyHolder != null) {
                 dependencyHolder.Value = dependency;
             }
             else {
-                this.Dependencies.Add(new Dependency(typeof(TDependency), null, dependency));
+                this.Dependencies.Add(new Dependency(typeof(TDependency), name, dependency));
             }
 
             this.Target = this.targetFactory.CreateTarget(this.Dependencies);
