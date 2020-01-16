@@ -15,8 +15,8 @@ namespace Catharsium.Util.Testing._Configuration
 
             services.AddScoped<IDependencyRetriever, DependencyRetriever>();
             services.AddScoped<IConstructorFilter>(s => new ConstructorFilter(SupportedDependencies.Types));
-            services.AddScoped<ISubstituteFactory, SubstituteFactory>();
-            services.AddScoped<IDbContextSubstituteFactory, DbContextSubstituteFactory>();
+            services.AddScoped<ISubstituteService, SubstituteService>();
+            services.AddScoped<ISubstituteFactory, DbContextSubstituteFactory>();
 
             return services;
         }

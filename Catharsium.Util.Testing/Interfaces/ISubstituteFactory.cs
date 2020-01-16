@@ -1,9 +1,11 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Catharsium.Util.Testing.Interfaces
 {
     public interface ISubstituteFactory
     {
-        object GetSubstitute(Type type);
+        bool CanCreateFor(Type type);
+        object CreateSubstitute<T>(Type type) where T : DbContext;
     }
 }

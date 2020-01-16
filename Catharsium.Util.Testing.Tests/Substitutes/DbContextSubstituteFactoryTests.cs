@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Catharsium.Util.Testing.Interfaces;
+﻿using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Substitutes;
 using Catharsium.Util.Testing.Tests._Mocks.DbContextMocks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Catharsium.Util.Testing.Tests.Substitutes
 {
@@ -25,6 +26,27 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         {
             this.ConstructorFilter = Substitute.For<IConstructorFilter>();
             this.Target = new DbContextSubstituteFactory(this.ConstructorFilter);
+        }
+
+        #endregion
+
+        #region CanCreateFor
+
+        [TestMethod]
+        public void CanCreateFor_DbContextType_ReturnsTrue()
+        {
+            var type = typeof(DbContext);
+            var actual = this.Target.CanCreateFor(type);
+            Assert.IsTrue(actual);
+        }
+
+
+        [TestMethod]
+        public void CanCreateFor_NoDbContextType_ReturnsFalse()
+        {
+            var type = typeof(string);
+            var actual = this.Target.CanCreateFor(type);
+            Assert.IsFalse(actual);
         }
 
         #endregion

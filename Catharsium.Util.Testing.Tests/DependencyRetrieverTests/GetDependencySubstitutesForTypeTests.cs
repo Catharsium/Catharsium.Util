@@ -11,7 +11,7 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
     {
         #region Fixture
 
-        private ISubstituteFactory SubstituteFactory { get; set; }
+        private ISubstituteService SubstituteFactory { get; set; }
 
         public DependencyRetriever Target { get; set; }
 
@@ -19,7 +19,7 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
         [TestInitialize]
         public void Setup()
         {
-            this.SubstituteFactory = Substitute.For<ISubstituteFactory>();
+            this.SubstituteFactory = Substitute.For<ISubstituteService>();
             this.Target = new DependencyRetriever(this.SubstituteFactory);
         }
 

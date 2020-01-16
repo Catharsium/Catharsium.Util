@@ -21,8 +21,8 @@ namespace Catharsium.Util.Testing.Tests._Configuration
             serviceCollection.AddTestingUtilities(config);
             serviceCollection.ReceivedRegistration<IDependencyRetriever, DependencyRetriever>();
             serviceCollection.ReceivedRegistration<IConstructorFilter>();
-            serviceCollection.ReceivedRegistration<ISubstituteFactory, SubstituteFactory>();
-            serviceCollection.ReceivedRegistration<IDbContextSubstituteFactory, DbContextSubstituteFactory>();
+            serviceCollection.ReceivedRegistration<ISubstituteService, SubstituteService>();
+            serviceCollection.ReceivedRegistration<ISubstituteFactory, DbContextSubstituteFactory>();
         }
     }
 }

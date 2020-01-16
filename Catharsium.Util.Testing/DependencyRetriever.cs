@@ -11,10 +11,10 @@ namespace Catharsium.Util.Testing
 {
     public class DependencyRetriever : IDependencyRetriever
     {
-        private readonly ISubstituteFactory substituteFactory;
+        private readonly ISubstituteService substituteFactory;
 
 
-        public DependencyRetriever(ISubstituteFactory substituteFactory)
+        public DependencyRetriever(ISubstituteService substituteFactory)
         {
             this.substituteFactory = substituteFactory;
         }

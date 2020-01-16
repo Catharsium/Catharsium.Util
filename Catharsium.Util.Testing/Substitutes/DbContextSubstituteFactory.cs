@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Catharsium.Util.Testing.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catharsium.Util.Testing.Substitutes
 {
-    public class DbContextSubstituteFactory : IDbContextSubstituteFactory
+    public class DbContextSubstituteFactory : ISubstituteFactory
     {
         private readonly IConstructorFilter constructorFilter;
 
@@ -14,6 +15,13 @@ namespace Catharsium.Util.Testing.Substitutes
         public DbContextSubstituteFactory(IConstructorFilter constructorFilter)
         {
             this.constructorFilter = constructorFilter;
+        }
+
+
+        public bool CanCreateFor(Type type)
+        {
+            throw new NotImplementedException();
+            return typeof(DbContext).GetTypeInfo().IsAssignableFrom(type);
         }
 
 
