@@ -17,7 +17,7 @@ namespace Catharsium.Util.Testing.Tests.Extensions
         {
             var target = Substitute.For<IServiceCollection>();
             target.AddScoped<IMockInterface1>();
-            ServiceCollectionExtensions.ReceivedRegistration<IMockInterface1>(target);
+            target.ReceivedRegistration<IMockInterface1>();
         }
 
 
@@ -27,7 +27,7 @@ namespace Catharsium.Util.Testing.Tests.Extensions
         {
             var target = Substitute.For<IServiceCollection>();
             target.AddScoped<IMockInterface1>();
-            ServiceCollectionExtensions.ReceivedRegistration<IMockInterface2>(target);
+            target.ReceivedRegistration<IMockInterface2>();
         }
 
         #endregion

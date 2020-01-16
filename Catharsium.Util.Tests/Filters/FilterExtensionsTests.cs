@@ -14,7 +14,7 @@ namespace Catharsium.Util.Tests.Filters
         public void Include_FilterIncludingEverything_ReturnsAll()
         {
             var items = new[] { new object() };
-            var filter = Substitute.For<IFilter>();
+            var filter = Substitute.For<IFilter<object>>();
             filter.Includes(Arg.Any<object>()).Returns(true);
 
             var actual = items.Include(filter);
@@ -26,7 +26,7 @@ namespace Catharsium.Util.Tests.Filters
         public void Include_FilterIncludingNothing_ReturnsNothing()
         {
             var transactions = new[] { new object() };
-            var filter = Substitute.For<IFilter>();
+            var filter = Substitute.For<IFilter<object>>();
             filter.Includes(Arg.Any<object>()).Returns(false);
 
             var actual = transactions.Include(filter);
@@ -41,7 +41,7 @@ namespace Catharsium.Util.Tests.Filters
         public void Exclude_FilterIncludingEverything_ReturnsNothing()
         {
             var transactions = new[] { new object() };
-            var filter = Substitute.For<IFilter>();
+            var filter = Substitute.For<IFilter<object>>();
             filter.Includes(Arg.Any<object>()).Returns(true);
 
             var actual = transactions.Exclude(filter);
@@ -53,7 +53,7 @@ namespace Catharsium.Util.Tests.Filters
         public void Exclude_FilterIncludingNothing_ReturnsAll()
         {
             var transactions = new[] { new object() };
-            var filter = Substitute.For<IFilter>();
+            var filter = Substitute.For<IFilter<object>>();
             filter.Includes(Arg.Any<object>()).Returns(false);
 
             var actual = transactions.Exclude(filter);

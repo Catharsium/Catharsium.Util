@@ -1,7 +1,7 @@
 ﻿namespace Catharsium.Util.Filters
 {
-    public interface IFilter
+    public interface IFilter<in T>
     {
-        bool Includes<T>(T item);
+        bool Includes(T item);
     }
 }
