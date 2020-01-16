@@ -17,7 +17,7 @@ namespace Catharsium.Util.Testing.Substitutes
         }
 
 
-        public object CreateDbContextSubstitute<T>(Type type) where T : DbContext
+        public object CreateSubstitute<T>(Type type) where T : DbContext
         {
             var dependencies = new List<Type> { typeof(DbContextOptions), typeof(DbContextOptions<T>) };
             var constructors = this.constructorFilter.GetEligibleConstructors(type, dependencies).OrderByDescending(c => c.GetParameters().Length).ToList();

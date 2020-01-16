@@ -5,6 +5,6 @@ namespace Catharsium.Util.Testing.Interfaces
 {
     public interface IDbContextSubstituteFactory
     {
-        object CreateDbContextSubstitute<T>(Type type) where T : DbContext;
+        object CreateSubstitute<T>(Type type) where T : DbContext;
     }
 }

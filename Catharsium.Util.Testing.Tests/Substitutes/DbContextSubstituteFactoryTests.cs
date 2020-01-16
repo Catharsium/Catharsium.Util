@@ -36,7 +36,7 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         {
             var type = typeof(MockDbContextNoOptions);
             this.ConstructorFilter.GetEligibleConstructors(type, Arg.Any<List<Type>>()).Returns(new[] {type.GetConstructors().First()});
-            var actual = this.Target.CreateDbContextSubstitute<MockDbContextWithOptions>(type);
+            var actual = this.Target.CreateSubstitute<MockDbContextWithOptions>(type);
             Assert.IsNotNull(actual);
             Assert.AreEqual(typeof(MockDbContextNoOptions), actual.GetType());
         }
@@ -47,7 +47,7 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         {
             var type = typeof(MockDbContextWithOptions);
             this.ConstructorFilter.GetEligibleConstructors(type, Arg.Any<List<Type>>()).Returns(new[] {type.GetConstructors().First()});
-            var actual = this.Target.CreateDbContextSubstitute<MockDbContextWithOptions>(type);
+            var actual = this.Target.CreateSubstitute<MockDbContextWithOptions>(type);
             Assert.IsNotNull(actual);
             Assert.AreEqual(typeof(MockDbContextWithOptions), actual.GetType());
         }
@@ -58,7 +58,7 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
         {
             var type = typeof(MockDbContextWithTypedOptions);
             this.ConstructorFilter.GetEligibleConstructors(type, Arg.Any<List<Type>>()).Returns(new[] {type.GetConstructors().First()});
-            var actual = this.Target.CreateDbContextSubstitute<MockDbContextWithTypedOptions>(type);
+            var actual = this.Target.CreateSubstitute<MockDbContextWithTypedOptions>(type);
             Assert.IsNotNull(actual);
             Assert.AreEqual(typeof(MockDbContextWithTypedOptions), actual.GetType());
         }
