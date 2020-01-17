@@ -1,7 +1,7 @@
-﻿using Catharsium.Util.Testing.Extensions;
+﻿using Catharsium.Util.Testing._Configuration;
+using Catharsium.Util.Testing.Extensions;
 using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Substitutes;
-using Catharsium.Util.Testing._Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,8 +21,10 @@ namespace Catharsium.Util.Testing.Tests._Configuration
             serviceCollection.AddTestingUtilities(config);
             serviceCollection.ReceivedRegistration<IDependencyRetriever, DependencyRetriever>();
             serviceCollection.ReceivedRegistration<IConstructorFilter>();
+
             serviceCollection.ReceivedRegistration<ISubstituteService, SubstituteService>();
-            serviceCollection.ReceivedRegistration<ISubstituteFactory, DbContextSubstituteFactory>();
+            serviceCollection.ReceivedRegistration<ISubstituteFactory, GuidSubstituteFactory>();
+            serviceCollection.ReceivedRegistration<ISubstituteFactory, InterfaceSubstituteFactory>();
         }
     }
 }

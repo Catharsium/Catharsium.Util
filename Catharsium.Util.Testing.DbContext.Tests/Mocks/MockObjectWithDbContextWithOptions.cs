@@ -1,6 +1,4 @@
-﻿using Catharsium.Util.Testing.Tests._Mocks.DbContextMocks;
-
-namespace Catharsium.Util.Testing.Tests._Mocks
+﻿namespace Catharsium.Util.Testing.Databases.Tests.Mocks
 {
     public class MockObjectWithDbContextWithOptions
     {
