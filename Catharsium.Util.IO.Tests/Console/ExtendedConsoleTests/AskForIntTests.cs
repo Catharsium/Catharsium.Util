@@ -4,7 +4,7 @@ using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Tests.Console.ConsoleReaderTests
+namespace Catharsium.Util.IO.Tests.Console.ExtendedConsoleTests
 {
     [TestClass]
     public class AskForIntTests : TestFixture<ExtendedConsole>
@@ -21,7 +21,7 @@ namespace Catharsium.Util.Tests.Console.ConsoleReaderTests
         [TestMethod]
         public void AskForInt_NoText_DoesNotWriteText()
         {
-            this.Target.AskForInt(null);
+            this.Target.AskForInt();
             this.GetDependency<IConsoleWrapper>().DidNotReceive().WriteLine(Arg.Any<string>());
         }
 

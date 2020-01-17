@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
 
-namespace Catharsium.Util.Tests.Console.ConsoleReaderTests
+namespace Catharsium.Util.IO.Tests.Console.ExtendedConsoleTests
 {
     [TestClass]
     public class AskForDateTests : TestFixture<ExtendedConsole>
@@ -22,7 +22,7 @@ namespace Catharsium.Util.Tests.Console.ConsoleReaderTests
         [TestMethod]
         public void AskForDate_NoText_DoesNotWriteText()
         {
-            this.Target.AskForDate(null);
+            this.Target.AskForDate();
             this.GetDependency<IConsoleWrapper>().DidNotReceive().WriteLine(Arg.Any<string>());
         }
 

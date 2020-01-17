@@ -4,7 +4,7 @@ using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Tests.Console.ConsoleReaderTests
+namespace Catharsium.Util.IO.Tests.Console.ExtendedConsoleTests
 {
     [TestClass]
     public class AskForTextTests : TestFixture<ExtendedConsole>
@@ -31,7 +31,7 @@ namespace Catharsium.Util.Tests.Console.ConsoleReaderTests
         {
             var message = "My message";
             var expected = "My text";
-            this.GetDependency<IConsoleWrapper>().ReadLine().Returns(expected.ToString());
+            this.GetDependency<IConsoleWrapper>().ReadLine().Returns(expected);
 
             var actual = this.Target.AskForText(message);
             this.GetDependency<IConsoleWrapper>().Received().WriteLine(message);
