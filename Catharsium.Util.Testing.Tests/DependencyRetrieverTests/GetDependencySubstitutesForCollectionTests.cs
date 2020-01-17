@@ -3,6 +3,7 @@ using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +15,7 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
         #region Fixture
 
         private ISubstituteService SubstituteFactory { get; set; }
-
+        private IEnumerable<Type> SupportedTypes { get; set; }
         public DependencyRetriever Target { get; set; }
 
 
@@ -22,7 +23,10 @@ namespace Catharsium.Util.Testing.Tests.DependencyRetrieverTests
         public void Setup()
         {
             this.SubstituteFactory = Substitute.For<ISubstituteService>();
-            this.Target = new DependencyRetriever(this.SubstituteFactory);
+            this.SupportedTypes = new List<Type> {
+                typeof(Guid)
+            };
+            this.Target = new DependencyRetriever(this.SubstituteFactory, this.SupportedTypes);
         }
 
         #endregion

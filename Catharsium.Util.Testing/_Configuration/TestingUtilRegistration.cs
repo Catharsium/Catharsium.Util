@@ -4,6 +4,7 @@ using Catharsium.Util.Testing.Reflection;
 using Catharsium.Util.Testing.Substitutes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Catharsium.Util.Testing._Configuration
 {
@@ -18,6 +19,8 @@ namespace Catharsium.Util.Testing._Configuration
             services.AddScoped<ISubstituteService, SubstituteService>();
             services.AddScoped<ISubstituteFactory, GuidSubstituteFactory>();
             services.AddScoped<ISubstituteFactory, InterfaceSubstituteFactory>();
+
+            services.AddScoped(p => typeof(Guid));
 
             return services;
         }

@@ -1,5 +1,4 @@
-﻿using Catharsium.Util.Testing._Configuration;
-using Catharsium.Util.Testing.Interfaces;
+﻿using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Models;
 using NSubstitute;
 using System;
@@ -12,11 +11,13 @@ namespace Catharsium.Util.Testing
     public class DependencyRetriever : IDependencyRetriever
     {
         private readonly ISubstituteService substituteFactory;
+        private readonly IEnumerable<Type> supportedDependencies;
 
 
-        public DependencyRetriever(ISubstituteService substituteFactory)
+        public DependencyRetriever(ISubstituteService substituteFactory, IEnumerable<Type> supportedDependencies)
         {
             this.substituteFactory = substituteFactory;
+            this.supportedDependencies = supportedDependencies;
         }
 
 
@@ -37,7 +38,7 @@ namespace Catharsium.Util.Testing
 
             if (constructor != null) {
                 var parameters = constructor.GetParameters().Where(p =>
-                    p.ParameterType.IsInterface || SupportedDependencies.Types.Any(d => d.IsAssignableFrom(p.ParameterType)));
+                    p.ParameterType.IsInterface || this.supportedDependencies.Any(d => d.IsAssignableFrom(p.ParameterType)));
                 result.AddRange(parameters.Select(p => new Dependency(p.ParameterType, p.Name)));
             }
 
@@ -55,7 +56,7 @@ namespace Catharsium.Util.Testing
             var result = new List<Dependency>();
             foreach (var constructor in constructors) {
                 var assignableParameters = constructor.GetParameters().Where(p =>
-                    p.ParameterType.IsInterface || SupportedDependencies.Types.Any(d => d.IsAssignableFrom(p.ParameterType))
+                    p.ParameterType.IsInterface || this.supportedDependencies.Any(d => d.IsAssignableFrom(p.ParameterType))
                 );
                 foreach (var dependency in assignableParameters) {
                     if (!result.Any(d => d.Type == dependency.ParameterType && d.Name == dependency.Name)) {

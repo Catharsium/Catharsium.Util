@@ -5,6 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Catharsium.Util.Testing.Databases._Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Catharsium.Util.Testing.Databases.Tests
 {
@@ -77,7 +79,10 @@ namespace Catharsium.Util.Testing.Databases.Tests
         [TestMethod]
         public void TestFixture_WorksWith_AllSupportedDependencies()
         {
-            var actual = new TestFixture<MockObjectWithDbContextDependencies>();
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.AddDatabaseTestingUtilities<MockDbContextWithOptions>();
+            serviceCollection.AddDatabaseTestingUtilities<MockDbContextWithTypedOptions>();
+            var actual = new TestFixture<MockObjectWithDbContextDependencies>(serviceCollection);
             Assert.IsNotNull(actual.Target);
             Assert.IsNull(actual.Target.InterfaceDependency1);
             Assert.IsNotNull(actual.Target.InterfaceDependency2);

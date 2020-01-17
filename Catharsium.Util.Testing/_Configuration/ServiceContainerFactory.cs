@@ -7,12 +7,12 @@ namespace Catharsium.Util.Testing._Configuration
 {
     public class ServiceProviderFactory
     {
-        public static IServiceProvider Create()
+        public static IServiceProvider Create(IServiceCollection serviceCollection)
         {
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
             var configuration = builder.Build();
 
-            return new ServiceCollection()
+            return serviceCollection
                 .AddTestingUtilities(configuration)
                 .BuildServiceProvider();
         }
