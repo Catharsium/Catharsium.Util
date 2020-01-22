@@ -82,6 +82,7 @@ namespace Catharsium.Util.Testing.Databases.Tests
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddDatabaseTestingUtilities<MockDbContextWithOptions>();
             serviceCollection.AddDatabaseTestingUtilities<MockDbContextWithTypedOptions>();
+            
             var actual = new TestFixture<MockObjectWithDbContextDependencies>(serviceCollection);
             Assert.IsNotNull(actual.Target);
             Assert.IsNull(actual.Target.InterfaceDependency1);
