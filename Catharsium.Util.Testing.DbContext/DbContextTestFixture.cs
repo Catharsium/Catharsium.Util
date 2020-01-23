@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Catharsium.Util.Testing.Databases
 {
-    public class DbContentTestFixture<T, TContext> : TestFixture<T> where T : class where TContext : DbContext
+    public class DbContextTestFixture<T, TContext> : TestFixture<T> where T : class where TContext : DbContext
     {
-        public DbContentTestFixture(
+        public DbContextTestFixture(
             IServiceCollection serviceCollection = null,
             IDependencyRetriever dependencyRetriever = null,
             IConstructorFilter constructorFilter = null,
