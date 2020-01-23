@@ -20,4 +20,21 @@ namespace Catharsium.Util.Testing.Databases
             this.Setup();
         }
     }
+
+
+    public class DbContextTestFixture<T, TContext1, TContext2> : TestFixture<T> where T : class where TContext1 : DbContext where TContext2 : DbContext
+    {
+        public DbContextTestFixture(
+            IServiceCollection serviceCollection = null,
+            IDependencyRetriever dependencyRetriever = null,
+            IConstructorFilter constructorFilter = null,
+            ITargetFactory<T> targetFactory = null)
+        {
+            var services = ServiceProviderFactory.Create<TContext1, TContext2>(serviceCollection ?? new ServiceCollection());
+            this.DependencyRetriever = dependencyRetriever ?? services.GetService<IDependencyRetriever>();
+            this.ConstructorFilter = constructorFilter ?? services.GetService<IConstructorFilter>();
+            this.TargetFactory = targetFactory ?? new TargetFactory<T>(this.ConstructorFilter);
+            this.Setup();
+        }
+    }
 }
