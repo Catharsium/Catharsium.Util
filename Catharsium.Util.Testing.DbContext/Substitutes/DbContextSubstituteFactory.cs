@@ -20,17 +20,17 @@ namespace Catharsium.Util.Testing.Databases.Substitutes
 
         public bool CanCreateFor(Type type)
         {
-            return typeof(DbContext).GetTypeInfo().IsAssignableFrom(type);
+            if (this.GetEligibleConstructors(type).Any()) {
+                return typeof(DbContext).GetTypeInfo().IsAssignableFrom(type) && typeof(T) == type;
+            }
+
+            return false;
         }
 
 
         public object CreateSubstitute(Type type)
         {
-            var dependencies = new List<Type> {typeof(DbContextOptions), typeof(DbContextOptions<T>)};
-            var constructors = this.constructorFilter
-                .GetEligibleConstructors(type, dependencies)
-                .OrderByDescending(c => c.GetParameters().Length)
-                .ToList();
+            var constructors = this.GetEligibleConstructors(type);
             if (!constructors.Any()) {
                 return null;
             }
@@ -52,6 +52,17 @@ namespace Catharsium.Util.Testing.Databases.Substitutes
 
             var defaultConstructor = constructors.FirstOrDefault(c => c.GetParameters().Length == 0);
             return defaultConstructor?.Invoke(new object[0]);
+        }
+
+
+        private List<ConstructorInfo> GetEligibleConstructors(Type type)
+        {
+            var dependencies = new List<Type> {typeof(DbContextOptions), typeof(DbContextOptions<T>)};
+            var constructors = this.constructorFilter
+                .GetEligibleConstructors(type, dependencies)
+                .OrderByDescending(c => c.GetParameters().Length)
+                .ToList();
+            return constructors;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Catharsium.Util.Testing
 
         public void SetDependency<TDependency>(TDependency dependency, string name = null)
         {
-            var dependencyHolder = this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency) && 
+            var dependencyHolder = this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency) &&
                                                                          (string.IsNullOrWhiteSpace(name) || d.Name == name));
             if (dependencyHolder != null) {
                 dependencyHolder.Value = dependency;

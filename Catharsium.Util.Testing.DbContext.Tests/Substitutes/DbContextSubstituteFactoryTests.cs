@@ -1,7 +1,6 @@
 ﻿using Catharsium.Util.Testing.Databases.Substitutes;
 using Catharsium.Util.Testing.Databases.Tests.Mocks;
 using Catharsium.Util.Testing.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
@@ -33,7 +32,9 @@ namespace Catharsium.Util.Testing.Databases.Tests.Substitutes
         [TestMethod]
         public void CanCreateFor_DbContextType_ReturnsTrue()
         {
-            var type = typeof(DbContext);
+            var type = typeof(MockDbContextWithOptions);
+            this.ConstructorFilter.GetEligibleConstructors(type, Arg.Any<List<Type>>()).Returns(type.GetConstructors());
+
             var actual = this.Target.CanCreateFor(type);
             Assert.IsTrue(actual);
         }

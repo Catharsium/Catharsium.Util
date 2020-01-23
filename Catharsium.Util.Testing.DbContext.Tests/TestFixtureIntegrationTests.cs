@@ -1,28 +1,18 @@
-﻿using Catharsium.Util.Testing.Databases.Tests.Mocks;
+﻿using Catharsium.Util.Testing.Databases._Configuration;
+using Catharsium.Util.Testing.Databases.Tests.Mocks;
 using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Tests._Mocks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Catharsium.Util.Testing.Databases._Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Catharsium.Util.Testing.Databases.Tests
 {
     [TestClass]
     public class TestFixtureIntegrationTests
     {
-        #region Fixture
-
-        [TestInitialize]
-        public void Setup()
-        {
-
-        }
-
-        #endregion
-
         #region Constructor
 
         [TestMethod]
@@ -80,9 +70,10 @@ namespace Catharsium.Util.Testing.Databases.Tests
         public void TestFixture_WorksWith_AllSupportedDependencies()
         {
             var serviceCollection = new ServiceCollection();
+            serviceCollection.AddDatabaseTestingUtilities<MockDbContextNoOptions>();
             serviceCollection.AddDatabaseTestingUtilities<MockDbContextWithOptions>();
             serviceCollection.AddDatabaseTestingUtilities<MockDbContextWithTypedOptions>();
-            
+
             var actual = new TestFixture<MockObjectWithDbContextDependencies>(serviceCollection);
             Assert.IsNotNull(actual.Target);
             Assert.IsNull(actual.Target.InterfaceDependency1);
