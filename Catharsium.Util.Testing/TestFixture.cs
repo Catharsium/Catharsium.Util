@@ -38,7 +38,8 @@ namespace Catharsium.Util.Testing
 
         public void SetDependency<TDependency>(TDependency dependency, string name = null)
         {
-            var dependencyHolder = this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency) && (string.IsNullOrWhiteSpace(name) || d.Name == name));
+            var dependencyHolder = this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency) &&
+                                                                         (string.IsNullOrWhiteSpace(name) || d.Name == name));
             if (dependencyHolder != null) {
                 dependencyHolder.Value = dependency;
             }
@@ -53,10 +54,13 @@ namespace Catharsium.Util.Testing
 
         #region Construction
 
-        public TestFixture(IDependencyRetriever dependencyRetriever = null, IConstructorFilter constructorFilter = null,
+        public TestFixture(
+            IServiceCollection serviceCollection = null,
+            IDependencyRetriever dependencyRetriever = null,
+            IConstructorFilter constructorFilter = null,
             ITargetFactory<T> targetFactory = null)
         {
-            var services = ServiceProviderFactory.Create();
+            var services = ServiceProviderFactory.Create(serviceCollection ?? new ServiceCollection());
             this.dependencyRetriever = dependencyRetriever ?? services.GetService<IDependencyRetriever>();
             this.constructorFilter = constructorFilter ?? services.GetService<IConstructorFilter>();
             this.targetFactory = targetFactory ?? new TargetFactory<T>(this.constructorFilter);

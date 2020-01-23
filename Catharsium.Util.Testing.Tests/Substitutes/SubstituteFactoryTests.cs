@@ -1,11 +1,8 @@
-﻿using System;
-using Catharsium.Util.Testing.Interfaces;
+﻿using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Substitutes;
-using Catharsium.Util.Testing.Tests._Mocks;
-using Catharsium.Util.Testing.Tests._Mocks.DbContextMocks;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System;
 
 namespace Catharsium.Util.Testing.Tests.Substitutes
 {
@@ -14,44 +11,26 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
     {
         #region Fixture
 
-        protected IDbContextSubstituteFactory DbContextSubstituteFactory;
-        protected SubstituteFactory Target { get; set; }
+        protected ISubstituteFactory SubstituteFactory;
+        protected SubstituteService Target { get; set; }
 
 
         [TestInitialize]
         public void Setup()
         {
-            this.DbContextSubstituteFactory = Substitute.For<IDbContextSubstituteFactory>();
-            this.Target = new SubstituteFactory(this.DbContextSubstituteFactory);
+            this.SubstituteFactory = Substitute.For<ISubstituteFactory>();
+            this.Target = new SubstituteService(new[] {this.SubstituteFactory});
         }
 
         #endregion
 
         [TestMethod]
-        public void GetSubstitute_Interface_ReturnsSubstitute()
+        public void GetSubstitute_SupportedType_ReturnsSubstitute()
         {
-            var type = typeof(IMockInterface1);
-            var actual = this.Target.GetSubstitute(type);
-            Assert.IsNotNull(actual);
-        }
-
-
-        [TestMethod]
-        public void GetSubstitute_Guid_ReturnsSubstitute()
-        {
-            var type = typeof(Guid);
-            var actual = this.Target.GetSubstitute(typeof(Guid));
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(type, actual.GetType());
-        }
-
-
-        [TestMethod]
-        public void GetSubstitute_DbContextNoOptions_ReturnsSubstitute()
-        {
-            var expected = new MockDbContextNoOptions();
+            var expected = Guid.NewGuid();
             var type = expected.GetType();
-            this.DbContextSubstituteFactory.CreateSubstitute<MockDbContextNoOptions>(type).Returns(expected);
+            this.SubstituteFactory.CanCreateFor(type).Returns(true);
+            this.SubstituteFactory.CreateSubstitute(type).Returns(expected);
 
             var actual = this.Target.GetSubstitute(type);
             Assert.AreEqual(expected, actual);
@@ -59,14 +38,14 @@ namespace Catharsium.Util.Testing.Tests.Substitutes
 
 
         [TestMethod]
-        public void GetSubstitute_DbContextWithOptions_ReturnsSubstitute()
+        public void GetSubstitute_UnsupportedType_ReturnsSubstitute()
         {
-            var expected = new MockDbContextWithOptions(new DbContextOptionsBuilder().Options);
+            var expected = Guid.NewGuid();
             var type = expected.GetType();
-            this.DbContextSubstituteFactory.CreateSubstitute<MockDbContextWithOptions>(type).Returns(expected);
+            this.SubstituteFactory.CanCreateFor(type).Returns(false);
 
             var actual = this.Target.GetSubstitute(type);
-            Assert.IsNotNull(actual);
+            Assert.IsNull(actual);
         }
     }
 }
