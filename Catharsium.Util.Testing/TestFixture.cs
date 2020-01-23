@@ -13,9 +13,9 @@ namespace Catharsium.Util.Testing
     {
         #region Properties
 
-        private readonly IDependencyRetriever dependencyRetriever;
-        private readonly ITargetFactory<T> targetFactory;
-        private readonly IConstructorFilter constructorFilter;
+        protected IDependencyRetriever DependencyRetriever { get; set; }
+        protected ITargetFactory<T> TargetFactory { get; set; }
+        protected IConstructorFilter ConstructorFilter { get; set; }
 
 
         public T Target { get; set; }
@@ -47,7 +47,7 @@ namespace Catharsium.Util.Testing
                 this.Dependencies.Add(new Dependency(typeof(TDependency), name, dependency));
             }
 
-            this.Target = this.targetFactory.CreateTarget(this.Dependencies);
+            this.Target = this.TargetFactory.CreateTarget(this.Dependencies);
         }
 
         #endregion
@@ -61,9 +61,9 @@ namespace Catharsium.Util.Testing
             ITargetFactory<T> targetFactory = null)
         {
             var services = ServiceProviderFactory.Create(serviceCollection ?? new ServiceCollection());
-            this.dependencyRetriever = dependencyRetriever ?? services.GetService<IDependencyRetriever>();
-            this.constructorFilter = constructorFilter ?? services.GetService<IConstructorFilter>();
-            this.targetFactory = targetFactory ?? new TargetFactory<T>(this.constructorFilter);
+            this.DependencyRetriever = dependencyRetriever ?? services.GetService<IDependencyRetriever>();
+            this.ConstructorFilter = constructorFilter ?? services.GetService<IConstructorFilter>();
+            this.TargetFactory = targetFactory ?? new TargetFactory<T>(this.ConstructorFilter);
             this.Setup();
         }
 
@@ -73,10 +73,10 @@ namespace Catharsium.Util.Testing
 
         public void Setup()
         {
-            this.Dependencies = this.dependencyRetriever.GetDependencySubstitutes<T>();
-            var constructor = this.constructorFilter.GetLargestEligibleConstructor(typeof(T));
-            var substitutes = this.dependencyRetriever.GetDependencySubstitutes(constructor, this.Dependencies);
-            this.Target = this.targetFactory.CreateTarget(substitutes);
+            this.Dependencies = this.DependencyRetriever.GetDependencySubstitutes<T>();
+            var constructor = this.ConstructorFilter.GetLargestEligibleConstructor(typeof(T));
+            var substitutes = this.DependencyRetriever.GetDependencySubstitutes(constructor, this.Dependencies);
+            this.Target = this.TargetFactory.CreateTarget(substitutes);
         }
 
         #endregion
