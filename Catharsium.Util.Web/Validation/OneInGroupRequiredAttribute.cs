@@ -19,7 +19,7 @@ namespace Catharsium.Util.Web.Validation
             var isValid = this.IsValid(validationContext.ObjectInstance, value as string);
             return isValid
                 ? ValidationResult.Success
-                : new ValidationResult($"Een van de groep {this.GroupName} is verplicht");
+                : new ValidationResult($"One of the group '{this.GroupName}' is required");
         }
 
 

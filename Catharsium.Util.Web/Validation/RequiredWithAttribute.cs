@@ -28,7 +28,7 @@ namespace Catharsium.Util.Web.Validation
                 message.Append($", {property}");
             }
 
-            return new ValidationResult($"{message} zijn samen verplicht");
+            return new ValidationResult($"{message} are all required");
         }
 
 

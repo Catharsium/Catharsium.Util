@@ -40,7 +40,7 @@ namespace Catharsium.Util.Web.Tests.Validation
             var actual = Validator.TryValidateObject(mockObject, validationContext, validationResult, true);
             Assert.IsFalse(actual);
             Assert.AreEqual(2, validationResult.Count);
-            Assert.IsTrue(validationResult.All(r => r.ErrorMessage == "Een van de groep Group 2 is verplicht"));
+            Assert.IsTrue(validationResult.All(r => r.ErrorMessage == "One of the group 'Group 2' is required"));
         }
 
 
