@@ -1,12 +1,13 @@
 ﻿using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Models;
+using Catharsium.Util.Testing.Reflection;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
 
-namespace Catharsium.Util.Testing.Tests
+namespace Catharsium.Util.Testing.Tests.Reflection
 {
     [TestClass]
     public class TargetFactoryTests

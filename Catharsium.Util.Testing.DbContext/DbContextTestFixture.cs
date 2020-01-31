@@ -1,11 +1,13 @@
 ﻿using Catharsium.Util.Testing.Databases._Configuration;
 using Catharsium.Util.Testing.Interfaces;
+using Catharsium.Util.Testing.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Catharsium.Util.Testing.Databases
 {
-    public class DbContextTestFixture<T, TContext> : TestFixture<T> where T : class where TContext : DbContext
+    public class DbContextTestFixture<T, TContext> : TestFixture<T> where T : class 
+        where TContext : DbContext
     {
         public DbContextTestFixture(
             IServiceCollection serviceCollection = null,
@@ -24,7 +26,10 @@ namespace Catharsium.Util.Testing.Databases
     }
 
 
-    public class DbContextTestFixture<T, TContext1, TContext2> : TestFixture<T> where T : class where TContext1 : DbContext where TContext2 : DbContext
+    public class DbContextTestFixture<T, TContext1, TContext2> : TestFixture<T>
+        where T : class 
+        where TContext1 : DbContext 
+        where TContext2 : DbContext
     {
         public DbContextTestFixture(
             IServiceCollection serviceCollection = null,

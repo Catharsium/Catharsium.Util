@@ -1,6 +1,7 @@
 ﻿using Catharsium.Util.Testing._Configuration;
 using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Models;
+using Catharsium.Util.Testing.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;

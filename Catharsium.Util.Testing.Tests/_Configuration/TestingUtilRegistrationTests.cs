@@ -1,6 +1,7 @@
 ﻿using Catharsium.Util.Testing._Configuration;
 using Catharsium.Util.Testing.Extensions;
 using Catharsium.Util.Testing.Interfaces;
+using Catharsium.Util.Testing.Reflection;
 using Catharsium.Util.Testing.Substitutes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
