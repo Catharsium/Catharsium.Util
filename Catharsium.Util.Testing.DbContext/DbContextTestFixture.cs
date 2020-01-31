@@ -13,7 +13,9 @@ namespace Catharsium.Util.Testing.Databases
             IConstructorFilter constructorFilter = null,
             ITargetFactory<T> targetFactory = null)
         {
-            var services = ServiceProviderFactory.Create<TContext>(serviceCollection ?? new ServiceCollection());
+            var services = ServiceCollectionFactory.Create(serviceCollection ?? new ServiceCollection())
+                .AddDatabaseTestingUtilities<TContext>()
+                .BuildServiceProvider();
             this.DependencyRetriever = dependencyRetriever ?? services.GetService<IDependencyRetriever>();
             this.ConstructorFilter = constructorFilter ?? services.GetService<IConstructorFilter>();
             this.TargetFactory = targetFactory ?? new TargetFactory<T>(this.ConstructorFilter);
@@ -30,7 +32,10 @@ namespace Catharsium.Util.Testing.Databases
             IConstructorFilter constructorFilter = null,
             ITargetFactory<T> targetFactory = null)
         {
-            var services = ServiceProviderFactory.Create<TContext1, TContext2>(serviceCollection ?? new ServiceCollection());
+            var services = ServiceCollectionFactory.Create(serviceCollection ?? new ServiceCollection())
+                .AddDatabaseTestingUtilities<TContext1>()
+                .AddDatabaseTestingUtilities<TContext2>()
+                .BuildServiceProvider();
             this.DependencyRetriever = dependencyRetriever ?? services.GetService<IDependencyRetriever>();
             this.ConstructorFilter = constructorFilter ?? services.GetService<IConstructorFilter>();
             this.TargetFactory = targetFactory ?? new TargetFactory<T>(this.ConstructorFilter);
