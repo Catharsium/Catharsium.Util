@@ -32,7 +32,7 @@ namespace Catharsium.Util.Testing
                 return (TDependency)result.Value;
             }
 
-            return default(TDependency);
+            return default;
         }
 
 
