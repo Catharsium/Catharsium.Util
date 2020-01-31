@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Catharsium.Util.Interfaces;
+using System.Text.RegularExpressions;
 
 namespace Catharsium.Util.Privacy
 {

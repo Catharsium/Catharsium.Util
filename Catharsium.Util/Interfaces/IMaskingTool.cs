@@ -1,4 +1,4 @@
-﻿namespace Catharsium.Util.Privacy
+﻿namespace Catharsium.Util.Interfaces
 {
     public interface IMaskingTool
     {

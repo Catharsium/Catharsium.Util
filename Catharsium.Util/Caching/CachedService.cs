@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Catharsium.Util.Caching
 {
@@ -26,7 +26,7 @@ namespace Catharsium.Util.Caching
             var methodInfo = type.GetMethod(method, bindingFlags, null, CallingConventions.Any, parameterTypes, null);
             
             if (methodInfo == null || methodInfo.ReturnType != typeof(TResult)) {
-                return default(TResult);
+                return default;
             }
 
             var cacheKey = parameters != null
