@@ -1,4 +1,4 @@
-﻿namespace Catharsium.Util.Testing.Databases.Tests.Mocks
+﻿namespace Catharsium.Util.Testing.DbContext.Tests.Mocks
 {
     public class MockObjectWithDbContextNoOptions
     {

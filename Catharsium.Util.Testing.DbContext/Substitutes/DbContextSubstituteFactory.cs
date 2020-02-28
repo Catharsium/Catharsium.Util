@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Catharsium.Util.Testing.Databases.Substitutes
+namespace Catharsium.Util.Testing.DbContext.Substitutes
 {
-    public class DbContextSubstituteFactory<T> : ISubstituteFactory where T : DbContext
+    public class DbContextSubstituteFactory<T> : ISubstituteFactory where T : Microsoft.EntityFrameworkCore.DbContext
     {
         private readonly IConstructorFilter constructorFilter;
 
@@ -21,7 +21,7 @@ namespace Catharsium.Util.Testing.Databases.Substitutes
         public bool CanCreateFor(Type type)
         {
             if (this.GetEligibleConstructors(type).Any()) {
-                return typeof(DbContext).GetTypeInfo().IsAssignableFrom(type) && typeof(T) == type;
+                return typeof(Microsoft.EntityFrameworkCore.DbContext).GetTypeInfo().IsAssignableFrom(type) && typeof(T) == type;
             }
 
             return false;

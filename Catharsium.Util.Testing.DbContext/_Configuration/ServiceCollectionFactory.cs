@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 
-namespace Catharsium.Util.Testing.Databases._Configuration
+namespace Catharsium.Util.Testing.DbContext._Configuration
 {
     public class ServiceCollectionFactory
     {

@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace Catharsium.Util.Testing.Databases.Tests.Mocks
+﻿namespace Catharsium.Util.Testing.DbContext.Tests.Mocks
 {
-    public class MockDbContextNoOptions : DbContext { }
+    public class MockDbContextNoOptions : Microsoft.EntityFrameworkCore.DbContext { }
 }

@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>Catharsium</Company>
-    <Version>2.3.2</Version>
+    <Version>2.4.0</Version>
     <Authors>Catharsium</Authors>
     <Description>Testing utilities that include automatic substitutes for DbContext dependencies</Description>
     <PackageProjectUrl>https://gitlab.com/Catharsium/Catharsium.Util</PackageProjectUrl>

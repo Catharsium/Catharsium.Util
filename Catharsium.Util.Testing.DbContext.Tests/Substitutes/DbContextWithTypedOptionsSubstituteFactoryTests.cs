@@ -1,5 +1,5 @@
-﻿using Catharsium.Util.Testing.Databases.Substitutes;
-using Catharsium.Util.Testing.Databases.Tests.Mocks;
+﻿using Catharsium.Util.Testing.DbContext.Substitutes;
+using Catharsium.Util.Testing.DbContext.Tests.Mocks;
 using Catharsium.Util.Testing.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Catharsium.Util.Testing.Databases.Tests.Substitutes
+namespace Catharsium.Util.Testing.DbContext.Tests.Substitutes
 {
     [TestClass]
     public class DbContextWithTypedOptionsSubstituteFactoryTests

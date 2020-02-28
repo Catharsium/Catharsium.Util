@@ -38,9 +38,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Configurati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Configuration.Tests", "Catharsium.Util.Configuration.Tests\Catharsium.Util.Configuration.Tests.csproj", "{1C2CB16A-6CB4-4128-B6BF-D7E5B47DD2E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing.Databases", "Catharsium.Util.Testing.DbContext\Catharsium.Util.Testing.Databases.csproj", "{55D78FCD-03DD-4895-B14A-4722B8241297}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.DbContext", "Catharsium.Util.Testing.DbContext\Catharsium.Util.Testing.DbContext.csproj", "{55D78FCD-03DD-4895-B14A-4722B8241297}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing.Databases.Tests", "Catharsium.Util.Testing.DbContext.Tests\Catharsium.Util.Testing.Databases.Tests.csproj", "{C20770DC-A005-4E63-A45D-68AA98C6AE8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.DbContext.Tests", "Catharsium.Util.Testing.DbContext.Tests\Catharsium.Util.Testing.DbContext.Tests.csproj", "{C20770DC-A005-4E63-A45D-68AA98C6AE8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

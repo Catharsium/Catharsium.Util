@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Catharsium.Util.Testing.DbContext\Catharsium.Util.Testing.Databases.csproj" />
+    <ProjectReference Include="..\Catharsium.Util.Testing.DbContext\Catharsium.Util.Testing.DbContext.csproj" />
     <ProjectReference Include="..\Catharsium.Util.Testing.Tests\Catharsium.Util.Testing.Tests.csproj" />
   </ItemGroup>
 

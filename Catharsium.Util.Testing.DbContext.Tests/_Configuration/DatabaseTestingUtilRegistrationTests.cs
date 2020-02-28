@@ -1,13 +1,13 @@
-﻿using Catharsium.Util.Testing.Databases._Configuration;
-using Catharsium.Util.Testing.Databases.Substitutes;
-using Catharsium.Util.Testing.Databases.Tests.Mocks;
+﻿using Catharsium.Util.Testing.DbContext._Configuration;
+using Catharsium.Util.Testing.DbContext.Substitutes;
+using Catharsium.Util.Testing.DbContext.Tests.Mocks;
 using Catharsium.Util.Testing.Extensions;
 using Catharsium.Util.Testing.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.Testing.Databases.Tests._Configuration
+namespace Catharsium.Util.Testing.DbContext.Tests._Configuration
 {
     [TestClass]
     public class DatabaseTestingUtilRegistrationTests

@@ -1,5 +1,5 @@
-﻿using Catharsium.Util.Testing.Databases._Configuration;
-using Catharsium.Util.Testing.Databases.Tests.Mocks;
+﻿using Catharsium.Util.Testing.DbContext._Configuration;
+using Catharsium.Util.Testing.DbContext.Tests.Mocks;
 using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Tests._Mocks;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Catharsium.Util.Testing.Databases.Tests
+namespace Catharsium.Util.Testing.DbContext.Tests
 {
     [TestClass]
     public class TestFixtureIntegrationTests

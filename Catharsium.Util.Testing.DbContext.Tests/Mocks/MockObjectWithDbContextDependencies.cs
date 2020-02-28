@@ -1,7 +1,7 @@
 ﻿using Catharsium.Util.Testing.Tests._Mocks;
 using System;
 
-namespace Catharsium.Util.Testing.Databases.Tests.Mocks
+namespace Catharsium.Util.Testing.DbContext.Tests.Mocks
 {
     public class MockObjectWithDbContextDependencies
     {
