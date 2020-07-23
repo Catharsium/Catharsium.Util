@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Catharsium.Util.Web.Extensions;
+﻿using Catharsium.Util.Web.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Catharsium.Util.Web.Tests.Extensions
 {
@@ -38,7 +38,7 @@ namespace Catharsium.Util.Web.Tests.Extensions
         public void AddQuery_NewVariables_AreUrlEncoded()
         {
             var url = "My url?Key1=Value1";
-            var variables = new Dictionary<string, string> { { "Key1", "Value1" } };
+            var variables = new Dictionary<string, string> {{"Key1", "Value1"}};
 
             var actual = url.AddQuery(variables);
             Assert.AreEqual($"{url}?Key1=Value1", actual);
