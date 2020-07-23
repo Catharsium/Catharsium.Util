@@ -11,6 +11,7 @@ namespace Catharsium.Util.Web._Configuration
         public static IServiceCollection AddWebUtilities(this IServiceCollection services, IConfiguration config)
         {
             var configuration = config.Load<WebUtilConfiguration>();
+            services.AddSingleton(configuration);
 
             services.AddTransient<IRestService, RestService>();
             services.AddTransient<IUrlHelper, UrlHelper>();

@@ -13,6 +13,7 @@ namespace Catharsium.Util.Testing._Configuration
         public static IServiceCollection AddTestingUtilities(this IServiceCollection services, IConfiguration config)
         {
             var configuration = config.Load<TestingUtilConfiguration>();
+            services.AddSingleton(configuration);
 
             services.AddScoped<IDependencyRetriever, DependencyRetriever>();
             services.AddScoped<IConstructorFilter, ConstructorFilter>();
