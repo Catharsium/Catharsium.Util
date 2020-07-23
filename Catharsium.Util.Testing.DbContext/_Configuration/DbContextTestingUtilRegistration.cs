@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Catharsium.Util.Testing.DbContext._Configuration
 {
-    public static class DatabaseTestingUtilRegistration
+    public static class DbContextTestingUtilRegistration
     {
         public static IServiceCollection AddDatabaseTestingUtilities<T>(this IServiceCollection services) where T : Microsoft.EntityFrameworkCore.DbContext
         {
