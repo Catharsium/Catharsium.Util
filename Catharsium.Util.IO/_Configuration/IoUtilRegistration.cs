@@ -14,7 +14,7 @@ namespace Catharsium.Util.IO._Configuration
         public static IServiceCollection AddIoUtilities(this IServiceCollection services, IConfiguration config)
         {
             var configuration = config.Load<IoUtilConfiguration>();
-            services.AddSingleton(configuration);
+            services.AddSingleton<IoUtilConfiguration, IoUtilConfiguration>(_ => configuration);
 
             services.AddTransient<IFileFactory, FileFactory>();
             services.AddTransient<IJsonFileWriter, JsonFileWriter>();

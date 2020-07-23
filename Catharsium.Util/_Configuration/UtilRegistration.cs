@@ -10,7 +10,7 @@ namespace Catharsium.Util._Configuration
         public static IServiceCollection AddCatharsiumUtilities(this IServiceCollection services, IConfiguration config)
         {
             var configuration = config.GetSection("Catharsium.Util").Get<UtilConfiguration>();
-            services.AddSingleton(configuration);
+            services.AddSingleton<UtilConfiguration, UtilConfiguration>(_ => configuration);
 
             services.AddTransient<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
 
