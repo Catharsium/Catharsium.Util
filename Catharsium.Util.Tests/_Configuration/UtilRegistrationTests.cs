@@ -2,6 +2,7 @@
 using Catharsium.Util.Comparing.Sorting;
 using Catharsium.Util.Interfaces;
 using Catharsium.Util.Testing.Extensions;
+using Catharsium.Util.Types;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,6 +21,7 @@ namespace Catharsium.Util.Tests._Configuration
 
             serviceCollection.AddCatharsiumUtilities(config);
             serviceCollection.ReceivedRegistration<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
+            serviceCollection.ReceivedRegistration<ITypesRetriever, TypesRetriever>();
         }
     }
 }
