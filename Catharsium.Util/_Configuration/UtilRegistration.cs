@@ -1,5 +1,6 @@
 ﻿using Catharsium.Util.Comparing.Sorting;
 using Catharsium.Util.Interfaces;
+using Catharsium.Util.Types;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,7 @@ namespace Catharsium.Util._Configuration
             services.AddSingleton<UtilConfiguration, UtilConfiguration>(_ => configuration);
 
             services.AddTransient<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
+            services.AddTransient<ITypesRetriever, TypesRetriever>();
 
             return services;
         }
