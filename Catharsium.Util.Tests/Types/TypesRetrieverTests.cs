@@ -1,5 +1,4 @@
-﻿using System;
-using Catharsium.Util.Interfaces;
+﻿using Catharsium.Util.Interfaces;
 using Catharsium.Util.Testing;
 using Catharsium.Util.Tests._Mocks;
 using Catharsium.Util.Types;
