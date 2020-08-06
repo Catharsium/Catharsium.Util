@@ -1,4 +1,5 @@
-﻿using Catharsium.Util.Interfaces;
+﻿using System;
+using Catharsium.Util.Interfaces;
 using Catharsium.Util.Testing;
 using Catharsium.Util.Tests._Mocks;
 using Catharsium.Util.Types;
@@ -10,10 +11,10 @@ namespace Catharsium.Util.Tests.Types
     [TestClass]
     public class TypesRetrieverTests : TestFixture<TypesRetriever>
     {
-        #region GetImplementationsFor
+        #region GetImplementationsFor (Current)
 
         [TestMethod]
-        public void GetImplementations_TypesThatImplementTheInterface_AreReturned()
+        public void GetImplementations_Current_TypesThatImplementTheInterface_AreReturned()
         {
             var actual = this.Target.GetImplementationsFor<ITypesRetriever>();
             Assert.IsTrue(actual.Contains(typeof(TypesRetriever)));
@@ -21,7 +22,7 @@ namespace Catharsium.Util.Tests.Types
 
 
         [TestMethod]
-        public void GetImplementations_InterfaceWithoutImplementations_ReturnsEmpty()
+        public void GetImplementations_Current_InterfaceWithoutImplementations_ReturnsEmpty()
         {
             var actual = this.Target.GetImplementationsFor<IMockInterfaceWithoutImplementations>();
             Assert.AreEqual(0, actual.Count());
