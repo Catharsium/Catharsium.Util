@@ -71,5 +71,13 @@ namespace Catharsium.Util.IO.Console
 
             return null;
         }
+
+
+        public void WriteLine(string message, ConsoleColor color)
+        {
+            this.console.ForegroundColor = color;
+            this.console.Write(message);
+            this.console.ResetColor();
+        }
     }
 }
