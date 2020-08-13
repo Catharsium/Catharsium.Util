@@ -1,5 +1,4 @@
 ﻿using Catharsium.Util.Configuration.Extensions;
-using Catharsium.Util.IO.Console;
 using Catharsium.Util.IO.Csv;
 using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.IO.Json;
@@ -20,9 +19,6 @@ namespace Catharsium.Util.IO._Configuration
             services.AddTransient<IFileFactory, FileFactory>();
             services.AddTransient<IJsonFileWriter, JsonFileWriter>();
             services.AddTransient<IJsonFileReader, JsonFileReader>();
-
-            services.AddTransient<IConsoleWrapper, SystemConsoleWrapper>();
-            services.AddTransient<IConsole, ExtendedConsole>();
 
             services.AddTransient<ITypesLoader, TypesLoader>();
 

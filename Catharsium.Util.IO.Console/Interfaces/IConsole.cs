@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Catharsium.Util.IO.Interfaces
+namespace Catharsium.Util.IO.Console.Interfaces
 {
     public interface IConsole : IConsoleWrapper
     {
