@@ -1,10 +1,10 @@
-﻿using Catharsium.Util.IO.Console;
-using Catharsium.Util.IO.Interfaces;
+﻿using Catharsium.Util.IO.Console.Interfaces;
+using Catharsium.Util.IO.Console.Wrappers;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Util.IO.Tests.Console.ExtendedConsoleTests
+namespace Catharsium.Util.IO.Console.Tests.Wrappers.ExtendedConsoleTests
 {
     [TestClass]
     public class AskForIntTests : TestFixture<ExtendedConsole>

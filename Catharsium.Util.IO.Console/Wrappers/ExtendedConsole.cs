@@ -1,9 +1,8 @@
-﻿using Catharsium.Util.IO.Interfaces;
-using Catharsium.Util.IO.Wrappers;
+﻿using Catharsium.Util.IO.Console.Interfaces;
 using System;
 using System.Text.RegularExpressions;
 
-namespace Catharsium.Util.IO.Console
+namespace Catharsium.Util.IO.Console.Wrappers
 {
     public class ExtendedConsole : SystemConsoleWrapper, IConsole
     {
@@ -33,8 +32,8 @@ namespace Catharsium.Util.IO.Console
             }
 
             return int.TryParse(this.console.ReadLine(), out var result)
-                ? result :
-                (int?)null;
+                ? result
+                : (int?)null;
         }
 
 
@@ -49,35 +48,28 @@ namespace Catharsium.Util.IO.Console
 
             var datePattern = "^(\\d{4})(\\d{2})(\\d{2})(\\d*)$";
             var matchDate = new Regex(datePattern).Match(dateInput);
-            if (matchDate.Success) {
-                var year = int.Parse(matchDate.Groups[1].Value);
-                var month = int.Parse(matchDate.Groups[2].Value);
-                var day = int.Parse(matchDate.Groups[3].Value);
+            if (!matchDate.Success) {
+                return null;
+            }
 
-                var timePattern = "^(\\d{2})(\\d{2})(\\d*)$";
-                var matchTime = new Regex(timePattern).Match(matchDate.Groups[4].Value);
-                if (matchTime.Success) {
-                    var hour = int.Parse(matchTime.Groups[1].Value);
-                    var minute = int.Parse(matchTime.Groups[2].Value);
-                    if (!int.TryParse(matchTime.Groups[3].Value, out var second)) {
-                        second = 0;
-                    }
+            var year = int.Parse(matchDate.Groups[1].Value);
+            var month = int.Parse(matchDate.Groups[2].Value);
+            var day = int.Parse(matchDate.Groups[3].Value);
 
-                    return new DateTime(year, month, day, hour, minute, second);
-                }
-
+            var timePattern = "^(\\d{2})(\\d{2})(\\d*)$";
+            var matchTime = new Regex(timePattern).Match(matchDate.Groups[4].Value);
+            if (!matchTime.Success) {
                 return new DateTime(year, month, day);
             }
 
-            return null;
-        }
+            var hour = int.Parse(matchTime.Groups[1].Value);
+            var minute = int.Parse(matchTime.Groups[2].Value);
+            if (!int.TryParse(matchTime.Groups[3].Value, out var second)) {
+                second = 0;
+            }
 
+            return new DateTime(year, month, day, hour, minute, second);
 
-        public void WriteLine(string message, ConsoleColor color)
-        {
-            this.console.ForegroundColor = color;
-            this.console.Write(message);
-            this.console.ResetColor();
         }
     }
 }

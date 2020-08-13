@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Catharsium.Util.IO.Interfaces
+namespace Catharsium.Util.IO.Console.Interfaces
 {
     public interface IConsoleWrapper
     {
@@ -27,5 +27,6 @@ namespace Catharsium.Util.IO.Interfaces
         void SetCursorPosition(int left, int top);
         void Write(string text);
         void WriteLine(string text = null);
+        void WriteLine(string text, ConsoleColor color);
     }
 }

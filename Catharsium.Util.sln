@@ -42,6 +42,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.DbC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.DbContext.Tests", "Catharsium.Util.Testing.DbContext.Tests\Catharsium.Util.Testing.DbContext.Tests.csproj", "{C20770DC-A005-4E63-A45D-68AA98C6AE8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO.Console", "Catharsium.Util.IO.Console\Catharsium.Util.IO.Console.csproj", "{6259ACFF-EEEA-423B-B5E1-3B088FC486C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO.Console.Tests", "Catharsium.Util.IO.Console.Tests\Catharsium.Util.IO.Console.Tests.csproj", "{68848438-B0E0-4E96-ABDE-59152F829AE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +100,14 @@ Global
 		{C20770DC-A005-4E63-A45D-68AA98C6AE8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C20770DC-A005-4E63-A45D-68AA98C6AE8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C20770DC-A005-4E63-A45D-68AA98C6AE8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6259ACFF-EEEA-423B-B5E1-3B088FC486C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6259ACFF-EEEA-423B-B5E1-3B088FC486C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6259ACFF-EEEA-423B-B5E1-3B088FC486C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6259ACFF-EEEA-423B-B5E1-3B088FC486C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68848438-B0E0-4E96-ABDE-59152F829AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68848438-B0E0-4E96-ABDE-59152F829AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68848438-B0E0-4E96-ABDE-59152F829AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68848438-B0E0-4E96-ABDE-59152F829AE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +125,8 @@ Global
 		{1C2CB16A-6CB4-4128-B6BF-D7E5B47DD2E8} = {15AD31C1-F0C9-4B50-A425-67569CE1C2AE}
 		{55D78FCD-03DD-4895-B14A-4722B8241297} = {20CBADD9-B097-4896-BE19-ABF52F44F3BA}
 		{C20770DC-A005-4E63-A45D-68AA98C6AE8A} = {20CBADD9-B097-4896-BE19-ABF52F44F3BA}
+		{6259ACFF-EEEA-423B-B5E1-3B088FC486C8} = {6B49ADC4-2B03-4193-98B0-89172C16BB7A}
+		{68848438-B0E0-4E96-ABDE-59152F829AE0} = {6B49ADC4-2B03-4193-98B0-89172C16BB7A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA4F4724-273A-46CC-B2F7-57AAD86EEF25}
