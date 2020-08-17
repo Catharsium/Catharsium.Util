@@ -19,7 +19,6 @@ namespace Catharsium.Util.IO.Console.Tests._Configuration
             var config = Substitute.For<IConfiguration>();
 
             serviceCollection.AddConsoleIoUtilities(config);
-            serviceCollection.ReceivedRegistration<IConsoleWrapper, SystemConsoleWrapper>();
             serviceCollection.ReceivedRegistration<IConsole, ExtendedConsole>();
         }
     }

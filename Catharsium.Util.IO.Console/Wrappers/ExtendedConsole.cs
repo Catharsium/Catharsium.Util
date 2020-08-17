@@ -69,7 +69,6 @@ namespace Catharsium.Util.IO.Console.Wrappers
             }
 
             return new DateTime(year, month, day, hour, minute, second);
-
         }
     }
 }
