@@ -15,6 +15,7 @@ namespace Catharsium.Util.IO.Console._Configuration
             services.AddSingleton<ConsoleIoUtilConfiguration, ConsoleIoUtilConfiguration>(_ => configuration);
 
             services.AddTransient<IChooseActionHandler, ChooseActionHandler>();
+            services.AddTransient<IConsoleWrapper, SystemConsoleWrapper>();
             services.AddTransient<IConsole, ExtendedConsole>();
 
             return services;

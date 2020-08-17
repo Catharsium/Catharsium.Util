@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
+using Catharsium.Util.IO.Console.Interfaces;
 
 namespace Catharsium.Util.IO.Console.Wrappers
 {
-    public abstract class SystemConsoleWrapper
+    public abstract class SystemConsoleWrapper : IConsoleWrapper
     {
         #region Basic
 
