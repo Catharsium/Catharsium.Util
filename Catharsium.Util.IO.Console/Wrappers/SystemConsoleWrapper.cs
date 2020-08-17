@@ -4,7 +4,7 @@ using Catharsium.Util.IO.Console.Interfaces;
 
 namespace Catharsium.Util.IO.Console.Wrappers
 {
-    public abstract class SystemConsoleWrapper : IConsoleWrapper
+    public class SystemConsoleWrapper : IConsoleWrapper
     {
         #region Basic
 
