@@ -6,7 +6,7 @@ using System.Linq;
 namespace Catharsium.Util.IO.Tests.Csv
 {
     [TestClass]
-    public class CsvParserTests : TestFixture<CsvParser>
+    public class CsvParserTests : TestFixture<CsvReader>
     {
         #region Fixture
 
@@ -25,7 +25,7 @@ namespace Catharsium.Util.IO.Tests.Csv
             var record1 = $"{Column1};{Column2};{Column3}";
             var record2 = $"{Column2};{Column3};{Column1}";
 
-            var actual = this.Target.Parse(new[] {record1, record2}, false, ';').ToList();
+            var actual = this.Target.Parse(new[] { record1, record2 }, false, ';').ToList();
             Assert.AreEqual(2, actual.Count);
         }
 
@@ -36,7 +36,7 @@ namespace Catharsium.Util.IO.Tests.Csv
             var record1 = $"{Column1},{Column2},{Column3}";
             var record2 = $"{Column2},{Column3},{Column1}";
 
-            var actual = this.Target.Parse(new[] {"Header", record1, record2}).ToList();
+            var actual = this.Target.Parse(new[] { "Header", record1, record2 }).ToList();
             Assert.AreEqual(2, actual.Count);
         }
 
@@ -47,7 +47,7 @@ namespace Catharsium.Util.IO.Tests.Csv
             var record1 = $"{Column1},{Column2},{Column3}";
             var record2 = $"{Column2},{Column3},{Column1}";
 
-            var actual = this.Target.Parse(new[] {record1, record2}, false).ToList();
+            var actual = this.Target.Parse(new[] { record1, record2 }, false).ToList();
             Assert.AreEqual(2, actual.Count);
         }
 

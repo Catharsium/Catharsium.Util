@@ -22,7 +22,7 @@ namespace Catharsium.Util.IO._Configuration
 
             services.AddTransient<ITypesLoader, TypesLoader>();
 
-            services.AddTransient<ICsvParser, CsvParser>();
+            services.AddTransient<ICsvReader, CsvReader>();
 
             return services;
         }
