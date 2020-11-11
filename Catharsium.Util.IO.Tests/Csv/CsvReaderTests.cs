@@ -6,7 +6,7 @@ using System.Linq;
 namespace Catharsium.Util.IO.Tests.Csv
 {
     [TestClass]
-    public class CsvParserTests : TestFixture<CsvReader>
+    public class CsvReaderTests : TestFixture<CsvReader>
     {
         #region Fixture
 

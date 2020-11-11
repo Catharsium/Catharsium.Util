@@ -16,7 +16,7 @@ namespace Catharsium.Util.IO.Csv
         }
 
 
-        public void WriteCSVFile<T>(string path, IEnumerable<T> data)
+        public void WriteCsvFile<T>(string path, IEnumerable<T> data)
         {
             using (var sw = new StreamWriter(path, false, new UTF8Encoding(true)))
             {

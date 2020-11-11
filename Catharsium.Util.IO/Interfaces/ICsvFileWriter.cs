@@ -4,6 +4,6 @@ namespace Catharsium.Util.IO.Interfaces
 {
     public interface ICsvFileWriter
     {
-        void WriteCSVFile<T>(string path, IEnumerable<T> data);
+        void WriteCsvFile<T>(string path, IEnumerable<T> data);
     }
 }

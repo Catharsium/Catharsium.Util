@@ -22,7 +22,9 @@ namespace Catharsium.Util.IO._Configuration
 
             services.AddTransient<ITypesLoader, TypesLoader>();
 
+            services.AddTransient<ICsvFileWriter, CsvFileWriter>();
             services.AddTransient<ICsvReader, CsvReader>();
+            services.AddTransient<ICsvWriter, CsvWriter>();
 
             return services;
         }
