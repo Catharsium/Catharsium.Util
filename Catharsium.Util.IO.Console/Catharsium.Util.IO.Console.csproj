@@ -2,16 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.6.0.4</Version>
-    <Copyright>Catharsium</Copyright>
-    <PackageProjectUrl>https://gitlab.com/Catharsium/Catharsium.Util</PackageProjectUrl>
-    <RepositoryUrl>https://gitlab.com/Catharsium/Catharsium.Util</RepositoryUrl>
-    <PackageTags>ExtendedConsole</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Utilities and wrappers for System.Console</Description>
-    <Authors>Catharsium</Authors>
-    <Company>Catharsium</Company>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Catharsium.Util.Configuration\Catharsium.Util.Configuration.csproj" />
