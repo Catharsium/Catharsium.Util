@@ -32,6 +32,61 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish <Catharsium.Util>'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/Catharsium.Util.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: True
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish <Catharsium.Util.Configuration>'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/Catharsium.Util.Configuration.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: True
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish <Catharsium.Util.IO>'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/Catharsium.Util.IO.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: True
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish <Catharsium.Util.IO.Console>'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/Catharsium.Util.IO.Console.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: True
+    
+- task: DotNetCoreCLI@2
+  displayName: 'Publish <Catharsium.Util.Testing>'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/Catharsium.Util.Testing.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: True
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish <Catharsium.Util.Web>'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '**/Catharsium.Util.Web.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: True
+
 - task: NuGetCommand@2
   inputs:
     command: 'push'
