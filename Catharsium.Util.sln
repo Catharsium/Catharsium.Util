@@ -9,35 +9,40 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Tests", "Ca
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{E7E3BC5C-3678-44A9-A2C2-4B066ED55087}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing", "Catharsium.Util.Testing\Catharsium.Util.Testing.csproj", "{AB1AE5FA-3832-4B49-B9D1-F0CE210E9BD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing", "Catharsium.Util.Testing\Catharsium.Util.Testing.csproj", "{AB1AE5FA-3832-4B49-B9D1-F0CE210E9BD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing.Tests", "Catharsium.Util.Testing.Tests\Catharsium.Util.Testing.Tests.csproj", "{CBEF8752-841D-4489-BD12-DF894D366112}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.Tests", "Catharsium.Util.Testing.Tests\Catharsium.Util.Testing.Tests.csproj", "{CBEF8752-841D-4489-BD12-DF894D366112}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{5A08AC0F-BFFF-4D24-AE61-D492960C28F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Configuration", "Catharsium.Util.Configuration\Catharsium.Util.Configuration.csproj", "{6B43ECCA-CD09-4C27-90D7-FBB00C6EE500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Configuration", "Catharsium.Util.Configuration\Catharsium.Util.Configuration.csproj", "{6B43ECCA-CD09-4C27-90D7-FBB00C6EE500}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Configuration.Tests", "Catharsium.Util.Configuration.Tests\Catharsium.Util.Configuration.Tests.csproj", "{20038F81-2C25-4F61-BDB9-1028DEC74282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Configuration.Tests", "Catharsium.Util.Configuration.Tests\Catharsium.Util.Configuration.Tests.csproj", "{20038F81-2C25-4F61-BDB9-1028DEC74282}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IO", "IO", "{BBE47DEE-ECA7-4239-ADE2-3AE5CA213617}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO", "Catharsium.Util.IO\Catharsium.Util.IO.csproj", "{D7969B7F-D043-4620-A815-AF2A618F5245}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.IO", "Catharsium.Util.IO\Catharsium.Util.IO.csproj", "{D7969B7F-D043-4620-A815-AF2A618F5245}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO.Console", "Catharsium.Util.IO.Console\Catharsium.Util.IO.Console.csproj", "{D65FBFBA-F19B-4BBF-84FC-ADA53B331DCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.IO.Console", "Catharsium.Util.IO.Console\Catharsium.Util.IO.Console.csproj", "{D65FBFBA-F19B-4BBF-84FC-ADA53B331DCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO.Tests", "Catharsium.Util.IO.Tests\Catharsium.Util.IO.Tests.csproj", "{23E7139B-8C0D-432D-92C9-0920E66EB86D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.IO.Tests", "Catharsium.Util.IO.Tests\Catharsium.Util.IO.Tests.csproj", "{23E7139B-8C0D-432D-92C9-0920E66EB86D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.IO.Console.Tests", "Catharsium.Util.IO.Console.Tests\Catharsium.Util.IO.Console.Tests.csproj", "{883077AC-328F-48F5-A458-DD3CE83386D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.IO.Console.Tests", "Catharsium.Util.IO.Console.Tests\Catharsium.Util.IO.Console.Tests.csproj", "{883077AC-328F-48F5-A458-DD3CE83386D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing.DbContext", "Catharsium.Util.Testing.DbContext\Catharsium.Util.Testing.DbContext.csproj", "{4F6DDB9B-02B4-4124-BB64-3499255BD244}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.DbContext", "Catharsium.Util.Testing.DbContext\Catharsium.Util.Testing.DbContext.csproj", "{4F6DDB9B-02B4-4124-BB64-3499255BD244}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Testing.DbContext.Tests", "Catharsium.Util.Testing.DbContext.Tests\Catharsium.Util.Testing.DbContext.Tests.csproj", "{71D508ED-C9E4-4E63-AF70-F1B95214BA8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Testing.DbContext.Tests", "Catharsium.Util.Testing.DbContext.Tests\Catharsium.Util.Testing.DbContext.Tests.csproj", "{71D508ED-C9E4-4E63-AF70-F1B95214BA8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{CF480E06-3D68-4FD0-8A43-6E1459E2D007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Web", "Catharsium.Util.Web\Catharsium.Util.Web.csproj", "{7496F2BE-9421-4EB9-B821-BC35B6C3A2E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Web", "Catharsium.Util.Web\Catharsium.Util.Web.csproj", "{7496F2BE-9421-4EB9-B821-BC35B6C3A2E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Util.Web.Tests", "Catharsium.Util.Web.Tests\Catharsium.Util.Web.Tests.csproj", "{E6E65C3A-6C86-4CC0-BC7B-D742BE051115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Util.Web.Tests", "Catharsium.Util.Web.Tests\Catharsium.Util.Web.Tests.csproj", "{E6E65C3A-6C86-4CC0-BC7B-D742BE051115}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8A3D38A-B474-4A3B-BB1B-79CAC24544B0}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
