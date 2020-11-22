@@ -115,6 +115,15 @@ namespace Catharsium.Util.IO.Console.Wrappers
 
         #endregion
 
+        #region Beep
+
+        public void Beep(int frequency, int duration)
+        {
+            System.Console.Beep(frequency, duration);
+        }
+
+        #endregion
+
         #region Read
 
         public int Read()

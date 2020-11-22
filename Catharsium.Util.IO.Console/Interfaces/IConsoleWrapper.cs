@@ -19,6 +19,7 @@ namespace Catharsium.Util.IO.Console.Interfaces
         string Title { get; set; }
         void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop);
         void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop, char sourceChar, ConsoleColor sourceForeColor, ConsoleColor sourceBackColor);
+        void Beep(int frequency, int duration);
         int Read();
         ConsoleKeyInfo ReadKey();
         string ReadLine();
