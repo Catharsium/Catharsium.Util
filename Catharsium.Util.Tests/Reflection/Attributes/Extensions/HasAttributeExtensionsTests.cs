@@ -1,10 +1,10 @@
-﻿using Catharsium.Util.Attributes;
-using Catharsium.Util.Attributes.Extensions;
+﻿using Catharsium.Util.Reflection.Attributes;
+using Catharsium.Util.Reflection.Attributes.Extensions;
 using Catharsium.Util.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel.DataAnnotations;
 
-namespace Catharsium.Util.Tests.Attributes.Extensions
+namespace Catharsium.Util.Tests.Reflection.Attributes.Extensions
 {
     [TestClass]
     public class HasAttributeExtensionsTests
@@ -17,15 +17,6 @@ namespace Catharsium.Util.Tests.Attributes.Extensions
             var subject = new MockObjectWithDisplayAttribute();
             var actual = subject.HasAttribute<DisplayAttribute>();
             Assert.IsTrue(actual);
-        }
-
-
-        [TestMethod]
-        public void HasAttribute_ObjectWithDifferentAttribute_ReturnsTrue()
-        {
-            var subject = new MockObjectWithDisplayAttribute();
-            var actual = subject.HasAttribute<AliasAttribute>();
-            Assert.IsFalse(actual);
         }
 
 

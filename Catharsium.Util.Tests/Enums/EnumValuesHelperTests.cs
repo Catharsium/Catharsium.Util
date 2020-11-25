@@ -12,12 +12,12 @@ namespace Catharsium.Util.Tests.Enums
         [TestMethod]
         public void GetValues_ReturnsEnumValues()
         {
-            var actual = EnumValuesHelper.GetValues<MockEnum>().ToArray();
+            var actual = EnumValuesHelper.GetValues<MockEnumeration>().ToArray();
             Assert.AreEqual(4, actual.Length);
-            Assert.AreEqual(MockEnum.First, actual[0]);
-            Assert.AreEqual(MockEnum.Second, actual[1]);
-            Assert.AreEqual(MockEnum.WithAlias, actual[2]);
-            Assert.AreEqual(MockEnum.WithoutAlias, actual[3]);
+            Assert.AreEqual(MockEnumeration.First, actual[0]);
+            Assert.AreEqual(MockEnumeration.Second, actual[1]);
+            Assert.AreEqual(MockEnumeration.WithAlias, actual[2]);
+            Assert.AreEqual(MockEnumeration.WithoutAlias, actual[3]);
         }
 
 

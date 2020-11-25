@@ -13,8 +13,8 @@ namespace Catharsium.Util.Tests.Enums
         [TestMethod]
         public void ParseNullableEnum_ValidValue_ReturnsEnumValue()
         {
-            var expected = MockEnum.Second;
-            var actual = expected.ToString().ParseNullableEnum<MockEnum>(false);
+            var expected = MockEnumeration.Second;
+            var actual = expected.ToString().ParseNullableEnum<MockEnumeration>(false);
             Assert.AreEqual(expected, actual);
         }
 
@@ -23,7 +23,7 @@ namespace Catharsium.Util.Tests.Enums
         public void ParseNullableEnum_EmptyValueNotRequired_ReturnsNull()
         {
             var expected = "";
-            var actual = expected.ParseNullableEnum<MockEnum>(false);
+            var actual = expected.ParseNullableEnum<MockEnumeration>(false);
             Assert.AreEqual(null, actual);
         }
 
@@ -33,7 +33,7 @@ namespace Catharsium.Util.Tests.Enums
         public void ParseNullableEnum_EmptyValueButRequired_ThrowsException()
         {
             var expected = "";
-            expected.ParseNullableEnum<MockEnum>(true);
+            expected.ParseNullableEnum<MockEnumeration>(true);
         }
 
 
@@ -42,7 +42,7 @@ namespace Catharsium.Util.Tests.Enums
         public void ParseNullableEnum_InvalidValue_ThrowsException()
         {
             var expected = "Some value";
-            expected.ParseNullableEnum<MockEnum>(false);
+            expected.ParseNullableEnum<MockEnumeration>(false);
         }
 
 
@@ -50,7 +50,7 @@ namespace Catharsium.Util.Tests.Enums
         [ExpectedException(typeof(ArgumentException))]
         public void ParseNullableEnum_NoEnumType_ThrowsException()
         {
-            var expected = MockEnum.Second;
+            var expected = MockEnumeration.Second;
             expected.ToString().ParseNullableEnum<int>(false);
         }
 
@@ -61,8 +61,8 @@ namespace Catharsium.Util.Tests.Enums
         [TestMethod]
         public void ParseEnum_ValidValue_ReturnsEnumValue()
         {
-            var expected = MockEnum.Second;
-            var actual = expected.ToString().ParseEnum<MockEnum>();
+            var expected = MockEnumeration.Second;
+            var actual = expected.ToString().ParseEnum<MockEnumeration>();
             Assert.AreEqual(expected, actual);
         }
 
@@ -72,7 +72,7 @@ namespace Catharsium.Util.Tests.Enums
         public void ParseEnum_EmptyValue_ThrowsException()
         {
             var expected = "";
-            expected.ParseEnum<MockEnum>();
+            expected.ParseEnum<MockEnumeration>();
         }
 
 
@@ -81,7 +81,7 @@ namespace Catharsium.Util.Tests.Enums
         public void ParseEnum_InvalidValue_ThrowsException()
         {
             var expected = "Other value";
-            expected.ParseEnum<MockEnum>();
+            expected.ParseEnum<MockEnumeration>();
         }
 
         #endregion
@@ -91,16 +91,16 @@ namespace Catharsium.Util.Tests.Enums
         [TestMethod]
         public void ToEnum_ValidInput_ReturnsInputAsEnum()
         {
-            var input = MockEnum.First;
-            var actual = input.ToString().ParseEnum(MockEnum.First);
-            Assert.AreEqual(MockEnum.First, actual);
+            var input = MockEnumeration.First;
+            var actual = input.ToString().ParseEnum(MockEnumeration.First);
+            Assert.AreEqual(MockEnumeration.First, actual);
         }
 
 
         [TestMethod]
         public void ToEnum_InvalidInput_ReturnsFallback()
         {
-            var defaultValue = MockEnum.Second;
+            var defaultValue = MockEnumeration.Second;
             var actual = "Not a value".ParseEnum(defaultValue);
             Assert.AreEqual(defaultValue, actual);
         }

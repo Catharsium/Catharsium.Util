@@ -1,11 +1,11 @@
 ﻿using Catharsium.Util.Interfaces;
+using Catharsium.Util.Reflection.Types;
 using Catharsium.Util.Testing;
 using Catharsium.Util.Tests._Mocks;
-using Catharsium.Util.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
-namespace Catharsium.Util.Tests.Types
+namespace Catharsium.Util.Tests.Reflection.Types
 {
     [TestClass]
     public class TypesRetrieverTests : TestFixture<TypesRetriever>

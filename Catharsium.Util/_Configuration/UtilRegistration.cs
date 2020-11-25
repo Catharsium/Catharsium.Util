@@ -1,6 +1,6 @@
 ﻿using Catharsium.Util.Comparing.Sorting;
 using Catharsium.Util.Interfaces;
-using Catharsium.Util.Types;
+using Catharsium.Util.Reflection.Types;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

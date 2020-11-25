@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Catharsium.Util.Reflection.Attributes;
+using System;
 using System.Linq;
-using Catharsium.Util.Attributes;
 
 namespace Catharsium.Util.Enums
 {

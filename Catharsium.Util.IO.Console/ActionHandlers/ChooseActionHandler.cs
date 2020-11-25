@@ -27,7 +27,7 @@ namespace Catharsium.Util.IO.Console.ActionHandlers
                 }
 
                 var selectedIndex = this.console.AskForInt("Please select an action:");
-                if (!selectedIndex.HasValue || selectedIndex <= 0 && selectedIndex > this.actionHandlers.Count) {
+                if (!selectedIndex.HasValue || selectedIndex <= 0 || selectedIndex > this.actionHandlers.Count) {
                     break;
                 }
 

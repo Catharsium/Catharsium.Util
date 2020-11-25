@@ -1,8 +1,8 @@
 ﻿using Catharsium.Util._Configuration;
 using Catharsium.Util.Comparing.Sorting;
 using Catharsium.Util.Interfaces;
+using Catharsium.Util.Reflection.Types;
 using Catharsium.Util.Testing.Extensions;
-using Catharsium.Util.Types;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

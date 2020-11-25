@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Catharsium.Util.IO.Console.Interfaces;
+using System;
 using System.IO;
-using Catharsium.Util.IO.Console.Interfaces;
 
 namespace Catharsium.Util.IO.Console.Wrappers
 {
@@ -169,6 +169,53 @@ namespace Catharsium.Util.IO.Console.Wrappers
             System.Console.ForegroundColor = color;
             System.Console.Write(text);
             System.Console.ResetColor();
+        }
+
+        #endregion
+
+        #region Dimensions
+
+        public int WindowWidth {
+            get => System.Console.WindowWidth;
+            set => System.Console.WindowWidth = value;
+        }
+
+
+        public int LargestWindowWidth => System.Console.LargestWindowWidth;
+
+
+        public int WindowHeight {
+            get => System.Console.WindowHeight;
+            set => System.Console.WindowHeight = value;
+        }
+
+
+        public int LargestWindowHeight => System.Console.LargestWindowHeight;
+
+
+        public int WindowLeft
+        {
+            get => System.Console.WindowLeft;
+            set => System.Console.WindowLeft = value;
+        }
+
+
+        public int WindowTop
+        {
+            get => System.Console.WindowTop;
+            set => System.Console.WindowTop = value;
+        }
+
+
+        public void SetWindowPosition(int left, int top)
+        {
+            System.Console.SetWindowPosition(left, top);
+        }
+
+
+        public void SetWindowSize(int width, int height)
+        {
+            System.Console.SetWindowSize(width, height);
         }
 
         #endregion

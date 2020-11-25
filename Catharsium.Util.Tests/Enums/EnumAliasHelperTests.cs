@@ -20,30 +20,30 @@ namespace Catharsium.Util.Tests.Enums
         [ExpectedException(typeof(ArgumentNullException))]
         public void ParseTo_NullAlias_ThrowsException()
         {
-            (null as string).ParseTo<MockEnum>();
+            (null as string).ParseTo<MockEnumeration>();
         }
 
 
         [TestMethod]
         public void ParseTo_ValidAlias_ReturnsEnumValue()
         {
-            var actual = "1".ParseTo<MockEnum>();
-            Assert.AreEqual(MockEnum.First, actual);
+            var actual = "1".ParseTo<MockEnumeration>();
+            Assert.AreEqual(MockEnumeration.First, actual);
         }
 
 
         [TestMethod]
         public void ParseTo_ValidAlias_ReturnsCorrectValue()
         {
-            var actual = "2".ParseTo<MockEnum>();
-            Assert.AreEqual(MockEnum.Second, actual);
+            var actual = "2".ParseTo<MockEnumeration>();
+            Assert.AreEqual(MockEnumeration.Second, actual);
         }
 
 
         [TestMethod]
         public void ParseTo_InvalidAlias_ThrowsException()
         {
-            var actual = "Other alias".ParseTo<MockEnum>();
+            var actual = "Other alias".ParseTo<MockEnumeration>();
             Assert.IsNull(actual);
         }
 
@@ -51,16 +51,16 @@ namespace Catharsium.Util.Tests.Enums
         [TestMethod]
         public void ParseTo_Fallback_DoesNotOverruleAlias()
         {
-            var actual = "2".ParseTo<MockEnum>("1");
-            Assert.AreEqual(MockEnum.Second, actual);
+            var actual = "2".ParseTo<MockEnumeration>("1");
+            Assert.AreEqual(MockEnumeration.Second, actual);
         }
 
 
         [TestMethod]
         public void ParseTo_InvalidAlias_UsesFallback()
         {
-            var actual = "Other alias".ParseTo<MockEnum>("2");
-            Assert.AreEqual(MockEnum.Second, actual);
+            var actual = "Other alias".ParseTo<MockEnumeration>("2");
+            Assert.AreEqual(MockEnumeration.Second, actual);
         }
     }
 }
