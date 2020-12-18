@@ -1,5 +1,7 @@
 ﻿using Catharsium.Util.IO.Console.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Catharsium.Util.IO.Console.Wrappers
@@ -34,6 +36,22 @@ namespace Catharsium.Util.IO.Console.Wrappers
             return int.TryParse(this.console.ReadLine(), out var result)
                 ? result
                 : (int?)null;
+        }
+
+
+        public string AskForItem(IEnumerable<string> items, string message = null)
+        {
+            var itemList = items.ToList();
+            for (var i = 1; i <= itemList.Count; i++) {
+                this.console.WriteLine($"[{i}] {itemList[i - 1]}");
+            }
+
+            var selectedIndex = this.AskForInt(message);
+            if (selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count) {
+                return itemList[selectedIndex.Value - 1];
+            }
+
+            return null;
         }
 
 
