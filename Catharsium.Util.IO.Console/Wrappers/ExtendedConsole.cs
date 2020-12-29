@@ -39,19 +39,27 @@ namespace Catharsium.Util.IO.Console.Wrappers
         }
 
 
-        public string AskForItem(IEnumerable<string> items, string message = null)
+        public T AskForItem<T>(IEnumerable<T> items, string message = null)
         {
             var itemList = items.ToList();
-            for (var i = 1; i <= itemList.Count; i++) {
+            for (var i = 1; i <= itemList.Count; i++)
+            {
                 this.console.WriteLine($"[{i}] {itemList[i - 1]}");
             }
 
             var selectedIndex = this.AskForInt(message);
-            if (selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count) {
+            if (selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count)
+            {
                 return itemList[selectedIndex.Value - 1];
             }
 
-            return null;
+            return default;
+        }
+
+
+        public string AskForItem(IEnumerable<string> items, string message = null)
+        {
+            return this.AskForItem<string>(items, message);
         }
 
 
