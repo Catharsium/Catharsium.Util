@@ -31,7 +31,7 @@ namespace Catharsium.Util.IO.Json
             {
                 var directory = this.fileFactory.CreateDirectory($@"{this.storagePath}");
                 var result = new List<T>();
-                foreach (var file in directory.GetFiles())
+                foreach (var file in directory.GetFiles("*.json"))
                 {
                     result.AddRange(this.Load(file));
                 }

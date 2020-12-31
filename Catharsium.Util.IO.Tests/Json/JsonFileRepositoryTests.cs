@@ -35,7 +35,7 @@ namespace Catharsium.Util.IO.Tests.Json
             var directory = Substitute.For<IDirectory>();
             var file1 = Substitute.For<IFile>();
             var file2 = Substitute.For<IFile>();
-            directory.GetFiles().Returns(new[] { file1, file2 });
+            directory.GetFiles("*.json").Returns(new[] { file1, file2 });
             this.GetDependency<IFileFactory>().CreateDirectory($@"{StoragePath}").Returns(directory);
             var expected1 = new[] { "First data" };
             var expected2 = new[] { "Second data" };
