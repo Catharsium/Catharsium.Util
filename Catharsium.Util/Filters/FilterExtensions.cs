@@ -5,6 +5,12 @@ namespace Catharsium.Util.Filters
 {
     public static class FilterExtensions
     {
+        public static IEnumerable<TItem> Include<TFilter, TItem>(this IEnumerable<TItem> items, List<TFilter> filters) where TFilter : IFilter<TItem>
+        {
+            return items.Include(filters.ToArray());
+        }
+
+
         public static IEnumerable<TItem> Include<TFilter, TItem>(this IEnumerable<TItem> items, params TFilter[] filters) where TFilter : IFilter<TItem>
         {
             var result = items;
@@ -13,6 +19,11 @@ namespace Catharsium.Util.Filters
             }
 
             return result;
+        }
+
+        public static IEnumerable<TItem> Exclude<TFilter, TItem>(this IEnumerable<TItem> items, List<TFilter> filters) where TFilter : IFilter<TItem>
+        {
+            return items.Exclude(filters.ToArray());
         }
 
 
