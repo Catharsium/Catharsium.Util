@@ -10,5 +10,6 @@ namespace Catharsium.Util.IO.Console.Interfaces
         T AskForItem<T>(IEnumerable<T> items, string message = null);
         string AskForItem(IEnumerable<string> items, string message = null);
         DateTime? AskForDate(string message = null);
+        DateTime AskForDate(string message, DateTime defaultValue);
     }
 }
