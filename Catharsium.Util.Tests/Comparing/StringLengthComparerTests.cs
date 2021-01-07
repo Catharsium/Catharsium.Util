@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Catharsium.Util.Comparing;
+﻿using Catharsium.Util.Comparing;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System.Collections.Generic;
 
 namespace Catharsium.Util.Tests.Comparing
 {
@@ -53,7 +53,7 @@ namespace Catharsium.Util.Tests.Comparing
             Assert.AreEqual(0, actual);
         }
 
-        
+
         [TestMethod]
         public void Compare_String_YIsNull_ReturnsZero()
         {

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Catharsium.Util.Comparing;
+﻿using Catharsium.Util.Comparing;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System.Collections.Generic;
 
 namespace Catharsium.Util.Tests.Comparing
 {
