@@ -42,14 +42,12 @@ namespace Catharsium.Util.IO.Console.Wrappers
         public T AskForItem<T>(IEnumerable<T> items, string message = null)
         {
             var itemList = items.ToList();
-            for (var i = 1; i <= itemList.Count; i++)
-            {
+            for (var i = 1 ; i <= itemList.Count ; i++) {
                 this.console.WriteLine($"[{i}] {itemList[i - 1]}");
             }
 
             var selectedIndex = this.AskForInt(message);
-            if (selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count)
-            {
+            if (selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count) {
                 return itemList[selectedIndex.Value - 1];
             }
 
@@ -63,7 +61,7 @@ namespace Catharsium.Util.IO.Console.Wrappers
         }
 
 
-        public DateTime? AskForDate(string message = null)
+        public DateTime? AskForDate(string message)
         {
             if (message != null) {
                 this.console.WriteLine(message);
@@ -95,6 +93,15 @@ namespace Catharsium.Util.IO.Console.Wrappers
             }
 
             return new DateTime(year, month, day, hour, minute, second);
+        }
+
+
+        public DateTime AskForDate(string message, DateTime defaultValue)
+        {
+            var result = this.AskForDate(message);
+            return !result.HasValue
+                ? defaultValue
+                : (DateTime)result;
         }
     }
 }
