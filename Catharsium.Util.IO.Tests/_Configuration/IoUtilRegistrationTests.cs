@@ -28,9 +28,9 @@ namespace Catharsium.Util.IO.Tests._Configuration
             serviceCollection.ReceivedRegistration<IJsonFileReader, JsonFileReader>();
             serviceCollection.ReceivedRegistration<IJsonFileWriter, JsonFileWriter>();
 
-            serviceCollection.ReceivedRegistration<ICsvFileWriter, CsvFileWriter>();
             serviceCollection.ReceivedRegistration<ICsvReader, CsvReader>();
-            serviceCollection.ReceivedRegistration<ICsvWriterFactory, CsvWriterFactory>();
+            //serviceCollection.ReceivedRegistration<ICsvFileWriter, CsvFileWriter>();
+            //serviceCollection.ReceivedRegistration<ICsvWriterFactory, CsvWriterFactory>();
         }
     }
 }
