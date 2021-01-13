@@ -14,7 +14,7 @@ namespace Catharsium.Util._Configuration
             services.AddSingleton<UtilConfiguration, UtilConfiguration>(_ => configuration);
 
             services.AddTransient<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
-            services.AddTransient<ITypesRetriever, TypesRetriever>();
+            services.AddSingleton<ITypesRetriever, TypesRetriever>();
 
             return services;
         }
