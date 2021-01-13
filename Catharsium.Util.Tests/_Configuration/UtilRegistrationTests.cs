@@ -26,6 +26,7 @@ namespace Catharsium.Util.Tests._Configuration
             serviceCollection.ReceivedRegistration<ITypesRetriever, TypesRetriever>();
 
             serviceCollection.ReceivedRegistration<IComparer<decimal>, DecimalComparer>();
+            serviceCollection.ReceivedRegistration<IComparer<int>, IntComparer>();
             serviceCollection.ReceivedRegistration<IComparer<string>, StringLengthComparer>();
         }
     }

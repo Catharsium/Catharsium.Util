@@ -16,6 +16,7 @@ namespace Catharsium.Util._Configuration
             services.AddSingleton<UtilConfiguration, UtilConfiguration>(_ => configuration);
 
             services.AddTransient<IComparer<decimal>, DecimalComparer>();
+            services.AddTransient<IComparer<int>, IntComparer>();
             services.AddTransient<IComparer<string>, StringLengthComparer>();
 
             services.AddTransient<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
