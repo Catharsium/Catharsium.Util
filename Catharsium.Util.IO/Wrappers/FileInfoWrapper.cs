@@ -57,6 +57,8 @@ namespace Catharsium.Util.IO.Wrappers
 
         public string Name => this.file.Name;
 
+        public string ExtensionlessName => Path.GetFileNameWithoutExtension(this.FullName);
+
         public long Length => this.file.Length;
 
         #endregion
