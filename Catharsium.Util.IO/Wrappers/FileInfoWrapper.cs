@@ -167,5 +167,14 @@ namespace Catharsium.Util.IO.Wrappers
         }
 
         #endregion
+
+        #region Overrides
+
+        public override string ToString()
+        {
+            return this.file.Name;
+        }
+
+        #endregion
     }
 }
