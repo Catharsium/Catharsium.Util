@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Catharsium.Util.IO.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
-using Catharsium.Util.IO.Interfaces;
+using System.Text;
 
 namespace Catharsium.Util.IO.Csv
 {
-    public class CsvParser : ICsvParser
+    public class CsvReader : ICsvReader
     {
         public List<List<string>> Parse(IEnumerable<string> records, bool skipFirst = true, char deliminator = ',')
         {
@@ -21,7 +22,7 @@ namespace Catharsium.Util.IO.Csv
             }
 
             var columnStarted = false;
-            var currentColumn = "";
+            var currentColumn = new StringBuilder();
             foreach (var character in record) {
                 if (character == '"') {
                     columnStarted = !columnStarted;
@@ -29,20 +30,20 @@ namespace Catharsium.Util.IO.Csv
 
                 else if (character == deliminator) {
                     if (!columnStarted) {
-                        result.Add(currentColumn);
-                        currentColumn = "";
+                        result.Add(currentColumn.ToString());
+                        currentColumn = new StringBuilder();
                     }
                     else {
-                        currentColumn += character;
+                        currentColumn.Append(character);
                     }
                 }
 
                 else {
-                    currentColumn += character;
+                    currentColumn.Append(character);
                 }
             }
 
-            result.Add(currentColumn);
+            result.Add(currentColumn.ToString());
 
             return result;
         }

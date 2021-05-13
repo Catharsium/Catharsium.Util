@@ -17,12 +17,14 @@ namespace Catharsium.Util.IO._Configuration
             services.AddSingleton<IoUtilConfiguration, IoUtilConfiguration>(_ => configuration);
 
             services.AddTransient<IFileFactory, FileFactory>();
-            services.AddTransient<IJsonFileWriter, JsonFileWriter>();
             services.AddTransient<IJsonFileReader, JsonFileReader>();
+            services.AddTransient<IJsonFileWriter, JsonFileWriter>();
 
             services.AddTransient<ITypesLoader, TypesLoader>();
 
-            services.AddTransient<ICsvParser, CsvParser>();
+            services.AddTransient<ICsvReader, CsvReader>();
+            //services.AddTransient<ICsvFileWriter, CsvFileWriter>();
+            //services.AddTransient<ICsvWriterFactory, CsvWriterFactory>();
 
             return services;
         }

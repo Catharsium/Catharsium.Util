@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using Catharsium.Util.Attributes;
-using Catharsium.Util.Attributes.Extensions;
+﻿using Catharsium.Util.Reflection.Attributes;
+using Catharsium.Util.Reflection.Attributes.Extensions;
 using Catharsium.Util.Tests._Mocks;
 using Catharsium.Util.Web.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
-namespace Catharsium.Util.Tests.Attributes.Extensions
+namespace Catharsium.Util.Tests.Reflection.Attributes.Extensions
 {
     [TestClass]
     public class GetAttributeExtensionsTests
@@ -96,7 +96,7 @@ namespace Catharsium.Util.Tests.Attributes.Extensions
         [TestMethod]
         public void GetAttributeValue_WithAttribute_ReturnsAttribute()
         {
-            var actual = MockEnum.WithAlias.GetMemberAttribute<AliasAttribute>();
+            var actual = MockEnumeration.WithAlias.GetMemberAttribute<AliasAttribute>();
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Aliases.Any(a => a == "My alias"));
         }
@@ -105,7 +105,7 @@ namespace Catharsium.Util.Tests.Attributes.Extensions
         [TestMethod]
         public void GetAttributeValue_WithoutAttribute_ReturnsNull()
         {
-            var actual = MockEnum.WithoutAlias.GetMemberAttribute<AliasAttribute>();
+            var actual = MockEnumeration.WithoutAlias.GetMemberAttribute<AliasAttribute>();
             Assert.IsNull(actual);
         }
 

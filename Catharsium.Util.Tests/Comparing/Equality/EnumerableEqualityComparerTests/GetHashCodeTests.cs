@@ -1,7 +1,7 @@
-﻿using System;
-using Catharsium.Util.Comparing.Equality;
+﻿using Catharsium.Util.Comparing.Equality;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Catharsium.Util.Tests.Comparing.Equality.EnumerableEqualityComparerTests
 {

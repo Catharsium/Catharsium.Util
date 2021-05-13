@@ -1,5 +1,7 @@
 ﻿using Catharsium.Util.IO.Console.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Catharsium.Util.IO.Console.Wrappers
@@ -37,7 +39,29 @@ namespace Catharsium.Util.IO.Console.Wrappers
         }
 
 
-        public DateTime? AskForDate(string message = null)
+        public T AskForItem<T>(IEnumerable<T> items, string message = null)
+        {
+            var itemList = items.ToList();
+            for (var i = 1 ; i <= itemList.Count ; i++) {
+                this.console.WriteLine($"[{i}] {itemList[i - 1]}");
+            }
+
+            var selectedIndex = this.AskForInt(message);
+            if (selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count) {
+                return itemList[selectedIndex.Value - 1];
+            }
+
+            return default;
+        }
+
+
+        public string AskForItem(IEnumerable<string> items, string message = null)
+        {
+            return this.AskForItem<string>(items, message);
+        }
+
+
+        public DateTime? AskForDate(string message)
         {
             if (message != null) {
                 this.console.WriteLine(message);
@@ -69,6 +93,15 @@ namespace Catharsium.Util.IO.Console.Wrappers
             }
 
             return new DateTime(year, month, day, hour, minute, second);
+        }
+
+
+        public DateTime AskForDate(string message, DateTime defaultValue)
+        {
+            var result = this.AskForDate(message);
+            return !result.HasValue
+                ? defaultValue
+                : (DateTime)result;
         }
     }
 }

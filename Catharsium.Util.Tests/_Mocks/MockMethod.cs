@@ -1,4 +1,4 @@
-﻿using Catharsium.Util.Attributes;
+﻿using Catharsium.Util.Reflection.Attributes;
 
 namespace Catharsium.Util.Tests._Mocks
 {

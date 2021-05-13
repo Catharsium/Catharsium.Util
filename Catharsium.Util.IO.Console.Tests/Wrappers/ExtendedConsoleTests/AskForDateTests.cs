@@ -20,14 +20,6 @@ namespace Catharsium.Util.IO.Console.Tests.Wrappers.ExtendedConsoleTests
 
 
         [TestMethod]
-        public void AskForDate_NoText_DoesNotWriteText()
-        {
-            this.Target.AskForDate();
-            this.GetDependency<IConsoleWrapper>().DidNotReceive().WriteLine(Arg.Any<string>());
-        }
-
-
-        [TestMethod]
         public void AskForDate_ValidDate_WithTime_ReturnsReadLineAsDateWithTime()
         {
             var message = "My message";
@@ -87,6 +79,30 @@ namespace Catharsium.Util.IO.Console.Tests.Wrappers.ExtendedConsoleTests
 
             var actual = this.Target.AskForDate(message);
             Assert.IsNull(actual);
+        }
+
+
+        [TestMethod]
+        public void AskForDate_WithDefaultValue_ValidDate_ReturnsDate()
+        {
+            var message = "My message";
+            var expected = new DateTime(2019, 12, 31, 13, 30, 50);
+            this.GetDependency<IConsoleWrapper>().ReadLine().Returns(expected.ToString("yyyy MM dd HH mm ss"));
+
+            var actual = this.Target.AskForDate(message, expected);
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void AskForDate_WithDefaultValue_NotADate_ReturnsDefault()
+        {
+            var message = "My message";
+            this.GetDependency<IConsoleWrapper>().ReadLine().Returns("Not a date");
+            var expected = DateTime.Now;
+
+            var actual = this.Target.AskForDate(message, expected);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

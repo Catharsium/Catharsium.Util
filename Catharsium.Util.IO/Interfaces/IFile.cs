@@ -35,6 +35,8 @@ namespace Catharsium.Util.IO.Interfaces
 
         string Name { get; }
 
+        string ExtensionlessName { get; }
+
         long Length { get; }
 
         #endregion

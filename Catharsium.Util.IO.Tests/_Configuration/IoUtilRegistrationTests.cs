@@ -23,12 +23,14 @@ namespace Catharsium.Util.IO.Tests._Configuration
 
             serviceCollection.AddIoUtilities(config);
             serviceCollection.ReceivedRegistration<IFileFactory, FileFactory>();
-            serviceCollection.ReceivedRegistration<IJsonFileWriter, JsonFileWriter>();
-            serviceCollection.ReceivedRegistration<IJsonFileReader, JsonFileReader>();
-
             serviceCollection.ReceivedRegistration<ITypesLoader, TypesLoader>();
 
-            serviceCollection.ReceivedRegistration<ICsvParser, CsvParser>();
+            serviceCollection.ReceivedRegistration<IJsonFileReader, JsonFileReader>();
+            serviceCollection.ReceivedRegistration<IJsonFileWriter, JsonFileWriter>();
+
+            serviceCollection.ReceivedRegistration<ICsvReader, CsvReader>();
+            //serviceCollection.ReceivedRegistration<ICsvFileWriter, CsvFileWriter>();
+            //serviceCollection.ReceivedRegistration<ICsvWriterFactory, CsvWriterFactory>();
         }
     }
 }

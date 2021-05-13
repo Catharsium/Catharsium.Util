@@ -31,7 +31,7 @@ namespace Catharsium.Util.Tests.Filters
         {
             this.FirstFilter.Includes(Arg.Any<string>()).Returns(true);
             this.SecondFilter.Includes(Arg.Any<string>()).Returns(true);
-            this.Target.Filters = new List<IFilter<string>> {this.FirstFilter, this.SecondFilter};
+            this.Target.Filters = new List<IFilter<string>> { this.FirstFilter, this.SecondFilter };
 
             var actual = this.Target.Includes("");
             Assert.IsTrue(actual);
@@ -43,7 +43,7 @@ namespace Catharsium.Util.Tests.Filters
         {
             this.FirstFilter.Includes(Arg.Any<string>()).Returns(true);
             this.SecondFilter.Includes(Arg.Any<string>()).Returns(false);
-            this.Target.Filters = new List<IFilter<string>> {this.FirstFilter, this.SecondFilter};
+            this.Target.Filters = new List<IFilter<string>> { this.FirstFilter, this.SecondFilter };
 
             var actual = this.Target.Includes("");
             Assert.IsTrue(actual);
@@ -55,7 +55,7 @@ namespace Catharsium.Util.Tests.Filters
         {
             this.FirstFilter.Includes(Arg.Any<string>()).Returns(false);
             this.SecondFilter.Includes(Arg.Any<string>()).Returns(false);
-            this.Target.Filters = new List<IFilter<string>> {this.FirstFilter, this.SecondFilter};
+            this.Target.Filters = new List<IFilter<string>> { this.FirstFilter, this.SecondFilter };
 
             var actual = this.Target.Includes("");
             Assert.IsFalse(actual);

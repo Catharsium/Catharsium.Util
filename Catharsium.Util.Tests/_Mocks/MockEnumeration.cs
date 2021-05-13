@@ -1,8 +1,8 @@
-﻿using Catharsium.Util.Attributes;
+﻿using Catharsium.Util.Reflection.Attributes;
 
 namespace Catharsium.Util.Tests._Mocks
 {
-    public enum MockEnum
+    public enum MockEnumeration
     {
         [Alias("1")]
         First,

@@ -57,6 +57,8 @@ namespace Catharsium.Util.IO.Wrappers
 
         public string Name => this.file.Name;
 
+        public string ExtensionlessName => Path.GetFileNameWithoutExtension(this.FullName);
+
         public long Length => this.file.Length;
 
         #endregion
@@ -162,6 +164,15 @@ namespace Catharsium.Util.IO.Wrappers
         public void Replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors)
         {
             this.file.Replace(destinationFileName, destinationBackupFileName, ignoreMetadataErrors);
+        }
+
+        #endregion
+
+        #region Overrides
+
+        public override string ToString()
+        {
+            return this.file.Name;
         }
 
         #endregion

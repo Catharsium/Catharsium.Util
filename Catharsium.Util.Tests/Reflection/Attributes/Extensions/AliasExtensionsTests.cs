@@ -1,8 +1,8 @@
-﻿using Catharsium.Util.Attributes.Extensions;
+﻿using Catharsium.Util.Reflection.Attributes.Extensions;
 using Catharsium.Util.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Catharsium.Util.Tests.Attributes.Extensions
+namespace Catharsium.Util.Tests.Reflection.Attributes.Extensions
 {
     [TestClass]
     public class AliasExtensionsTests
@@ -10,7 +10,7 @@ namespace Catharsium.Util.Tests.Attributes.Extensions
         [TestMethod]
         public void GetAlias_ValidIndex_ReturnsAliasAtIndex()
         {
-            var actual = MockEnum.First.GetAlias(0);
+            var actual = MockEnumeration.First.GetAlias(0);
             Assert.AreEqual("1", actual);
         }
 
@@ -19,7 +19,7 @@ namespace Catharsium.Util.Tests.Attributes.Extensions
         public void GetAlias_InvalidIndex_ReturnsFallback()
         {
             var fallback = "My fallback";
-            var actual = MockEnum.First.GetAlias(1, fallback);
+            var actual = MockEnumeration.First.GetAlias(1, fallback);
             Assert.AreEqual(fallback, actual);
         }
     }

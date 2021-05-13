@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Catharsium.Util.Attributes
+namespace Catharsium.Util.Reflection.Attributes
 {
     public class AliasAttribute : Attribute
     {

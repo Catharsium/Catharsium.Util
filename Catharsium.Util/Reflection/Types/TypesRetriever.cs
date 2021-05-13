@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Catharsium.Util.Types
+namespace Catharsium.Util.Reflection.Types
 {
     public class TypesRetriever : ITypesRetriever
     {
