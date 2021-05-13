@@ -103,5 +103,13 @@ namespace Catharsium.Util.IO.Console.Wrappers
                 ? defaultValue
                 : (DateTime)result;
         }
+
+
+        public void FillSection(int textLength, int sectionLength = 8, char filler = ' ')
+        {
+            for (var i = textLength ; i < sectionLength ; i++) {
+                this.console.Write(filler.ToString());
+            }
+        }
     }
 }
