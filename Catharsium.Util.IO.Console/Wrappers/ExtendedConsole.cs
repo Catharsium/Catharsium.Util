@@ -105,9 +105,9 @@ namespace Catharsium.Util.IO.Console.Wrappers
         }
 
 
-        public void FillSection(int textLength, int sectionLength = 8, char filler = ' ')
+        public void FillBlock(int textLength, int blockLength = 8, char filler = ' ')
         {
-            for (var i = textLength ; i < sectionLength ; i++) {
+            for (var i = textLength ; i < blockLength ; i++) {
                 this.console.Write(filler.ToString());
             }
         }

@@ -11,5 +11,6 @@ namespace Catharsium.Util.IO.Console.Interfaces
         string AskForItem(IEnumerable<string> items, string message = null);
         DateTime? AskForDate(string message = null);
         DateTime AskForDate(string message, DateTime defaultValue);
+        void FillBlock(int textLength, int blockLength = 8, char filler = ' ');
     }
 }
