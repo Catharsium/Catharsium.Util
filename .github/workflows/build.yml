@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: .NET 5 Application
+    name: Build
     steps:
       - uses: actions/checkout@v2
       - name: Setup dotnet
@@ -20,6 +20,7 @@ jobs:
       - run: dotnet test
   pack:
     runs-on: ubuntu-latest
+    name: Pack
     needs: build
     steps:
       - name: Checkout
@@ -38,6 +39,7 @@ jobs:
           path: ./artifacts
   publish:
     runs-on: ubuntu-latest
+    name: Publish
     needs: pack
     steps:
       - name: Setup dotnet
