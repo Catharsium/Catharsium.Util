@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  push:
+    branches: master
+    tags: '**'
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: .NET 5 Application
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.203'  
+      - run: dotnet build
+      - run: dotnet test
+  pack:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.203'  
+      - name: Set current date as env variable
+        run: echo "VERSION::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+      - name: Pack
+        run: dotnet pack --output ./artifacts --configuration Release -p:Version=$VERSION
+      - uses: actions/upload-artifact@v1
+        with:
+          name: artifacts
+          path: ./artifacts
+  publish:
+    runs-on: ubuntu-latest
+    needs: pack
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.203'  
+      - uses: actions/download-artifact@v1
+        with:
+          name: artifacts
+          path: ./artifacts
+      - name: Publish packages
+        run: dotnet nuget push ./artifacts/**.nupkg --source nuget.org --api-key ${{secrets.NUGET_TOKEN}}
