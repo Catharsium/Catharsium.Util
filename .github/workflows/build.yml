@@ -30,7 +30,7 @@ jobs:
         with:
           dotnet-version: '5.0.203'
       - name: Pack
-        run: dotnet pack --output ./artifacts --configuration Release -p:Version=${{ steps.date.outputs.date }}
+        run: dotnet pack --output ./artifacts --configuration Release -p:Version=${{ steps.date.outputs.date }}.${{ github.run_number }}
       - uses: actions/upload-artifact@v1
         with:
           name: artifacts
