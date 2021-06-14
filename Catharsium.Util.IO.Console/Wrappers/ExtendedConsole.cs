@@ -47,11 +47,9 @@ namespace Catharsium.Util.IO.Console.Wrappers
             }
 
             var selectedIndex = this.AskForInt(message);
-            if (selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count) {
-                return itemList[selectedIndex.Value - 1];
-            }
-
-            return default;
+            return selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count
+                ? itemList[selectedIndex.Value - 1]
+                : default;
         }
 
 
