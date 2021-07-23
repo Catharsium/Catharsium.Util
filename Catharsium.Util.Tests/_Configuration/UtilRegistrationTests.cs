@@ -4,6 +4,7 @@ using Catharsium.Util.Comparing.Sorting;
 using Catharsium.Util.Interfaces;
 using Catharsium.Util.Reflection.Types;
 using Catharsium.Util.Testing.Extensions;
+using Catharsium.Util.Time.Format;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,6 +29,8 @@ namespace Catharsium.Util.Tests._Configuration
             serviceCollection.ReceivedRegistration<IComparer<decimal>, DecimalComparer>();
             serviceCollection.ReceivedRegistration<IComparer<int>, IntComparer>();
             serviceCollection.ReceivedRegistration<IComparer<string>, StringLengthComparer>();
+
+            serviceCollection.ReceivedRegistration<ITimeFormatParser, TimeFormatParser>();
         }
     }
 }
