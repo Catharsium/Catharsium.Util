@@ -13,6 +13,10 @@
     <ProjectReference Include="..\Catharsium.Util\Catharsium.Util.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Types\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>

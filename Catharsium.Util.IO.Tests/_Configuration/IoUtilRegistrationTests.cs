@@ -2,7 +2,6 @@
 using Catharsium.Util.IO.Csv;
 using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.IO.Json;
-using Catharsium.Util.IO.Types;
 using Catharsium.Util.IO.Wrappers;
 using Catharsium.Util.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +22,6 @@ namespace Catharsium.Util.IO.Tests._Configuration
 
             serviceCollection.AddIoUtilities(config);
             serviceCollection.ReceivedRegistration<IFileFactory, FileFactory>();
-            serviceCollection.ReceivedRegistration<ITypesLoader, TypesLoader>();
 
             serviceCollection.ReceivedRegistration<IJsonFileReader, JsonFileReader>();
             serviceCollection.ReceivedRegistration<IJsonFileWriter, JsonFileWriter>();

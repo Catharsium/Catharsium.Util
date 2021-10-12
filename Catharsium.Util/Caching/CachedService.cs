@@ -21,10 +21,10 @@ namespace Catharsium.Util.Caching
         public virtual TResult GetData<TResult>(string method, params object[] parameters) where TResult : class
         {
             var type = this.instance.GetType();
-            var parameterTypes = parameters != null ? parameters.Select(x => x.GetType()).ToArray() : new Type[0];
+            var parameterTypes = parameters != null ? parameters.Select(x => x.GetType()).ToArray() : Array.Empty<Type>();
             var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
             var methodInfo = type.GetMethod(method, bindingFlags, null, CallingConventions.Any, parameterTypes, null);
-            
+
             if (methodInfo == null || methodInfo.ReturnType != typeof(TResult)) {
                 return default;
             }

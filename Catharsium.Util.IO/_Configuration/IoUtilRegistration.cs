@@ -2,7 +2,6 @@
 using Catharsium.Util.IO.Csv;
 using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.IO.Json;
-using Catharsium.Util.IO.Types;
 using Catharsium.Util.IO.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,8 +18,6 @@ namespace Catharsium.Util.IO._Configuration
             services.AddTransient<IFileFactory, FileFactory>();
             services.AddTransient<IJsonFileReader, JsonFileReader>();
             services.AddTransient<IJsonFileWriter, JsonFileWriter>();
-
-            services.AddTransient<ITypesLoader, TypesLoader>();
 
             services.AddTransient<ICsvReader, CsvReader>();
             //services.AddTransient<ICsvFileWriter, CsvFileWriter>();

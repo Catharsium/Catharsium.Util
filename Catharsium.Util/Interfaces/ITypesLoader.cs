@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Catharsium.Util.IO.Interfaces
+namespace Catharsium.Util.Interfaces
 {
     public interface ITypesLoader
     {

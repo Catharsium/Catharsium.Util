@@ -1,5 +1,4 @@
 ﻿using Catharsium.Util.Interfaces;
-using System;
 using System.Text.RegularExpressions;
 
 namespace Catharsium.Util.Time.Format
