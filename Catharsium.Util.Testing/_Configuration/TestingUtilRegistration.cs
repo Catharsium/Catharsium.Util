@@ -19,10 +19,10 @@ namespace Catharsium.Util.Testing._Configuration
             services.TryAddScoped<IDependencyRetriever, DependencyRetriever>();
             services.TryAddScoped<IConstructorFilter, ConstructorFilter>();
             services.TryAddScoped<ISubstituteService, SubstituteService>();
-            services.TryAddScoped<ISubstituteFactory, GuidSubstituteFactory>();
-            services.TryAddScoped<ISubstituteFactory, InterfaceSubstituteFactory>();
 
-            services.TryAddScoped(p => typeof(Guid));
+            services.AddScoped<ISubstituteFactory, GuidSubstituteFactory>();
+            services.AddScoped<ISubstituteFactory, InterfaceSubstituteFactory>();
+            services.AddScoped(p => typeof(Guid));
 
             return services;
         }
