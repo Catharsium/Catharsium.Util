@@ -5,6 +5,7 @@ using Catharsium.Util.IO.Json;
 using Catharsium.Util.IO.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Catharsium.Util.IO._Configuration
 {
@@ -15,13 +16,13 @@ namespace Catharsium.Util.IO._Configuration
             var configuration = config.Load<IoUtilConfiguration>();
             services.AddSingleton<IoUtilConfiguration, IoUtilConfiguration>(_ => configuration);
 
-            services.AddTransient<IFileFactory, FileFactory>();
-            services.AddTransient<IJsonFileReader, JsonFileReader>();
-            services.AddTransient<IJsonFileWriter, JsonFileWriter>();
+            services.TryAddTransient<IFileFactory, FileFactory>();
+            services.TryAddTransient<IJsonFileReader, JsonFileReader>();
+            services.TryAddTransient<IJsonFileWriter, JsonFileWriter>();
 
-            services.AddTransient<ICsvReader, CsvReader>();
-            //services.AddTransient<ICsvFileWriter, CsvFileWriter>();
-            //services.AddTransient<ICsvWriterFactory, CsvWriterFactory>();
+            services.TryAddTransient<ICsvReader, CsvReader>();
+            //services.TryAddTransient<ICsvFileWriter, CsvFileWriter>();
+            //services.TryAddTransient<ICsvWriterFactory, CsvWriterFactory>();
 
             return services;
         }

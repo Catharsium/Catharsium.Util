@@ -4,6 +4,7 @@ using Catharsium.Util.IO.Console.Interfaces;
 using Catharsium.Util.IO.Console.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Catharsium.Util.IO.Console._Configuration
 {
@@ -14,9 +15,9 @@ namespace Catharsium.Util.IO.Console._Configuration
             var configuration = config.Load<ConsoleIoUtilConfiguration>();
             services.AddSingleton<ConsoleIoUtilConfiguration, ConsoleIoUtilConfiguration>(_ => configuration);
 
-            services.AddTransient<IChooseActionHandler, ChooseActionHandler>();
-            services.AddTransient<IConsoleWrapper, SystemConsoleWrapper>();
-            services.AddTransient<IConsole, ExtendedConsole>();
+            services.TryAddTransient<IChooseActionHandler, ChooseActionHandler>();
+            services.TryAddTransient<IConsoleWrapper, SystemConsoleWrapper>();
+            services.TryAddTransient<IConsole, ExtendedConsole>();
 
             return services;
         }

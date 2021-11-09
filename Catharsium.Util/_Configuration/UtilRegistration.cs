@@ -5,6 +5,7 @@ using Catharsium.Util.Reflection.Types;
 using Catharsium.Util.Time.Format;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Collections.Generic;
 
 namespace Catharsium.Util._Configuration
@@ -16,14 +17,14 @@ namespace Catharsium.Util._Configuration
             var configuration = config.GetSection("Catharsium.Util").Get<UtilConfiguration>();
             services.AddSingleton<UtilConfiguration, UtilConfiguration>(_ => configuration);
 
-            services.AddScoped<IComparer<decimal>, DecimalComparer>();
-            services.AddScoped<IComparer<int>, IntComparer>();
-            services.AddScoped<IComparer<string>, StringLengthComparer>();
+            services.TryAddScoped<IComparer<decimal>, DecimalComparer>();
+            services.TryAddScoped<IComparer<int>, IntComparer>();
+            services.TryAddScoped<IComparer<string>, StringLengthComparer>();
 
-            services.AddScoped<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
-            services.AddTransient<ITypesRetriever, TypesRetriever>();
+            services.TryAddScoped<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
+            services.TryAddTransient<ITypesRetriever, TypesRetriever>();
 
-            services.AddScoped<ITimeFormatParser, TimeFormatParser>();
+            services.TryAddScoped<ITimeFormatParser, TimeFormatParser>();
 
             return services;
         }

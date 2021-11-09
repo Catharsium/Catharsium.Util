@@ -4,6 +4,7 @@ using Catharsium.Util.Testing.Reflection;
 using Catharsium.Util.Testing.Substitutes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 
 namespace Catharsium.Util.Testing._Configuration
@@ -15,13 +16,13 @@ namespace Catharsium.Util.Testing._Configuration
             var configuration = config.Load<TestingUtilConfiguration>();
             services.AddSingleton<TestingUtilConfiguration, TestingUtilConfiguration>(_ => configuration);
 
-            services.AddScoped<IDependencyRetriever, DependencyRetriever>();
-            services.AddScoped<IConstructorFilter, ConstructorFilter>();
-            services.AddScoped<ISubstituteService, SubstituteService>();
-            services.AddScoped<ISubstituteFactory, GuidSubstituteFactory>();
-            services.AddScoped<ISubstituteFactory, InterfaceSubstituteFactory>();
+            services.TryAddScoped<IDependencyRetriever, DependencyRetriever>();
+            services.TryAddScoped<IConstructorFilter, ConstructorFilter>();
+            services.TryAddScoped<ISubstituteService, SubstituteService>();
+            services.TryAddScoped<ISubstituteFactory, GuidSubstituteFactory>();
+            services.TryAddScoped<ISubstituteFactory, InterfaceSubstituteFactory>();
 
-            services.AddScoped(p => typeof(Guid));
+            services.TryAddScoped(p => typeof(Guid));
 
             return services;
         }

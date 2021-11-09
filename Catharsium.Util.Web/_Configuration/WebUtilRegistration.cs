@@ -3,6 +3,7 @@ using Catharsium.Util.Web.Interfaces;
 using Catharsium.Util.Web.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Catharsium.Util.Web._Configuration
 {
@@ -13,8 +14,8 @@ namespace Catharsium.Util.Web._Configuration
             var configuration = config.Load<WebUtilConfiguration>();
             services.AddSingleton<WebUtilConfiguration, WebUtilConfiguration>(_ => configuration);
 
-            services.AddTransient<IRestService, RestService>();
-            services.AddTransient<IUrlHelper, UrlHelper>();
+            services.TryAddTransient<IRestService, RestService>();
+            services.TryAddTransient<IUrlHelper, UrlHelper>();
 
             return services;
         }
