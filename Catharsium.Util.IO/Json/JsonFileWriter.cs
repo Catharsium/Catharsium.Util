@@ -10,7 +10,10 @@ namespace Catharsium.Util.IO.Json
     {
         public void Write(object data, string file)
         {
-            var serialized = JsonSerializer.Serialize(data);
+            var options = new JsonSerializerOptions {
+                WriteIndented = true
+            };
+            var serialized = JsonSerializer.Serialize(data, options);
             File.WriteAllText(file, serialized);
         }
 
