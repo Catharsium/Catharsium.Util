@@ -30,6 +30,10 @@ namespace Catharsium.Util.IO.Json
         {
             return await Task.Run(() => {
                 var directory = this.fileFactory.CreateDirectory($@"{this.storagePath}");
+                if(!directory.Exists) {
+                    directory.Create();
+                }
+
                 var result = new List<T>();
                 foreach (var file in directory.GetFiles("*.json")) {
                     result.Add(this.Get(file));

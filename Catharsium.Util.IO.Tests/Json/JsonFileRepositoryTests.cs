@@ -34,9 +34,10 @@ namespace Catharsium.Util.IO.Tests.Json
         #region Get
 
         [TestMethod]
-        public async Task Get_NoKey_ReturnsDataFromAllFiles()
+        public async Task Get_DirectoryExists_ReturnsDataFromAllFiles()
         {
             var directory = Substitute.For<IDirectory>();
+            directory.Exists.Returns(true);
             var file1 = Substitute.For<IFile>();
             file1.Exists.Returns(true);
             var file2 = Substitute.For<IFile>();
@@ -54,6 +55,17 @@ namespace Catharsium.Util.IO.Tests.Json
             foreach (var data in actual) {
                 Assert.IsTrue(expected1.Contains(data) || expected2.Contains(data));
             }
+        }
+
+        [TestMethod]
+        public async Task Get_DirectoryDoesNotExist_CreatesDirectory()
+        {
+            var directory = Substitute.For<IDirectory>();
+            directory.Exists.Returns(false);
+            this.GetDependency<IFileFactory>().CreateDirectory($@"{StoragePath}").Returns(directory);
+
+            await this.Target.Get();
+            directory.Received().Create();
         }
 
         #endregion
