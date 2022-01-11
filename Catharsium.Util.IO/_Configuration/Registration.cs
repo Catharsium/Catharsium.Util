@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Catharsium.Util.IO._Configuration
 {
-    public static class IoUtilRegistration
+    public static class Registration
     {
         public static IServiceCollection AddIoUtilities(this IServiceCollection services, IConfiguration config)
         {

@@ -1,6 +1,5 @@
-﻿namespace Catharsium.Util.IO._Configuration
+﻿namespace Catharsium.Util.IO._Configuration;
+
+public class IoUtilConfiguration
 {
-    public class IoUtilConfiguration
-    {
-    }
 }

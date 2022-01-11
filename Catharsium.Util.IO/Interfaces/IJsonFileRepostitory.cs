@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Catharsium.Util.IO.Interfaces
+﻿namespace Catharsium.Util.IO.Interfaces
 {
     public interface IJsonFileRepository<T>
     {
-        Task<IEnumerable<T>> Load(string fileName);
-        Task<IEnumerable<T>> LoadAll();
-        Task Store(IEnumerable<T> data, string fileName);
+        Task<List<T>> Get();
+        Task<T> Get(string key);
+        Task Add(T data, string key);
+        Task Remove(string key);
     }
 }

@@ -3,10 +3,6 @@ using Catharsium.Util.IO.Json;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Catharsium.Util.IO.Tests.Json
 {
@@ -16,66 +12,119 @@ namespace Catharsium.Util.IO.Tests.Json
         #region Fixture
 
         private static string StoragePath => "My storage path";
-        private static string FileName => "My file name";
+        private static string Key => "My file name";
+
+        private IFile File { get; set; }
 
 
         [TestInitialize]
         public void Initialize()
         {
             this.SetDependency(StoragePath, "storagePath");
+
+            this.File = Substitute.For<IFile>();
+            this.GetDependency<IFileFactory>().CreateFile($@"{StoragePath}\{Key}.json").Returns(this.File);
         }
 
         #endregion
 
-        #region LoadAll
+        #region Get
 
         [TestMethod]
-        public async Task LoadAll_ReturnsDataFromAllFiles()
+        public async Task Get_NoKey_ReturnsDataFromAllFiles()
         {
             var directory = Substitute.For<IDirectory>();
             var file1 = Substitute.For<IFile>();
+            file1.Exists.Returns(true);
             var file2 = Substitute.For<IFile>();
+            file2.Exists.Returns(true);
             directory.GetFiles("*.json").Returns(new[] { file1, file2 });
             this.GetDependency<IFileFactory>().CreateDirectory($@"{StoragePath}").Returns(directory);
-            var expected1 = new[] { "First data" };
-            var expected2 = new[] { "Second data" };
-            this.GetDependency<IJsonFileReader>().ReadFrom<IEnumerable<string>>(file1).Returns(expected1);
-            this.GetDependency<IJsonFileReader>().ReadFrom<IEnumerable<string>>(file2).Returns(expected2);
+          
+            var expected1 = "My first data";
+            var expected2 = "My second data";
+            this.GetDependency<IJsonFileReader>().ReadFrom<string>(file1).Returns(expected1);
+            this.GetDependency<IJsonFileReader>().ReadFrom<string>(file2).Returns(expected2);
 
-            var actual = await this.Target.LoadAll();
-            Assert.AreEqual(expected1.Length + expected2.Length, actual.Count());
-            foreach (var data in actual)
-            {
+            var actual = await this.Target.Get();
+            Assert.AreEqual(2, actual.Count());
+            foreach (var data in actual) {
                 Assert.IsTrue(expected1.Contains(data) || expected2.Contains(data));
             }
         }
 
         #endregion
 
-        #region Load
+        #region Get(key)
 
         [TestMethod]
-        public async Task Load_ReturnsDataFromFile()
+        [ExpectedException(typeof(IOException))]
+        public async Task Get_NewKey_ThrowsException()
         {
-            var file = Substitute.For<IFile>();
-            var expected = Array.Empty<string>();
-            this.GetDependency<IFileFactory>().CreateFile($@"{StoragePath}\{FileName}.json").Returns(file);
-            this.GetDependency<IJsonFileReader>().ReadFrom<IEnumerable<string>>(file).Returns(expected);
+            var expected = "My data";
+            this.File.Exists.Returns(false);
+            this.GetDependency<IJsonFileReader>().ReadFrom<string>(this.File).Returns(expected);
+            await this.Target.Get(Key);
+        }
 
-            var actual = await this.Target.Load(FileName);
+
+        [TestMethod]
+        public async Task Get_ExistingKey_ReturnsDataFromFile()
+        {
+            var expected = "My data";
+            this.File.Exists.Returns(true);
+            this.GetDependency<IJsonFileReader>().ReadFrom<string>(this.File).Returns(expected);
+
+            var actual = await this.Target.Get(Key);
             Assert.AreEqual(expected, actual);
         }
 
         #endregion
 
-        #region Store
+        #region Add
 
         [TestMethod]
-        public async Task Store_WritesDataToFile()
+        public async Task Add_NewKey_DoesNotDeleteFile_WritesDataToFile()
         {
-            var data = Array.Empty<string>();
-            await this.Target.Store(data, FileName);
-            this.GetDependency<IJsonFileWriter>().Received().Write(data, $@"{StoragePath}\{FileName}.json");
+            var data = "My data";
+            this.File.Exists.Returns(false);
+
+            await this.Target.Add(data, Key);
+            this.File.DidNotReceive().Delete();
+            this.GetDependency<IJsonFileWriter>().Received().Write(data, this.File);
+        }
+
+
+        [TestMethod]
+        public async Task Add_ExistingKey_DeletesFile_WritesDataToFile()
+        {
+            var data = "My data";
+            this.File.Exists.Returns(true);
+
+            await this.Target.Add(data, Key);
+            this.File.Received().Delete();
+            this.GetDependency<IJsonFileWriter>().Received().Write(data, this.File);
+        }
+
+        #endregion
+
+        #region Remove
+
+        [TestMethod]
+        [ExpectedException(typeof(IOException))]
+        public async Task Remove_NewKey_ThrowsException()
+        {
+            this.File.Exists.Returns(false);
+            await this.Target.Remove(Key);
+        }
+
+
+        [TestMethod]
+        public async Task Remove_ExistingKey_DeletesFile()
+        {
+            this.File.Exists.Returns(true);
+            await this.Target.Remove(Key);
+            this.File.Received().Delete();
         }
 
         #endregion
