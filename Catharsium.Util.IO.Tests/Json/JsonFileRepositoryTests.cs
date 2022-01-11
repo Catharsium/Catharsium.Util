@@ -3,6 +3,9 @@ using Catharsium.Util.IO.Json;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Catharsium.Util.IO.Tests.Json
 {
@@ -40,7 +43,7 @@ namespace Catharsium.Util.IO.Tests.Json
             file2.Exists.Returns(true);
             directory.GetFiles("*.json").Returns(new[] { file1, file2 });
             this.GetDependency<IFileFactory>().CreateDirectory($@"{StoragePath}").Returns(directory);
-          
+
             var expected1 = "My first data";
             var expected2 = "My second data";
             this.GetDependency<IJsonFileReader>().ReadFrom<string>(file1).Returns(expected1);
