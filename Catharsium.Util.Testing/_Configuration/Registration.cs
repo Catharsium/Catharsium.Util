@@ -9,7 +9,7 @@ using System;
 
 namespace Catharsium.Util.Testing._Configuration
 {
-    public static class TestingUtilRegistration
+    public static class Registration
     {
         public static IServiceCollection AddTestingUtilities(this IServiceCollection services, IConfiguration config)
         {
