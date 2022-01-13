@@ -1,4 +1,5 @@
 ﻿using Catharsium.Util.IO.Console.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +18,10 @@ namespace Catharsium.Util.IO.Console.ActionHandlers
 
         public T Get<T>()
         {
-            return (T)this.actionHandlers.FirstOrDefault(a => a.GetType() == typeof(T));
+            var result = (T)this.actionHandlers.FirstOrDefault(a => a.GetType() == typeof(T));
+            return result == null
+                ? throw new ArgumentException($"No action handler of type {typeof(T)} was found")
+                : result;
         }
     }
 }

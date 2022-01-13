@@ -19,7 +19,8 @@ namespace Catharsium.Util.IO.Console.Tests.ActionHandlers
 
             var actual = this.Target.Get<MyActionHandler>();
             Assert.IsNotNull(actual);
-            Assert.IsTrue(actual is MyActionHandler);
+            var actualType = actual.GetType();
+            Assert.AreEqual(typeof(MyActionHandler), actualType);
         }
 
 
