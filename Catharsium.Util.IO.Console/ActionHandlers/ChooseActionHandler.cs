@@ -23,7 +23,7 @@ namespace Catharsium.Util.IO.Console.ActionHandlers
             while (true) {
                 var index = 1;
                 foreach (var action in this.actionHandlers) {
-                    this.console.WriteLine($"[{index++}] {action.FriendlyName}");
+                    this.console.WriteLine($"[{index++}] {action.DisplayName}");
                 }
 
                 var selectedIndex = this.console.AskForInt("Please select an action:");
@@ -32,7 +32,7 @@ namespace Catharsium.Util.IO.Console.ActionHandlers
                 }
 
                 this.console.WriteLine();
-                await this.actionHandlers[selectedIndex.Value - 1].Run();
+                await this.actionHandlers[selectedIndex.Value - 1].Run<object>();
                 this.console.WriteLine();
             }
         }

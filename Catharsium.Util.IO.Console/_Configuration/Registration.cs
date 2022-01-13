@@ -8,16 +8,18 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Catharsium.Util.IO.Console._Configuration
 {
-    public static class ConsoleIoUtilRegistration
+    public static class Registration
     {
         public static IServiceCollection AddConsoleIoUtilities(this IServiceCollection services, IConfiguration config)
         {
             var configuration = config.Load<ConsoleIoUtilConfiguration>();
             services.AddSingleton<ConsoleIoUtilConfiguration, ConsoleIoUtilConfiguration>(_ => configuration);
 
-            services.TryAddTransient<IChooseActionHandler, ChooseActionHandler>();
-            services.TryAddTransient<IConsoleWrapper, SystemConsoleWrapper>();
-            services.TryAddTransient<IConsole, ExtendedConsole>();
+            services.TryAddScoped<IActionHandlerRetriever, ActionHandlerRetriever>();
+            services.TryAddScoped<IChooseActionHandler, ChooseActionHandler>();
+
+            services.TryAddScoped<IConsoleWrapper, SystemConsoleWrapper>();
+            services.TryAddScoped<IConsole, ExtendedConsole>();
 
             return services;
         }

@@ -21,8 +21,8 @@ namespace Catharsium.Util.IO.Console.Tests.ActionHandlers
         {
             var actionHandler1 = Substitute.For<IActionHandler>();
             var actionHandler2 = Substitute.For<IActionHandler>();
-            actionHandler1.FriendlyName.Returns("My friendly name 1");
-            actionHandler2.FriendlyName.Returns("My friendly name 2");
+            actionHandler1.DisplayName.Returns("My friendly name 1");
+            actionHandler2.DisplayName.Returns("My friendly name 2");
             this.ActionHandlers = new List<IActionHandler> {
                 actionHandler1, actionHandler2
             };
@@ -40,7 +40,7 @@ namespace Catharsium.Util.IO.Console.Tests.ActionHandlers
 
             await this.Target.Run();
             for (var i = 0; i < this.ActionHandlers.Count; i++) {
-                this.GetDependency<IConsole>().Received().WriteLine($"[{i + 1}] {this.ActionHandlers[i].FriendlyName}");
+                this.GetDependency<IConsole>().Received().WriteLine($"[{i + 1}] {this.ActionHandlers[i].DisplayName}");
                 await this.ActionHandlers[i].DidNotReceive().Run();
             }
         }

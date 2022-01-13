@@ -4,8 +4,7 @@ namespace Catharsium.Util.IO.Console.Interfaces
 {
     public interface IActionHandler
     {
-        string FriendlyName { get; }
-        Task Run();
+        string DisplayName { get; }
         Task<T> Run<T>();
     }
 }
