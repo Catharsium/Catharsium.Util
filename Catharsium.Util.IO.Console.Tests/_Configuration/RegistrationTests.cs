@@ -10,7 +10,7 @@ using NSubstitute;
 namespace Catharsium.Util.IO.Console.Tests._Configuration
 {
     [TestClass]
-    public class ConsoleIoUtilRegistrationTests
+    public class RegistrationTests
     {
         [TestMethod]
         public void AddIoUtilities_RegistersDependencies()

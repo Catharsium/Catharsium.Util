@@ -9,7 +9,7 @@ using NSubstitute;
 namespace Catharsium.Util.Web.Tests._Configuration
 {
     [TestClass]
-    public class UtilWebRegistrationTests
+    public class RegistrationTests
     {
         [TestMethod]
         public void AddWebUtilities_RegistersDependencies()

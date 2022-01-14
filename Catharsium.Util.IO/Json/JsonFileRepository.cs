@@ -30,7 +30,7 @@ namespace Catharsium.Util.IO.Json
         {
             return await Task.Run(() => {
                 var directory = this.fileFactory.CreateDirectory($@"{this.storagePath}");
-                if(!directory.Exists) {
+                if (!directory.Exists) {
                     directory.Create();
                 }
 

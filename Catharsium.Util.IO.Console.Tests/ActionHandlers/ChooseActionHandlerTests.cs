@@ -41,7 +41,7 @@ namespace Catharsium.Util.IO.Console.Tests.ActionHandlers
             await this.Target.Run();
             for (var i = 0; i < this.ActionHandlers.Count; i++) {
                 this.GetDependency<IConsole>().Received().WriteLine($"[{i + 1}] {this.ActionHandlers[i].DisplayName}");
-                await this.ActionHandlers[i].DidNotReceive().Run<object>();
+                await this.ActionHandlers[i].DidNotReceive().Run();
             }
         }
 
@@ -55,10 +55,10 @@ namespace Catharsium.Util.IO.Console.Tests.ActionHandlers
             await this.Target.Run();
             for (var i = 0; i < this.ActionHandlers.Count; i++) {
                 if (i == index - 1) {
-                    await this.ActionHandlers[i].Received().Run<object>();
+                    await this.ActionHandlers[i].Received().Run();
                 }
                 else {
-                    await this.ActionHandlers[i].DidNotReceive().Run<object>();
+                    await this.ActionHandlers[i].DidNotReceive().Run();
                 }
             }
         }

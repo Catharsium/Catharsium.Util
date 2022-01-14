@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Catharsium.Util._Configuration
 {
-    public static class UtilRegistration
+    public static class Registration
     {
         public static IServiceCollection AddCatharsiumUtilities(this IServiceCollection services, IConfiguration config)
         {

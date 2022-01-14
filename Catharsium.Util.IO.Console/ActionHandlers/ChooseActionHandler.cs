@@ -32,7 +32,7 @@ namespace Catharsium.Util.IO.Console.ActionHandlers
                 }
 
                 this.console.WriteLine();
-                await this.actionHandlers[selectedIndex.Value - 1].Run<object>();
+                await this.actionHandlers[selectedIndex.Value - 1].Run();
                 this.console.WriteLine();
             }
         }

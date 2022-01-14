@@ -14,7 +14,7 @@ using System.Collections.Generic;
 namespace Catharsium.Util.Tests._Configuration
 {
     [TestClass]
-    public class UtilRegistrationTests
+    public class RegistrationTests
     {
         [TestMethod]
         public void AddCatharsiumUtilities_RegistersDependencies()

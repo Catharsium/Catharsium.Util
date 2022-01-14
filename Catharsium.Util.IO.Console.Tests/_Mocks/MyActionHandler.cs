@@ -1,5 +1,4 @@
 ﻿using Catharsium.Util.IO.Console.Interfaces;
-using System;
 using System.Threading.Tasks;
 
 namespace Catharsium.Util.IO.Console.Tests._Mocks
@@ -9,9 +8,9 @@ namespace Catharsium.Util.IO.Console.Tests._Mocks
         public string DisplayName { get; }
 
 
-        public Task<T> Run<T>()
+        public Task<dynamic> Run()
         {
-            throw new NotImplementedException();
+            return Task.FromResult<dynamic>(nameof(MyActionHandler));
         }
     }
 }
