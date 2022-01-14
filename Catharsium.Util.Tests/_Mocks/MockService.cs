@@ -1,10 +1,9 @@
-﻿namespace Catharsium.Util.Tests._Mocks
+﻿namespace Catharsium.Util.Tests._Mocks;
+
+public class MockService
 {
-    public class MockService
+    public string ReadData(string input)
     {
-        public string ReadData(string input)
-        {
-            return input;
-        }
+        return input;
     }
 }

@@ -6,27 +6,24 @@ using Catharsium.Util.Time.Format;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using System.Collections.Generic;
+namespace Catharsium.Util._Configuration;
 
-namespace Catharsium.Util._Configuration
+public static class Registration
 {
-    public static class Registration
+    public static IServiceCollection AddCatharsiumUtilities(this IServiceCollection services, IConfiguration config)
     {
-        public static IServiceCollection AddCatharsiumUtilities(this IServiceCollection services, IConfiguration config)
-        {
-            var configuration = config.GetSection("Catharsium.Util").Get<UtilConfiguration>();
-            services.AddSingleton<UtilConfiguration, UtilConfiguration>(_ => configuration);
+        var configuration = config.GetSection("Catharsium.Util").Get<UtilConfiguration>();
+        services.AddSingleton<UtilConfiguration, UtilConfiguration>(_ => configuration);
 
-            services.TryAddScoped<IComparer<decimal>, DecimalComparer>();
-            services.TryAddScoped<IComparer<int>, IntComparer>();
-            services.TryAddScoped<IComparer<string>, StringLengthComparer>();
+        services.TryAddScoped<IComparer<decimal>, DecimalComparer>();
+        services.TryAddScoped<IComparer<int>, IntComparer>();
+        services.TryAddScoped<IComparer<string>, StringLengthComparer>();
 
-            services.TryAddScoped<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
-            services.TryAddTransient<ITypesRetriever, TypesRetriever>();
+        services.TryAddScoped<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
+        services.TryAddTransient<ITypesRetriever, TypesRetriever>();
 
-            services.TryAddScoped<ITimeFormatParser, TimeFormatParser>();
+        services.TryAddScoped<ITimeFormatParser, TimeFormatParser>();
 
-            return services;
-        }
+        return services;
     }
 }

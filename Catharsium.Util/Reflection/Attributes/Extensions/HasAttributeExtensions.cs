@@ -1,18 +1,15 @@
-﻿using System;
+﻿namespace Catharsium.Util.Reflection.Attributes.Extensions;
 
-namespace Catharsium.Util.Reflection.Attributes.Extensions
+public static class HasAttributeExtensions
 {
-    public static class HasAttributeExtensions
+    public static bool HasAttribute<T>(this object subject) where T : Attribute
     {
-        public static bool HasAttribute<T>(this object subject) where T : Attribute
-        {
-            return subject.GetAttribute<T>() != null;
-        }
+        return subject.GetAttribute<T>() != null;
+    }
 
 
-        public static bool HasAttribute<T>(this object subject, string memberName) where T : Attribute
-        {
-            return subject.GetAttribute<T>(memberName) != null;
-        }
+    public static bool HasAttribute<T>(this object subject, string memberName) where T : Attribute
+    {
+        return subject.GetAttribute<T>(memberName) != null;
     }
 }

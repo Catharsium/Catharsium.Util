@@ -1,15 +1,12 @@
-﻿using System;
+﻿namespace Catharsium.Util.Reflection.Attributes;
 
-namespace Catharsium.Util.Reflection.Attributes
+public class AliasAttribute : Attribute
 {
-    public class AliasAttribute : Attribute
+    public string[] Aliases { get; }
+
+
+    public AliasAttribute(params string[] aliases)
     {
-        public string[] Aliases { get; }
-
-
-        public AliasAttribute(params string[] aliases)
-        {
-            this.Aliases = aliases;
-        }
+        this.Aliases = aliases;
     }
 }

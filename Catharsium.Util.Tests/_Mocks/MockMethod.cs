@@ -1,12 +1,10 @@
 ﻿using Catharsium.Util.Reflection.Attributes;
+namespace Catharsium.Util.Tests._Mocks;
 
-namespace Catharsium.Util.Tests._Mocks
+public class MockMethod
 {
-    public class MockMethod
-    {
-        [Alias("My alias")]
-        public void MethodWithAlias() { }
+    [Alias("My alias")]
+    public void MethodWithAlias() { }
 
-        public void MethodWithoutAlias() { }
-    }
+    public void MethodWithoutAlias() { }
 }

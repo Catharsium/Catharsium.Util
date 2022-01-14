@@ -1,25 +1,20 @@
-﻿using System.Collections.Generic;
+﻿namespace Catharsium.Util.Comparing;
 
-namespace Catharsium.Util.Comparing
+public class StringLengthComparer : IComparer<string>
 {
-    public class StringLengthComparer : IComparer<string>
+    private readonly IComparer<int> intComparer;
+
+
+    public StringLengthComparer(IComparer<int> intComparer)
     {
-        private readonly IComparer<int> intComparer;
+        this.intComparer = intComparer;
+    }
 
 
-        public StringLengthComparer(IComparer<int> intComparer)
-        {
-            this.intComparer = intComparer;
-        }
-
-
-        public int Compare(string x, string y)
-        {
-            if (x == null || y == null) {
-                return 0;
-            }
-
-            return this.intComparer.Compare(x.Length, y.Length);
-        }
+    public int Compare(string x, string y)
+    {
+        return x == null || y == null
+            ? 0
+            : this.intComparer.Compare(x.Length, y.Length);
     }
 }

@@ -1,21 +1,18 @@
-﻿using System;
+﻿namespace Catharsium.Util.Reflection.Attributes;
 
-namespace Catharsium.Util.Reflection.Attributes
+public class ReplacedWithAttribute : Attribute
 {
-    public class ReplacedWithAttribute : Attribute
+    private readonly Type replacementType;
+
+
+    public ReplacedWithAttribute(Type replacementType)
     {
-        private readonly Type replacementType;
+        this.replacementType = replacementType;
+    }
 
 
-        public ReplacedWithAttribute(Type replacementType)
-        {
-            this.replacementType = replacementType;
-        }
-
-
-        public override string ToString()
-        {
-            return " " + this.replacementType.FullName;
-        }
+    public override string ToString()
+    {
+        return " " + this.replacementType.FullName;
     }
 }

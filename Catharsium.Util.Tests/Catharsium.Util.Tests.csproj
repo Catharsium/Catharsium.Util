@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-
+    <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -10,17 +9,13 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
-    <PackageReference Include="coverlet.collector" Version="3.1.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="NSubstitute" Version="4.2.2" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Catharsium.Util.Testing\Catharsium.Util.Testing.csproj" />
-    <ProjectReference Include="..\Catharsium.Util.Web\Catharsium.Util.Web.csproj" />
     <ProjectReference Include="..\Catharsium.Util\Catharsium.Util.csproj" />
+    <ProjectReference Include="..\Testing\Catharsium.Util.Testing\Catharsium.Util.Testing.csproj" />
+    <ProjectReference Include="..\Web\Catharsium.Util.Web\Catharsium.Util.Web.csproj" />
   </ItemGroup>
 
 </Project>

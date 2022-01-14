@@ -1,16 +1,13 @@
-﻿using System.Collections.Generic;
+﻿namespace Catharsium.Util.Comparing;
 
-namespace Catharsium.Util.Comparing
+public class DecimalComparer : IComparer<decimal>
 {
-    public class DecimalComparer : IComparer<decimal>
+    public int Compare(decimal x, decimal y)
     {
-        public int Compare(decimal x, decimal y)
-        {
-            if (x < y) {
-                return -1;
-            }
-
-            return x == y ? 0 : 1;
-        }
+        return x < y
+            ? -1
+            : x == y
+                ? 0
+                : 1;
     }
 }

@@ -10,27 +10,25 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System.Collections.Generic;
+namespace Catharsium.Util.Tests._Configuration;
 
-namespace Catharsium.Util.Tests._Configuration
+[TestClass]
+public class RegistrationTests
 {
-    [TestClass]
-    public class RegistrationTests
+    [TestMethod]
+    public void AddCatharsiumUtilities_RegistersDependencies()
     {
-        [TestMethod]
-        public void AddCatharsiumUtilities_RegistersDependencies()
-        {
-            var serviceCollection = Substitute.For<IServiceCollection>();
-            var config = Substitute.For<IConfiguration>();
+        var serviceCollection = Substitute.For<IServiceCollection>();
+        var config = Substitute.For<IConfiguration>();
 
-            serviceCollection.AddCatharsiumUtilities(config);
-            serviceCollection.ReceivedRegistration<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
-            serviceCollection.ReceivedRegistration<ITypesRetriever, TypesRetriever>();
+        serviceCollection.AddCatharsiumUtilities(config);
+        serviceCollection.ReceivedRegistration<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
+        serviceCollection.ReceivedRegistration<ITypesRetriever, TypesRetriever>();
 
-            serviceCollection.ReceivedRegistration<IComparer<decimal>, DecimalComparer>();
-            serviceCollection.ReceivedRegistration<IComparer<int>, IntComparer>();
-            serviceCollection.ReceivedRegistration<IComparer<string>, StringLengthComparer>();
+        serviceCollection.ReceivedRegistration<IComparer<decimal>, DecimalComparer>();
+        serviceCollection.ReceivedRegistration<IComparer<int>, IntComparer>();
+        serviceCollection.ReceivedRegistration<IComparer<string>, StringLengthComparer>();
 
-            serviceCollection.ReceivedRegistration<ITimeFormatParser, TimeFormatParser>();
-        }
+        serviceCollection.ReceivedRegistration<ITimeFormatParser, TimeFormatParser>();
     }
 }

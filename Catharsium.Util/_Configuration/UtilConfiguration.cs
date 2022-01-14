@@ -1,6 +1,5 @@
-﻿namespace Catharsium.Util._Configuration
+﻿namespace Catharsium.Util._Configuration;
+
+public class UtilConfiguration
 {
-    public class UtilConfiguration
-    {
-    }
 }
