@@ -1,4 +1,4 @@
-name: DotNet
+name: Build
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.203'
+          dotnet-version: '6.0.x'
       - name: Restore dependencies
         run: dotnet restore
       - run: dotnet build --no-restore
@@ -32,7 +32,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.203'
+          dotnet-version: '6.0.x'
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
@@ -52,7 +52,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.203'  
+          dotnet-version: '6.0.x'  
       - uses: actions/download-artifact@v1
         with:
           name: artifacts
