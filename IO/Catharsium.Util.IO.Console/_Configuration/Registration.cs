@@ -14,9 +14,7 @@ public static class Registration
         var configuration = config.Load<ConsoleIoUtilConfiguration>();
         services.AddSingleton<ConsoleIoUtilConfiguration, ConsoleIoUtilConfiguration>(_ => configuration);
 
-        services.TryAddScoped<IActionHandlerRetriever, ActionHandlerRetriever>();
         services.TryAddScoped<IChooseActionHandler, ChooseActionHandler>();
-
         services.TryAddScoped<IConsoleWrapper, SystemConsoleWrapper>();
         services.TryAddScoped<IConsole, ExtendedConsole>();
 

@@ -3,5 +3,6 @@
 public interface IActionHandler
 {
     string DisplayName { get; }
-    Task<dynamic> Run();
+
+    Task Run();
 }
