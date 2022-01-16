@@ -10,7 +10,7 @@ namespace Catharsium.Util.IO.Files._Configuration;
 
 public static class Registration
 {
-    public static IServiceCollection AddIoUtilities(this IServiceCollection services, IConfiguration config)
+    public static IServiceCollection AddFilesIoUtilities(this IServiceCollection services, IConfiguration config)
     {
         var configuration = config.Load<IoUtilConfiguration>();
         services.AddSingleton<IoUtilConfiguration, IoUtilConfiguration>(_ => configuration);

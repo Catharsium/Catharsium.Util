@@ -19,7 +19,7 @@ public class RegistrationTests
         var serviceCollection = Substitute.For<IServiceCollection>();
         var config = Substitute.For<IConfiguration>();
 
-        serviceCollection.AddIoUtilities(config);
+        serviceCollection.AddFilesIoUtilities(config);
         serviceCollection.ReceivedRegistration<IFileFactory, FileFactory>();
 
         serviceCollection.ReceivedRegistration<IJsonFileReader, JsonFileReader>();
