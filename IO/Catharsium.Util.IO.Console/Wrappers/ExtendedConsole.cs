@@ -31,7 +31,7 @@ public class ExtendedConsole : SystemConsoleWrapper, IConsole
 
         return int.TryParse(this.console.ReadLine(), out var result)
             ? result
-            : (int?)null;
+            : null;
     }
 
 

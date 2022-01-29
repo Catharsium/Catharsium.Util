@@ -1,4 +1,5 @@
-﻿using Catharsium.Util.IO.Console.ActionHandlers;
+﻿using Catharsium.Util.IO.Console.ActionHandlers.Implementation;
+using Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
 using Catharsium.Util.IO.Console.Interfaces;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,26 +9,25 @@ using System.Threading.Tasks;
 namespace Catharsium.Util.IO.Console.Tests.ActionHandlers;
 
 [TestClass]
-public class ChooseActionHandlerTests : TestFixture<ChooseActionHandler>
+public class MainMenuActionHandlerTests : TestFixture<MainMenuActionHandler>
 {
     #region Fixture
 
-    private List<IActionHandler> ActionHandlers { get; set; }
+    private List<IMenuActionHandler> ActionHandlers { get; set; }
 
 
     [TestInitialize]
     public void Initialize()
     {
-        var actionHandler1 = Substitute.For<IActionHandler>();
-        var actionHandler2 = Substitute.For<IActionHandler>();
-        actionHandler1.DisplayName.Returns("My friendly name 1");
-        actionHandler2.DisplayName.Returns("My friendly name 2");
-        this.ActionHandlers = new List<IActionHandler> {
-                actionHandler1, actionHandler2
-            };
-        this.SetDependency<IEnumerable<IActionHandler>>(this.ActionHandlers);
+        var actionHandler1 = Substitute.For<IMenuActionHandler>();
+        var actionHandler2 = Substitute.For<IMenuActionHandler>();
+        actionHandler1.MenuName.Returns("My friendly name 1");
+        actionHandler2.MenuName.Returns("My friendly name 2");
+        this.ActionHandlers = new List<IMenuActionHandler> {
+            actionHandler1, actionHandler2
+        };
+        this.SetDependency<IEnumerable<IMenuActionHandler>>(this.ActionHandlers, "actionHandlers");
     }
-
 
     #endregion
 
@@ -39,7 +39,7 @@ public class ChooseActionHandlerTests : TestFixture<ChooseActionHandler>
 
         await this.Target.Run();
         for (var i = 0; i < this.ActionHandlers.Count; i++) {
-            this.GetDependency<IConsole>().Received().WriteLine($"[{i + 1}] {this.ActionHandlers[i].DisplayName}");
+            this.GetDependency<IConsole>().Received().WriteLine($"[{i + 1}] {this.ActionHandlers[i].MenuName}");
             await this.ActionHandlers[i].DidNotReceive().Run();
         }
     }
