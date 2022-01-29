@@ -1,4 +1,5 @@
 ﻿using Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
+using Catharsium.Util.IO.Console.ActionHandlers.Interfaces.Internal;
 using Catharsium.Util.IO.Console.Interfaces;
 namespace Catharsium.Util.IO.Console.ActionHandlers.Implementation;
 

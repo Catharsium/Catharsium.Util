@@ -1,5 +1,5 @@
 ﻿using Catharsium.Util.IO.Console.Interfaces;
-namespace Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
+namespace Catharsium.Util.IO.Console.ActionHandlers.Interfaces.Internal;
 
 public abstract class MenuActionHandler<T> : IMenuActionHandler where T : IActionHandler
 {
