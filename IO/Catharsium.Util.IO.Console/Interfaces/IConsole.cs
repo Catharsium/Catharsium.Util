@@ -4,6 +4,8 @@ public interface IConsole : IConsoleWrapper
 {
     string AskForText(string message = null);
     int? AskForInt(string message = null);
+    decimal? AskForDecimal(string message = null);
+    T? AskForEnum<T>(string message = null) where T : struct, IConvertible;
     T AskForItem<T>(IEnumerable<T> items, string message = null);
     string AskForItem(IEnumerable<string> items, string message = null);
     DateTime? AskForDate(string message = null);
