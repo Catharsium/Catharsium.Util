@@ -1,4 +1,5 @@
-﻿using Catharsium.Util.IO.Console.Interfaces;
+﻿using Catharsium.Util.Enums;
+using Catharsium.Util.IO.Console.Interfaces;
 using System.Text.RegularExpressions;
 namespace Catharsium.Util.IO.Console.Wrappers;
 
@@ -31,6 +32,32 @@ public class ExtendedConsole : SystemConsoleWrapper, IConsole
 
         return int.TryParse(this.console.ReadLine(), out var result)
             ? result
+            : null;
+    }
+
+
+    public decimal? AskForDecimal(string message = null)
+    {
+        if (message != null) {
+            this.console.WriteLine(message);
+        }
+
+        return decimal.TryParse(this.console.ReadLine(), out var result)
+            ? result
+            : null;
+    }
+
+
+    public T? AskForEnum<T>(string message = null) where T : struct, IConvertible
+    {
+        var itemList = EnumValuesHelper.GetValues<T>();
+        for (var i = 1; i <= itemList.Count(); i++) {
+            this.console.WriteLine($"[{i}] {itemList.ElementAt(i - 1)}");
+        }
+
+        var selectedIndex = this.AskForInt(message);
+        return selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count()
+            ? itemList.ElementAt(selectedIndex.Value - 1)
             : null;
     }
 
