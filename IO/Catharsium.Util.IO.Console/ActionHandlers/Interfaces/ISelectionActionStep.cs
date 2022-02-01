@@ -1,6 +1,6 @@
 ﻿namespace Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
 
-public interface ISelectionStep<T>
+public interface ISelectionActionStep<T>
 {
     Task<T> Select();
 }

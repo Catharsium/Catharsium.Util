@@ -20,6 +20,7 @@ public class RegistrationTests
         var config = Substitute.For<IConfiguration>();
 
         serviceCollection.AddConsoleIoUtilities(config);
+        serviceCollection.ReceivedRegistration<ISingleMenuActionHandler, SingleMenuActionHandler>();
         serviceCollection.ReceivedRegistration<IMainMenuActionHandler, MainMenuActionHandler>();
         serviceCollection.ReceivedRegistration<IConsoleWrapper, SystemConsoleWrapper>();
         serviceCollection.ReceivedRegistration<IConsole, ExtendedConsole>();
