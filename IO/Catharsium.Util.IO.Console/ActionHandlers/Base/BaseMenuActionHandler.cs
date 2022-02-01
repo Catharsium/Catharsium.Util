@@ -1,22 +1,19 @@
-﻿using Catharsium.Util.IO.Console.Interfaces;
-namespace Catharsium.Util.IO.Console.ActionHandlers.Interfaces.Internal;
+﻿using Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
+using Catharsium.Util.IO.Console.Interfaces;
+namespace Catharsium.Util.IO.Console.ActionHandlers.Base;
 
-public abstract class MenuActionHandler<T> : IMenuActionHandler where T : IActionHandler
+public abstract class BaseMenuActionHandler<T> : BaseActionHandler, IMenuActionHandler where T : IActionHandler
 {
     private readonly IEnumerable<T> actionHandlers;
-    private readonly IConsole console;
-
-    public abstract string MenuName { get; }
 
 
-    public MenuActionHandler(IEnumerable<T> actionHandlers, IConsole console)
+    public BaseMenuActionHandler(IEnumerable<T> actionHandlers, IConsole console, string menuName) : base(console, menuName)
     {
         this.actionHandlers = actionHandlers.ToList();
-        this.console = console;
     }
 
 
-    public async Task Run()
+    public override async Task Run()
     {
         while (true) {
             this.console.WriteLine("Please select an action:");

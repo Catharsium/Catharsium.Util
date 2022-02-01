@@ -31,6 +31,7 @@ public class MainMenuActionHandlerTests : TestFixture<MainMenuActionHandler>
 
     #endregion
 
+    #region Run
 
     [TestMethod]
     public async Task Run_WritesActionHandlers()
@@ -61,4 +62,17 @@ public class MainMenuActionHandlerTests : TestFixture<MainMenuActionHandler>
             }
         }
     }
+
+    #endregion
+
+    #region ToString
+
+    [TestMethod]
+    public void ToString_ReturnsMenuName()
+    {
+        var actual = this.Target.ToString();
+        Assert.AreEqual(this.Target.MenuName, actual);
+    }
+
+    #endregion
 }
