@@ -1,6 +1,6 @@
 ﻿using Catharsium.Util.IO.Console._Configuration;
 using Catharsium.Util.IO.Console.ActionHandlers.Implementation;
-using Catharsium.Util.IO.Console.ActionHandlers.Interfaces.Internal;
+using Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
 using Catharsium.Util.IO.Console.Interfaces;
 using Catharsium.Util.IO.Console.Wrappers;
 using Catharsium.Util.Testing.Extensions;
