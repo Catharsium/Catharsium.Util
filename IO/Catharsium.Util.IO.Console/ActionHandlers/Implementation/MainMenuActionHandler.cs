@@ -5,7 +5,10 @@ namespace Catharsium.Util.IO.Console.ActionHandlers.Implementation;
 
 public class MainMenuActionHandler : BaseMenuActionHandler<IActionHandler>, IMainMenuActionHandler
 {
+    public MainMenuActionHandler(IEnumerable<IActionHandler> actionHandlers, IConsole console) : base(actionHandlers, console, "Main")
+    { }
+
+
     public MainMenuActionHandler(IEnumerable<IMenuActionHandler> actionHandlers, IConsole console) : base(actionHandlers, console, "Main")
-    {
-    }
+    { }
 }
