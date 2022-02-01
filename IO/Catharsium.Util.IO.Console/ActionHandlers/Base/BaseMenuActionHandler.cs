@@ -4,7 +4,7 @@ namespace Catharsium.Util.IO.Console.ActionHandlers.Base;
 
 public abstract class BaseMenuActionHandler<T> : BaseActionHandler, IMenuActionHandler where T : IActionHandler
 {
-    private readonly IEnumerable<T> actionHandlers;
+    protected readonly IEnumerable<T> actionHandlers;
 
 
     public BaseMenuActionHandler(IEnumerable<T> actionHandlers, IConsole console, string menuName) : base(console, menuName)
