@@ -50,11 +50,12 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
         this.GetDependency<IJsonFileReader>().ReadFrom<string>(file2).Returns(expected2);
 
         var actual = await this.Target.Get();
-        Assert.AreEqual(2, actual.Count());
+        Assert.AreEqual(2, actual.Count);
         foreach (var data in actual) {
             Assert.IsTrue(expected1.Contains(data) || expected2.Contains(data));
         }
     }
+
 
     [TestMethod]
     public async Task Get_DirectoryDoesNotExist_CreatesDirectory()
