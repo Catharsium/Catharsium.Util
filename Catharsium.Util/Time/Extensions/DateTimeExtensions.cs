@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace Catharsium.Util.Time.Extensions
 {
@@ -12,6 +11,21 @@ namespace Catharsium.Util.Time.Extensions
             var calendarWeekRule = cultureInfo.DateTimeFormat.CalendarWeekRule;
             var firstDayOfWeek = cultureInfo.DateTimeFormat.FirstDayOfWeek;
             return calendar.GetWeekOfYear(date, calendarWeekRule, firstDayOfWeek);
+        }
+
+
+        public static DateTime GetDayOfWeek(this DateTime date, DayOfWeek day, DayOfWeek firstDay = DayOfWeek.Sunday)
+        {
+            var currentDate = date.Date;
+            while (currentDate.DayOfWeek != day) {
+                if (currentDate.DayOfWeek == firstDay) {
+                    currentDate = currentDate.AddDays(7);
+                }
+
+                currentDate = currentDate.AddDays(-1);
+            }
+
+            return currentDate;
         }
     }
 }

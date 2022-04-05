@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Catharsium.Util.Time.Format
+﻿namespace Catharsium.Util.Time.Format
 {
     public class TimePeriod
     {
@@ -82,7 +80,7 @@ namespace Catharsium.Util.Time.Format
 
 
         public static TimePeriod operator +(TimePeriod a, TimePeriod b)
-            => new TimePeriod(
+            => new(
                 a.Years + b.Years,
                 a.Weeks + b.Weeks,
                 a.Days + b.Days,
