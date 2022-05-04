@@ -88,7 +88,7 @@ public class AskForDateTests : TestFixture<ExtendedConsole>
         var expected = new DateTime(2019, 12, 31, 13, 30, 50);
         this.GetDependency<IConsoleWrapper>().ReadLine().Returns(expected.ToString("yyyy MM dd HH mm ss"));
 
-        var actual = this.Target.AskForDate(message, expected);
+        var actual = this.Target.AskForDate(expected, message);
         Assert.AreEqual(expected, actual);
     }
 
@@ -100,7 +100,7 @@ public class AskForDateTests : TestFixture<ExtendedConsole>
         this.GetDependency<IConsoleWrapper>().ReadLine().Returns("Not a date");
         var expected = DateTime.Now;
 
-        var actual = this.Target.AskForDate(message, expected);
+        var actual = this.Target.AskForDate(expected, message);
         Assert.AreEqual(expected, actual);
     }
 }

@@ -47,4 +47,28 @@ public class AskForIntTests : TestFixture<ExtendedConsole>
         var actual = this.Target.AskForInt(message);
         Assert.IsNull(actual);
     }
+
+
+    [TestMethod]
+    public void AskForInt_DefaultValue_ValidNumber_ReturnsDefaultValue()
+    {
+        var expected = 123;
+        var message = "My message";
+        this.GetDependency<IConsoleWrapper>().ReadLine().Returns(expected.ToString());
+
+        var actual = this.Target.AskForInt(expected + 1, message);
+        Assert.AreEqual(expected, actual);
+    }
+
+
+    [TestMethod]
+    public void AskForInt_DefaultValue_InvalidNumber_ReturnsDefaultValue()
+    {
+        var message = "My message";
+        this.GetDependency<IConsoleWrapper>().ReadLine().Returns("Not a number");
+        var expected = 123;
+
+        var actual = this.Target.AskForInt(expected, message);
+        Assert.AreEqual(expected, actual);
+    }
 }

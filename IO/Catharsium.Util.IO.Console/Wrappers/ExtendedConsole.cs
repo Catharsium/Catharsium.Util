@@ -24,41 +24,11 @@ public class ExtendedConsole : SystemConsoleWrapper, IConsole
     }
 
 
-    public int? AskForInt(string message = null)
+    public void FillBlock(int textLength, int blockLength = 8, char filler = ' ')
     {
-        if (message != null) {
-            this.console.WriteLine(message);
+        for (var i = textLength; i < blockLength; i++) {
+            this.console.Write(filler.ToString());
         }
-
-        return int.TryParse(this.console.ReadLine(), out var result)
-            ? result
-            : null;
-    }
-
-
-    public decimal? AskForDecimal(string message = null)
-    {
-        if (message != null) {
-            this.console.WriteLine(message);
-        }
-
-        return decimal.TryParse(this.console.ReadLine(), out var result)
-            ? result
-            : null;
-    }
-
-
-    public T? AskForEnum<T>(string message = null) where T : struct, IConvertible
-    {
-        var itemList = EnumValuesHelper.GetValues<T>();
-        for (var i = 1; i <= itemList.Count(); i++) {
-            this.console.WriteLine($"[{i}] {itemList.ElementAt(i - 1)}");
-        }
-
-        var selectedIndex = this.AskForInt(message);
-        return selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count()
-            ? itemList.ElementAt(selectedIndex.Value - 1)
-            : null;
     }
 
 
@@ -75,14 +45,79 @@ public class ExtendedConsole : SystemConsoleWrapper, IConsole
             : default;
     }
 
+    #region AskForInt
 
-    public string AskForItem(IEnumerable<string> items, string message = null)
+    public int? AskForInt(string message = null)
     {
-        return this.AskForItem<string>(items, message);
+        if (message != null) {
+            this.console.WriteLine(message);
+        }
+
+        return int.TryParse(this.console.ReadLine(), out var result)
+            ? result
+            : null;
     }
 
 
-    public DateTime? AskForDate(string message)
+    public int AskForInt(int defaultValue, string message = null)
+    {
+        var result = this.AskForInt(message);
+        return result ?? defaultValue
+;
+    }
+
+    #endregion
+
+    #region AskForDecimal
+
+    public decimal? AskForDecimal(string message = null)
+    {
+        if (message != null) {
+            this.console.WriteLine(message);
+        }
+
+        return decimal.TryParse(this.console.ReadLine(), out var result)
+            ? result
+            : null;
+    }
+
+
+    public decimal AskForDecimal(decimal defaultValue, string message = null)
+    {
+        var result = this.AskForDecimal(message);
+        return result ?? defaultValue
+;
+    }
+
+    #endregion
+
+    #region AskForEnum
+
+    public T? AskForEnum<T>(string message = null) where T : struct, IConvertible
+    {
+        var itemList = EnumValuesHelper.GetValues<T>();
+        for (var i = 1; i <= itemList.Count(); i++) {
+            this.console.WriteLine($"[{i}] {itemList.ElementAt(i - 1)}");
+        }
+
+        var selectedIndex = this.AskForInt(message);
+        return selectedIndex.HasValue && selectedIndex.Value > 0 && selectedIndex.Value <= itemList.Count()
+            ? itemList.ElementAt(selectedIndex.Value - 1)
+            : null;
+    }
+
+
+    public T AskForEnum<T>(T defaultValue, string message = null) where T : struct, IConvertible
+    {
+        var result = this.AskForEnum<T>(message);
+        return result ?? defaultValue;
+    }
+
+    #endregion
+
+    #region AskForDate
+
+    public DateTime? AskForDate(string message = null)
     {
         if (message != null) {
             this.console.WriteLine(message);
@@ -117,7 +152,7 @@ public class ExtendedConsole : SystemConsoleWrapper, IConsole
     }
 
 
-    public DateTime AskForDate(string message, DateTime defaultValue)
+    public DateTime AskForDate(DateTime defaultValue, string message)
     {
         var result = this.AskForDate(message);
         return !result.HasValue
@@ -125,11 +160,5 @@ public class ExtendedConsole : SystemConsoleWrapper, IConsole
             : (DateTime)result;
     }
 
-
-    public void FillBlock(int textLength, int blockLength = 8, char filler = ' ')
-    {
-        for (var i = textLength; i < blockLength; i++) {
-            this.console.Write(filler.ToString());
-        }
-    }
+    #endregion
 }

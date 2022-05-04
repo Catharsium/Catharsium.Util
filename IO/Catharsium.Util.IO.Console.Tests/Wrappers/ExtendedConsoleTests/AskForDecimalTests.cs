@@ -47,4 +47,28 @@ public class AskForDecimalTests : TestFixture<ExtendedConsole>
         var actual = this.Target.AskForDecimal(message);
         Assert.IsNull(actual);
     }
+
+
+    [TestMethod]
+    public void AskForDecimal_DefaultValue_ValidNumber_ReturnsDefaultValue()
+    {
+        var expected = 123;
+        var message = "My message";
+        this.GetDependency<IConsoleWrapper>().ReadLine().Returns(expected.ToString());
+
+        var actual = this.Target.AskForDecimal(expected + 1, message);
+        Assert.AreEqual(expected, actual);
+    }
+
+
+    [TestMethod]
+    public void AskForDecimal_DefaultValue_InvalidNumber_ReturnsDefaultValue()
+    {
+        var message = "My message";
+        this.GetDependency<IConsoleWrapper>().ReadLine().Returns("Not a number");
+        var expected = 123;
+
+        var actual = this.Target.AskForDecimal(expected, message);
+        Assert.AreEqual(expected, actual);
+    }
 }
