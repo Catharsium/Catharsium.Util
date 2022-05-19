@@ -94,6 +94,32 @@ public class AskForDateTests : TestFixture<ExtendedConsole>
 
 
     [TestMethod]
+    public void AskForDate_WithDefaultValue_ValidPositiveNumber_ReturnsNumberDaysAfterDefault()
+    {
+        var message = "My message";
+        var expected = new DateTime(2019, 12, 31, 13, 30, 50);
+        var number = 3;
+        this.GetDependency<IConsoleWrapper>().ReadLine().Returns(number.ToString());
+
+        var actual = this.Target.AskForDate(expected, message);
+        Assert.AreEqual(expected.AddDays(number), actual);
+    }
+
+
+    [TestMethod]
+    public void AskForDate_WithDefaultValue_ValidNegativeNumber_ReturnsNumberDaysBeforeDefault()
+    {
+        var message = "My message";
+        var expected = new DateTime(2019, 12, 31, 13, 30, 50);
+        var number = -3;
+        this.GetDependency<IConsoleWrapper>().ReadLine().Returns(number.ToString());
+
+        var actual = this.Target.AskForDate(expected, message);
+        Assert.AreEqual(expected.AddDays(number), actual);
+    }
+
+
+    [TestMethod]
     public void AskForDate_WithDefaultValue_NotADate_ReturnsDefault()
     {
         var message = "My message";

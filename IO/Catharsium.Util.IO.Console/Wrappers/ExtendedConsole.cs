@@ -119,15 +119,34 @@ public class ExtendedConsole : SystemConsoleWrapper, IConsole
 
     public DateTime? AskForDate(string message = null)
     {
-        if (message != null) {
-            this.console.WriteLine(message);
+        this.WriteMessage(message);
+        var input = this.console.ReadLine();
+        return ParseDate(input);
+    }
+
+
+    public DateTime AskForDate(DateTime defaultValue, string message)
+    {
+        this.WriteMessage(message);
+        var input = this.console.ReadLine();
+
+        if (int.TryParse(input, out var inputAsNumber)) {
+            return defaultValue.AddDays(inputAsNumber);
         }
 
-        var dateInput = this.console.ReadLine();
-        dateInput = dateInput.Replace("-", "").Replace(":", "").Replace(" ", "");
+        var result = ParseDate(input);
+        return !result.HasValue
+            ? defaultValue
+            : (DateTime)result;
+    }
+
+
+    private static DateTime? ParseDate(string date)
+    {
+        date = date.Replace("-", "").Replace(":", "").Replace(" ", "");
 
         var datePattern = "^(\\d{4})(\\d{2})(\\d{2})(\\d*)$";
-        var matchDate = new Regex(datePattern).Match(dateInput);
+        var matchDate = new Regex(datePattern).Match(date);
         if (!matchDate.Success) {
             return null;
         }
@@ -151,13 +170,11 @@ public class ExtendedConsole : SystemConsoleWrapper, IConsole
         return new DateTime(year, month, day, hour, minute, second);
     }
 
-
-    public DateTime AskForDate(DateTime defaultValue, string message)
+    private void WriteMessage(string message)
     {
-        var result = this.AskForDate(message);
-        return !result.HasValue
-            ? defaultValue
-            : (DateTime)result;
+        if (message != null) {
+            this.console.WriteLine(message);
+        }
     }
 
     #endregion
