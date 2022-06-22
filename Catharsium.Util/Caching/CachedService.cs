@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Linq;
 using System.Reflection;
 namespace Catharsium.Util.Caching;
 

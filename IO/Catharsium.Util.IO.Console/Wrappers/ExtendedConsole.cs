@@ -1,5 +1,8 @@
 ﻿using Catharsium.Util.Enums;
 using Catharsium.Util.IO.Console.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 namespace Catharsium.Util.IO.Console.Wrappers;
 

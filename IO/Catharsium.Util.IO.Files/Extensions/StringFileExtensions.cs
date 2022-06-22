@@ -1,4 +1,7 @@
-﻿namespace Catharsium.Util.IO.Files.Extensions
+﻿using System;
+using System.IO;
+
+namespace Catharsium.Util.IO.Files.Extensions
 {
     public static class StringFileExtensions
     {

@@ -1,4 +1,6 @@
-﻿namespace Catharsium.Util.IO.Files.Interfaces;
+﻿using System.Collections.Generic;
+
+namespace Catharsium.Util.IO.Files.Interfaces;
 
 public interface ICsvReader
 {

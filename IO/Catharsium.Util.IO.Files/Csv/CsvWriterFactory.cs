@@ -1,5 +1,7 @@
 ﻿using Catharsium.Util.IO.Files.Interfaces;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
+
 namespace Catharsium.Util.IO.Files.Csv;
 
 [ExcludeFromCodeCoverage]

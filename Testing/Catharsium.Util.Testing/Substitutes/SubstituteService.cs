@@ -1,4 +1,7 @@
 ﻿using Catharsium.Util.Testing.Interfaces;
+using System;
+using System.Collections.Generic;
+
 namespace Catharsium.Util.Testing.Substitutes;
 
 public class SubstituteService : ISubstituteService

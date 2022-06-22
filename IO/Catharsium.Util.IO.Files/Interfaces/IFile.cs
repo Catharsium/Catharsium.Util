@@ -1,4 +1,7 @@
-﻿namespace Catharsium.Util.IO.Files.Interfaces;
+﻿using System;
+using System.IO;
+
+namespace Catharsium.Util.IO.Files.Interfaces;
 
 public interface IFile
 {

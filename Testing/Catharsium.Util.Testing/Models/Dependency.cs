@@ -1,4 +1,6 @@
-﻿namespace Catharsium.Util.Testing.Models;
+﻿using System;
+
+namespace Catharsium.Util.Testing.Models;
 
 public class Dependency
 {

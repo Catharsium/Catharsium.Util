@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 namespace Catharsium.Util.Interfaces;
 
 public interface ITypesRetriever

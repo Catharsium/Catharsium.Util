@@ -1,4 +1,8 @@
 ﻿using Catharsium.Util.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Catharsium.Util.Comparing.Sorting;
 
 public class QuickSorter<T> : IEnumerableSorter<T> where T : IComparable<T>

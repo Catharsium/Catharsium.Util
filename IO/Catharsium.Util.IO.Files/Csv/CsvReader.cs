@@ -1,4 +1,6 @@
 ﻿using Catharsium.Util.IO.Files.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 namespace Catharsium.Util.IO.Files.Csv
 {

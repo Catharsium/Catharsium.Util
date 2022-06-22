@@ -1,4 +1,6 @@
-﻿namespace Catharsium.Util.Time.Format
+﻿using System;
+
+namespace Catharsium.Util.Time.Format
 {
     public class TimePeriod
     {

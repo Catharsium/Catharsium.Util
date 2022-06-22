@@ -5,6 +5,8 @@ using Catharsium.Util.Testing.Substitutes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System;
+
 namespace Catharsium.Util.Testing._Configuration;
 
 public static class Registration

@@ -1,4 +1,7 @@
 ﻿using Catharsium.Util.IO.Console.Interfaces;
+using System;
+using System.IO;
+
 namespace Catharsium.Util.IO.Console.Wrappers;
 
 public class SystemConsoleWrapper : IConsoleWrapper

@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+
 namespace Catharsium.Util.Testing.Attributes;
 
 public class ExpectedExceptionMessageAttribute : ExpectedExceptionBaseAttribute

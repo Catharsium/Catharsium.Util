@@ -1,4 +1,6 @@
-﻿namespace Catharsium.Util.Comparing;
+﻿using System.Collections.Generic;
+
+namespace Catharsium.Util.Comparing;
 
 public class DecimalComparer : IComparer<decimal>
 {

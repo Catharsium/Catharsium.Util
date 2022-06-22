@@ -1,4 +1,7 @@
-﻿namespace Catharsium.Util.Web.Extensions;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Catharsium.Util.Web.Extensions;
 
 public static class UrlExtensions
 {

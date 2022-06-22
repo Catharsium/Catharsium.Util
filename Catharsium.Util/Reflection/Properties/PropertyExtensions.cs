@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 namespace Catharsium.Util.Reflection.Properties;
 
 public static class PropertyExtensions

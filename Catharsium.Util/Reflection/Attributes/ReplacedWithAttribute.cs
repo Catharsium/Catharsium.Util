@@ -1,4 +1,6 @@
-﻿namespace Catharsium.Util.Reflection.Attributes;
+﻿using System;
+
+namespace Catharsium.Util.Reflection.Attributes;
 
 public class ReplacedWithAttribute : Attribute
 {

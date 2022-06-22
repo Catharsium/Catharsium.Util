@@ -1,4 +1,7 @@
-﻿namespace Catharsium.Util.Comparing.Equality;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Catharsium.Util.Comparing.Equality;
 
 public class EnumerableEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
 {

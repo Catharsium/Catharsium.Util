@@ -4,6 +4,9 @@ using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Catharsium.Util.Testing;
 
 [TestClass]

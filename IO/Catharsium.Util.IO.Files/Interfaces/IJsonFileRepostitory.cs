@@ -1,4 +1,7 @@
-﻿namespace Catharsium.Util.IO.Files.Interfaces;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Catharsium.Util.IO.Files.Interfaces;
 
 public interface IJsonFileRepository<T>
 {

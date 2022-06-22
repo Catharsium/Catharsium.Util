@@ -1,4 +1,6 @@
-﻿namespace Catharsium.Util.Testing.Interfaces;
+﻿using System;
+
+namespace Catharsium.Util.Testing.Interfaces;
 
 public interface ISubstituteFactory
 {

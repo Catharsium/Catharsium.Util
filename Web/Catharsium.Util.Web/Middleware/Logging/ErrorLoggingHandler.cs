@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
+
 namespace Catharsium.Util.Web.Middleware.Logging;
 
 public class ErrorLoggingHandler

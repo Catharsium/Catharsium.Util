@@ -1,5 +1,6 @@
 ﻿using Catharsium.Util.Web.Interfaces;
 using RestSharp;
+using System.Net.Http;
 
 namespace Catharsium.Util.Web.Services
 {

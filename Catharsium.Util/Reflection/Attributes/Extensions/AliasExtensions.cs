@@ -1,4 +1,6 @@
-﻿namespace Catharsium.Util.Reflection.Attributes.Extensions;
+﻿using System;
+
+namespace Catharsium.Util.Reflection.Attributes.Extensions;
 
 public static class AliasExtensions
 {

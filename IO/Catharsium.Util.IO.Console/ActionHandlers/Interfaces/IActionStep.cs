@@ -1,4 +1,6 @@
-﻿namespace Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
+﻿using System.Threading.Tasks;
+
+namespace Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
 
 public interface IGetActionStep<T>
 {

@@ -1,5 +1,6 @@
 ﻿using Catharsium.Util.Testing.Interfaces;
 using NSubstitute;
+using System;
 using System.Reflection;
 namespace Catharsium.Util.Testing.Substitutes;
 
@@ -13,6 +14,6 @@ public class InterfaceSubstituteFactory : ISubstituteFactory
 
     public object CreateSubstitute(Type type)
     {
-        return Substitute.For(new[] { type }, new object[0]);
+        return Substitute.For(new[] { type }, Array.Empty<object>());
     }
 }

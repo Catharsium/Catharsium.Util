@@ -1,4 +1,6 @@
 ﻿using Catharsium.Util.Testing.Interfaces;
+using System;
+
 namespace Catharsium.Util.Testing.Substitutes;
 
 public class GuidSubstituteFactory : ISubstituteFactory

@@ -1,6 +1,9 @@
 ﻿using Catharsium.Util.Testing.Interfaces;
 using Catharsium.Util.Testing.Models;
 using NSubstitute;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 namespace Catharsium.Util.Testing.Reflection;
 

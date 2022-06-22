@@ -1,4 +1,7 @@
 ﻿using Catharsium.Util.Reflection.Attributes;
+using System;
+using System.Linq;
+
 namespace Catharsium.Util.Enums;
 
 public static class EnumAliasHelper

@@ -1,4 +1,7 @@
-﻿namespace Catharsium.Util.IO.Console.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+
+namespace Catharsium.Util.IO.Console.Interfaces;
 
 public interface IConsole : IConsoleWrapper
 {

@@ -1,4 +1,6 @@
-﻿namespace Catharsium.Util.Testing.Models;
+﻿using System.Collections.Generic;
+
+namespace Catharsium.Util.Testing.Models;
 
 public class DependencyComparer : IEqualityComparer<Dependency>
 {
