@@ -31,3 +31,11 @@
 /Web/Catharsium.Util.Web/obj
 /Web/Catharsium.Util.Web.Tests/bin/Debug/net6.0
 /Web/Catharsium.Util.Web.Tests/obj
+/Catharsium.Util/bin/Debug
+/Configuration/Catharsium.Util.Configuration/bin/Debug
+/.vs/ProjectEvaluation
+/IO/Catharsium.Util.IO.Console/bin/Debug
+/IO/Catharsium.Util.IO.Files/bin/Debug
+/Testing/Catharsium.Util.Testing/bin/Debug
+/Testing/Catharsium.Util.Testing.DbContext/bin/Debug
+/Web/Catharsium.Util.Web/bin/Debug

@@ -170,6 +170,7 @@ public class ExtendedConsole : SystemConsoleWrapper, IConsole
         return new DateTime(year, month, day, hour, minute, second);
     }
 
+
     private void WriteMessage(string message)
     {
         if (message != null) {
