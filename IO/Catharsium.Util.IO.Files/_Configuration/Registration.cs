@@ -2,6 +2,7 @@
 using Catharsium.Util.IO.Files.Csv;
 using Catharsium.Util.IO.Files.Interfaces;
 using Catharsium.Util.IO.Files.Json;
+using Catharsium.Util.IO.Files.Services;
 using Catharsium.Util.IO.Files.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,8 @@ public static class Registration
         services.TryAddTransient<IJsonFileWriter, JsonFileWriter>();
 
         services.TryAddTransient<ICsvReader, CsvReader>();
+
+        services.TryAddScoped<IFileNameService, FileNameService>();
 
         return services;
     }
