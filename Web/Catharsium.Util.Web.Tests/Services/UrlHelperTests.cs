@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 namespace Catharsium.Util.Web.Tests.Services;
 
-[Ignore]
 [TestClass]
 public class UrlHelperTests : TestFixture<UrlHelper>
 {
