@@ -1,6 +1,7 @@
 ﻿using Catharsium.Util.IO.Files.Services;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Runtime.InteropServices;
 
 namespace Catharsium.Util.IO.Files.Tests.Helpers
 {
@@ -23,7 +24,13 @@ namespace Catharsium.Util.IO.Files.Tests.Helpers
         {
             var fileName = "My/file:name?";
             var actual = this.Target.SuggestValidFileName(fileName);
-            Assert.AreEqual("My_file_name", actual);
+
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
+                Assert.AreEqual(fileName, actual);
+            }
+            else {
+                Assert.AreEqual("My_file_name", actual);
+            }
         }
 
 
@@ -32,7 +39,13 @@ namespace Catharsium.Util.IO.Files.Tests.Helpers
         {
             var fileName = "My/file:name?";
             var actual = this.Target.SuggestValidFileName(fileName, "*");
-            Assert.AreEqual("My*file*name", actual);
+
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
+                Assert.AreEqual(fileName, actual);
+            }
+            else {
+                Assert.AreEqual("My*file*name", actual);
+            }
         }
 
         #endregion
