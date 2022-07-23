@@ -26,7 +26,7 @@ namespace Catharsium.Util.IO.Files.Tests.Helpers
             var actual = this.Target.SuggestValidFileName(fileName);
 
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
-                Assert.AreEqual(fileName, actual);
+                Assert.AreEqual("My_file:name?", actual);
             }
             else {
                 Assert.AreEqual("My_file_name", actual);
@@ -41,7 +41,7 @@ namespace Catharsium.Util.IO.Files.Tests.Helpers
             var actual = this.Target.SuggestValidFileName(fileName, "*");
 
             if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
-                Assert.AreEqual(fileName, actual);
+                Assert.AreEqual("My*file:name?", actual);
             }
             else {
                 Assert.AreEqual("My*file*name", actual);
