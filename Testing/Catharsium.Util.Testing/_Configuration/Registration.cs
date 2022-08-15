@@ -13,8 +13,8 @@ public static class Registration
 {
     public static IServiceCollection AddTestingUtilities(this IServiceCollection services, IConfiguration config)
     {
-        var configuration = config.Load<TestingUtilConfiguration>();
-        services.AddSingleton<TestingUtilConfiguration, TestingUtilConfiguration>(_ => configuration);
+        var configuration = config.Load<TestingUtilSettings>();
+        services.AddSingleton<TestingUtilSettings, TestingUtilSettings>(_ => configuration);
 
         services.TryAddScoped<IDependencyRetriever, DependencyRetriever>();
         services.TryAddScoped<IConstructorFilter, ConstructorFilter>();

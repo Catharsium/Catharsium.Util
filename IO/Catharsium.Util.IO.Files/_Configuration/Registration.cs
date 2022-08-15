@@ -13,8 +13,8 @@ public static class Registration
 {
     public static IServiceCollection AddFilesIoUtilities(this IServiceCollection services, IConfiguration config)
     {
-        var configuration = config.Load<IoUtilConfiguration>();
-        services.AddSingleton<IoUtilConfiguration, IoUtilConfiguration>(_ => configuration);
+        var configuration = config.Load<FilesIoUtilSettings>();
+        services.AddSingleton<FilesIoUtilSettings, FilesIoUtilSettings>(_ => configuration);
 
         services.TryAddTransient<IFileFactory, FileFactory>();
         services.TryAddTransient<IJsonFileReader, JsonFileReader>();

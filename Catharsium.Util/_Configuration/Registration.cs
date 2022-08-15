@@ -14,8 +14,8 @@ public static class Registration
 {
     public static IServiceCollection AddCatharsiumUtilities(this IServiceCollection services, IConfiguration config)
     {
-        var configuration = config.GetSection("Catharsium.Util").Get<UtilConfiguration>();
-        services.AddSingleton<UtilConfiguration, UtilConfiguration>(_ => configuration);
+        var configuration = config.GetSection("Catharsium.Util").Get<UtilSettings>();
+        services.AddSingleton<UtilSettings, UtilSettings>(_ => configuration);
 
         services.TryAddScoped<IComparer<decimal>, DecimalComparer>();
         services.TryAddScoped<IComparer<int>, IntComparer>();

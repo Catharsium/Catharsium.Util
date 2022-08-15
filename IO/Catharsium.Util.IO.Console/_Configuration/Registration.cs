@@ -12,8 +12,8 @@ public static class Registration
 {
     public static IServiceCollection AddConsoleIoUtilities(this IServiceCollection services, IConfiguration config)
     {
-        var configuration = config.Load<ConsoleIoUtilConfiguration>();
-        services.AddSingleton<ConsoleIoUtilConfiguration, ConsoleIoUtilConfiguration>(_ => configuration);
+        var configuration = config.Load<ConsoleIoUtilSettings>();
+        services.AddSingleton<ConsoleIoUtilSettings, ConsoleIoUtilSettings>(_ => configuration);
 
         services.TryAddScoped<ISingleMenuActionHandler, SingleMenuActionHandler>();
         services.TryAddScoped<IMainMenuActionHandler, MainMenuActionHandler>();

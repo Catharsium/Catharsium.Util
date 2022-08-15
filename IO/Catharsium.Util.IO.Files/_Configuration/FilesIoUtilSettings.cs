@@ -1,5 +1,5 @@
 ﻿namespace Catharsium.Util.IO.Files._Configuration;
 
-public class IoUtilConfiguration
+public class FilesIoUtilSettings
 {
 }

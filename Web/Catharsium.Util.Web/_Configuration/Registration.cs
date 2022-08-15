@@ -10,8 +10,8 @@ public static class Registration
 {
     public static IServiceCollection AddWebUtilities(this IServiceCollection services, IConfiguration config)
     {
-        var configuration = config.Load<WebUtilConfiguration>();
-        services.AddSingleton<WebUtilConfiguration, WebUtilConfiguration>(_ => configuration);
+        var configuration = config.Load<WebUtilSettings>();
+        services.AddSingleton<WebUtilSettings, WebUtilSettings>(_ => configuration);
 
         services.TryAddTransient<IRestService, RestService>();
         services.TryAddTransient<IUrlHelper, UrlHelper>();
