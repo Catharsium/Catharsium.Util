@@ -1,7 +1,7 @@
 ﻿using Catharsium.Util.Configuration.Extensions;
-using Catharsium.Util.IO.Console.ActionHandlers.Implementation;
-using Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
 using Catharsium.Util.IO.Console.Interfaces;
+using Catharsium.Util.IO.Console.Menu.Implementation;
+using Catharsium.Util.IO.Console.Menu.Interfaces;
 using Catharsium.Util.IO.Console.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

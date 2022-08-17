@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-namespace Catharsium.Util.IO.Console.ActionHandlers.Interfaces;
+
+namespace Catharsium.Util.IO.Console.Menu.Interfaces;
 
 public interface IActionHandler
 {
