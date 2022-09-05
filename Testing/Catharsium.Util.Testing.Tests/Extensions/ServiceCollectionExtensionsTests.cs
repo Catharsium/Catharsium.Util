@@ -12,8 +12,7 @@ public class ServiceCollectionExtensionsTests
     #region ReceivedRegistration<I>
 
     [TestMethod]
-    public void ReceivedRegistration_ServiceCollectionAddCalled_DoesNotThrowAnException()
-    {
+    public void ReceivedRegistration_ServiceCollectionAddCalled_DoesNotThrowAnException() {
         var target = Substitute.For<IServiceCollection>();
         target.AddScoped<IMockInterface1>();
         target.ReceivedRegistration<IMockInterface1>();
@@ -22,8 +21,7 @@ public class ServiceCollectionExtensionsTests
 
     [TestMethod]
     [ExpectedException(typeof(ReceivedCallsException))]
-    public void ReceivedRegistration_DifferentInterfaceRegistered_ThrowAnException()
-    {
+    public void ReceivedRegistration_DifferentInterfaceRegistered_ThrowAnException() {
         var target = Substitute.For<IServiceCollection>();
         target.AddScoped<IMockInterface1>();
         target.ReceivedRegistration<IMockInterface2>();
@@ -34,21 +32,23 @@ public class ServiceCollectionExtensionsTests
     #region ReceivedRegistration<I, T>
 
     [TestMethod]
-    public void ReceivedRegistration_WithImplementation_ServiceCollectionAddCalled_DoesNotThrowAnException()
-    {
+    public void ReceivedRegistration_WithImplementation_ServiceCollectionAddCalled_DoesNotThrowAnException() {
         var target = Substitute.For<IServiceCollection>();
         target.AddScoped<IMockInterface1, Mock1>();
-        ServiceCollectionExtensions.ReceivedRegistration<IMockInterface1, Mock1>(target);
+
+        var actual = ServiceCollectionExtensions.ReceivedRegistration<IMockInterface1, Mock1>(target);
+        Assert.AreEqual(target, actual);
     }
 
 
     [TestMethod]
     [ExpectedException(typeof(ReceivedCallsException))]
-    public void ReceivedRegistration_WithImplementation_DifferentImplementationRegistered_ThrowAnException()
-    {
+    public void ReceivedRegistration_WithImplementation_DifferentImplementationRegistered_ThrowAnException() {
         var target = Substitute.For<IServiceCollection>();
         target.AddScoped<IMockInterface1, Mock2>();
-        ServiceCollectionExtensions.ReceivedRegistration<IMockInterface1, Mock1>(target);
+
+        var actual = ServiceCollectionExtensions.ReceivedRegistration<IMockInterface1, Mock1>(target);
+        Assert.AreEqual(target, actual);
     }
 
     #endregion
