@@ -1,4 +1,6 @@
 ﻿using Catharsium.Util.Configuration.Extensions;
+using Catharsium.Util.Configuration.Factories;
+using Catharsium.Util.Configuration.Interfaces;
 using Catharsium.Util.Configuration.Tests._Mocks;
 using Catharsium.Util.Configuration.Tests.Extensions._Fixture;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +17,7 @@ public class ServiceCollectionExtensionsTests
     #region RegisterAll
 
     [TestMethod]
-    public void RegisterAll_FindsTypesThatImplementBase_RegistersTypes()
-    {
+    public void RegisterAll_FindsTypesThatImplementBase_RegistersTypes() {
         var services = Substitute.For<IServiceCollection>();
         var lifetime = ServiceLifetime.Scoped;
 
@@ -29,8 +30,7 @@ public class ServiceCollectionExtensionsTests
     #region RegisterTypes (Dictionary)
 
     [TestMethod]
-    public void RegisterTypes_DictionaryOfTypes_RegistersTypes()
-    {
+    public void RegisterTypes_DictionaryOfTypes_RegistersTypes() {
         var services = Substitute.For<IServiceCollection>();
         var lifetime = ServiceLifetime.Scoped;
         var types = new Dictionary<string, string> {
@@ -52,8 +52,7 @@ public class ServiceCollectionExtensionsTests
     #region RegisterTypes (List)
 
     [TestMethod]
-    public void RegisterTypes_ListOfTypes_RegistersTypes()
-    {
+    public void RegisterTypes_ListOfTypes_RegistersTypes() {
         var services = Substitute.For<IServiceCollection>();
         var lifetime = ServiceLifetime.Scoped;
         var types = new List<string> {
@@ -68,6 +67,48 @@ public class ServiceCollectionExtensionsTests
                 sd.Lifetime == lifetime
             ));
         }
+    }
+
+    #endregion
+
+    #region RegisterFactory
+
+    [TestMethod]
+    public void RegisterFactory_RegistersTypeAndFactory() {
+        var services = Substitute.For<IServiceCollection>();
+
+        services.RegisterFactory<IType, ImplementationType>();
+        services.Received().Add(Arg.Is<ServiceDescriptor>(sd =>
+            sd.ServiceType == typeof(IType) &&
+            sd.ImplementationType == typeof(ImplementationType) &&
+            sd.Lifetime == ServiceLifetime.Transient
+        ));
+        services.Received().Add(Arg.Is<ServiceDescriptor>(sd =>
+            sd.ServiceType == typeof(Func<IType>) &&
+            sd.Lifetime == ServiceLifetime.Singleton
+        ));
+        services.Received().Add(Arg.Is<ServiceDescriptor>(sd =>
+            sd.ServiceType == typeof(IAbstractFactory<IType>) &&
+            sd.ImplementationType == typeof(AbstractFactory<IType>) &&
+            sd.Lifetime == ServiceLifetime.Singleton
+        ));
+    }
+
+
+    [TestMethod]
+    public void RegisterFactoryWithParameter_RegistersTypeAndFactory() {
+        var services = Substitute.For<IServiceCollection>();
+
+        services.RegisterFactoryWithParameter<IType, ImplementationType, string>();
+        services.Received().Add(Arg.Is<ServiceDescriptor>(sd =>
+            sd.ServiceType == typeof(Func<string, IType>) &&
+            sd.Lifetime == ServiceLifetime.Singleton
+        ));
+        services.Received().Add(Arg.Is<ServiceDescriptor>(sd =>
+            sd.ServiceType == typeof(IAbstractFactory<IType, string>) &&
+            sd.ImplementationType == typeof(AbstractFactory<IType, string>) &&
+            sd.Lifetime == ServiceLifetime.Singleton
+        ));
     }
 
     #endregion
