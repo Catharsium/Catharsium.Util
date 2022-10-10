@@ -71,13 +71,13 @@ public class ServiceCollectionExtensionsTests
 
     #endregion
 
-    #region RegisterFactory
+    #region AddFactory
 
     [TestMethod]
-    public void RegisterFactory_RegistersTypeAndFactory() {
+    public void AddFactory_RegistersTypeAndFactory() {
         var services = Substitute.For<IServiceCollection>();
 
-        services.RegisterFactory<IType, ImplementationType>();
+        services.AddFactory<IType, ImplementationType>();
         services.Received().Add(Arg.Is<ServiceDescriptor>(sd =>
             sd.ServiceType == typeof(IType) &&
             sd.ImplementationType == typeof(ImplementationType) &&
@@ -96,7 +96,7 @@ public class ServiceCollectionExtensionsTests
 
 
     [TestMethod]
-    public void RegisterFactoryWithParameter_RegistersTypeAndFactory() {
+    public void AddFactoryWithParameter_RegistersTypeAndFactory() {
         var services = Substitute.For<IServiceCollection>();
 
         services.RegisterFactoryWithParameter<IType, ImplementationType, string>();

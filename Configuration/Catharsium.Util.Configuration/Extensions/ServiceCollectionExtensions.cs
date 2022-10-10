@@ -43,7 +43,7 @@ public static class ServiceCollectionExtensions
     }
 
 
-    public static IServiceCollection RegisterFactory<TInterface, TImplementation>(this IServiceCollection services)
+    public static IServiceCollection AddFactory<TInterface, TImplementation>(this IServiceCollection services)
         where TInterface : class
         where TImplementation : class, TInterface {
         services.AddTransient<TInterface, TImplementation>();
