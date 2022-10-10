@@ -99,7 +99,7 @@ public class ServiceCollectionExtensionsTests
     public void AddFactoryWithParameter_RegistersTypeAndFactory() {
         var services = Substitute.For<IServiceCollection>();
 
-        services.RegisterFactoryWithParameter<IType, ImplementationType, string>();
+        services.AddFactoryWithParameter<IType, ImplementationType, string>();
         services.Received().Add(Arg.Is<ServiceDescriptor>(sd =>
             sd.ServiceType == typeof(Func<string, IType>) &&
             sd.Lifetime == ServiceLifetime.Singleton

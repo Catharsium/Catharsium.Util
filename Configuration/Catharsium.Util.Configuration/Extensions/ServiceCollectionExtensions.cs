@@ -53,7 +53,7 @@ public static class ServiceCollectionExtensions
     }
 
 
-    public static IServiceCollection RegisterFactoryWithParameter<TInterface, TImplementation, TParameter>(this IServiceCollection services)
+    public static IServiceCollection AddFactoryWithParameter<TInterface, TImplementation, TParameter>(this IServiceCollection services)
         where TInterface : class
         where TImplementation : class, TInterface {
         services.AddSingleton<Func<TParameter, TInterface>>(sp => parameter => (TInterface)Activator.CreateInstance(typeof(TImplementation), parameter));
