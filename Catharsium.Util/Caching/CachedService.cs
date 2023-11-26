@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+
 namespace Catharsium.Util.Caching;
 
 public class CachedService<T> where T : class
@@ -10,15 +11,13 @@ public class CachedService<T> where T : class
     private readonly IMemoryCache cache;
 
 
-    public CachedService(T instance, IMemoryCache cache)
-    {
+    public CachedService(T instance, IMemoryCache cache) {
         this.instance = instance;
         this.cache = cache;
     }
 
 
-    public virtual TResult GetData<TResult>(string method, params object[] parameters) where TResult : class
-    {
+    public virtual TResult GetData<TResult>(string method, params object[] parameters) where TResult : class {
         var type = this.instance.GetType();
         var parameterTypes = parameters != null ? parameters.Select(x => x.GetType()).ToArray() : Array.Empty<Type>();
         var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;

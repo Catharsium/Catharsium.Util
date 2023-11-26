@@ -10,14 +10,12 @@ public class QuickSorter<T> : IEnumerableSorter<T> where T : IComparable<T>
     private readonly IComparer<T> comparer;
 
 
-    public QuickSorter(IComparer<T> comparer)
-    {
+    public QuickSorter(IComparer<T> comparer) {
         this.comparer = comparer;
     }
 
 
-    public IEnumerable<T> Sort(IEnumerable<T> items)
-    {
+    public IEnumerable<T> Sort(IEnumerable<T> items) {
         var itemsList = items.ToList();
         var result = new List<T>();
         var pivotIndex = this.FindPivotIndex(itemsList);
@@ -40,8 +38,7 @@ public class QuickSorter<T> : IEnumerableSorter<T> where T : IComparable<T>
     }
 
 
-    public int FindPivotIndex(IEnumerable<T> items)
-    {
+    public int FindPivotIndex(IEnumerable<T> items) {
         var list = items.ToList();
         var lastIndex = list.Count - 1;
 

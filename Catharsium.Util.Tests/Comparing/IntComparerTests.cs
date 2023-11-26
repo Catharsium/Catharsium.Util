@@ -3,6 +3,7 @@ using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System.Collections.Generic;
+
 namespace Catharsium.Util.Tests.Comparing;
 
 [TestClass]
@@ -15,8 +16,7 @@ public class IntComparerTests : TestFixture<IntComparer>
     #endregion
 
     [TestMethod]
-    public void Compare_Int_XGreaterThanY_ReturnsDecimalComparisonResult()
-    {
+    public void Compare_Int_XGreaterThanY_ReturnsDecimalComparisonResult() {
         var y = X - 1;
         this.GetDependency<IComparer<decimal>>().Compare(X, y).Returns(1);
         var actual = this.Target.Compare(X, y);
@@ -25,8 +25,7 @@ public class IntComparerTests : TestFixture<IntComparer>
 
 
     [TestMethod]
-    public void Compare_Int_XEqualToY_ReturnsDecimalComparisonResult()
-    {
+    public void Compare_Int_XEqualToY_ReturnsDecimalComparisonResult() {
         var y = X + 1;
         this.GetDependency<IComparer<decimal>>().Compare(X, y).Returns(0);
         var actual = this.Target.Compare(X, y);
@@ -35,8 +34,7 @@ public class IntComparerTests : TestFixture<IntComparer>
 
 
     [TestMethod]
-    public void Compare_Int_XLessThanY_ReturnsDecimalComparisonResult()
-    {
+    public void Compare_Int_XLessThanY_ReturnsDecimalComparisonResult() {
         var y = X + 1;
         this.GetDependency<IComparer<decimal>>().Compare(X, y).Returns(-1);
         var actual = this.Target.Compare(X, y);

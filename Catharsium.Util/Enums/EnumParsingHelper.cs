@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
+
 namespace Catharsium.Util.Enums;
 
 public static class EnumParsingHelper
 {
-    public static T? ParseNullableEnum<T>(this string value, bool isRequired) where T : struct, IConvertible
-    {
+    public static T? ParseNullableEnum<T>(this string value, bool isRequired) where T : struct, IConvertible {
         if (!typeof(T).IsEnum) {
             throw new ArgumentException("T must be an enumerated type");
         }
@@ -26,15 +26,13 @@ public static class EnumParsingHelper
     }
 
 
-    public static T ParseEnum<T>(this string value) where T : struct, IConvertible
-    {
+    public static T ParseEnum<T>(this string value) where T : struct, IConvertible {
         var result = ParseNullableEnum<T>(value, true);
         return result ?? throw new ArgumentException($"{typeof(T)} does not contain the value '{nameof(value)}'");
     }
 
 
-    public static T ParseEnum<T>(this string value, T defaultValue) where T : struct
-    {
+    public static T ParseEnum<T>(this string value, T defaultValue) where T : struct {
         if (!Enum.TryParse(value, out T result)) {
             result = defaultValue;
         }

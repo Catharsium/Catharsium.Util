@@ -1,18 +1,17 @@
 ﻿using Catharsium.Util.Interfaces;
 using System.Text.RegularExpressions;
-namespace Catharsium.Util.Privacy;
 
-public class MaskingTool : IMaskingTool
+namespace Catharsium.Util.Strings;
+
+public class MaskingService : IMaskingService
 {
-    public string MaskEmail(string email)
-    {
+    public string MaskEmail(string email) {
         var pattern = @"(?<=[\w]{1})[\w-\._\+%]*(?=[\w]{1}@)";
         return Regex.Replace(email, pattern, m => new string('*', m.Length));
     }
 
 
-    public string MaskPhoneNumber(string phoneNumber)
-    {
+    public string MaskPhoneNumber(string phoneNumber) {
         if (phoneNumber == null) {
             return null;
         }

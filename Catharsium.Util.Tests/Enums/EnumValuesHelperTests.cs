@@ -3,14 +3,14 @@ using Catharsium.Util.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+
 namespace Catharsium.Util.Tests.Enums;
 
 [TestClass]
 public class EnumValuesHelperTests
 {
     [TestMethod]
-    public void GetValues_ReturnsEnumValues()
-    {
+    public void GetValues_ReturnsEnumValues() {
         var actual = EnumValuesHelper.GetValues<MockEnumeration>().ToArray();
         Assert.AreEqual(4, actual.Length);
         Assert.AreEqual(MockEnumeration.First, actual[0]);
@@ -22,8 +22,7 @@ public class EnumValuesHelperTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
-    public void GetValues_NotAnEnum_ThrowsException()
-    {
+    public void GetValues_NotAnEnum_ThrowsException() {
         EnumValuesHelper.GetValues<int>();
     }
 }

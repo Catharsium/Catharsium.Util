@@ -5,6 +5,7 @@ using Catharsium.Util.Web.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+
 namespace Catharsium.Util.Tests.Reflection.Attributes.Extensions;
 
 [TestClass]
@@ -13,8 +14,7 @@ public class GetAttributeExtensionsTests
     #region GetAttribute<T>(subject)
 
     [TestMethod]
-    public void GetAttribute_InstanceWithRequestedAttribute_ReturnsAttribute()
-    {
+    public void GetAttribute_InstanceWithRequestedAttribute_ReturnsAttribute() {
         var subject = new MockObjectWithDisplayAttribute();
         var actual = subject.GetAttribute<DisplayAttribute>();
         Assert.IsNotNull(actual);
@@ -23,8 +23,7 @@ public class GetAttributeExtensionsTests
 
 
     [TestMethod]
-    public void GetAttribute_InstanceWithoutRequestedAttribute_ReturnsNull()
-    {
+    public void GetAttribute_InstanceWithoutRequestedAttribute_ReturnsNull() {
         var subject = new GetAttributeExtensionsTests();
         var actual = subject.GetAttribute<DisplayAttribute>();
         Assert.IsNull(actual);
@@ -35,8 +34,7 @@ public class GetAttributeExtensionsTests
     #region GetAttribute<T>(subject, memberName)
 
     [TestMethod]
-    public void GetAttribute_PropertyWithRequestedAttribute_ReturnsAttribute()
-    {
+    public void GetAttribute_PropertyWithRequestedAttribute_ReturnsAttribute() {
         var subject = new MockObjectWithDisplayAttribute();
         var actual = subject.GetAttribute<DisplayAttribute>(nameof(subject.PropertyWithDisplayAttribute));
         Assert.IsNotNull(actual);
@@ -45,8 +43,7 @@ public class GetAttributeExtensionsTests
 
 
     [TestMethod]
-    public void GetAttribute_PropertyWithDifferentAttribute_ReturnsNull()
-    {
+    public void GetAttribute_PropertyWithDifferentAttribute_ReturnsNull() {
         var subject = new MockObjectWithDisplayAttribute();
         var actual = subject.GetAttribute<BsnAttribute>(nameof(subject.PropertyWithoutAttributes));
         Assert.IsNull(actual);
@@ -54,8 +51,7 @@ public class GetAttributeExtensionsTests
 
 
     [TestMethod]
-    public void GetAttribute_PropertyWithoutRequestedAttribute_ReturnsNull()
-    {
+    public void GetAttribute_PropertyWithoutRequestedAttribute_ReturnsNull() {
         var subject = new MockObjectWithDisplayAttribute();
         var actual = subject.GetAttribute<DisplayAttribute>(nameof(subject.PropertyWithoutAttributes));
         Assert.IsNull(actual);
@@ -63,8 +59,7 @@ public class GetAttributeExtensionsTests
 
 
     [TestMethod]
-    public void GetAttribute_MethodWithAttribute_ReturnsAttribute()
-    {
+    public void GetAttribute_MethodWithAttribute_ReturnsAttribute() {
         var subject = new MockMethod();
         var actual = subject.GetAttribute<AliasAttribute>("MethodWithAlias");
         Assert.IsNotNull(actual);
@@ -72,8 +67,7 @@ public class GetAttributeExtensionsTests
 
 
     [TestMethod]
-    public void GetAttribute_MethodWithDifferentAttribute_ReturnsNull()
-    {
+    public void GetAttribute_MethodWithDifferentAttribute_ReturnsNull() {
         var subject = new MockMethod();
         var actual = subject.GetAttribute<DisplayAttribute>("MethodWithAlias");
         Assert.IsNull(actual);
@@ -81,8 +75,7 @@ public class GetAttributeExtensionsTests
 
 
     [TestMethod]
-    public void GetAttribute_MethodWithoutRequestedAttribute_ReturnsNull()
-    {
+    public void GetAttribute_MethodWithoutRequestedAttribute_ReturnsNull() {
         var subject = new MockMethod();
         var actual = subject.GetAttribute<AliasAttribute>("MethodWithoutAlias");
         Assert.IsNull(actual);
@@ -93,8 +86,7 @@ public class GetAttributeExtensionsTests
     #region GetMemberAttribute<T>(subject)
 
     [TestMethod]
-    public void GetAttributeValue_WithAttribute_ReturnsAttribute()
-    {
+    public void GetAttributeValue_WithAttribute_ReturnsAttribute() {
         var actual = MockEnumeration.WithAlias.GetMemberAttribute<AliasAttribute>();
         Assert.IsNotNull(actual);
         Assert.IsTrue(actual.Aliases.Any(a => a == "My alias"));
@@ -102,8 +94,7 @@ public class GetAttributeExtensionsTests
 
 
     [TestMethod]
-    public void GetAttributeValue_WithoutAttribute_ReturnsNull()
-    {
+    public void GetAttributeValue_WithoutAttribute_ReturnsNull() {
         var actual = MockEnumeration.WithoutAlias.GetMemberAttribute<AliasAttribute>();
         Assert.IsNull(actual);
     }

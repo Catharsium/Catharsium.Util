@@ -2,6 +2,7 @@
 using Catharsium.Util.Time.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+
 namespace Catharsium.Util.Tests.Time.Extensions.TimeSpanExtensionsTests;
 
 [TestClass]
@@ -10,8 +11,7 @@ public class SumTests
     #region Sum without selector
 
     [TestMethod]
-    public void Sum_SingleTimeSpan_ReturnsIt()
-    {
+    public void Sum_SingleTimeSpan_ReturnsIt() {
         var timeSpan = new TimeSpan(123L);
         var list = new[] { timeSpan };
 
@@ -21,8 +21,7 @@ public class SumTests
 
 
     [TestMethod]
-    public void Sum_MultipleTimeSpans_ReturnsSumOfTime()
-    {
+    public void Sum_MultipleTimeSpans_ReturnsSumOfTime() {
         var timeSpan = new TimeSpan(123L);
         var list = new[] { timeSpan, timeSpan, timeSpan };
 
@@ -32,8 +31,7 @@ public class SumTests
 
 
     [TestMethod]
-    public void Sum_DifferentTimeSpans_ReturnsSumOfTime()
-    {
+    public void Sum_DifferentTimeSpans_ReturnsSumOfTime() {
         var timeSpan1 = new TimeSpan(123L);
         var timeSpan2 = new TimeSpan(234L);
         var list = new[] { timeSpan1, timeSpan2 };
@@ -44,8 +42,7 @@ public class SumTests
 
 
     [TestMethod]
-    public void Sum_EmptyTimeSpan_IsIgnored()
-    {
+    public void Sum_EmptyTimeSpan_IsIgnored() {
         var timeSpan1 = new TimeSpan(123L);
         var list = new[] { timeSpan1, new TimeSpan(0) };
 
@@ -58,8 +55,7 @@ public class SumTests
     #region Sum with selector
 
     [TestMethod]
-    public void Sum_WithSelector_ReturnsSumOfTimeSpans()
-    {
+    public void Sum_WithSelector_ReturnsSumOfTimeSpans() {
         var element1 = new MockTimeSpanHolder { TimeSpanProperty = new TimeSpan(123L) };
         var element2 = new MockTimeSpanHolder { TimeSpanProperty = new TimeSpan(234L) };
         var list = new[] { element1, element2 };

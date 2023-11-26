@@ -2,6 +2,7 @@
 using Catharsium.Util.Comparing.Sorting;
 using Catharsium.Util.Interfaces;
 using Catharsium.Util.Reflection.Types;
+using Catharsium.Util.Strings;
 using Catharsium.Util.Time.Format;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,8 +13,7 @@ namespace Catharsium.Util._Configuration;
 
 public static class Registration
 {
-    public static IServiceCollection AddCatharsiumUtilities(this IServiceCollection services, IConfiguration config)
-    {
+    public static IServiceCollection AddCatharsiumUtilities(this IServiceCollection services, IConfiguration config) {
         var configuration = config.GetSection("Catharsium.Util").Get<UtilSettings>();
         services.AddSingleton<UtilSettings, UtilSettings>(_ => configuration);
 
@@ -23,6 +23,9 @@ public static class Registration
 
         services.TryAddScoped<IEnumerableSorter<decimal>, QuickSorter<decimal>>();
         services.TryAddTransient<ITypesRetriever, TypesRetriever>();
+
+        services.TryAddScoped<IMaskingService, MaskingService>();
+        services.TryAddScoped<INameFormatter, NameFormatter>();
 
         services.TryAddScoped<ITimeFormatParser, TimeFormatParser>();
 

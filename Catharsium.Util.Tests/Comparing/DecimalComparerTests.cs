@@ -13,8 +13,7 @@ public class DecimalComparerTests : TestFixture<DecimalComparer>
     #endregion
 
     [TestMethod]
-    public void Compare_Decimal_XGreaterThanY_ReturnsPositive()
-    {
+    public void Compare_Decimal_XGreaterThanY_ReturnsPositive() {
         var y = X - 1;
         var actual = this.Target.Compare(X, y);
         Assert.IsTrue(actual > 0);
@@ -22,8 +21,7 @@ public class DecimalComparerTests : TestFixture<DecimalComparer>
 
 
     [TestMethod]
-    public void Compare_Decimal_XEqualToY_ReturnsZero()
-    {
+    public void Compare_Decimal_XEqualToY_ReturnsZero() {
         var y = X;
         var actual = this.Target.Compare(X, y);
         Assert.AreEqual(0, actual);
@@ -31,8 +29,7 @@ public class DecimalComparerTests : TestFixture<DecimalComparer>
 
 
     [TestMethod]
-    public void Compare_Decimal_XLessThanY_ReturnsNegative()
-    {
+    public void Compare_Decimal_XLessThanY_ReturnsNegative() {
         var y = X + 1;
         var actual = this.Target.Compare(X, y);
         Assert.IsTrue(actual < 0);

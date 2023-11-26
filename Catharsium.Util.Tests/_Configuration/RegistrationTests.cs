@@ -3,6 +3,7 @@ using Catharsium.Util.Comparing;
 using Catharsium.Util.Comparing.Sorting;
 using Catharsium.Util.Interfaces;
 using Catharsium.Util.Reflection.Types;
+using Catharsium.Util.Strings;
 using Catharsium.Util.Testing.Extensions;
 using Catharsium.Util.Time.Format;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,9 @@ public class RegistrationTests
         serviceCollection.ReceivedRegistration<IComparer<decimal>, DecimalComparer>();
         serviceCollection.ReceivedRegistration<IComparer<int>, IntComparer>();
         serviceCollection.ReceivedRegistration<IComparer<string>, StringLengthComparer>();
+
+        serviceCollection.ReceivedRegistration<IMaskingService, MaskingService>();
+        serviceCollection.ReceivedRegistration<INameFormatter, NameFormatter>();
 
         serviceCollection.ReceivedRegistration<ITimeFormatParser, TimeFormatParser>();
     }

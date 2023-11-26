@@ -1,4 +1,5 @@
 ﻿using Catharsium.Util.Reflection.Attributes;
+
 namespace Catharsium.Util.Tests._Mocks;
 
 public class MockMethod

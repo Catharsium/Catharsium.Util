@@ -6,8 +6,7 @@ namespace Catharsium.Util.Enums;
 
 public static class EnumAliasHelper
 {
-    public static T? ParseTo<T>(this string alias, string fallback = null) where T : struct, IConvertible
-    {
+    public static T? ParseTo<T>(this string alias, string fallback = null) where T : struct, IConvertible {
         if (alias == null) {
             throw new ArgumentNullException($"{nameof(alias)} must be supplied");
         }

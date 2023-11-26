@@ -2,6 +2,7 @@
 using Catharsium.Util.Time.Format;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+
 namespace Catharsium.Util.Tests.Time.Format;
 
 [TestClass]
@@ -10,8 +11,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
     #region Properties
 
     [TestMethod]
-    public void Weeks_ValueGreaterThan52_OverflowsToYears()
-    {
+    public void Weeks_ValueGreaterThan52_OverflowsToYears() {
         this.Target.Years = 1;
         this.Target.Weeks += 52 * 2 + 4;
         Assert.AreEqual(3, this.Target.Years);
@@ -20,8 +20,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
 
 
     [TestMethod]
-    public void Days_ValueGreaterThan7_OverflowsToWeeks()
-    {
+    public void Days_ValueGreaterThan7_OverflowsToWeeks() {
         this.Target.Weeks = 1;
         this.Target.Days += 7 * 2 + 4;
         Assert.AreEqual(3, this.Target.Weeks);
@@ -30,8 +29,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
 
 
     [TestMethod]
-    public void Hours_ValueGreaterThan24_OverflowsToDays()
-    {
+    public void Hours_ValueGreaterThan24_OverflowsToDays() {
         this.Target.Days = 1;
         this.Target.Hours += 24 * 2 + 4;
         Assert.AreEqual(3, this.Target.Days);
@@ -40,8 +38,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
 
 
     [TestMethod]
-    public void Minutes_ValueGreaterThan60_OverflowsToHours()
-    {
+    public void Minutes_ValueGreaterThan60_OverflowsToHours() {
         this.Target.Hours = 1;
         this.Target.Minutes += 60 * 2 + 4;
         Assert.AreEqual(3, this.Target.Hours);
@@ -50,8 +47,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
 
 
     [TestMethod]
-    public void Seconds_ValueGreaterThan60_OverflowsToMinutes()
-    {
+    public void Seconds_ValueGreaterThan60_OverflowsToMinutes() {
         this.Target.Minutes = 1;
         this.Target.Seconds += 60 * 2 + 4;
         Assert.AreEqual(3, this.Target.Minutes);
@@ -63,8 +59,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
     #region Operator +
 
     [TestMethod]
-    public void OperatorPlus_TwoPeriods_ReturnsSum()
-    {
+    public void OperatorPlus_TwoPeriods_ReturnsSum() {
         var p1 = new TimePeriod(1, 2, 3, 4, 5, 6);
         var p2 = new TimePeriod(8, 7, 3, 5, 4, 3);
 
@@ -82,8 +77,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
     #region ToTimeSpan
 
     [TestMethod]
-    public void ToTimeSpan_IncludesYears()
-    {
+    public void ToTimeSpan_IncludesYears() {
         var quantity = 3;
         this.Target.Years = quantity;
         var actual = this.Target.ToTimeSpan();
@@ -92,8 +86,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
 
 
     [TestMethod]
-    public void ToTimeSpan_IncludesWeeks()
-    {
+    public void ToTimeSpan_IncludesWeeks() {
         var quantity = 3;
         this.Target.Weeks = quantity;
         var actual = this.Target.ToTimeSpan();
@@ -102,8 +95,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
 
 
     [TestMethod]
-    public void ToTimeSpan_IncludesHours()
-    {
+    public void ToTimeSpan_IncludesHours() {
         var quantity = 3;
         this.Target.Hours = quantity;
         var actual = this.Target.ToTimeSpan();
@@ -112,8 +104,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
 
 
     [TestMethod]
-    public void ToTimeSpan_IncludesMinutes()
-    {
+    public void ToTimeSpan_IncludesMinutes() {
         var quantity = 3;
         this.Target.Minutes = quantity;
         var actual = this.Target.ToTimeSpan();
@@ -122,8 +113,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
 
 
     [TestMethod]
-    public void ToTimeSpan_IncludesSeconds()
-    {
+    public void ToTimeSpan_IncludesSeconds() {
         var quantity = 3;
         this.Target.Seconds = quantity;
         var actual = this.Target.ToTimeSpan();
@@ -134,8 +124,7 @@ public class TimePeriodTests : TestFixture<TimePeriod>
 
     #region ToString
 
-    public void ToString_ReturnsValuesInFormat()
-    {
+    public void ToString_ReturnsValuesInFormat() {
         this.Target.Years = 1;
         this.Target.Weeks = 2;
         this.Target.Days = 3;

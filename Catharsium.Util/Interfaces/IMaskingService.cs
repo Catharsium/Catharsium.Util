@@ -1,6 +1,6 @@
 ﻿namespace Catharsium.Util.Interfaces;
 
-public interface IMaskingTool
+public interface IMaskingService
 {
     string MaskEmail(string email);
     string MaskPhoneNumber(string phoneNumber);

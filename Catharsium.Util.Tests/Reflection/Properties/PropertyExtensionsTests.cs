@@ -1,6 +1,7 @@
 ﻿using Catharsium.Util.Reflection.Properties;
 using Catharsium.Util.Tests._Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace Catharsium.Util.Tests.Reflection.Properties;
 
 [TestClass]
@@ -9,8 +10,7 @@ public class PropertyExtensionsTests
     #region SetProperty
 
     [TestMethod]
-    public void SetProperty_ValidName_SetsValue()
-    {
+    public void SetProperty_ValidName_SetsValue() {
         var fixture = new ObjectWithAccessProperties();
         var expected = "My value";
 
@@ -20,8 +20,7 @@ public class PropertyExtensionsTests
 
 
     [TestMethod]
-    public void SetProperty_InvalidName_DoesNotSetValue()
-    {
+    public void SetProperty_InvalidName_DoesNotSetValue() {
         var fixture = new ObjectWithAccessProperties();
         var value = "My value";
 
@@ -31,8 +30,7 @@ public class PropertyExtensionsTests
 
 
     [TestMethod]
-    public void SetProperty_UnwritableProperty_DoesNotSetValue()
-    {
+    public void SetProperty_UnwritableProperty_DoesNotSetValue() {
         var fixture = new ObjectWithAccessProperties();
         var value = "My value";
 
@@ -45,8 +43,7 @@ public class PropertyExtensionsTests
     #region GetPropertiesWithValue
 
     [TestMethod]
-    public void GetPropertiesWithValue_ReturnsPropertiesWithValue()
-    {
+    public void GetPropertiesWithValue_ReturnsPropertiesWithValue() {
         var fixture = new ObjectWithMultipleProperties {
             Property2 = "My property 2"
         };

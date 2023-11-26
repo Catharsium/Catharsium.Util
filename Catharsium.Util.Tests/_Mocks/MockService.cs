@@ -2,8 +2,7 @@
 
 public class MockService
 {
-    public string ReadData(string input)
-    {
+    public string ReadData(string input) {
         return input;
     }
 }

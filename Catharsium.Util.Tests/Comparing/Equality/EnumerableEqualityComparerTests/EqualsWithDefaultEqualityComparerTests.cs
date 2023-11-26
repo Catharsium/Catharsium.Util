@@ -2,6 +2,7 @@
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+
 namespace Catharsium.Util.Tests.Comparing.Equality.EnumerableEqualityComparerTests;
 
 [TestClass]
@@ -10,8 +11,7 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
     #region Fixture
 
     [TestInitialize]
-    public void SetupDependencies()
-    {
+    public void SetupDependencies() {
         this.SetDependency<IEqualityComparer<int>>(null);
     }
 
@@ -20,8 +20,7 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
     #region Equals
 
     [TestMethod]
-    public void Equals_IsReflexive()
-    {
+    public void Equals_IsReflexive() {
         var input = new List<int> { 1, 2, 3 };
         var actual = this.Target.Equals(input, input);
         Assert.IsTrue(actual);
@@ -29,8 +28,7 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
 
 
     [TestMethod]
-    public void Equals_IsSymmetric()
-    {
+    public void Equals_IsSymmetric() {
         var input1 = new List<int> { 1, 2, 3 };
         var input2 = new List<int> { 1, 2, 3 };
 
@@ -41,8 +39,7 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
 
 
     [TestMethod]
-    public void Equals_EmptyListAndEmptyList_ReturnsTrue()
-    {
+    public void Equals_EmptyListAndEmptyList_ReturnsTrue() {
 
         var actual = this.Target.Equals(new List<int>(), new List<int>());
         Assert.IsTrue(actual);
@@ -50,8 +47,7 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
 
 
     [TestMethod]
-    public void Equals_ListsWithSameContents_ReturnsTrue()
-    {
+    public void Equals_ListsWithSameContents_ReturnsTrue() {
         var input1 = new List<int> { 1, 2, 3 };
         var input2 = new List<int>();
         input2.AddRange(input1);
@@ -62,8 +58,7 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
 
 
     [TestMethod]
-    public void Equals_ListWithDifferentContents_ReturnsFalse()
-    {
+    public void Equals_ListWithDifferentContents_ReturnsFalse() {
         var input1 = new List<int> { 1 };
         var input2 = new List<int> { 2 };
 
@@ -73,8 +68,7 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
 
 
     [TestMethod]
-    public void Equals_DifferentLengthLists_ReturnsFalse()
-    {
+    public void Equals_DifferentLengthLists_ReturnsFalse() {
         var input1 = new List<int> { 1, 2, 3 };
         var input2 = new List<int> { 0 };
         input2.AddRange(input1);
@@ -85,16 +79,14 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
 
 
     [TestMethod]
-    public void Equals_NullListAndList_ReturnsFalse()
-    {
+    public void Equals_NullListAndList_ReturnsFalse() {
         var actual = this.Target.Equals(null, new List<int>());
         Assert.IsFalse(actual);
     }
 
 
     [TestMethod]
-    public void Equals_ListAndNullList_ReturnsFalse()
-    {
+    public void Equals_ListAndNullList_ReturnsFalse() {
         var actual = this.Target.Equals(new List<int>(), null);
         Assert.IsFalse(actual);
     }

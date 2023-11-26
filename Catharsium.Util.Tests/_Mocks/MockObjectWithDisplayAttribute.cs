@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 namespace Catharsium.Util.Tests._Mocks;
 
 [Display(Name = "My class name")]

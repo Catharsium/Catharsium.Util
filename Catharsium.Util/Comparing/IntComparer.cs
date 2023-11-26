@@ -7,14 +7,12 @@ public class IntComparer : IComparer<int>
     private readonly IComparer<decimal> decimalComparer;
 
 
-    public IntComparer(IComparer<decimal> decimalComparer)
-    {
+    public IntComparer(IComparer<decimal> decimalComparer) {
         this.decimalComparer = decimalComparer;
     }
 
 
-    public int Compare(int x, int y)
-    {
+    public int Compare(int x, int y) {
         return this.decimalComparer.Compare(x, y);
     }
 }

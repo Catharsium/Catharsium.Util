@@ -8,8 +8,7 @@ public class EnumerableEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
     private readonly IEqualityComparer<T> comparer;
 
 
-    public EnumerableEqualityComparer(IEqualityComparer<T> comparer = null)
-    {
+    public EnumerableEqualityComparer(IEqualityComparer<T> comparer = null) {
         if (comparer == null) {
             comparer = EqualityComparer<T>.Default;
         }
@@ -18,8 +17,7 @@ public class EnumerableEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
     }
 
 
-    public bool Equals(IEnumerable<T> x, IEnumerable<T> y)
-    {
+    public bool Equals(IEnumerable<T> x, IEnumerable<T> y) {
         if (x == null || y == null) {
             return false;
         }
@@ -32,8 +30,7 @@ public class EnumerableEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
     }
 
 
-    public int GetHashCode(IEnumerable<T> obj)
-    {
+    public int GetHashCode(IEnumerable<T> obj) {
         return obj.GetHashCode();
     }
 }

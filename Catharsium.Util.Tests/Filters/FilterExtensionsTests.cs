@@ -3,6 +3,7 @@ using Catharsium.Util.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System.Linq;
+
 namespace Catharsium.Util.Tests.Filters;
 
 [TestClass]
@@ -11,8 +12,7 @@ public class FilterExtensionsTests
     #region Include
 
     [TestMethod]
-    public void Include_FilterIncludingEverything_ReturnsAll()
-    {
+    public void Include_FilterIncludingEverything_ReturnsAll() {
         var items = new[] { new object() };
         var filter = Substitute.For<IFilter<object>>();
         filter.Includes(Arg.Any<object>()).Returns(true);
@@ -23,8 +23,7 @@ public class FilterExtensionsTests
 
 
     [TestMethod]
-    public void Include_FilterIncludingNothing_ReturnsNothing()
-    {
+    public void Include_FilterIncludingNothing_ReturnsNothing() {
         var transactions = new[] { new object() };
         var filter = Substitute.For<IFilter<object>>();
         filter.Includes(Arg.Any<object>()).Returns(false);
@@ -38,8 +37,7 @@ public class FilterExtensionsTests
     #region Exclude
 
     [TestMethod]
-    public void Exclude_FilterIncludingEverything_ReturnsNothing()
-    {
+    public void Exclude_FilterIncludingEverything_ReturnsNothing() {
         var transactions = new[] { new object() };
         var filter = Substitute.For<IFilter<object>>();
         filter.Includes(Arg.Any<object>()).Returns(true);
@@ -50,8 +48,7 @@ public class FilterExtensionsTests
 
 
     [TestMethod]
-    public void Exclude_FilterIncludingNothing_ReturnsAll()
-    {
+    public void Exclude_FilterIncludingNothing_ReturnsAll() {
         var transactions = new[] { new object() };
         var filter = Substitute.For<IFilter<object>>();
         filter.Includes(Arg.Any<object>()).Returns(false);

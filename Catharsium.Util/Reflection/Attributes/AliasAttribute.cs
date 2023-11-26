@@ -7,8 +7,7 @@ public class AliasAttribute : Attribute
     public string[] Aliases { get; }
 
 
-    public AliasAttribute(params string[] aliases)
-    {
+    public AliasAttribute(params string[] aliases) {
         this.Aliases = aliases;
     }
 }

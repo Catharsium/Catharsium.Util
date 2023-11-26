@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace Catharsium.Util.Tests.Comparing.Sorting.QuickSorterTests;
 
 [TestClass]
@@ -13,8 +14,7 @@ public class SortTests : TestFixture<QuickSorter<decimal>>
     #region Fixture
 
     [TestInitialize]
-    public void SetupDependencies()
-    {
+    public void SetupDependencies() {
         this.SetDependency<IComparer<decimal>>(new DecimalComparer());
     }
 
@@ -23,8 +23,7 @@ public class SortTests : TestFixture<QuickSorter<decimal>>
     #region Sort
 
     [TestMethod]
-    public void Sort_EmptyList_ReturnsEmptyList()
-    {
+    public void Sort_EmptyList_ReturnsEmptyList() {
         var input = Array.Empty<decimal>();
         var actual = this.Target.Sort(input);
         Assert.AreEqual(0, actual.Count());
@@ -32,8 +31,7 @@ public class SortTests : TestFixture<QuickSorter<decimal>>
 
 
     [TestMethod]
-    public void Sort_SingleItem_ReturnsItem()
-    {
+    public void Sort_SingleItem_ReturnsItem() {
         var input = new[] { 0m };
         var actual = this.Target.Sort(input);
         Assert.AreEqual(input.Length, actual.Count());
@@ -41,8 +39,7 @@ public class SortTests : TestFixture<QuickSorter<decimal>>
 
 
     [TestMethod]
-    public void Sort_SortedList_ReturnsUnchanged()
-    {
+    public void Sort_SortedList_ReturnsUnchanged() {
         var input = new[] { 1m, 2m, 3m, 4m, 5m, 6m, 7m, 8m, 9m };
         var actual = this.Target.Sort(input).ToList();
         Assert.AreEqual(input.Length, actual.Count);
@@ -53,8 +50,7 @@ public class SortTests : TestFixture<QuickSorter<decimal>>
 
 
     [TestMethod]
-    public void Sort_MultipleItems_ReturnsSortedItems()
-    {
+    public void Sort_MultipleItems_ReturnsSortedItems() {
         var input = new[] { 5m, 1m, 2m, 7m, 3m, 9m, 8m, 4m, 6m };
         var actual = this.Target.Sort(input).ToList();
         Assert.AreEqual(input.Length, actual.Count);
