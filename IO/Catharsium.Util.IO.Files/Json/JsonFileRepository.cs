@@ -5,25 +5,16 @@ using System.Threading.Tasks;
 
 namespace Catharsium.Util.IO.Files.Json;
 
-public class JsonFileRepository<T> : IJsonFileRepository<T>
+public class JsonFileRepository<T>(
+    IFileFactory fileFactory,
+    IJsonFileReader jsonFileReader,
+    IJsonFileWriter jsonFileWriter,
+    string storagePath) : IJsonFileRepository<T>
 {
-    private readonly IFileFactory fileFactory;
-    private readonly IJsonFileReader jsonFileReader;
-    private readonly IJsonFileWriter jsonFileWriter;
-    private readonly string storagePath;
-
-
-    public JsonFileRepository(
-        IFileFactory fileFactory,
-        IJsonFileReader jsonFileReader,
-        IJsonFileWriter jsonFileWriter,
-        string storagePath)
-    {
-        this.fileFactory = fileFactory;
-        this.jsonFileReader = jsonFileReader;
-        this.jsonFileWriter = jsonFileWriter;
-        this.storagePath = storagePath;
-    }
+    private readonly IFileFactory fileFactory = fileFactory;
+    private readonly IJsonFileReader jsonFileReader = jsonFileReader;
+    private readonly IJsonFileWriter jsonFileWriter = jsonFileWriter;
+    private readonly string storagePath = storagePath;
 
 
     public async Task<List<T>> Get()
