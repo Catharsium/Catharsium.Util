@@ -39,3 +39,10 @@
 /Testing/Catharsium.Util.Testing/bin/Debug
 /Testing/Catharsium.Util.Testing.DbContext/bin/Debug
 /Web/Catharsium.Util.Web/bin/Debug
+/Catharsium.Util.Tests/bin/Debug/net8.0
+/Configuration/Catharsium.Util.Configuration.Tests/bin/Debug/net8.0
+/IO/Catharsium.Util.IO.Console.Tests/bin/Debug/net8.0
+/IO/Catharsium.Util.IO.Files.Tests/bin/Debug/net8.0
+/Testing/Catharsium.Util.Testing.DbContext.Tests/bin/Debug/net8.0
+/Testing/Catharsium.Util.Testing.Tests/bin/Debug/net8.0
+/Web/Catharsium.Util.Web.Tests/bin/Debug/net8.0
