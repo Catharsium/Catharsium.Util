@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Catharsium.Util.Enums;
+﻿namespace Catharsium.Util.Enums;
 
 public static class EnumValuesHelper
 {

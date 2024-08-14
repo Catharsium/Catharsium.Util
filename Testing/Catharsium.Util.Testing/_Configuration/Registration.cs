@@ -5,14 +5,12 @@ using Catharsium.Util.Testing.Substitutes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using System;
 
 namespace Catharsium.Util.Testing._Configuration;
 
 public static class Registration
 {
-    public static IServiceCollection AddTestingUtilities(this IServiceCollection services, IConfiguration config)
-    {
+    public static IServiceCollection AddTestingUtilities(this IServiceCollection services, IConfiguration config) {
         var configuration = config.Load<TestingUtilSettings>();
         services.AddSingleton<TestingUtilSettings, TestingUtilSettings>(_ => configuration);
 

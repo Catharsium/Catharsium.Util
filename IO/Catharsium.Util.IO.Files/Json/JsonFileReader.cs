@@ -1,6 +1,5 @@
 ﻿using Catharsium.Util.IO.Files.Interfaces;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Text.Json;
 
 namespace Catharsium.Util.IO.Files.Json;

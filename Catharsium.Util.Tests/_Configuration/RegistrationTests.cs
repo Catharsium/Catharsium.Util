@@ -11,14 +11,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System.Collections.Generic;
+
 namespace Catharsium.Util.Tests._Configuration;
 
 [TestClass]
 public class RegistrationTests
 {
     [TestMethod]
-    public void AddCatharsiumUtilities_RegistersDependencies()
-    {
+    public void AddCatharsiumUtilities_RegistersDependencies() {
         var serviceCollection = Substitute.For<IServiceCollection>();
         var config = Substitute.For<IConfiguration>();
 

@@ -43,7 +43,7 @@ public class EqualsWithSubstituteEqualityComparerTests : TestFixture<EnumerableE
 
     [TestMethod]
     public void Equals_EmptyListAndEmptyList_ReturnsTrue() {
-        var actual = this.Target.Equals(new List<string>(), new List<string>());
+        var actual = this.Target.Equals([], []);
         Assert.IsTrue(actual);
     }
 
@@ -82,14 +82,14 @@ public class EqualsWithSubstituteEqualityComparerTests : TestFixture<EnumerableE
 
     [TestMethod]
     public void Equals_NullListAndList_ReturnsFalse() {
-        var actual = this.Target.Equals(null, new List<string>());
+        var actual = this.Target.Equals(null, []);
         Assert.IsFalse(actual);
     }
 
 
     [TestMethod]
     public void Equals_ListAndNullList_ReturnsFalse() {
-        var actual = this.Target.Equals(new List<string>(), null);
+        var actual = this.Target.Equals([], null);
         Assert.IsFalse(actual);
     }
 

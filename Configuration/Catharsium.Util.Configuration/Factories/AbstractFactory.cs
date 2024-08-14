@@ -1,5 +1,4 @@
 ﻿using Catharsium.Util.Configuration.Interfaces;
-using System;
 
 namespace Catharsium.Util.Configuration.Factories;
 

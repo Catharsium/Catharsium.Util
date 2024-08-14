@@ -21,43 +21,43 @@ public class NameFormatter : INameFormatter
             .Replace("II", "{10}").Replace("Ii", "{11}").Replace("ii", "{12}").Replace("I", "{13}").Replace("i", "{14}")
             .Replace("LL", "{15}").Replace("Ll", "{16}").Replace("ll", "{17}").Replace("L", "{18}").Replace("l", "{19}");
 
-        if (!string.IsNullOrEmpty(prefix)) {
+        if(!string.IsNullOrEmpty(prefix)) {
             result = result
                 .Replace("{0}", prefix.ToUpper())
                 .Replace("{1}", prefix.Capitalize())
                 .Replace("{2}", prefix.ToLower())
-                .Replace("{3}", prefix.Substring(0, 1).ToUpper())
-                .Replace("{4}", prefix.Substring(0, 1).ToLower());
+                .Replace("{3}", prefix[..1].ToUpper())
+                .Replace("{4}", prefix[..1].ToLower());
         }
-        if (!string.IsNullOrEmpty(firstName)) {
+        if(!string.IsNullOrEmpty(firstName)) {
             result = result
                 .Replace("{5}", firstName.ToUpper())
                 .Replace("{6}", firstName.Capitalize())
                 .Replace("{7}", firstName.ToLower())
-                .Replace("{8}", firstName.Substring(0, 1).ToUpper())
-                .Replace("{9}", firstName.Substring(0, 1).ToLower());
+                .Replace("{8}", firstName[..1].ToUpper())
+                .Replace("{9}", firstName[..1].ToLower());
         }
-        if (!string.IsNullOrEmpty(infix)) {
+        if(!string.IsNullOrEmpty(infix)) {
             result = result
                 .Replace("{10}", infix.ToUpper())
                 .Replace("{11}", infix.Capitalize())
                 .Replace("{12}", infix.ToLower())
-                .Replace("{13}", infix.Substring(0, 1).ToUpper())
-                .Replace("{14}", infix.Substring(0, 1).ToLower());
+                .Replace("{13}", infix[..1].ToUpper())
+                .Replace("{14}", infix[..1].ToLower());
         }
-        if (!string.IsNullOrEmpty(lastName)) {
+        if(!string.IsNullOrEmpty(lastName)) {
             result = result
                 .Replace("{15}", lastName.ToUpper())
                 .Replace("{16}", lastName.Capitalize())
                 .Replace("{17}", lastName.ToLower())
-                .Replace("{18}", lastName.Substring(0, 1).ToUpper())
-                .Replace("{19}", lastName.Substring(0, 1).ToLower());
+                .Replace("{18}", lastName[..1].ToUpper())
+                .Replace("{19}", lastName[..1].ToLower());
         }
 
-        for (var i = 0; i < 20; i++) {
+        for(var i = 0; i < 20; i++) {
             result = result.Replace("{" + i + "}", "");
         }
-        while (result.Contains("  ")) {
+        while(result.Contains("  ")) {
             result = result.Replace("  ", " ");
         }
 

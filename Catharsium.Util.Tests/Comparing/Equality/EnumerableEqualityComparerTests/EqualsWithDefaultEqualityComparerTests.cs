@@ -41,7 +41,7 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
     [TestMethod]
     public void Equals_EmptyListAndEmptyList_ReturnsTrue() {
 
-        var actual = this.Target.Equals(new List<int>(), new List<int>());
+        var actual = this.Target.Equals([], []);
         Assert.IsTrue(actual);
     }
 
@@ -80,14 +80,14 @@ public class EqualsWithDefaultEqualityComparerTests : TestFixture<EnumerableEqua
 
     [TestMethod]
     public void Equals_NullListAndList_ReturnsFalse() {
-        var actual = this.Target.Equals(null, new List<int>());
+        var actual = this.Target.Equals(null, []);
         Assert.IsFalse(actual);
     }
 
 
     [TestMethod]
     public void Equals_ListAndNullList_ReturnsFalse() {
-        var actual = this.Target.Equals(new List<int>(), null);
+        var actual = this.Target.Equals([], null);
         Assert.IsFalse(actual);
     }
 

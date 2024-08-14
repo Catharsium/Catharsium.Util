@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Catharsium.Util.Comparing.Equality;
+﻿namespace Catharsium.Util.Comparing.Equality;
 
 public class EnumerableEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
 {
@@ -9,16 +6,13 @@ public class EnumerableEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
 
 
     public EnumerableEqualityComparer(IEqualityComparer<T> comparer = null) {
-        if (comparer == null) {
-            comparer = EqualityComparer<T>.Default;
-        }
-
+        comparer ??= EqualityComparer<T>.Default;
         this.comparer = comparer;
     }
 
 
     public bool Equals(IEnumerable<T> x, IEnumerable<T> y) {
-        if (x == null || y == null) {
+        if(x == null || y == null) {
             return false;
         }
 

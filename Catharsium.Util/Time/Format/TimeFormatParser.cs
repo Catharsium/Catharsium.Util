@@ -10,8 +10,8 @@ public class TimeFormatParser : ITimeFormatParser
         var pattern = "^(\\d+[a-zA-Z]\\s*)*$";
         var match = Regex.Match(format, pattern);
 
-        if (match.Success && match.Groups.Count == 2) {
-            for (var i = 0; i < match.Groups[1].Captures.Count; i++) {
+        if(match.Success && match.Groups.Count == 2) {
+            for(var i = 0; i < match.Groups[1].Captures.Count; i++) {
                 var part = match.Groups[1].Captures[i].Value.Trim();
                 result += this.Parse(int.Parse(part.Substring(0, part.Length - 1)), part.Substring(part.Length - 1));
             }

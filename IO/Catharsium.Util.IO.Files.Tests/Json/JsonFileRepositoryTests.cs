@@ -4,8 +4,8 @@ using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
+
 namespace Catharsium.Util.IO.Files.Tests.Json;
 
 [TestClass]
@@ -20,8 +20,7 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
 
 
     [TestInitialize]
-    public void Initialize()
-    {
+    public void Initialize() {
         this.SetDependency(StoragePath, "storagePath");
 
         this.File = Substitute.For<IFile>();
@@ -33,15 +32,14 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
     #region Get
 
     [TestMethod]
-    public async Task Get_DirectoryExists_ReturnsDataFromAllFiles()
-    {
+    public async Task Get_DirectoryExists_ReturnsDataFromAllFiles() {
         var directory = Substitute.For<IDirectory>();
         directory.Exists.Returns(true);
         var file1 = Substitute.For<IFile>();
         file1.Exists.Returns(true);
         var file2 = Substitute.For<IFile>();
         file2.Exists.Returns(true);
-        directory.GetFiles("*.json").Returns(new[] { file1, file2 });
+        directory.GetFiles("*.json").Returns([file1, file2]);
         this.GetDependency<IFileFactory>().CreateDirectory($@"{StoragePath}").Returns(directory);
 
         var expected1 = "My first data";
@@ -51,15 +49,14 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
 
         var actual = await this.Target.Get();
         Assert.AreEqual(2, actual.Count);
-        foreach (var data in actual) {
+        foreach(var data in actual) {
             Assert.IsTrue(expected1.Contains(data) || expected2.Contains(data));
         }
     }
 
 
     [TestMethod]
-    public async Task Get_DirectoryDoesNotExist_CreatesDirectory()
-    {
+    public async Task Get_DirectoryDoesNotExist_CreatesDirectory() {
         var directory = Substitute.For<IDirectory>();
         directory.Exists.Returns(false);
         this.GetDependency<IFileFactory>().CreateDirectory($@"{StoragePath}").Returns(directory);
@@ -74,8 +71,7 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
 
     [TestMethod]
     [ExpectedException(typeof(IOException))]
-    public async Task Get_NewKey_ThrowsException()
-    {
+    public async Task Get_NewKey_ThrowsException() {
         var expected = "My data";
         this.File.Exists.Returns(false);
         this.GetDependency<IJsonFileReader>().ReadFrom<string>(this.File).Returns(expected);
@@ -84,8 +80,7 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
 
 
     [TestMethod]
-    public async Task Get_ExistingKey_ReturnsDataFromFile()
-    {
+    public async Task Get_ExistingKey_ReturnsDataFromFile() {
         var expected = "My data";
         this.File.Exists.Returns(true);
         this.GetDependency<IJsonFileReader>().ReadFrom<string>(this.File).Returns(expected);
@@ -99,8 +94,7 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
     #region Add
 
     [TestMethod]
-    public async Task Add_NewKey_DoesNotDeleteFile_WritesDataToFile()
-    {
+    public async Task Add_NewKey_DoesNotDeleteFile_WritesDataToFile() {
         var data = "My data";
         this.File.Exists.Returns(false);
 
@@ -111,8 +105,7 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
 
 
     [TestMethod]
-    public async Task Add_ExistingKey_DeletesFile_WritesDataToFile()
-    {
+    public async Task Add_ExistingKey_DeletesFile_WritesDataToFile() {
         var data = "My data";
         this.File.Exists.Returns(true);
 
@@ -127,16 +120,14 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
 
     [TestMethod]
     [ExpectedException(typeof(IOException))]
-    public async Task Remove_NewKey_ThrowsException()
-    {
+    public async Task Remove_NewKey_ThrowsException() {
         this.File.Exists.Returns(false);
         await this.Target.Remove(Key);
     }
 
 
     [TestMethod]
-    public async Task Remove_ExistingKey_DeletesFile()
-    {
+    public async Task Remove_ExistingKey_DeletesFile() {
         this.File.Exists.Returns(true);
         await this.Target.Remove(Key);
         this.File.Received().Delete();

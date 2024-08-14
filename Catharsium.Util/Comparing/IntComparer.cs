@@ -1,15 +1,8 @@
-﻿using System.Collections.Generic;
+﻿namespace Catharsium.Util.Comparing;
 
-namespace Catharsium.Util.Comparing;
-
-public class IntComparer : IComparer<int>
+public class IntComparer(IComparer<decimal> decimalComparer) : IComparer<int>
 {
-    private readonly IComparer<decimal> decimalComparer;
-
-
-    public IntComparer(IComparer<decimal> decimalComparer) {
-        this.decimalComparer = decimalComparer;
-    }
+    private readonly IComparer<decimal> decimalComparer = decimalComparer;
 
 
     public int Compare(int x, int y) {

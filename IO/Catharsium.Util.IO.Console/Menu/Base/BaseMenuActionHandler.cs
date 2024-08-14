@@ -6,29 +6,22 @@ using System.Threading.Tasks;
 
 namespace Catharsium.Util.IO.Console.Menu.Base;
 
-public abstract class BaseMenuActionHandler<T> : BaseActionHandler, IMenuActionHandler where T : IActionHandler
+public abstract class BaseMenuActionHandler<T>(IEnumerable<T> actionHandlers, IConsole console, string menuName, string title = "Please select an action:") :
+    BaseActionHandler(console, menuName), IMenuActionHandler where T : IActionHandler
 {
-    protected readonly IEnumerable<T> ActionHandlers;
-    private readonly string title;
-
-
-    public BaseMenuActionHandler(IEnumerable<T> actionHandlers, IConsole console, string menuName, string title = "Please select an action:")
-        : base(console, menuName) {
-        this.ActionHandlers = actionHandlers.ToList();
-        this.title = title;
-    }
-
+    protected readonly IEnumerable<T> ActionHandlers = actionHandlers.ToList();
+    private readonly string title = title;
 
     public override async Task Run() {
-        while (true) {
+        while(true) {
             this.Console.WriteLine(this.title);
             var index = 1;
-            foreach (var actionHandler in this.ActionHandlers) {
+            foreach(var actionHandler in this.ActionHandlers) {
                 this.Console.WriteLine($"[{index++}] {actionHandler.MenuName}");
             }
 
             var selectedIndex = this.Console.AskForInt();
-            if (!selectedIndex.HasValue || selectedIndex <= 0 || selectedIndex > this.ActionHandlers.Count()) {
+            if(!selectedIndex.HasValue || selectedIndex <= 0 || selectedIndex > this.ActionHandlers.Count()) {
                 break;
             }
 

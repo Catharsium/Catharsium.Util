@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace Catharsium.Util.Testing.DbContext.Tests;
 
 [TestClass]
@@ -15,8 +16,7 @@ public class TestFixtureIntegrationTests
     #region Constructor
 
     [TestMethod]
-    public void TestFixture_WorksWith_ALargestSatisfiableConstructor()
-    {
+    public void TestFixture_WorksWith_ALargestSatisfiableConstructor() {
         var actual = new TestFixture<MockObject>();
         Assert.IsNotNull(actual.Target);
         Assert.IsNotNull(actual.Dependencies);
@@ -28,8 +28,7 @@ public class TestFixtureIntegrationTests
 
 
     [TestMethod]
-    public void TestFixture_WorksWith_SingleConstructor()
-    {
+    public void TestFixture_WorksWith_SingleConstructor() {
         var actual = new TestFixture<MockObjectWithSingleConstructor>();
         Assert.IsNull(actual.Target);
         Assert.IsNotNull(actual.Dependencies);
@@ -40,8 +39,7 @@ public class TestFixtureIntegrationTests
 
 
     [TestMethod]
-    public void TestFixture_WorksWith_ConstructorWithoutInterfacesDependencies()
-    {
+    public void TestFixture_WorksWith_ConstructorWithoutInterfacesDependencies() {
         var actual = new TestFixture<MockObjectWithoutInterfaces>();
         Assert.IsNull(actual.Target);
         Assert.IsNotNull(actual.Dependencies);
@@ -50,8 +48,7 @@ public class TestFixtureIntegrationTests
 
 
     [TestMethod]
-    public void TestFixture_WorksWith_ConstructorsDifferentDependencies()
-    {
+    public void TestFixture_WorksWith_ConstructorsDifferentDependencies() {
         var actual = new TestFixture<MockObjectWithDifferentDependencies>();
         Assert.IsNotNull(actual.Target);
         Assert.IsNotNull(actual.Target.InterfaceDependency1);
@@ -66,8 +63,7 @@ public class TestFixtureIntegrationTests
 
 
     [TestMethod]
-    public void TestFixture_WorksWith_AllSupportedDependencies()
-    {
+    public void TestFixture_WorksWith_AllSupportedDependencies() {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddDatabaseTestingUtilities<MockDbContextNoOptions>();
         serviceCollection.AddDatabaseTestingUtilities<MockDbContextWithOptions>();
@@ -91,11 +87,10 @@ public class TestFixtureIntegrationTests
 
     #endregion
 
-    private static bool Contains(IEnumerable<Dependency> dependencies, Type type, string name = null, object value = null)
-    {
+    private static bool Contains(IEnumerable<Dependency> dependencies, Type type, string name = null, object value = null) {
         var dependency = dependencies.FirstOrDefault(d => d.Type == type && (name == null || d.Name == name));
-        return dependency != null 
-            && (value != null 
+        return dependency != null
+            && (value != null
                 ? dependency.Value == value
                 : dependency.Value != null);
     }

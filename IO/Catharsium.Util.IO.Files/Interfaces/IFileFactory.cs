@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Catharsium.Util.IO.Files.Interfaces;
+﻿namespace Catharsium.Util.IO.Files.Interfaces;
 
 public interface IFileFactory
 {

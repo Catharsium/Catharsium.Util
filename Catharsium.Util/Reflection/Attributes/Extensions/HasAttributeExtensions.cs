@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Catharsium.Util.Reflection.Attributes.Extensions;
+﻿namespace Catharsium.Util.Reflection.Attributes.Extensions;
 
 public static class HasAttributeExtensions
 {

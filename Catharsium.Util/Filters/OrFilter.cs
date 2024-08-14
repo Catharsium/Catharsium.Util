@@ -1,6 +1,4 @@
 ﻿using Catharsium.Util.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Catharsium.Util.Filters;
 

@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+
 namespace Catharsium.Util.Web.Tests.Validation;
 
 [TestClass]
@@ -13,8 +14,7 @@ public class OneInGroupRequiredAttributeTests : TestFixture<OneInGroupRequiredAt
     #region Validator.TryValidateObject
 
     [TestMethod]
-    public void IsValid_ValidModel_ReturnsTrue()
-    {
+    public void IsValid_ValidModel_ReturnsTrue() {
         var mockObject = new MockObjectWithOneInGroupRequiredValidation {
             Property1 = "1",
             Property3 = "3"
@@ -28,8 +28,7 @@ public class OneInGroupRequiredAttributeTests : TestFixture<OneInGroupRequiredAt
 
 
     [TestMethod]
-    public void IsValid_SingleGroupWithoutValue_ReturnsFalse()
-    {
+    public void IsValid_SingleGroupWithoutValue_ReturnsFalse() {
         var mockObject = new MockObjectWithOneInGroupRequiredValidation {
             Property1 = "1"
         };
@@ -44,8 +43,7 @@ public class OneInGroupRequiredAttributeTests : TestFixture<OneInGroupRequiredAt
 
 
     [TestMethod]
-    public void IsValid_BothGroupWithoutValue_ReturnsFalse()
-    {
+    public void IsValid_BothGroupWithoutValue_ReturnsFalse() {
         var mockObject = new MockObjectWithOneInGroupRequiredValidation();
         var validationContext = new ValidationContext(mockObject);
 
@@ -60,8 +58,7 @@ public class OneInGroupRequiredAttributeTests : TestFixture<OneInGroupRequiredAt
     #region IsValid
 
     [TestMethod]
-    public void IsValid_ValueHasAValue_ReturnsTrue()
-    {
+    public void IsValid_ValueHasAValue_ReturnsTrue() {
         var model = new MockObjectWithOneInGroupRequiredValidation { Property1 = "1" };
         this.Target = new OneInGroupRequiredAttribute("Group 1");
         var actual = this.Target.IsValid(model, model.Property1);
@@ -70,8 +67,7 @@ public class OneInGroupRequiredAttributeTests : TestFixture<OneInGroupRequiredAt
 
 
     [TestMethod]
-    public void IsValid_OtherGroupMemberHasValue_ReturnsTrue()
-    {
+    public void IsValid_OtherGroupMemberHasValue_ReturnsTrue() {
         var model = new MockObjectWithOneInGroupRequiredValidation { Property2 = "2" };
         this.Target = new OneInGroupRequiredAttribute("Group 1");
         var actual = this.Target.IsValid(model, model.Property1);
@@ -80,8 +76,7 @@ public class OneInGroupRequiredAttributeTests : TestFixture<OneInGroupRequiredAt
 
 
     [TestMethod]
-    public void IsValid_EmptyStringValues_ReturnsFalse()
-    {
+    public void IsValid_EmptyStringValues_ReturnsFalse() {
         var model = new MockObjectWithOneInGroupRequiredValidation { Property1 = "", Property2 = "", Property3 = "", Property4 = "" };
         this.Target = new OneInGroupRequiredAttribute("Group 1");
         var actual = this.Target.IsValid(model, model.Property1);
@@ -90,8 +85,7 @@ public class OneInGroupRequiredAttributeTests : TestFixture<OneInGroupRequiredAt
 
 
     [TestMethod]
-    public void IsValid_OnlyOtherGroupHasValues_ReturnsFalse()
-    {
+    public void IsValid_OnlyOtherGroupHasValues_ReturnsFalse() {
         var model = new MockObjectWithOneInGroupRequiredValidation { Property3 = "3", Property4 = "4" };
         this.Target = new OneInGroupRequiredAttribute("Group 1");
         var actual = this.Target.IsValid(model, model.Property1);

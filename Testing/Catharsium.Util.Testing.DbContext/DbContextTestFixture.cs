@@ -11,8 +11,7 @@ public class DbContextTestFixture<T, TContext> : TestFixture<T> where T : class
         IServiceCollection serviceCollection = null,
         IDependencyRetriever dependencyRetriever = null,
         IConstructorFilter constructorFilter = null,
-        ITargetFactory<T> targetFactory = null)
-    {
+        ITargetFactory<T> targetFactory = null) {
         var services = ServiceCollectionFactory.Create(serviceCollection ?? new ServiceCollection())
             .AddDatabaseTestingUtilities<TContext>()
             .BuildServiceProvider();
@@ -33,8 +32,7 @@ public class DbContextTestFixture<T, TContext1, TContext2> : TestFixture<T>
         IServiceCollection serviceCollection = null,
         IDependencyRetriever dependencyRetriever = null,
         IConstructorFilter constructorFilter = null,
-        ITargetFactory<T> targetFactory = null)
-    {
+        ITargetFactory<T> targetFactory = null) {
         var services = ServiceCollectionFactory.Create(serviceCollection ?? new ServiceCollection())
             .AddDatabaseTestingUtilities<TContext1>()
             .AddDatabaseTestingUtilities<TContext2>()

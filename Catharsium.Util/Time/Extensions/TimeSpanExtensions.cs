@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Catharsium.Util.Time.Extensions;
+﻿namespace Catharsium.Util.Time.Extensions;
 
 public static class TimeSpanExtensions
 {

@@ -1,7 +1,6 @@
-﻿namespace Catharsium.Util.IO.Files.Interfaces
+﻿namespace Catharsium.Util.IO.Files.Interfaces;
+
+public interface IFileNameService
 {
-    public interface IFileNameService
-    {
-        string SuggestValidFileName(string fileName, string replacement = "_");
-    }
+    string SuggestValidFileName(string fileName, string replacement = "_");
 }

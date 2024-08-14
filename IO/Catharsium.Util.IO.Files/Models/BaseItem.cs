@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Catharsium.Util.IO.Files.Models;
+﻿namespace Catharsium.Util.IO.Files.Models;
 
 public abstract class BaseItem
 {

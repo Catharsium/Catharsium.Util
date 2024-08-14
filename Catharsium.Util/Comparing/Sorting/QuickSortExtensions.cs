@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Catharsium.Util.Comparing.Sorting;
+﻿namespace Catharsium.Util.Comparing.Sorting;
 
 public static class QuickSortExtensions
 {

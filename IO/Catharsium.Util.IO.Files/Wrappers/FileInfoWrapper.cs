@@ -1,30 +1,21 @@
 ﻿using Catharsium.Util.IO.Files.Interfaces;
-using System;
-using System.IO;
 
 namespace Catharsium.Util.IO.Files.Wrappers;
 
-public class FileInfoWrapper : IFile
+public class FileInfoWrapper(FileInfo fileInfo) : IFile
 {
-    private readonly FileInfo file;
+    private readonly FileInfo file = fileInfo;
 
     #region Construction
 
     public FileInfoWrapper(string path)
         : this(new FileInfo(path)) { }
 
-
-    public FileInfoWrapper(FileInfo fileInfo)
-    {
-        this.file = fileInfo;
-    }
-
     #endregion
 
     #region FileInfo Properties
 
-    public FileAttributes Attributes
-    {
+    public FileAttributes Attributes {
         get => this.file.Attributes;
         set => this.file.Attributes = value;
     }
@@ -43,8 +34,7 @@ public class FileInfoWrapper : IFile
 
     public string FullName => this.file.FullName;
 
-    public bool IsReadOnly
-    {
+    public bool IsReadOnly {
         get => this.file.IsReadOnly;
         set => this.file.IsReadOnly = value;
     }
@@ -67,104 +57,87 @@ public class FileInfoWrapper : IFile
 
     #region FileInfo Methods
 
-    public StreamWriter AppendText()
-    {
+    public StreamWriter AppendText() {
         return this.file.AppendText();
     }
 
 
-    public IFile CopyTo(string destFileName)
-    {
+    public IFile CopyTo(string destFileName) {
         return new FileInfoWrapper(this.file.CopyTo(destFileName));
     }
 
 
-    public FileStream Create()
-    {
+    public FileStream Create() {
         return this.file.Create();
     }
 
 
-    public StreamWriter CreateText()
-    {
+    public StreamWriter CreateText() {
         return this.file.CreateText();
     }
 
 
-    public void Decrypt()
-    {
+    public void Decrypt() {
         this.file.Decrypt();
     }
 
 
-    public void Delete()
-    {
+    public void Delete() {
         this.file.Delete();
     }
 
 
-    public void Encrypt()
-    {
+    public void Encrypt() {
         this.file.Encrypt();
     }
 
 
-    public void MoveTo(string destFileName)
-    {
+    public void MoveTo(string destFileName) {
         this.file.MoveTo(destFileName);
     }
 
 
-    public FileStream Open(FileMode mode)
-    {
+    public FileStream Open(FileMode mode) {
         return this.file.Open(mode);
     }
 
 
-    public FileStream Open(FileMode mode, FileAccess access)
-    {
+    public FileStream Open(FileMode mode, FileAccess access) {
         return this.file.Open(mode, access);
     }
 
 
-    public FileStream Open(FileMode mode, FileAccess access, FileShare share)
-    {
+    public FileStream Open(FileMode mode, FileAccess access, FileShare share) {
         return this.file.Open(mode, access, share);
     }
 
 
-    public FileStream OpenRead()
-    {
+    public FileStream OpenRead() {
         return this.file.OpenRead();
     }
 
 
-    public StreamReader OpenText()
-    {
+    public StreamReader OpenText() {
         return this.file.OpenText();
     }
 
 
-    public FileStream OpenWrite()
-    {
+    public FileStream OpenWrite() {
         return this.file.OpenWrite();
     }
 
 
-    public void Refresh()
-    {
+    public void Refresh() {
         this.file.Refresh();
     }
 
 
-    public void Replace(string destinationFileName, string destinationBackupFileName)
-    {
+    public void Replace(string destinationFileName, string destinationBackupFileName) {
         this.file.Replace(destinationFileName, destinationBackupFileName);
     }
 
 
-    public void Replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors)
-    {
+    public void Replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors) {
         this.file.Replace(destinationFileName, destinationBackupFileName, ignoreMetadataErrors);
     }
 
@@ -172,8 +145,7 @@ public class FileInfoWrapper : IFile
 
     #region Overrides
 
-    public override string ToString()
-    {
+    public override string ToString() {
         return this.file.Name;
     }
 

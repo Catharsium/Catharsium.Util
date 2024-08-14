@@ -3,14 +3,14 @@ using Catharsium.Util.IO.Console.Wrappers;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+
 namespace Catharsium.Util.IO.Console.Tests.Wrappers.ExtendedConsoleTests;
 
 [TestClass]
 public class AskForDecimalTests : TestFixture<ExtendedConsole>
 {
     [TestMethod]
-    public void AskForDecimal_WithText_WritesText()
-    {
+    public void AskForDecimal_WithText_WritesText() {
         var message = "My message";
         this.Target.AskForDecimal(message);
         this.GetDependency<IConsoleWrapper>().Received().WriteLine(message);
@@ -18,16 +18,14 @@ public class AskForDecimalTests : TestFixture<ExtendedConsole>
 
 
     [TestMethod]
-    public void AskForDecimal_NoText_DoesNotWriteText()
-    {
+    public void AskForDecimal_NoText_DoesNotWriteText() {
         this.Target.AskForDecimal();
         this.GetDependency<IConsoleWrapper>().DidNotReceive().WriteLine(Arg.Any<string>());
     }
 
 
     [TestMethod]
-    public void AskForDecimal_ValidDecimal_ReturnsReadLineAsDecimal()
-    {
+    public void AskForDecimal_ValidDecimal_ReturnsReadLineAsDecimal() {
         var message = "My message";
         var expected = 123.456M;
         this.GetDependency<IConsoleWrapper>().ReadLine().Returns(expected.ToString());
@@ -39,8 +37,7 @@ public class AskForDecimalTests : TestFixture<ExtendedConsole>
 
 
     [TestMethod]
-    public void AskForDecimal_NotADecimal_ReturnsNull()
-    {
+    public void AskForDecimal_NotADecimal_ReturnsNull() {
         var message = "My message";
         this.GetDependency<IConsoleWrapper>().ReadLine().Returns("Not a number");
 
@@ -50,8 +47,7 @@ public class AskForDecimalTests : TestFixture<ExtendedConsole>
 
 
     [TestMethod]
-    public void AskForDecimal_DefaultValue_ValidNumber_ReturnsDefaultValue()
-    {
+    public void AskForDecimal_DefaultValue_ValidNumber_ReturnsDefaultValue() {
         var expected = 123;
         var message = "My message";
         this.GetDependency<IConsoleWrapper>().ReadLine().Returns(expected.ToString());
@@ -62,8 +58,7 @@ public class AskForDecimalTests : TestFixture<ExtendedConsole>
 
 
     [TestMethod]
-    public void AskForDecimal_DefaultValue_InvalidNumber_ReturnsDefaultValue()
-    {
+    public void AskForDecimal_DefaultValue_InvalidNumber_ReturnsDefaultValue() {
         var message = "My message";
         this.GetDependency<IConsoleWrapper>().ReadLine().Returns("Not a number");
         var expected = 123;

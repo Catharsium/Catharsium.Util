@@ -1,19 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 namespace Catharsium.Util.Web.Validation;
 
-public class OneInGroupRequiredAttribute : ValidationAttribute
+public class OneInGroupRequiredAttribute(string groupName) : ValidationAttribute
 {
-    private string GroupName { get; }
+    private string GroupName { get; } = groupName;
 
 
-    public OneInGroupRequiredAttribute(string groupName)
-    {
-        this.GroupName = groupName;
-    }
-
-
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-    {
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
         var isValid = this.IsValid(validationContext.ObjectInstance, value as string);
         return isValid
             ? ValidationResult.Success
@@ -21,9 +15,8 @@ public class OneInGroupRequiredAttribute : ValidationAttribute
     }
 
 
-    public bool IsValid(object model, string value)
-    {
-        if (!string.IsNullOrWhiteSpace(value)) {
+    public bool IsValid(object model, string value) {
+        if(!string.IsNullOrWhiteSpace(value)) {
             return true;
         }
 

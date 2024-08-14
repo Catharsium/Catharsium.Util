@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
+
 namespace Catharsium.Util.Testing.Extensions;
 
 public static class ServiceCollectionExtensions

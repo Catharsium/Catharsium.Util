@@ -10,8 +10,7 @@ public class SystemConsoleWrapper : IConsoleWrapper
     #region Basic
 
     [SupportedOSPlatform("Windows")]
-    public string Title
-    {
+    public string Title {
         get => System.Console.Title;
         set => System.Console.Title = value;
     }
@@ -33,39 +32,34 @@ public class SystemConsoleWrapper : IConsoleWrapper
     #region Buffer
 
     [SupportedOSPlatform("Windows")]
-    public int BufferWidth
-    {
+    public int BufferWidth {
         get => System.Console.BufferWidth;
         set => System.Console.BufferWidth = value;
     }
 
 
     [SupportedOSPlatform("Windows")]
-    public int BufferHeight
-    {
+    public int BufferHeight {
         get => System.Console.BufferHeight;
         set => System.Console.BufferHeight = value;
     }
 
 
     [SupportedOSPlatform("Windows")]
-    public void SetBufferSize(int width, int height)
-    {
+    public void SetBufferSize(int width, int height) {
         System.Console.SetBufferSize(width, height);
     }
 
 
     [SupportedOSPlatform("Windows")]
-    public void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop)
-    {
+    public void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop) {
         System.Console.MoveBufferArea(sourceLeft, sourceTop, sourceWidth, sourceHeight, targetLeft, targetTop);
     }
 
 
     [SupportedOSPlatform("Windows")]
     public void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop, char sourceChar,
-        ConsoleColor sourceForeColor, ConsoleColor sourceBackColor)
-    {
+        ConsoleColor sourceForeColor, ConsoleColor sourceBackColor) {
         System.Console.MoveBufferArea(sourceLeft, sourceTop, sourceWidth, sourceHeight, targetLeft, targetTop, sourceChar, sourceForeColor,
             sourceBackColor);
     }
@@ -74,38 +68,33 @@ public class SystemConsoleWrapper : IConsoleWrapper
 
     #region Cursor
 
-    public int CursorLeft
-    {
+    public int CursorLeft {
         get => System.Console.CursorLeft;
         set => System.Console.CursorLeft = value;
     }
 
 
-    public int CursorTop
-    {
+    public int CursorTop {
         get => System.Console.CursorTop;
         set => System.Console.CursorTop = value;
     }
 
 
     [SupportedOSPlatform("Windows")]
-    public int CursorSize
-    {
+    public int CursorSize {
         get => System.Console.CursorSize;
         set => System.Console.CursorSize = value;
     }
 
 
     [SupportedOSPlatform("Windows")]
-    public bool CursorVisible
-    {
+    public bool CursorVisible {
         get => System.Console.CursorVisible;
         set => System.Console.CursorVisible = value;
     }
 
 
-    public void SetCursorPosition(int left, int top)
-    {
+    public void SetCursorPosition(int left, int top) {
         System.Console.SetCursorPosition(left, top);
     }
 
@@ -113,22 +102,19 @@ public class SystemConsoleWrapper : IConsoleWrapper
 
     #region Color
 
-    public ConsoleColor ForegroundColor
-    {
+    public ConsoleColor ForegroundColor {
         get => System.Console.ForegroundColor;
         set => System.Console.ForegroundColor = value;
     }
 
 
-    public ConsoleColor BackgroundColor
-    {
+    public ConsoleColor BackgroundColor {
         get => System.Console.BackgroundColor;
         set => System.Console.BackgroundColor = value;
     }
 
 
-    public void ResetColor()
-    {
+    public void ResetColor() {
         System.Console.ResetColor();
     }
 
@@ -137,8 +123,7 @@ public class SystemConsoleWrapper : IConsoleWrapper
     #region Beep
 
     [SupportedOSPlatform("Windows")]
-    public void Beep(int frequency, int duration)
-    {
+    public void Beep(int frequency, int duration) {
         System.Console.Beep(frequency, duration);
     }
 
@@ -146,20 +131,17 @@ public class SystemConsoleWrapper : IConsoleWrapper
 
     #region Read
 
-    public int Read()
-    {
+    public int Read() {
         return System.Console.Read();
     }
 
 
-    public ConsoleKeyInfo ReadKey()
-    {
+    public ConsoleKeyInfo ReadKey() {
         return System.Console.ReadKey();
     }
 
 
-    public string ReadLine()
-    {
+    public string ReadLine() {
         return System.Console.ReadLine();
     }
 
@@ -167,15 +149,13 @@ public class SystemConsoleWrapper : IConsoleWrapper
 
     #region Write
 
-    public void Write(string text)
-    {
+    public void Write(string text) {
         System.Console.Write(text);
     }
 
 
-    public void WriteLine(string text = null)
-    {
-        if (text == null) {
+    public void WriteLine(string text = null) {
+        if(text == null) {
             System.Console.WriteLine();
         }
         else {
@@ -184,8 +164,7 @@ public class SystemConsoleWrapper : IConsoleWrapper
     }
 
 
-    public void WriteLine(string text, ConsoleColor color)
-    {
+    public void WriteLine(string text, ConsoleColor color) {
         System.Console.ForegroundColor = color;
         System.Console.Write(text);
         System.Console.ResetColor();
@@ -196,8 +175,7 @@ public class SystemConsoleWrapper : IConsoleWrapper
     #region Dimensions
 
     [SupportedOSPlatform("Windows")]
-    public int WindowWidth
-    {
+    public int WindowWidth {
         get => System.Console.WindowWidth;
         set => System.Console.WindowWidth = value;
     }
@@ -207,8 +185,7 @@ public class SystemConsoleWrapper : IConsoleWrapper
 
 
     [SupportedOSPlatform("Windows")]
-    public int WindowHeight
-    {
+    public int WindowHeight {
         get => System.Console.WindowHeight;
         set => System.Console.WindowHeight = value;
     }
@@ -218,31 +195,27 @@ public class SystemConsoleWrapper : IConsoleWrapper
 
 
     [SupportedOSPlatform("Windows")]
-    public int WindowLeft
-    {
+    public int WindowLeft {
         get => System.Console.WindowLeft;
         set => System.Console.WindowLeft = value;
     }
 
 
     [SupportedOSPlatform("Windows")]
-    public int WindowTop
-    {
+    public int WindowTop {
         get => System.Console.WindowTop;
         set => System.Console.WindowTop = value;
     }
 
 
     [SupportedOSPlatform("Windows")]
-    public void SetWindowPosition(int left, int top)
-    {
+    public void SetWindowPosition(int left, int top) {
         System.Console.SetWindowPosition(left, top);
     }
 
 
     [SupportedOSPlatform("Windows")]
-    public void SetWindowSize(int width, int height)
-    {
+    public void SetWindowSize(int width, int height) {
         System.Console.SetWindowSize(width, height);
     }
 

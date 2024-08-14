@@ -6,6 +6,7 @@ using RestSharp;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+
 namespace Catharsium.Util.Web.Tests.Services;
 
 [Ignore]
@@ -15,8 +16,7 @@ public class RestServiceTests : TestFixture<RestService>
     #region Fixture
 
     [TestInitialize]
-    public void Initialize()
-    {
+    public void Initialize() {
         var restClient = Substitute.For<RestClient>();
         this.SetDependency(restClient);
     }
@@ -26,8 +26,7 @@ public class RestServiceTests : TestFixture<RestService>
     #region PostToJsonService
 
     [TestMethod]
-    public void PostToJsonService_ValidData_CallsServiceWith()
-    {
+    public void PostToJsonService_ValidData_CallsServiceWith() {
         var response = new RestResponse {
             StatusCode = HttpStatusCode.OK,
             ResponseStatus = ResponseStatus.Completed,
@@ -44,8 +43,7 @@ public class RestServiceTests : TestFixture<RestService>
 
     [TestMethod]
     [ExpectedException(typeof(HttpRequestException))]
-    public void PostToJsonService_InvalidResponse_ThrowsException()
-    {
+    public void PostToJsonService_InvalidResponse_ThrowsException() {
         var response = new RestResponse {
             StatusCode = HttpStatusCode.InternalServerError,
             ResponseStatus = ResponseStatus.Error
@@ -63,8 +61,7 @@ public class RestServiceTests : TestFixture<RestService>
     #region PostToJsonServiceWithLongResponseType
 
     [TestMethod]
-    public void PostToJsonServiceWithLongResponseType_ValidData_CallsServiceWith()
-    {
+    public void PostToJsonServiceWithLongResponseType_ValidData_CallsServiceWith() {
         var responseContent = long.MaxValue;
         var response = new RestResponse {
             StatusCode = HttpStatusCode.OK,
@@ -83,8 +80,7 @@ public class RestServiceTests : TestFixture<RestService>
 
     #region Support methods
 
-    private static bool IsExpectedRequest(RestRequest request, string resource, string bodyName, string bodyContents)
-    {
+    private static bool IsExpectedRequest(RestRequest request, string resource, string bodyName, string bodyContents) {
         var body = request.Parameters.FirstOrDefault(p => p.Type == ParameterType.RequestBody);
         return body == null
             ? bodyContents == null

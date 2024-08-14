@@ -12,7 +12,7 @@ public class MaskingService : IMaskingService
 
 
     public string MaskPhoneNumber(string phoneNumber) {
-        if (phoneNumber == null) {
+        if(phoneNumber == null) {
             return null;
         }
 

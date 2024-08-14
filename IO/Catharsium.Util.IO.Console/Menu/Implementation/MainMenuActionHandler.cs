@@ -5,9 +5,7 @@ using System.Collections.Generic;
 
 namespace Catharsium.Util.IO.Console.Menu.Implementation;
 
-public class MainMenuActionHandler : BaseMenuActionHandler<IActionHandler>, IMainMenuActionHandler
+public class MainMenuActionHandler(IEnumerable<IMenuActionHandler> actionHandlers, IConsole console) :
+    BaseMenuActionHandler<IActionHandler>(actionHandlers, console, "Main"), IMainMenuActionHandler
 {
-    public MainMenuActionHandler(IEnumerable<IMenuActionHandler> actionHandlers, IConsole console)
-        : base(actionHandlers, console, "Main") {
-    }
 }

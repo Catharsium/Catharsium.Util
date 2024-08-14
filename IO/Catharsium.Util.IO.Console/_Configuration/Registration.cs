@@ -6,12 +6,12 @@ using Catharsium.Util.IO.Console.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+
 namespace Catharsium.Util.IO.Console._Configuration;
 
 public static class Registration
 {
-    public static IServiceCollection AddConsoleIoUtilities(this IServiceCollection services, IConfiguration config)
-    {
+    public static IServiceCollection AddConsoleIoUtilities(this IServiceCollection services, IConfiguration config) {
         var configuration = config.Load<ConsoleIoUtilSettings>();
         services.AddSingleton<ConsoleIoUtilSettings, ConsoleIoUtilSettings>(_ => configuration);
 

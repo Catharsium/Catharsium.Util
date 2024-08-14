@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace Catharsium.Util.Time.Extensions;
 
@@ -16,8 +15,8 @@ public static class DateTimeExtensions
 
     public static DateTime GetDayOfWeek(this DateTime date, DayOfWeek day, DayOfWeek firstDay = DayOfWeek.Sunday) {
         var currentDate = date.Date;
-        while (currentDate.DayOfWeek != day) {
-            if (currentDate.DayOfWeek == firstDay) {
+        while(currentDate.DayOfWeek != day) {
+            if(currentDate.DayOfWeek == firstDay) {
                 currentDate = currentDate.AddDays(7);
             }
 

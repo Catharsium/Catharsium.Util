@@ -4,18 +4,11 @@ using System.Threading.Tasks;
 
 namespace Catharsium.Util.IO.Console.Menu.Base;
 
-public abstract class BaseActionHandler : IActionHandler
+public abstract class BaseActionHandler(IConsole console, string menuName) : IActionHandler
 {
-    protected readonly IConsole Console;
+    protected readonly IConsole Console = console;
 
-    public string MenuName { get; }
-
-
-    public BaseActionHandler(IConsole console, string menuName) {
-        this.Console = console;
-        this.MenuName = menuName;
-    }
-
+    public string MenuName { get; } = menuName;
 
     public abstract Task Run();
 

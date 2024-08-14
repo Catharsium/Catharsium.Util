@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Catharsium.Util.Strings;
+﻿namespace Catharsium.Util.Strings;
 
 public static class StringGuidExtensions
 {

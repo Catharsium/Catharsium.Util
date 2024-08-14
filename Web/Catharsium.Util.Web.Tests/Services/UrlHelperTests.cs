@@ -3,14 +3,14 @@ using Catharsium.Util.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+
 namespace Catharsium.Util.Web.Tests.Services;
 
 [TestClass]
 public class UrlHelperTests : TestFixture<UrlHelper>
 {
     [TestMethod]
-    public void GetBaseUrl_ValidRequest_ReturnsUrlWithoutPath()
-    {
+    public void GetBaseUrl_ValidRequest_ReturnsUrlWithoutPath() {
         var host = "localhost";
         var port = 123;
         var path = "/test/";

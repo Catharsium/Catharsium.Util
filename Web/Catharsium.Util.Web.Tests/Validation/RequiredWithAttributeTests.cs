@@ -4,6 +4,7 @@ using Catharsium.Util.Web.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
 namespace Catharsium.Util.Web.Tests.Validation;
 
 [TestClass]
@@ -12,8 +13,7 @@ public class RequiredWithAttributeTests : TestFixture<RequiredWithAttribute>
     #region Validator.TryValidateObject
 
     [TestMethod]
-    public void IsValid_ValidModel_ReturnsTrue()
-    {
+    public void IsValid_ValidModel_ReturnsTrue() {
         var mockObject = new MockObjectWithRequiredWithValidation {
             Property1 = "1",
             Property2 = "2"
@@ -27,8 +27,7 @@ public class RequiredWithAttributeTests : TestFixture<RequiredWithAttribute>
 
 
     [TestMethod]
-    public void IsValid_ValueEmpty_ReturnsFalse()
-    {
+    public void IsValid_ValueEmpty_ReturnsFalse() {
         var mockObject = new MockObjectWithRequiredWithValidation {
             Property1 = "1"
         };
@@ -41,8 +40,7 @@ public class RequiredWithAttributeTests : TestFixture<RequiredWithAttribute>
 
 
     [TestMethod]
-    public void IsValid_OtherValueEmpty_ReturnsFalse()
-    {
+    public void IsValid_OtherValueEmpty_ReturnsFalse() {
         var mockObject = new MockObjectWithRequiredWithValidation {
             Property2 = "2"
         };
@@ -58,8 +56,7 @@ public class RequiredWithAttributeTests : TestFixture<RequiredWithAttribute>
     #region IsValid
 
     [TestMethod]
-    public void IsValid_WithValue_OtherPropertyIsEmpty_ReturnsFalse()
-    {
+    public void IsValid_WithValue_OtherPropertyIsEmpty_ReturnsFalse() {
         var mockObject = new MockObjectWithOneInGroupRequiredValidation();
         this.Target = new RequiredWithAttribute(nameof(MockObjectWithOneInGroupRequiredValidation.Property2));
 
@@ -69,8 +66,7 @@ public class RequiredWithAttributeTests : TestFixture<RequiredWithAttribute>
 
 
     [TestMethod]
-    public void IsValid_WithValue_OtherPropertyHasValue_ReturnsTrue()
-    {
+    public void IsValid_WithValue_OtherPropertyHasValue_ReturnsTrue() {
         var mockObject = new MockObjectWithOneInGroupRequiredValidation {
             Property2 = "My property 2"
         };
@@ -82,8 +78,7 @@ public class RequiredWithAttributeTests : TestFixture<RequiredWithAttribute>
 
 
     [TestMethod]
-    public void IsValid_WithValue_MultipleOtherPropertiesWithValue_ReturnsTrue()
-    {
+    public void IsValid_WithValue_MultipleOtherPropertiesWithValue_ReturnsTrue() {
         var mockObject = new MockObjectWithOneInGroupRequiredValidation {
             Property2 = "My property 2",
             Property3 = "My property 3"
@@ -97,8 +92,7 @@ public class RequiredWithAttributeTests : TestFixture<RequiredWithAttribute>
 
 
     [TestMethod]
-    public void IsValid_WithValue_MultipleOtherPropertiesOneWithoutValue_ReturnsTrue()
-    {
+    public void IsValid_WithValue_MultipleOtherPropertiesOneWithoutValue_ReturnsTrue() {
         var mockObject = new MockObjectWithOneInGroupRequiredValidation {
             Property3 = "My property 3"
         };
@@ -111,8 +105,7 @@ public class RequiredWithAttributeTests : TestFixture<RequiredWithAttribute>
 
 
     [TestMethod]
-    public void IsValid_WithoutValue_ReturnsTrue()
-    {
+    public void IsValid_WithoutValue_ReturnsTrue() {
         var mockObject = new MockObjectWithOneInGroupRequiredValidation();
         this.Target = new RequiredWithAttribute(nameof(MockObjectWithOneInGroupRequiredValidation.Property2));
 
@@ -122,8 +115,7 @@ public class RequiredWithAttributeTests : TestFixture<RequiredWithAttribute>
 
 
     [TestMethod]
-    public void IsValid_NullValue_ReturnsTrue()
-    {
+    public void IsValid_NullValue_ReturnsTrue() {
         var mockObject = new MockObjectWithOneInGroupRequiredValidation();
         this.Target = new RequiredWithAttribute(nameof(MockObjectWithOneInGroupRequiredValidation.Property2));
 

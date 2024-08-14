@@ -1,12 +1,6 @@
 ﻿namespace Catharsium.Util.Testing.DbContext.Tests.Mocks;
 
-public class MockObjectWithDbContextWithOptions
+public class MockObjectWithDbContextWithOptions(MockDbContextWithOptions dbContext)
 {
-    public MockDbContextWithOptions DbContext { get; }
-
-
-    public MockObjectWithDbContextWithOptions(MockDbContextWithOptions dbContext)
-    {
-        this.DbContext = dbContext;
-    }
+    public MockDbContextWithOptions DbContext { get; } = dbContext;
 }

@@ -1,5 +1,4 @@
 ﻿using Catharsium.Util.Testing.Models;
-using System.Collections.Generic;
 
 namespace Catharsium.Util.Testing.Interfaces;
 

@@ -1,30 +1,20 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Catharsium.Util.Testing.Attributes;
 
-public class ExpectedExceptionMessageAttribute : ExpectedExceptionBaseAttribute
+public class ExpectedExceptionMessageAttribute(Type exceptionType, string messageSubstring) : ExpectedExceptionBaseAttribute
 {
-    private readonly Type exceptionType;
-    private readonly string messageSubstring;
+    private readonly Type exceptionType = exceptionType;
+    private readonly string messageSubstring = messageSubstring;
 
 
-    public ExpectedExceptionMessageAttribute(Type exceptionType, string messageSubstring)
-    {
-        this.exceptionType = exceptionType;
-        this.messageSubstring = messageSubstring;
-    }
-
-
-    protected override void Verify(Exception exception)
-    {
+    protected override void Verify(Exception exception) {
         Assert.AreEqual(this.exceptionType, exception.GetType());
         Assert.IsTrue(exception.Message.Contains(this.messageSubstring));
     }
 
 
-    public void Validate(Exception exception)
-    {
+    public void Validate(Exception exception) {
         this.Verify(exception);
     }
 }

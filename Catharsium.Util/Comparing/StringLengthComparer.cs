@@ -1,15 +1,8 @@
-﻿using System.Collections.Generic;
+﻿namespace Catharsium.Util.Comparing;
 
-namespace Catharsium.Util.Comparing;
-
-public class StringLengthComparer : IComparer<string>
+public class StringLengthComparer(IComparer<int> intComparer) : IComparer<string>
 {
-    private readonly IComparer<int> intComparer;
-
-
-    public StringLengthComparer(IComparer<int> intComparer) {
-        this.intComparer = intComparer;
-    }
+    private readonly IComparer<int> intComparer = intComparer;
 
 
     public int Compare(string x, string y) {

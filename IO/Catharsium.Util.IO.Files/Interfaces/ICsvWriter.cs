@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 namespace Catharsium.Util.IO.Files.Interfaces;
 
 public interface ICsvWriter

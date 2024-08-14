@@ -6,14 +6,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
 using System.Threading.Tasks;
+
 namespace Catharsium.Util.Web.Tests.Middleware.Logging;
 
 [TestClass]
 public class ErrorLoggingHandlerTests : TestFixture<ErrorLoggingHandler>
 {
     [TestMethod]
-    public void Invoke_ExceptionInLifecycle_LogsError()
-    {
+    public void Invoke_ExceptionInLifecycle_LogsError() {
         var httpContext = Substitute.For<HttpContext>();
         var logger = Substitute.For<ILogger<ErrorLoggingHandler>>();
         this.SetDependency(logger);
@@ -26,8 +26,7 @@ public class ErrorLoggingHandlerTests : TestFixture<ErrorLoggingHandler>
 
 
     [TestMethod]
-    public void Invoke_NoException_DoesNotLog()
-    {
+    public void Invoke_NoException_DoesNotLog() {
         var httpContext = Substitute.For<HttpContext>();
         var logger = Substitute.For<ILogger<ErrorLoggingHandler>>();
         this.SetDependency(logger);
@@ -38,14 +37,12 @@ public class ErrorLoggingHandlerTests : TestFixture<ErrorLoggingHandler>
     }
 
 
-    public Task MyRequestDelegateWithException(HttpContext context)
-    {
+    public Task MyRequestDelegateWithException(HttpContext context) {
         throw new ApplicationException();
     }
 
 
-    public Task MyHealthyRequestDelegate(HttpContext context)
-    {
+    public Task MyHealthyRequestDelegate(HttpContext context) {
         return Task.CompletedTask;
     }
 }

@@ -7,8 +7,7 @@ namespace Catharsium.Util.Testing.DbContext._Configuration;
 
 public class ServiceCollectionFactory
 {
-    public static IServiceCollection Create(IServiceCollection serviceCollection)
-    {
+    public static IServiceCollection Create(IServiceCollection serviceCollection) {
         var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
         var configuration = builder.Build();
 

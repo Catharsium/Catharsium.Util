@@ -16,8 +16,7 @@ namespace Catharsium.Util.IO.Files.Tests._Configuration;
 public class RegistrationTests
 {
     [TestMethod]
-    public void AddIoUtilities_RegistersDependencies()
-    {
+    public void AddIoUtilities_RegistersDependencies() {
         var serviceCollection = Substitute.For<IServiceCollection>();
         var config = Substitute.For<IConfiguration>();
 
@@ -28,8 +27,6 @@ public class RegistrationTests
         serviceCollection.ReceivedRegistration<IJsonFileWriter, JsonFileWriter>();
 
         serviceCollection.ReceivedRegistration<ICsvReader, CsvReader>();
-        //serviceCollection.ReceivedRegistration<ICsvFileWriter, CsvFileWriter>();
-        //serviceCollection.ReceivedRegistration<ICsvWriterFactory, CsvWriterFactory>();
 
         serviceCollection.ReceivedRegistration<IFileNameService, FileNameService>();
     }

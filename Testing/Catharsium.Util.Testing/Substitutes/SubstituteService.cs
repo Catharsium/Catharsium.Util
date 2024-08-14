@@ -1,24 +1,15 @@
 ﻿using Catharsium.Util.Testing.Interfaces;
-using System;
-using System.Collections.Generic;
 
 namespace Catharsium.Util.Testing.Substitutes;
 
-public class SubstituteService : ISubstituteService
+public class SubstituteService(IEnumerable<ISubstituteFactory> substituteHandlers) : ISubstituteService
 {
-    private readonly IEnumerable<ISubstituteFactory> substituteHandlers;
+    private readonly IEnumerable<ISubstituteFactory> substituteHandlers = substituteHandlers;
 
 
-    public SubstituteService(IEnumerable<ISubstituteFactory> substituteHandlers)
-    {
-        this.substituteHandlers = substituteHandlers;
-    }
-
-
-    public object GetSubstitute(Type type)
-    {
-        foreach (var substituteHandler in this.substituteHandlers) {
-            if (substituteHandler.CanCreateFor(type)) {
+    public object GetSubstitute(Type type) {
+        foreach(var substituteHandler in this.substituteHandlers) {
+            if(substituteHandler.CanCreateFor(type)) {
                 return substituteHandler.CreateSubstitute(type);
             }
         }

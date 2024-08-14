@@ -1,6 +1,7 @@
 ﻿using Catharsium.Util.Comparing;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace Catharsium.Util.Tests.Comparing;
 
 [TestClass]

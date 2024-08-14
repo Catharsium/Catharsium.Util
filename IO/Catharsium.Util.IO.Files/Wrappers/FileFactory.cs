@@ -1,5 +1,4 @@
 ﻿using Catharsium.Util.IO.Files.Interfaces;
-using System.IO;
 
 namespace Catharsium.Util.IO.Files.Wrappers;
 
@@ -7,14 +6,12 @@ public class FileFactory : IFileFactory
 {
     #region Files
 
-    public IFile CreateFile(string path)
-    {
+    public IFile CreateFile(string path) {
         return new FileInfoWrapper(path);
     }
 
 
-    public IFile CreateFile(FileInfo fileInfo)
-    {
+    public IFile CreateFile(FileInfo fileInfo) {
         return new FileInfoWrapper(fileInfo);
     }
 
@@ -22,13 +19,11 @@ public class FileFactory : IFileFactory
 
     #region Directories
 
-    public IDirectory CreateDirectory(string path)
-    {
+    public IDirectory CreateDirectory(string path) {
         return new DirectoryInfoWrapper(path);
     }
 
-    public IDirectory CreateDirectory(DirectoryInfo directoryInfo)
-    {
+    public IDirectory CreateDirectory(DirectoryInfo directoryInfo) {
         return new DirectoryInfoWrapper(directoryInfo);
     }
 

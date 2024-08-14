@@ -6,14 +6,14 @@ using Catharsium.Util.Testing.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+
 namespace Catharsium.Util.Testing.DbContext.Tests._Configuration;
 
 [TestClass]
 public class RegistrationTests
 {
     [TestMethod]
-    public void AddTestingUtilities_RegistersDependencies()
-    {
+    public void AddTestingUtilities_RegistersDependencies() {
         var serviceCollection = Substitute.For<IServiceCollection>();
 
         serviceCollection.AddDatabaseTestingUtilities<MockDbContextWithTypedOptions>();

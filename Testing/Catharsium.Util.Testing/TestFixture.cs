@@ -4,8 +4,6 @@ using Catharsium.Util.Testing.Models;
 using Catharsium.Util.Testing.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Catharsium.Util.Testing;
 
@@ -25,17 +23,15 @@ public class TestFixture<T> where T : class
     public List<Dependency> Dependencies { get; set; }
 
 
-    public TDependency GetDependency<TDependency>(string name = null)
-    {
+    public TDependency GetDependency<TDependency>(string name = null) {
         var result = this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency) && d.Name == name) ?? this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency));
         return result != null ? (TDependency)result.Value : default;
     }
 
 
-    public void SetDependency<TDependency>(TDependency dependency, string name = null)
-    {
+    public void SetDependency<TDependency>(TDependency dependency, string name = null) {
         var dependencyHolder = this.Dependencies.FirstOrDefault(d => d.Type == typeof(TDependency) && (string.IsNullOrWhiteSpace(name) || d.Name == name));
-        if (dependencyHolder != null) {
+        if(dependencyHolder != null) {
             dependencyHolder.Value = dependency;
         }
         else {
@@ -53,8 +49,7 @@ public class TestFixture<T> where T : class
         IServiceCollection serviceCollection = null,
         IDependencyRetriever dependencyRetriever = null,
         IConstructorFilter constructorFilter = null,
-        ITargetFactory<T> targetFactory = null)
-    {
+        ITargetFactory<T> targetFactory = null) {
         var services = ServiceProviderFactory.Create(serviceCollection ?? new ServiceCollection());
         this.DependencyRetriever = dependencyRetriever ?? services.GetService<IDependencyRetriever>();
         this.ConstructorFilter = constructorFilter ?? services.GetService<IConstructorFilter>();
@@ -66,8 +61,7 @@ public class TestFixture<T> where T : class
 
     #region Methods
 
-    public void Setup()
-    {
+    public void Setup() {
         this.Dependencies = this.DependencyRetriever.GetDependencySubstitutes<T>();
         var constructor = this.ConstructorFilter.GetLargestEligibleConstructor(typeof(T));
         var substitutes = this.DependencyRetriever.GetDependencySubstitutes(constructor, this.Dependencies);

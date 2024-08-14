@@ -8,14 +8,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+
 namespace Catharsium.Util.IO.Console.Tests._Configuration;
 
 [TestClass]
 public class RegistrationTests
 {
     [TestMethod]
-    public void AddIoUtilities_RegistersDependencies()
-    {
+    public void AddIoUtilities_RegistersDependencies() {
         var serviceCollection = Substitute.For<IServiceCollection>();
         var config = Substitute.For<IConfiguration>();
 

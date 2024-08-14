@@ -7,12 +7,12 @@ using Catharsium.Util.IO.Files.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+
 namespace Catharsium.Util.IO.Files._Configuration;
 
 public static class Registration
 {
-    public static IServiceCollection AddFilesIoUtilities(this IServiceCollection services, IConfiguration config)
-    {
+    public static IServiceCollection AddFilesIoUtilities(this IServiceCollection services, IConfiguration config) {
         var configuration = config.Load<FilesIoUtilSettings>();
         services.AddSingleton<FilesIoUtilSettings, FilesIoUtilSettings>(_ => configuration);
 

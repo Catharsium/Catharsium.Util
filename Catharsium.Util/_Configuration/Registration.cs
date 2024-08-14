@@ -7,7 +7,6 @@ using Catharsium.Util.Time.Format;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using System.Collections.Generic;
 
 namespace Catharsium.Util._Configuration;
 

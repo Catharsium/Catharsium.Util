@@ -1,18 +1,10 @@
 ﻿using Catharsium.Util.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Catharsium.Util.Comparing.Sorting;
 
-public class QuickSorter<T> : IEnumerableSorter<T> where T : IComparable<T>
+public class QuickSorter<T>(IComparer<T> comparer) : IEnumerableSorter<T> where T : IComparable<T>
 {
-    private readonly IComparer<T> comparer;
-
-
-    public QuickSorter(IComparer<T> comparer) {
-        this.comparer = comparer;
-    }
+    private readonly IComparer<T> comparer = comparer;
 
 
     public IEnumerable<T> Sort(IEnumerable<T> items) {
@@ -20,7 +12,7 @@ public class QuickSorter<T> : IEnumerableSorter<T> where T : IComparable<T>
         var result = new List<T>();
         var pivotIndex = this.FindPivotIndex(itemsList);
 
-        if (!itemsList.Any() || pivotIndex < 0) {
+        if(itemsList.Count == 0 || pivotIndex < 0) {
             return result;
         }
 
@@ -42,14 +34,14 @@ public class QuickSorter<T> : IEnumerableSorter<T> where T : IComparable<T>
         var list = items.ToList();
         var lastIndex = list.Count - 1;
 
-        switch (list.Count) {
+        switch(list.Count) {
             case 0:
                 break;
             case 1:
                 return 0;
             case 2:
-                if (list.Count == 2) {
-                    if (this.comparer.Compare(list[0], list[lastIndex]) <= 0) {
+                if(list.Count == 2) {
+                    if(this.comparer.Compare(list[0], list[lastIndex]) <= 0) {
                         return 0;
                     }
                 }
@@ -57,11 +49,12 @@ public class QuickSorter<T> : IEnumerableSorter<T> where T : IComparable<T>
                 break;
             default:
                 var middleIndex = (int)Math.Round((double)list.Count / 2);
-                if (this.comparer.Compare(list[0], list[middleIndex]) <= 0 && this.comparer.Compare(list[0], list[lastIndex]) >= 0 ||
+                if(this.comparer.Compare(list[0], list[middleIndex]) <= 0 && this.comparer.Compare(list[0], list[lastIndex]) >= 0 ||
                     this.comparer.Compare(list[0], list[middleIndex]) >= 0 && this.comparer.Compare(list[0], list[lastIndex]) <= 0) {
                     return 0;
                 }
-                if (this.comparer.Compare(list[middleIndex], list[0]) <= 0 && this.comparer.Compare(list[middleIndex], list[lastIndex]) >= 0 ||
+
+                if(this.comparer.Compare(list[middleIndex], list[0]) <= 0 && this.comparer.Compare(list[middleIndex], list[lastIndex]) >= 0 ||
                     this.comparer.Compare(list[middleIndex], list[0]) >= 0 && this.comparer.Compare(list[middleIndex], list[lastIndex]) <= 0) {
                     return middleIndex;
                 }
