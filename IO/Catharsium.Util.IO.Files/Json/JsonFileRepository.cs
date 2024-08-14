@@ -9,7 +9,7 @@ public class JsonFileRepository<T>(
     IFileFactory fileFactory,
     IJsonFileReader jsonFileReader,
     IJsonFileWriter jsonFileWriter,
-    string storagePath) : IJsonFileRepository<T>
+    string storagePath) : IDataRepository<T>
 {
     private readonly IFileFactory fileFactory = fileFactory;
     private readonly IJsonFileReader jsonFileReader = jsonFileReader;
@@ -17,16 +17,15 @@ public class JsonFileRepository<T>(
     private readonly string storagePath = storagePath;
 
 
-    public async Task<List<T>> Get()
-    {
+    public virtual async Task<List<T>> Get() {
         return await Task.Run(() => {
             var directory = this.fileFactory.CreateDirectory($@"{this.storagePath}");
-            if (!directory.Exists) {
+            if(!directory.Exists) {
                 directory.Create();
             }
 
             var result = new List<T>();
-            foreach (var file in directory.GetFiles("*.json")) {
+            foreach(var file in directory.GetFiles("*.json")) {
                 result.Add(this.Get(file));
             }
 
@@ -35,27 +34,22 @@ public class JsonFileRepository<T>(
     }
 
 
-    public async Task<T> Get(string key)
-    {
+    public virtual async Task<T> Get(string key) {
         var file = this.GetFile(key);
-        return await Task.Run(() => {
-            return this.Get(file);
-        });
+        return await Task.Run(() => this.Get(file));
     }
 
 
-    private T Get(IFile file)
-    {
+    private T Get(IFile file) {
         return !file.Exists
             ? throw new IOException($"File '{file.FullName}' does not exist")
             : this.jsonFileReader.ReadFrom<T>(file);
     }
 
 
-    public async Task Add(T data, string key)
-    {
+    public virtual async Task Add(T data, string key) {
         var file = this.GetFile(key);
-        if (file.Exists) {
+        if(file.Exists) {
             file.Delete();
         }
 
@@ -63,19 +57,17 @@ public class JsonFileRepository<T>(
     }
 
 
-    public async Task Remove(string key)
-    {
+    public virtual async Task Remove(string key) {
         var file = this.GetFile(key);
-        if (!file.Exists) {
+        if(!file.Exists) {
             throw new IOException($"File '{file.FullName}' does not exist");
         }
 
-        await Task.Run(() => file.Delete());
+        await Task.Run(file.Delete);
     }
 
 
-    private IFile GetFile(string key)
-    {
+    private IFile GetFile(string key) {
         return this.fileFactory.CreateFile($@"{this.storagePath}\{key}.json");
     }
 }
