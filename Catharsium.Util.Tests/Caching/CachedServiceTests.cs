@@ -28,7 +28,7 @@ public class CachedServiceTests : TestFixture<CachedService<MockService>>
     public void GetData_InvalidReturnType_ReturnsDefault() {
         var input = "My input";
         var actual = this.Target.GetData<CachedServiceTests>(nameof(this.Instance.ReadData), input);
-        Assert.AreEqual(default(string), actual);
+        Assert.AreEqual(default, actual);
     }
 
 
