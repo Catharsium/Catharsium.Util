@@ -7,11 +7,20 @@ namespace Catharsium.Util.IO.Files.Json;
 [ExcludeFromCodeCoverage]
 public class JsonFileReader : IJsonFileReader
 {
-    public T ReadFrom<T>(string file) {
-        var jsonString = File.ReadAllText(file);
-        return JsonSerializer.Deserialize<T>(jsonString, new JsonSerializerOptions {
+    public JsonSerializerOptions SerializerOptions { get; }
+
+
+    public JsonFileReader() {
+        this.SerializerOptions = new JsonSerializerOptions {
             PropertyNameCaseInsensitive = true
-        });
+        };
+    }
+
+
+    public T ReadFrom<T>(string file) {
+        using var reader = new StreamReader(file);
+        var jsonString = reader.ReadToEnd();
+        return JsonSerializer.Deserialize<T>(jsonString, this.SerializerOptions);
     }
 
 
