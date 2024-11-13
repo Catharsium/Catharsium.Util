@@ -13,7 +13,7 @@ public static class Registration
         var configuration = config.Load<WebUtilSettings>();
         services.AddSingleton<WebUtilSettings, WebUtilSettings>(_ => configuration);
 
-        services.TryAddTransient<IRestService, RestService>();
+        //services.TryAddTransient<IRestService, RestService>();
         services.TryAddTransient<IUrlHelper, UrlHelper>();
 
         return services;
