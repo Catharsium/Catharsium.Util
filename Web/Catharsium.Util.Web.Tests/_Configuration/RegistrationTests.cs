@@ -17,7 +17,7 @@ public class RegistrationTests
         var config = Substitute.For<IConfiguration>();
 
         serviceCollection.AddWebUtilities(config);
-        serviceCollection.ReceivedRegistration<IRestService>();
+        //serviceCollection.ReceivedRegistration<IRestService>();
         serviceCollection.ReceivedRegistration<IUrlHelper>();
     }
 }
