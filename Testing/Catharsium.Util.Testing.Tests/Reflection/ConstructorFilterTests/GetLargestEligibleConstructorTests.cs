@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
+
 namespace Catharsium.Util.Testing.Tests.Reflection.ConstructorFilterTests;
 
 [TestClass]
@@ -20,11 +21,10 @@ public class GetLargestEligibleConstructorTests
 
 
     [TestInitialize]
-    public void Setup()
-    {
+    public void Setup() {
         this.Type = typeof(MockObject);
-        this.Dependencies = new List<Dependency>();
-        this.Target = new ConstructorFilter(Array.Empty<Type>());
+        this.Dependencies = [];
+        this.Target = new ConstructorFilter([]);
     }
 
     #endregion
@@ -32,22 +32,20 @@ public class GetLargestEligibleConstructorTests
     #region GetLargestEligibleConstructor
 
     [TestMethod]
-    public void GetLargestEligibleConstructor_NoDependencies_ReturnsLargestConstructorWithOnlyInterfaces()
-    {
+    public void GetLargestEligibleConstructor_NoDependencies_ReturnsLargestConstructorWithOnlyInterfaces() {
         var actual = this.Target.GetLargestEligibleConstructor(this.Type, this.Dependencies);
-        Assert.AreEqual(2, actual.GetParameters().Length);
+        Assert.HasCount(2, actual.GetParameters());
     }
 
 
     [TestMethod]
-    public void GetLargestEligibleConstructor_WithDependenciesFromLargestConstructor_ReturnsLargestConstructor()
-    {
+    public void GetLargestEligibleConstructor_WithDependenciesFromLargestConstructor_ReturnsLargestConstructor() {
         this.Dependencies.Add(new Dependency(typeof(IMockInterface1), "interface1", Substitute.For<IMockInterface1>()));
         this.Dependencies.Add(new Dependency(typeof(IMockInterface2), "interface2", Substitute.For<IMockInterface2>()));
         this.Dependencies.Add(new Dependency(typeof(string), "stringDependency", "My string"));
 
         var actual = this.Target.GetLargestEligibleConstructor(this.Type, this.Dependencies);
-        Assert.AreEqual(3, actual.GetParameters().Length);
+        Assert.HasCount(3, actual.GetParameters());
     }
 
     #endregion

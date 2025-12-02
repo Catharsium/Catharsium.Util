@@ -6,6 +6,7 @@ using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace Catharsium.Util.Testing.Tests.Reflection.ConstructorFilterTests;
 
 [TestClass]
@@ -21,11 +22,10 @@ public class GetEligibleConstructorTests
 
 
     [TestInitialize]
-    public void Setup()
-    {
+    public void Setup() {
         this.Type = typeof(MockObject);
-        this.Dependencies = new List<Dependency>();
-        this.Target = new ConstructorFilter(Array.Empty<Type>());
+        this.Dependencies = [];
+        this.Target = new ConstructorFilter([]);
     }
 
     #endregion
@@ -33,29 +33,27 @@ public class GetEligibleConstructorTests
     #region GetEligibleConstructors(Dictionary)
 
     [TestMethod]
-    public void GetEligibleConstructors_ReturnsGetEligibleConstructorsIEnumerable()
-    {
+    public void GetEligibleConstructors_ReturnsGetEligibleConstructorsIEnumerable() {
         this.Dependencies.Add(new Dependency(typeof(IMockInterface1), "interface1", Substitute.For<IMockInterface1>()));
         var expected = this.Target.GetEligibleConstructors(this.Type, this.Dependencies).ToList();
 
         var actual = this.Target.GetEligibleConstructors(this.Type, this.Dependencies).ToList();
-        Assert.AreEqual(expected.Count, actual.Count);
-        foreach (var constructor in expected) {
-            Assert.IsTrue(actual.Contains(constructor));
+        Assert.HasCount(expected.Count, actual);
+        foreach(var constructor in expected) {
+            Assert.Contains(constructor, actual);
         }
     }
 
 
     [TestMethod]
-    public void GetEligibleConstructors_EmptyDictionary_ReturnsGetEligibleConstructorsIEnumerable()
-    {
+    public void GetEligibleConstructors_EmptyDictionary_ReturnsGetEligibleConstructorsIEnumerable() {
         var expected = this.Target.GetEligibleConstructors(this.Type, this.Dependencies).ToList();
         var actual = this.Target.GetEligibleConstructors(this.Type, null as List<Dependency>).ToList();
         Assert.IsNotNull(expected);
         Assert.IsNotNull(actual);
-        Assert.AreEqual(expected.Count, actual.Count);
-        foreach (var constructor in expected) {
-            Assert.IsTrue(actual.Contains(constructor));
+        Assert.HasCount(expected.Count, actual);
+        foreach(var constructor in expected) {
+            Assert.Contains(constructor, actual);
         }
     }
 

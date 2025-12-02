@@ -45,7 +45,6 @@ public class ServiceCollectionExtensionsTests
     public void ReceivedRegistration_WithImplementation_DifferentImplementationRegistered_ThrowAnException() {
         var target = Substitute.For<IServiceCollection>();
         target.AddScoped<IMockInterface1, Mock2>();
-
         Assert.Throws<ReceivedCallsException>(() => ServiceCollectionExtensions.ReceivedRegistration<IMockInterface1, Mock1>(target));
     }
 

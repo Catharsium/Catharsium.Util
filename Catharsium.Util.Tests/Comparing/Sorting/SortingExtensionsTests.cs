@@ -27,7 +27,7 @@ public class SortingExtensionsTests
         var expected = new QuickSorter<decimal>(this.Comparer).Sort(input).ToList();
 
         var actual = input.QuickSort(this.Comparer).ToList();
-        Assert.AreEqual(expected.Count, actual.Count);
+        Assert.HasCount(expected.Count, actual);
         for(var i = 0; i < expected.Count; i++) {
             Assert.AreEqual(expected[i], actual[i]);
         }

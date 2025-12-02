@@ -20,7 +20,7 @@ public class TestFixtureIntegrationTests
         var actual = new TestFixture<MockObject>();
         Assert.IsNotNull(actual.Target);
         Assert.IsNotNull(actual.Dependencies);
-        Assert.AreEqual(2, actual.Dependencies.Count);
+        Assert.HasCount(2, actual.Dependencies);
         Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface1)));
         Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface2)));
         Assert.IsFalse(Contains(actual.Dependencies, typeof(string)));
@@ -32,7 +32,7 @@ public class TestFixtureIntegrationTests
         var actual = new TestFixture<MockObjectWithSingleConstructor>();
         Assert.IsNull(actual.Target);
         Assert.IsNotNull(actual.Dependencies);
-        Assert.AreEqual(2, actual.Dependencies.Count);
+        Assert.HasCount(2, actual.Dependencies);
         Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface1)));
         Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface2)));
     }
@@ -43,7 +43,7 @@ public class TestFixtureIntegrationTests
         var actual = new TestFixture<MockObjectWithoutInterfaces>();
         Assert.IsNull(actual.Target);
         Assert.IsNotNull(actual.Dependencies);
-        Assert.AreEqual(0, actual.Dependencies.Count);
+        Assert.IsEmpty(actual.Dependencies);
     }
 
 
@@ -55,7 +55,7 @@ public class TestFixtureIntegrationTests
         Assert.IsNull(actual.Target.InterfaceDependency2);
         Assert.IsNull(actual.Target.StringDependency);
         Assert.IsNotNull(actual.Dependencies);
-        Assert.AreEqual(2, actual.Dependencies.Count);
+        Assert.HasCount(2, actual.Dependencies);
         Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface1)));
         Assert.IsTrue(Contains(actual.Dependencies, typeof(IMockInterface2)));
         Assert.IsFalse(Contains(actual.Dependencies, typeof(string)));

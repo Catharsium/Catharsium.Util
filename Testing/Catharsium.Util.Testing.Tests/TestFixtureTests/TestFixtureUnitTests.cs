@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 namespace Catharsium.Util.Testing.Tests.TestFixtureTests;
 
 [TestClass]
@@ -27,11 +28,10 @@ public class TestFixtureUnitTests
 
 
     [TestInitialize]
-    public void Setup()
-    {
+    public void Setup() {
         this.Type = typeof(MockObject);
 
-        this.ExpectedDependencies = new List<Dependency>();
+        this.ExpectedDependencies = [];
         this.ExpectedTarget = new MockObject(null);
 
         this.ServiceCollection = Substitute.For<IServiceCollection>();
@@ -52,8 +52,7 @@ public class TestFixtureUnitTests
     #region Constructor
 
     [TestMethod]
-    public void Constructor_StoresDependencies()
-    {
+    public void Constructor_StoresDependencies() {
         var actual = new TestFixture<MockObject>(this.ServiceCollection, this.DependencyRetriever, this.ConstructorFilter, this.TargetFactory);
         Assert.IsNotNull(actual.Dependencies);
         Assert.AreEqual(this.ExpectedDependencies, actual.Dependencies);
@@ -61,8 +60,7 @@ public class TestFixtureUnitTests
 
 
     [TestMethod]
-    public void Constructor_ObtainsInitialConstructor_CreatesTarget()
-    {
+    public void Constructor_ObtainsInitialConstructor_CreatesTarget() {
         var actual = new TestFixture<MockObject>(this.ServiceCollection, this.DependencyRetriever, this.ConstructorFilter, this.TargetFactory);
         Assert.IsNotNull(actual.Target);
         Assert.AreEqual(this.ExpectedTarget, actual.Target);
@@ -73,8 +71,7 @@ public class TestFixtureUnitTests
     #region GetDependency
 
     [TestMethod]
-    public void GetDependency_ValidType_ReturnsDependency()
-    {
+    public void GetDependency_ValidType_ReturnsDependency() {
         var expected = "";
         this.Target.Dependencies.Add(new Dependency(typeof(string), "stringDependency", expected));
 
@@ -84,8 +81,7 @@ public class TestFixtureUnitTests
 
 
     [TestMethod]
-    public void GetDependency_InvalidType_ReturnsNull()
-    {
+    public void GetDependency_InvalidType_ReturnsNull() {
         var actual = this.Target.GetDependency<string>();
         Assert.IsNull(actual);
     }
@@ -95,8 +91,7 @@ public class TestFixtureUnitTests
     #region SetDependency
 
     [TestMethod]
-    public void SetDependency_NewDependency_IsAddedToDependenciesList()
-    {
+    public void SetDependency_NewDependency_IsAddedToDependenciesList() {
         var name = "My name";
         var expected = "My string";
         this.ExpectedDependencies.Add(new Dependency(typeof(string), name, expected));
@@ -110,8 +105,7 @@ public class TestFixtureUnitTests
 
 
     [TestMethod]
-    public void SetDependency_ExistingDependency_ReplacesCurrentInDependenciesList()
-    {
+    public void SetDependency_ExistingDependency_ReplacesCurrentInDependenciesList() {
         var expected = Substitute.For<IMockInterface1>();
         var type = typeof(IMockInterface1);
         this.Target.Dependencies.Add(new Dependency(typeof(IMockInterface1), ""));
@@ -123,8 +117,7 @@ public class TestFixtureUnitTests
 
 
     [TestMethod]
-    public void SetDependency_DependencyInMostSpecificConstructor_NewTargetWithDependencyAndAllInterfacesSatisfied()
-    {
+    public void SetDependency_DependencyInMostSpecificConstructor_NewTargetWithDependencyAndAllInterfacesSatisfied() {
         var expected = "My string";
         this.Target.SetDependency(expected);
         Assert.AreEqual(this.ExpectedTarget, this.Target.Target);

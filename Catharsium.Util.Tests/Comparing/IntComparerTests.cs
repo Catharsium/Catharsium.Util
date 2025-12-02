@@ -20,7 +20,7 @@ public class IntComparerTests : TestFixture<IntComparer>
         var y = X - 1;
         this.GetDependency<IComparer<decimal>>().Compare(X, y).Returns(1);
         var actual = this.Target.Compare(X, y);
-        Assert.IsTrue(actual > 0);
+        Assert.IsGreaterThan(0, actual);
     }
 
 
@@ -38,6 +38,6 @@ public class IntComparerTests : TestFixture<IntComparer>
         var y = X + 1;
         this.GetDependency<IComparer<decimal>>().Compare(X, y).Returns(-1);
         var actual = this.Target.Compare(X, y);
-        Assert.IsTrue(actual < 0);
+        Assert.IsLessThan(0, actual);
     }
 }

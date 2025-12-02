@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Catharsium.Util.Testing.Tests._Mocks;
 
 public class MockObjectWithAllSupportedDependencies
@@ -9,16 +10,14 @@ public class MockObjectWithAllSupportedDependencies
     public readonly string StringDependency;
 
 
-    public MockObjectWithAllSupportedDependencies(IMockInterface1 interface1Dependency)
-    {
+    public MockObjectWithAllSupportedDependencies(IMockInterface1 interface1Dependency) {
         this.InterfaceDependency1 = interface1Dependency;
     }
 
 
     public MockObjectWithAllSupportedDependencies(
         IMockInterface2 interface2Dependency,
-        Guid guidDependency)
-    {
+        Guid guidDependency) {
         this.InterfaceDependency2 = interface2Dependency;
         this.GuidDependency = guidDependency;
     }
@@ -28,8 +27,7 @@ public class MockObjectWithAllSupportedDependencies
         IMockInterface2 interface2Dependency,
         Guid guidDependency,
         string stringDependency)
-        : this(interface2Dependency, guidDependency)
-    {
+        : this(interface2Dependency, guidDependency) {
         this.StringDependency = stringDependency;
     }
 }

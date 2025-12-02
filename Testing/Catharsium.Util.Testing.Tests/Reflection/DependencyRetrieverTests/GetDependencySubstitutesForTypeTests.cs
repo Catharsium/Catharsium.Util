@@ -19,12 +19,9 @@ public class GetDependencySubstitutesForTypeTests
 
 
     [TestInitialize]
-    public void Setup()
-    {
+    public void Setup() {
         this.SubstituteFactory = Substitute.For<ISubstituteService>();
-        this.SupportedTypes = new List<Type> {
-                typeof(Guid)
-            };
+        this.SupportedTypes = [typeof(Guid)];
         this.Target = new DependencyRetriever(this.SubstituteFactory, this.SupportedTypes);
     }
 
@@ -33,51 +30,46 @@ public class GetDependencySubstitutesForTypeTests
     #region GetDependencySubstitutes
 
     [TestMethod]
-    public void GetDependencySubstitutes_NoDependencies_ReturnsEmptyList()
-    {
+    public void GetDependencySubstitutes_NoDependencies_ReturnsEmptyList() {
         var actual = this.Target.GetDependencySubstitutes<object>();
         Assert.IsNotNull(actual);
-        Assert.AreEqual(0, actual.Count);
+        Assert.IsEmpty(actual);
     }
 
 
     [TestMethod]
-    public void GetDependencySubstitutes_ConstructorWithAllDependencies_ReturnsAllDependencies()
-    {
+    public void GetDependencySubstitutes_ConstructorWithAllDependencies_ReturnsAllDependencies() {
         var actual = this.Target.GetDependencySubstitutes<MockObject>();
         Assert.IsNotNull(actual);
-        Assert.AreEqual(2, actual.Count);
+        Assert.HasCount(2, actual);
         Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface1) && d.Name == "interface1"));
         Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface2) && d.Name == "interface2"));
     }
 
 
     [TestMethod]
-    public void GetDependencySubstitutes_SingleConstructors_ReturnsAllDependencies()
-    {
+    public void GetDependencySubstitutes_SingleConstructors_ReturnsAllDependencies() {
         var actual = this.Target.GetDependencySubstitutes<MockObjectWithSingleConstructor>();
         Assert.IsNotNull(actual);
-        Assert.AreEqual(2, actual.Count);
+        Assert.HasCount(2, actual);
         Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface1) && d.Name == "interface1"));
         Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface2) && d.Name == "interface2"));
     }
 
 
     [TestMethod]
-    public void GetDependencySubstitutes_ConstructorWithoutInterfaceDependencies_ReturnsEmptyList()
-    {
+    public void GetDependencySubstitutes_ConstructorWithoutInterfaceDependencies_ReturnsEmptyList() {
         var actual = this.Target.GetDependencySubstitutes<MockObjectWithoutInterfaces>();
         Assert.IsNotNull(actual);
-        Assert.AreEqual(0, actual.Count);
+        Assert.IsEmpty(actual);
     }
 
 
     [TestMethod]
-    public void GetDependencySubstitutes_MultipleConstructorsWithDifferentDependencies_ReturnsAllDependencies()
-    {
+    public void GetDependencySubstitutes_MultipleConstructorsWithDifferentDependencies_ReturnsAllDependencies() {
         var actual = this.Target.GetDependencySubstitutes<MockObjectWithDifferentDependencies>();
         Assert.IsNotNull(actual);
-        Assert.AreEqual(2, actual.Count);
+        Assert.HasCount(2, actual);
         Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface1) && d.Name == "interface1"));
         Assert.IsTrue(actual.Any(d => d.Type == typeof(IMockInterface2) && d.Name == "interface2"));
     }

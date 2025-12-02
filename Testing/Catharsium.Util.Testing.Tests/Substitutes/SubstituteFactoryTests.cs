@@ -3,6 +3,7 @@ using Catharsium.Util.Testing.Substitutes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
+
 namespace Catharsium.Util.Testing.Tests.Substitutes;
 
 [TestClass]
@@ -15,17 +16,15 @@ public class SubstituteFactoryTests
 
 
     [TestInitialize]
-    public void Setup()
-    {
+    public void Setup() {
         this.SubstituteFactory = Substitute.For<ISubstituteFactory>();
-        this.Target = new SubstituteService(new[] { this.SubstituteFactory });
+        this.Target = new SubstituteService([this.SubstituteFactory]);
     }
 
     #endregion
 
     [TestMethod]
-    public void GetSubstitute_SupportedType_ReturnsSubstitute()
-    {
+    public void GetSubstitute_SupportedType_ReturnsSubstitute() {
         var expected = Guid.NewGuid();
         var type = expected.GetType();
         this.SubstituteFactory.CanCreateFor(type).Returns(true);
@@ -37,8 +36,7 @@ public class SubstituteFactoryTests
 
 
     [TestMethod]
-    public void GetSubstitute_UnsupportedType_ReturnsSubstitute()
-    {
+    public void GetSubstitute_UnsupportedType_ReturnsSubstitute() {
         var expected = Guid.NewGuid();
         var type = expected.GetType();
         this.SubstituteFactory.CanCreateFor(type).Returns(false);

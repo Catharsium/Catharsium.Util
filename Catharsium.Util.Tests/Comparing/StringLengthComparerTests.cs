@@ -20,7 +20,7 @@ public class StringLengthComparerTests : TestFixture<StringLengthComparer>
         var y = X + "y";
         this.GetDependency<IComparer<int>>().Compare(X.Length, y.Length).Returns(1);
         var actual = this.Target.Compare(X, y);
-        Assert.IsTrue(actual > 0);
+        Assert.IsGreaterThan(0, actual);
     }
 
 
@@ -38,7 +38,7 @@ public class StringLengthComparerTests : TestFixture<StringLengthComparer>
         var y = X[0..^2];
         this.GetDependency<IComparer<int>>().Compare(X.Length, y.Length).Returns(-1);
         var actual = this.Target.Compare(X, y);
-        Assert.IsTrue(actual < 0);
+        Assert.IsLessThan(0, actual);
     }
 
 

@@ -49,7 +49,7 @@ public class PropertyExtensionsTests
         };
 
         var actual = fixture.GetPropertiesWithValue();
-        Assert.AreEqual(1, actual.Length);
+        Assert.HasCount(1, actual);
         Assert.AreEqual(nameof(fixture.Property2), actual[0].Name);
     }
 

@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
+
 namespace Catharsium.Util.Testing.Tests.Reflection;
 
 [TestClass]
@@ -20,10 +21,9 @@ public class TargetFactoryTests
 
 
     [TestInitialize]
-    public void Setup()
-    {
+    public void Setup() {
         this.Type = typeof(MockObject);
-        this.Dependencies = new List<Dependency>();
+        this.Dependencies = [];
         this.ConstructorFilter = Substitute.For<IConstructorFilter>();
         this.Target = new TargetFactory<MockObject>(this.ConstructorFilter);
     }
@@ -33,13 +33,12 @@ public class TargetFactoryTests
     #region CreateTarget
 
     [TestMethod]
-    public void CreateTarget_WithAllInterfaceDependencies_ReturnsTargetWithInterfacesFilled()
-    {
+    public void CreateTarget_WithAllInterfaceDependencies_ReturnsTargetWithInterfacesFilled() {
         var dependency1Type = typeof(IMockInterface1);
         var dependency2Type = typeof(IMockInterface2);
         this.Dependencies.Add(new Dependency(dependency1Type, "interface1", Substitute.For<IMockInterface1>()));
         this.Dependencies.Add(new Dependency(dependency2Type, "interface2", Substitute.For<IMockInterface2>()));
-        var constructor = this.Type.GetConstructor(new[] { dependency1Type, dependency2Type });
+        var constructor = this.Type.GetConstructor([dependency1Type, dependency2Type]);
         this.ConstructorFilter.GetLargestEligibleConstructor(this.Type, this.Dependencies).Returns(constructor);
 
         var actual = this.Target.CreateTarget(this.Dependencies);
@@ -51,10 +50,9 @@ public class TargetFactoryTests
 
 
     [TestMethod]
-    public void CreateTarget_WithTooFewDependencies_ReturnsNull()
-    {
+    public void CreateTarget_WithTooFewDependencies_ReturnsNull() {
         this.Dependencies.Add(new Dependency(typeof(IMockInterface2), "interface2", Substitute.For<IMockInterface2>()));
-        var constructor = this.Type.GetConstructor(new[] { typeof(IMockInterface1), typeof(IMockInterface2) });
+        var constructor = this.Type.GetConstructor([typeof(IMockInterface1), typeof(IMockInterface2)]);
         this.ConstructorFilter.GetLargestEligibleConstructor(this.Type).Returns(constructor);
 
         var actual = this.Target.CreateTarget(this.Dependencies);
@@ -63,13 +61,12 @@ public class TargetFactoryTests
 
 
     [TestMethod]
-    public void CreateTarget_WithTooManyDependencies_ReturnsTargetWithInterfacesFilled()
-    {
+    public void CreateTarget_WithTooManyDependencies_ReturnsTargetWithInterfacesFilled() {
         var dependency1Type = typeof(IMockInterface1);
         var dependency2Type = typeof(IMockInterface2);
         this.Dependencies.Add(new Dependency(dependency1Type, "interface1", Substitute.For<IMockInterface1>()));
         this.Dependencies.Add(new Dependency(dependency2Type, "interface2", Substitute.For<IMockInterface2>()));
-        var constructor = this.Type.GetConstructor(new[] { dependency1Type });
+        var constructor = this.Type.GetConstructor([dependency1Type]);
         this.ConstructorFilter.GetLargestEligibleConstructor(this.Type, this.Dependencies).Returns(constructor);
 
         var actual = this.Target.CreateTarget(this.Dependencies);
@@ -81,8 +78,7 @@ public class TargetFactoryTests
 
 
     [TestMethod]
-    public void CreateTarget_NoDependencies_ReturnsNull()
-    {
+    public void CreateTarget_NoDependencies_ReturnsNull() {
         var actual = this.Target.CreateTarget(this.Dependencies);
         Assert.IsNull(actual);
     }

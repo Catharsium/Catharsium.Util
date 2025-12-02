@@ -7,14 +7,12 @@ public class MockObjectWithDifferentDependencies
     public readonly string StringDependency;
 
 
-    public MockObjectWithDifferentDependencies(IMockInterface1 interface1)
-    {
+    public MockObjectWithDifferentDependencies(IMockInterface1 interface1) {
         this.InterfaceDependency1 = interface1;
     }
 
 
-    public MockObjectWithDifferentDependencies(IMockInterface2 interface2, string stringDependency)
-    {
+    public MockObjectWithDifferentDependencies(IMockInterface2 interface2, string stringDependency) {
         this.InterfaceDependency2 = interface2;
         this.StringDependency = stringDependency;
     }
