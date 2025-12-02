@@ -8,6 +8,7 @@ public static class StringFileExtensions
             return (attributes & FileAttributes.Directory) != FileAttributes.Directory;
         }
         catch(Exception) { }
+
         return false;
     }
 
@@ -18,6 +19,7 @@ public static class StringFileExtensions
             return (attributes & FileAttributes.Directory) == FileAttributes.Directory;
         }
         catch(Exception) { }
+
         return false;
     }
 }

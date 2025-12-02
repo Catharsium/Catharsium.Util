@@ -22,31 +22,28 @@ public class EnumParsingHelperTests
     public void ParseNullableEnum_EmptyValueNotRequired_ReturnsNull() {
         var expected = "";
         var actual = expected.ParseNullableEnum<MockEnumeration>(false);
-        Assert.AreEqual(null, actual);
+        Assert.IsNull(actual);
     }
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void ParseNullableEnum_EmptyValueButRequired_ThrowsException() {
         var expected = "";
-        expected.ParseNullableEnum<MockEnumeration>(true);
+        Assert.Throws<ArgumentNullException>(() => expected.ParseNullableEnum<MockEnumeration>(true));
     }
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void ParseNullableEnum_InvalidValue_ThrowsException() {
         var expected = "Some value";
-        expected.ParseNullableEnum<MockEnumeration>(false);
+        Assert.Throws<ArgumentException>(() => expected.ParseNullableEnum<MockEnumeration>(false));
     }
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void ParseNullableEnum_NoEnumType_ThrowsException() {
         var expected = MockEnumeration.Second;
-        expected.ToString().ParseNullableEnum<int>(false);
+        Assert.Throws<ArgumentException>(() => expected.ToString().ParseNullableEnum<int>(false));
     }
 
     #endregion
@@ -62,18 +59,16 @@ public class EnumParsingHelperTests
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void ParseEnum_EmptyValue_ThrowsException() {
         var expected = "";
-        expected.ParseEnum<MockEnumeration>();
+        Assert.Throws<ArgumentNullException>(() => expected.ParseEnum<MockEnumeration>());
     }
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void ParseEnum_InvalidValue_ThrowsException() {
         var expected = "Other value";
-        expected.ParseEnum<MockEnumeration>();
+        Assert.Throws<ArgumentException>(() => expected.ParseEnum<MockEnumeration>());
     }
 
     #endregion

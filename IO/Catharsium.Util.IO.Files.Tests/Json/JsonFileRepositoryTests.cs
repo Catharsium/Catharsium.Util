@@ -48,7 +48,7 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
         this.GetDependency<IJsonFileReader>().ReadFrom<string>(file2).Returns(expected2);
 
         var actual = await this.Target.Get();
-        Assert.AreEqual(2, actual.Count);
+        Assert.HasCount(2, actual);
         foreach(var data in actual) {
             Assert.IsTrue(expected1.Contains(data) || expected2.Contains(data));
         }
@@ -70,12 +70,11 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
     #region Get(key)
 
     [TestMethod]
-    [ExpectedException(typeof(IOException))]
     public async Task Get_NewKey_ThrowsException() {
         var expected = "My data";
         this.File.Exists.Returns(false);
         this.GetDependency<IJsonFileReader>().ReadFrom<string>(this.File).Returns(expected);
-        await this.Target.Get(Key);
+        await Assert.ThrowsAsync<IOException>(() => this.Target.Get(Key));
     }
 
 
@@ -119,10 +118,9 @@ public class JsonFileRepositoryTests : TestFixture<JsonFileRepository<string>>
     #region Remove
 
     [TestMethod]
-    [ExpectedException(typeof(IOException))]
     public async Task Remove_NewKey_ThrowsException() {
         this.File.Exists.Returns(false);
-        await this.Target.Remove(Key);
+        await Assert.ThrowsAsync<IOException>(() => this.Target.Remove(Key));
     }
 
 

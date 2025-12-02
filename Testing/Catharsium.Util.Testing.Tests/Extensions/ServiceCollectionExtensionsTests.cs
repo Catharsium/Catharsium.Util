@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.Exceptions;
+
 namespace Catharsium.Util.Testing.Tests.Extensions;
 
 [TestClass]
@@ -20,11 +21,10 @@ public class ServiceCollectionExtensionsTests
 
 
     [TestMethod]
-    [ExpectedException(typeof(ReceivedCallsException))]
     public void ReceivedRegistration_DifferentInterfaceRegistered_ThrowAnException() {
         var target = Substitute.For<IServiceCollection>();
         target.AddScoped<IMockInterface1>();
-        target.ReceivedRegistration<IMockInterface2>();
+        Assert.Throws<ReceivedCallsException>(target.ReceivedRegistration<IMockInterface2>);
     }
 
     #endregion
@@ -42,13 +42,11 @@ public class ServiceCollectionExtensionsTests
 
 
     [TestMethod]
-    [ExpectedException(typeof(ReceivedCallsException))]
     public void ReceivedRegistration_WithImplementation_DifferentImplementationRegistered_ThrowAnException() {
         var target = Substitute.For<IServiceCollection>();
         target.AddScoped<IMockInterface1, Mock2>();
 
-        var actual = ServiceCollectionExtensions.ReceivedRegistration<IMockInterface1, Mock1>(target);
-        Assert.AreEqual(target, actual);
+        Assert.Throws<ReceivedCallsException>(() => ServiceCollectionExtensions.ReceivedRegistration<IMockInterface1, Mock1>(target));
     }
 
     #endregion

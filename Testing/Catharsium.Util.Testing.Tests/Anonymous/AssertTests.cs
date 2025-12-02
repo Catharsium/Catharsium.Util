@@ -31,20 +31,18 @@ public class AssertAnonymousTests
 
 
     [TestMethod]
-    [ExpectedException(typeof(AssertFailedException))]
     public void AreEqual_DifferentValue_AreNotEqual() {
         var x = new { Id = 123, Value = "My value" };
         var y = new { Id = 123, Value = "My other value" };
-        AssertAnonymous.AreEqual(x, y);
+        Assert.Throws<AssertFailedException>(() => AssertAnonymous.AreEqual(x, y));
     }
 
 
     [TestMethod]
-    [ExpectedException(typeof(AssertFailedException))]
     public void AreEqual_DifferentNestedValue_AreNotEqual() {
         var x = new { Id = 123, Value = "My value", Child = new { Name = "My child name" } };
         var y = new { Id = 123, Value = "My value", Child = new { Name = "My other child name" } };
-        AssertAnonymous.AreEqual(x, y);
+        Assert.Throws<AssertFailedException>(() => AssertAnonymous.AreEqual(x, y));
     }
 }
 

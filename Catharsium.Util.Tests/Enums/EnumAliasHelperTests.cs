@@ -9,16 +9,14 @@ namespace Catharsium.Util.Tests.Enums;
 public class EnumAliasHelperTests
 {
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void ParseTo_NonEnumType_ThrowsException() {
-        "1".ParseTo<int>();
+        Assert.Throws<ArgumentException>(() => "1".ParseTo<int>());
     }
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void ParseTo_NullAlias_ThrowsException() {
-        (null as string).ParseTo<MockEnumeration>();
+        Assert.Throws<ArgumentNullException>(() => (null as string).ParseTo<MockEnumeration>());
     }
 
 

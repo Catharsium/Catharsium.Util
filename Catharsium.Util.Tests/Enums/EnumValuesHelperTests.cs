@@ -12,7 +12,7 @@ public class EnumValuesHelperTests
     [TestMethod]
     public void GetValues_ReturnsEnumValues() {
         var actual = EnumValuesHelper.GetValues<MockEnumeration>().ToArray();
-        Assert.AreEqual(4, actual.Length);
+        Assert.HasCount(4, actual);
         Assert.AreEqual(MockEnumeration.First, actual[0]);
         Assert.AreEqual(MockEnumeration.Second, actual[1]);
         Assert.AreEqual(MockEnumeration.WithAlias, actual[2]);
@@ -21,8 +21,7 @@ public class EnumValuesHelperTests
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void GetValues_NotAnEnum_ThrowsException() {
-        EnumValuesHelper.GetValues<int>();
+        Assert.Throws<ArgumentException>(EnumValuesHelper.GetValues<int>);
     }
 }

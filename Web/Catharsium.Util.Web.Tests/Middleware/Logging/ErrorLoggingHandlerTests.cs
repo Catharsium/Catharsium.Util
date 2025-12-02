@@ -20,7 +20,7 @@ public class ErrorLoggingHandlerTests : TestFixture<ErrorLoggingHandler>
         this.SetDependency<RequestDelegate>(this.MyRequestDelegateWithException);
 
         var actual = this.Target.Invoke(httpContext);
-        Assert.ThrowsException<ApplicationException>(() => actual.GetAwaiter().GetResult());
+        Assert.Throws<ApplicationException>(() => actual.GetAwaiter().GetResult());
         logger.ReceivedWithAnyArgs(1).LogError(Arg.Any<ApplicationException>(), null);
     }
 
